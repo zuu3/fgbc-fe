@@ -2,84 +2,92 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
     min-height: 100vh;
-    background-color: #111;
-    color: white;
+    background-color: #fafafa;
+    color: #333;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    padding-top: 80px;
 `;
 
 export const Header = styled.div`
-    background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(17,17,17,0.95));
-    padding: 100px 20px 80px;
+    background: white;
+    padding: 60px 20px 40px;
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid #eee;
 `;
 
 export const Title = styled.h1`
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 2.5rem;
+    font-weight: 600;
     margin: 0;
     letter-spacing: -0.02em;
-    
+    color: #2c2c2c;
+
     @media (max-width: 768px) {
         font-size: 2rem;
     }
 `;
 
 export const TabMenu = styled.div`
-    background: #1a1a1a;
+    background: white;
     display: flex;
     justify-content: center;
     gap: 0;
     padding: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid #ddd;
     flex-wrap: wrap;
     position: sticky;
-    top: 0;
+    top: 80px;
     z-index: 100;
 `;
 
 export const Tab = styled.button<{ $active: boolean }>`
-    padding: 20px 28px;
+    padding: 16px 24px;
     background: transparent;
-    color: ${props => props.$active ? 'white' : 'rgba(255,255,255,0.6)'};
+    color: ${props => props.$active ? '#2c2c2c' : '#999'};
     border: none;
-    border-bottom: ${props => props.$active ? '2px solid white' : '2px solid transparent'};
-    font-size: 15px;
+    border-bottom: ${props => props.$active ? '2px solid #2c2c2c' : '2px solid transparent'};
+    font-size: 0.95rem;
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 
     &:hover {
-        color: white;
-        background: rgba(255,255,255,0.05);
+        color: #2c2c2c;
+    }
+
+    @media (max-width: 768px) {
+        padding: 14px 16px;
+        font-size: 0.9rem;
     }
 `;
 
 export const Content = styled.div`
     max-width: 1200px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 60px 20px;
 `;
 
 export const Section = styled.div`
-    background: #1a1a1a;
-    padding: 60px;
+    background: white;
+    padding: 50px;
     border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 
     @media (max-width: 768px) {
-        padding: 40px 24px;
+        padding: 36px 24px;
     }
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 60px;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 48px;
     letter-spacing: -0.02em;
-    
+    color: #2c2c2c;
+
     @media (max-width: 768px) {
-        font-size: 2rem;
-        margin-bottom: 40px;
+        font-size: 1.6rem;
+        margin-bottom: 32px;
     }
 `;
 
@@ -207,25 +215,102 @@ export const GreetingContent = styled.div`
     }
 `;
 
+export const GreetingIntro = styled.p`
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #555;
+    text-align: center;
+    margin-bottom: 50px;
+    letter-spacing: -0.01em;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+`;
+
+export const PastorSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+`;
+
 export const PastorImage = styled.img`
-    width: 280px;
-    height: 350px;
+    width: 220px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 8px;
+    object-position: top;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     
     @media (max-width: 768px) {
-        width: 100%;
-        max-width: 280px;
+        width: 180px;
+        height: 230px;
+    }
+`;
+
+export const PastorImageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+`;
+
+export const PastorInfo = styled.div`
+    text-align: center;
+    margin-top: 20px;
+`;
+
+export const PastorTitle = styled.h3`
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    text-align: center;
+    letter-spacing: -0.01em;
+`;
+
+export const GreetingTextWrapper = styled.div`
+    flex: 1;
+`;
+
+export const VisionGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+`;
+
+export const VisionCard = styled.div`
+    padding: 28px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: #ddd;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        padding: 24px 20px;
     }
 `;
 
 export const GreetingText = styled.div`
     flex: 1;
-    
+
     p {
         font-size: 1rem;
-        line-height: 1.9;
-        color: rgba(255,255,255,0.8);
+        line-height: 1.8;
+        color: #555;
         margin-bottom: 20px;
     }
 `;
@@ -237,14 +322,14 @@ export const PastorSignature = styled.div`
 
 export const PastorName = styled.p`
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
+    color: #999;
     margin-bottom: 8px;
 `;
 
 export const SignatureImage = styled.div`
     font-size: 1.5rem;
     font-weight: 700;
-    color: white;
+    color: #2c2c2c;
 `;
 
 // Staff Section
@@ -275,38 +360,49 @@ export const StaffTab = styled.button<{ $active: boolean }>`
 
 export const StaffGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 `;
 
 export const StaffCard = styled.div`
     text-align: center;
-    padding: 40px;
-    background: rgba(255,255,255,0.05);
+    padding: 32px 24px;
+    background: #fafafa;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    transition: all 0.2s ease;
 
     &:hover {
-        background: rgba(255,255,255,0.08);
-        transform: translateY(-4px);
+        border-color: #ddd;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 768px) {
+        padding: 28px 20px;
     }
 `;
 
 export const StaffPhoto = styled.img`
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 24px;
-    border: 3px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+    border: 2px solid #eee;
 `;
 
 export const StaffName = styled.h3`
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 24px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
     letter-spacing: -0.01em;
+    color: #2c2c2c;
 `;
 
 export const StaffInfo = styled.div`
@@ -350,35 +446,46 @@ export const ElderTitle = styled.h3`
 
 export const ElderGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
 `;
 
 export const ElderCard = styled.div`
     text-align: center;
-    padding: 32px;
-    background: rgba(255,255,255,0.05);
+    padding: 24px 16px;
+    background: #fafafa;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    transition: all 0.2s ease;
 
     &:hover {
-        background: rgba(255,255,255,0.08);
-        transform: translateY(-4px);
+        border-color: #ddd;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 768px) {
+        padding: 20px 14px;
     }
 `;
 
 export const ElderPhoto = styled.img`
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
-    border: 2px solid rgba(255,255,255,0.1);
+    margin-bottom: 16px;
+    border: 2px solid #eee;
 `;
 
 export const ElderName = styled.p`
-    font-size: 1.125rem;
+    font-size: 1.05rem;
     font-weight: 600;
+    color: #2c2c2c;
 `;
 
 // Registration Section
@@ -444,4 +551,174 @@ export const HistoryContent = styled.div`
     font-size: 1rem;
     line-height: 1.8;
     color: rgba(255,255,255,0.8);
+`;
+
+// 담임목사 인사말 - Vision Labels
+export const VisionSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 50px 0;
+`;
+
+export const VisionLabel = styled.h4`
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+`;
+
+export const VisionDescription = styled.p`
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #666;
+`;
+
+export const ClosingMessage = styled.p`
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-top: 50px;
+    padding: 28px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border-left: 3px solid #666;
+`;
+
+// 섬기는 사람들
+export const StaffSection = styled.div``;
+
+export const StaffCategory = styled.h3`
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+    color: #2c2c2c;
+`;
+
+export const StaffDepartment = styled.p`
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 8px;
+`;
+
+export const ElderDepartment = styled.p`
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 10px;
+    line-height: 1.5;
+`;
+
+export const TeamSection = styled.div`
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 1px solid #eee;
+`;
+
+export const TeamCategory = styled.h4`
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 36px 0 16px;
+    color: #2c2c2c;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+`;
+
+export const TeamList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+`;
+
+export const TeamMember = styled.div`
+    padding: 10px 18px;
+    background: #fafafa;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #555;
+    border: 1px solid #eee;
+
+    span {
+        color: #999;
+        margin-left: 6px;
+    }
+`;
+
+// 예배 안내
+export const WorshipSection = styled.div``;
+
+export const WorshipCategory = styled.h3`
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    color: #2c2c2c;
+`;
+
+export const WorshipTable = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`;
+
+export const WorshipRow = styled.div`
+    display: grid;
+    grid-template-columns: 160px 200px 1fr;
+    gap: 16px;
+    padding: 18px;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    transition: all 0.2s ease;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    &:hover {
+        border-color: #ddd;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+`;
+
+export const WorshipLabel = styled.div`
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c2c2c;
+`;
+
+export const WorshipTime = styled.div`
+    font-size: 0.95rem;
+    color: #666;
+`;
+
+export const WorshipPlace = styled.div`
+    font-size: 0.9rem;
+    color: #999;
+`;
+
+export const OnlineSection = styled.div`
+    margin-top: 60px;
+    padding: 32px;
+    background: #fafafa;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #eee;
+`;
+
+export const OnlineTitle = styled.h4`
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #2c2c2c;
+`;
+
+export const AccountNumber = styled.p`
+    font-size: 1rem;
+    color: #666;
+    font-weight: 400;
 `;

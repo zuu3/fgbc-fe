@@ -18,12 +18,17 @@ export default function Footer() {
                         <S.ServiceList>
                             <S.ServiceItem>
                                 <span className="name">1부 예배</span>
-                                <span className="time">오전 07:30</span>
+                                <span className="time">오전 09:00</span>
                                 <span className="location">2층 본당</span>
                             </S.ServiceItem>
                             <S.ServiceItem>
                                 <span className="name">2부 예배</span>
                                 <span className="time">오전 11:00</span>
+                                <span className="location">2층 본당</span>
+                            </S.ServiceItem>
+                            <S.ServiceItem>
+                                <span className="name">오후예배</span>
+                                <span className="time">오후 02:00 (격주)</span>
                                 <span className="location">2층 본당</span>
                             </S.ServiceItem>
                         </S.ServiceList>
@@ -38,14 +43,14 @@ export default function Footer() {
                                 <span className="location">2층 본당</span>
                             </S.ServiceItem>
                             <S.ServiceItem>
-                                <span className="name">금요철야</span>
-                                <span className="time">금요일 저녁 08:30</span>
+                                <span className="name">금요철야기도회</span>
+                                <span className="time">금요일 저녁 08:30 (시즌제)</span>
                                 <span className="location">2층 본당</span>
                             </S.ServiceItem>
                             <S.ServiceItem>
                                 <span className="name">새벽기도회</span>
-                                <span className="time">월-금 오전 04:50</span>
-                                <span className="location">어린이집</span>
+                                <span className="time">월-금 오전 05:00</span>
+                                <span className="location">1층 소예배실</span>
                             </S.ServiceItem>
                         </S.ServiceList>
                     </S.Column>
@@ -54,19 +59,24 @@ export default function Footer() {
                         <S.ColumnTitle>교회 학교</S.ColumnTitle>
                         <S.ServiceList>
                             <S.ServiceItem>
-                                <span className="name">주일학교</span>
+                                <span className="name">영유치부</span>
                                 <span className="time">주일 오전 11:00</span>
-                                <span className="location">교육관</span>
+                                <span className="location">본당 3층 모자실</span>
+                            </S.ServiceItem>
+                            <S.ServiceItem>
+                                <span className="name">유초등부</span>
+                                <span className="time">주일 오전 10:30</span>
+                                <span className="location">교육관 3층</span>
                             </S.ServiceItem>
                             <S.ServiceItem>
                                 <span className="name">중고등부</span>
-                                <span className="time">주일 오전 09:50</span>
-                                <span className="location">교육관</span>
+                                <span className="time">주일 오전 10:00</span>
+                                <span className="location">1층 소예배실</span>
                             </S.ServiceItem>
                             <S.ServiceItem>
-                                <span className="name">청년회</span>
-                                <span className="time">주일 오후 01:00</span>
-                                <span className="location">교육관</span>
+                                <span className="name">청년예배</span>
+                                <span className="time">주일 오후 02:00</span>
+                                <span className="location">1층 소예배실</span>
                             </S.ServiceItem>
                         </S.ServiceList>
                     </S.Column>
