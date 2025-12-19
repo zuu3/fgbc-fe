@@ -5,7 +5,7 @@ export const Container = styled.div`
     background-color: #fafafa;
     color: #333;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    padding-top: 80px;
+    padding-top: 70px;
 `;
 
 export const Header = styled.div`
@@ -36,7 +36,7 @@ export const TabMenu = styled.div`
     border-bottom: 1px solid #ddd;
     flex-wrap: wrap;
     position: sticky;
-    top: 80px;
+    top: 70px;
     z-index: 100;
     overflow-x: auto;
     white-space: nowrap;
@@ -151,11 +151,10 @@ export const VisionItem = styled.div`
     padding: 24px;
     background: rgba(255,255,255,0.05);
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: background 0.2s ease;
 
     &:hover {
         background: rgba(255,255,255,0.08);
-        transform: translateX(8px);
     }
 `;
 
@@ -566,11 +565,10 @@ export const StaffGroup = styled.div`
     border-radius: 12px;
     padding: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    transition: all 0.2s ease;
+    transition: box-shadow 0.2s ease;
 
     &:hover {
         box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        transform: translateY(-2px);
     }
 `;
 
@@ -660,7 +658,7 @@ export const WorshipRow = styled.div`
     background: #fafafa;
     border-radius: 6px;
     border: 1px solid #eee;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease;
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -669,7 +667,6 @@ export const WorshipRow = styled.div`
 
     &:hover {
         border-color: #ddd;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
 `;
 

@@ -5,7 +5,7 @@ export const Container = styled.div`
     background-color: #fafafa;
     color: #333;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    padding-top: 80px;
+    padding-top: 70px;
 `;
 
 export const Header = styled.div`
@@ -36,7 +36,7 @@ export const TabMenu = styled.div`
     border-bottom: 1px solid #ddd;
     flex-wrap: wrap;
     position: sticky;
-    top: 80px;
+    top: 70px;
     z-index: 100;
     overflow-x: auto;
     white-space: nowrap;

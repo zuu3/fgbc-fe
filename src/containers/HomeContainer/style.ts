@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     color: #333;
     overflow-x: hidden;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    padding-top: 80px;
+    padding-top: 70px;
 `;
 
 // 1. 히어로 섹션
