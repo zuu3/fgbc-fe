@@ -258,15 +258,23 @@ export const ChurchNote = styled.p`
     border: 1px solid #eee;
 `;
 
-export const MapPlaceholder = styled.div`
+export const MapContainer = styled.div`
     width: 100%;
     height: 400px;
     background: #fafafa;
     border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #eee;
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #999;
-    font-size: 1rem;
-    border: 2px dashed #ddd;
+    align-items: center;
+    
+    .root_daum_roughmap {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .root_daum_roughmap .wrap_map {
+        height: 100% !important;
+    }
 `;

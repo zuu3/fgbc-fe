@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import * as S from './style';
+import KakaoMap from '@/components/KakaoMap';
 
 const NewcomerContainer = () => {
     const searchParams = useSearchParams();
@@ -14,6 +15,8 @@ const NewcomerContainer = () => {
             setActiveTab(tabParam);
         }
     }, [tabParam]);
+
+
 
     return (
         <S.Container>
@@ -158,13 +161,9 @@ const NewcomerContainer = () => {
                             </S.InfoBlock>
                         </S.LocationInfo>
 
-                        <S.ChurchNote>
-                            본 교회는 '기독교대한하나님의성회'(순복음)에 소속되어 있습니다.
-                        </S.ChurchNote>
-
-                        <S.MapPlaceholder>
-                            지도 영역 (추후 실제 지도 API 추가 예정)
-                        </S.MapPlaceholder>
+                        <S.MapContainer>
+                            <KakaoMap />
+                        </S.MapContainer>
                     </S.Section>
                 )}
             </S.Content>
