@@ -48,7 +48,7 @@ export default function HomeContainer() {
                         우리 교회는 예수 그리스도의 사랑을 세상으로 흘려보내며 모든 세대가 함께 예배하고 섬기는 교회입니다.
                     </S.IntroDescription>
                     <S.IntroButton>
-                        <Link href="/intro">교회를 소개합니다 →</Link>
+                        <Link href="/intro">자세히 보기 →</Link>
                     </S.IntroButton>
                 </S.IntroContent>
             </S.IntroSection>
