@@ -102,20 +102,19 @@ export const SubMenu = styled.div`
 `;
 
 export const SubMenuItem = styled.div`
-    padding: 10px 20px;
-    transition: background 0.15s ease;
+    padding: 8px 20px;
+    transition: background 0.2s ease;
 
     &:hover {
-        background: #fafafa;
+        background: #f8f9fa;
     }
 
     a {
-        color: #555;
+        color: #444;
         text-decoration: none;
         font-size: 0.9rem;
         white-space: nowrap;
         display: block;
-        font-weight: 400;
     }
 `;
 
