@@ -234,11 +234,6 @@ const IntroContainer = () => {
                                     <S.WorshipPlace>1층 소예배실</S.WorshipPlace>
                                 </S.WorshipRow>
                             </S.WorshipTable>
-
-                            <S.OnlineSection>
-                                <S.OnlineTitle>온라인 헌금</S.OnlineTitle>
-                                <S.AccountNumber>수협은행 701-01-189085 순복음범천교회</S.AccountNumber>
-                            </S.OnlineSection>
                         </S.WorshipSection>
                     </S.Section>
                 )}

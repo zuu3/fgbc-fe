@@ -74,7 +74,9 @@ export const HeroTitle = styled.h1`
     line-height: 1.3;
 
     @media (max-width: 768px) {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        padding: 0 10px;
+        word-break: keep-all;
     }
 `;
 
@@ -103,6 +105,10 @@ export const HeroButton = styled.div`
 export const IntroSection = styled.section`
     padding: 100px 20px;
     background: #fafafa;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
 `;
 
 export const IntroContent = styled.div`
@@ -227,6 +233,10 @@ export const NewcomerButton = styled.div`
 export const NewsSection = styled.section`
     padding: 100px 20px;
     background: white;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
 `;
 
 export const NewsGrid = styled.div`
@@ -314,6 +324,10 @@ export const NewsImage = styled.img`
 export const YouTubeSection = styled.section`
     padding: 80px 20px;
     background: #f59e0b;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
 `;
 
 export const YouTubeContent = styled.div`
@@ -369,6 +383,10 @@ export const WorshipSection = styled.section`
     max-width: 1200px;
     margin: 0 auto;
     padding: 80px 20px;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
 `;
 
 export const WorshipHeader = styled.div`
@@ -439,6 +457,10 @@ export const WorshipInfo = styled.div`
 export const InfoSection = styled.section`
     padding: 80px 20px;
     background: #fafafa;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
 `;
 
 export const InfoGrid = styled.div`
@@ -586,6 +608,7 @@ export const InfoContainer = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
         gap: 32px;
+        align-items: stretch;
     }
 `;
 
@@ -635,6 +658,10 @@ export const AccountBanner = styled.div`
     background: #2c2c2c;
     border-radius: 8px;
     text-align: center;
+
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
 `;
 
 export const AccountText = styled.p`

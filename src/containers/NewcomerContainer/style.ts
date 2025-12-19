@@ -38,6 +38,18 @@ export const TabMenu = styled.div`
     position: sticky;
     top: 80px;
     z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        justify-content: flex-start;
+        padding: 0 20px;
+    }
 `;
 
 export const Tab = styled.button<{ $active: boolean }>`
@@ -58,6 +70,7 @@ export const Tab = styled.button<{ $active: boolean }>`
     @media (max-width: 768px) {
         padding: 14px 18px;
         font-size: 0.9rem;
+        flex-shrink: 0;
     }
 `;
 
@@ -220,6 +233,11 @@ export const LocationInfo = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 `;
 
 export const InfoBlock = styled.div`
@@ -277,4 +295,9 @@ export const MapContainer = styled.div`
     .root_daum_roughmap .wrap_map {
         height: 100% !important;
     }
+
+    @media (max-width: 768px) {
+        height: 300px;
+    }
 `;
+

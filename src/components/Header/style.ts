@@ -41,6 +41,10 @@ export const Logo = styled.div`
 export const Nav = styled.nav`
     display: flex;
     gap: 40px;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const NavItem = styled.div`
@@ -114,3 +118,66 @@ export const SubMenuItem = styled.div`
         font-weight: 400;
     }
 `;
+
+export const MobileMenuButton = styled.button`
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+`;
+
+export const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 1050;
+    padding: 80px 20px 40px;
+    transition: transform 0.3s ease-in-out;
+    transform: ${props => props.$isOpen ? 'translateX(0)' : 'translateX(100%)'};
+    overflow-y: auto;
+`;
+
+export const MobileNav = styled.nav`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
+
+export const MobileNavItem = styled.div`
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+`;
+
+export const MobileNavLink = styled.div`
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 16px;
+`;
+
+export const MobileSubMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 10px;
+`;
+
+export const MobileSubMenuItem = styled.div`
+    a {
+        color: #666;
+        text-decoration: none;
+        font-size: 1rem;
+        display: block;
+        padding: 4px 0;
+    }
+`;
+

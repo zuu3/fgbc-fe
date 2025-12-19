@@ -38,6 +38,18 @@ export const TabMenu = styled.div`
     position: sticky;
     top: 80px;
     z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        justify-content: flex-start;
+        padding: 0 20px;
+    }
 `;
 
 export const Tab = styled.button<{ $active: boolean }>`
@@ -58,6 +70,7 @@ export const Tab = styled.button<{ $active: boolean }>`
     @media (max-width: 768px) {
         padding: 14px 16px;
         font-size: 0.9rem;
+        flex-shrink: 0;
     }
 `;
 
@@ -245,8 +258,10 @@ export const PastorImage = styled.img`
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     
     @media (max-width: 768px) {
-        width: 180px;
-        height: 230px;
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        aspect-ratio: 220/280;
     }
 `;
 
@@ -339,6 +354,16 @@ export const StaffTabs = styled.div`
     margin-bottom: 50px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        margin-bottom: 30px;
+    }
 `;
 
 export const StaffTab = styled.button<{ $active: boolean }>`
@@ -355,6 +380,12 @@ export const StaffTab = styled.button<{ $active: boolean }>`
 
     &:hover {
         color: white;
+    }
+
+    @media (max-width: 768px) {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        flex-shrink: 0;
     }
 `;
 
@@ -451,7 +482,7 @@ export const ElderGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        gap: 12px;
     }
 `;
 
