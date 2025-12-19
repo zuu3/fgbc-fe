@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     color: #333;
     overflow-x: hidden;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    padding-top: 70px;
+    padding-top: 80px;
 `;
 
 // 1. 히어로 섹션
@@ -32,7 +32,7 @@ export const HeroSection = styled.div`
         position: absolute;
         top: 0;
         left: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.7);
     }
 
     @media (max-width: 768px) {

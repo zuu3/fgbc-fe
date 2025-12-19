@@ -26,10 +26,10 @@ export default function HomeContainer() {
             <S.HeroSection>
                 <S.HeroContent initial="initial" animate="animate" variants={staggerContainer}>
                     <motion.div variants={fadeInUp}>
-                        <S.HeroSubtitle>다음 세대와 예배, 선교로</S.HeroSubtitle>
-                        <S.HeroTitle>
-                            세워가는 순복음범천교회
-                        </S.HeroTitle>
+                        <S.HeroTitle>순복음범천교회에<br />오신 것을 환영합니다!</S.HeroTitle>
+                        <S.HeroSubtitle>
+                            행복한 교회, 행복한 성도!<br />하나님의 사랑과 은혜가 넘치는 행복한 신앙 공동체입니다.
+                        </S.HeroSubtitle>
                     </motion.div>
                     <motion.div variants={fadeInUp}>
                         <S.HeroButton>
