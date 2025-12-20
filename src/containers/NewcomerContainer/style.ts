@@ -168,18 +168,31 @@ export const StepDescription = styled.p`
 
 // 양육과 훈련
 export const TrainingList = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 `;
 
 export const TrainingItem = styled.div`
-    padding: 32px;
+    padding: 40px 24px;
     background: #fafafa;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     border: 1px solid #eee;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 200px;
 
     &:hover {
         border-color: #ddd;
@@ -201,11 +214,11 @@ export const TrainingTitle = styled.h3`
 
 export const TrainingPeriod = styled.p`
     font-size: 0.9rem;
-    color: #999;
+    color: #888;
     margin: 0;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dotted #ddd;
 `;
 
 export const TrainingDescription = styled.p`

@@ -92,35 +92,24 @@ const NewcomerContainer = () => {
                     <S.Section>
                         <S.SectionTitle>양육과 훈련</S.SectionTitle>
                         <S.IntroText style={{ marginBottom: '50px' }}>
-                            순복음범천교회는 성도님들의 신앙 성장을 돕기 위해<br />
-                            다양한 양육과 훈련 프로그램을 운영하고 있습니다.
+                            {/* 순복음범천교회는 성도님들의 신앙 성장을 돕기 위해<br />
+                            다양한 양육과 훈련 프로그램을 운영하고 있습니다. */}
+                            순복음범천교회의 기본 양육 과정을 소개합니다.
                         </S.IntroText>
 
                         <S.TrainingList>
                             <S.TrainingItem>
                                 <S.TrainingTitle>하나님 나라 성경 관통</S.TrainingTitle>
-                                <S.TrainingDescription>
-                                    창세기부터 요한계시록까지 성경 66권의 흐름을 배우며,
-                                    하나님 나라의 관점에서 성경 전체를 이해하는 과정입니다.
-                                </S.TrainingDescription>
                                 <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
                             </S.TrainingItem>
 
                             <S.TrainingItem>
                                 <S.TrainingTitle>하나님 나라 제자훈련</S.TrainingTitle>
-                                <S.TrainingDescription>
-                                    예수 그리스도의 제자로서 삶의 모든 영역에서
-                                    하나님 나라를 세워가는 방법을 배우는 훈련입니다.
-                                </S.TrainingDescription>
                                 <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
                             </S.TrainingItem>
 
                             <S.TrainingItem>
                                 <S.TrainingTitle>하나님을 경험하는 삶</S.TrainingTitle>
-                                <S.TrainingDescription>
-                                    일상에서 하나님의 임재를 경험하고,
-                                    성령의 인도하심을 따라 살아가는 방법을 배웁니다.
-                                </S.TrainingDescription>
                                 <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
                             </S.TrainingItem>
                         </S.TrainingList>
@@ -151,13 +140,8 @@ const NewcomerContainer = () => {
                             </S.InfoBlock>
 
                             <S.InfoBlock>
-                                <S.InfoLabel>전화</S.InfoLabel>
-                                <S.InfoValue>051) 634-9362</S.InfoValue>
-                            </S.InfoBlock>
-
-                            <S.InfoBlock>
-                                <S.InfoLabel>팩스</S.InfoLabel>
-                                <S.InfoValue>051) 635-2801</S.InfoValue>
+                                <S.InfoLabel>전화 및 FAX</S.InfoLabel>
+                                <S.InfoValue>TEL : 051) 634-9362<br />FAX : 051) 635-2801</S.InfoValue>
                             </S.InfoBlock>
                         </S.LocationInfo>
 
