@@ -707,3 +707,28 @@ export const AccountNumber = styled.p`
     color: #666;
     font-weight: 400;
 `;
+
+export const AccountBanner = styled.div`
+    max-width: 800px;
+    margin: 32px auto 0 auto;
+    padding: 24px 40px;
+    background: #2c2c2c;
+    border-radius: 8px;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
+`;
+
+export const AccountText = styled.p`
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+    cursor: pointer;
+
+    strong {
+        margin-right: 16px;
+        color: #f59e0b;
+    }
+`;

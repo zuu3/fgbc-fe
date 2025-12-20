@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: "순복음범천교회 웹사이트 입니다.",
 };
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,6 +23,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </body>
     </html>
   );

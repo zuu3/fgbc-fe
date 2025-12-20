@@ -195,12 +195,7 @@ export default function HomeContainer() {
                         </S.InfoRow>
                     </S.InfoRight>
                 </S.InfoContainer>
-                <S.AccountBanner>
-                    <S.AccountText>
-                        <strong>온라인 헌금</strong> 수협은행 701-01-189085 순복음범천교회
-                    </S.AccountText>
-                </S.AccountBanner>
-            </S.InfoSection>
-        </S.Wrapper>
+            </S.InfoSection >
+        </S.Wrapper >
     );
 }

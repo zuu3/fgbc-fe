@@ -40,3 +40,20 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Toastify Mobile Customization */
+@media (max-width: 480px) {
+  .Toastify__toast-container {
+    width: calc(100vw - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    top: 16px !important;
+    transform: none !important;
+  }
+
+  .Toastify__toast {
+    margin-bottom: 12px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+}

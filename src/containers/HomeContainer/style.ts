@@ -650,27 +650,3 @@ export const InfoContent = styled.div`
     flex-direction: column;
     gap: 2px;
 `;
-
-export const AccountBanner = styled.div`
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 24px 40px;
-    background: #2c2c2c;
-    border-radius: 8px;
-    text-align: center;
-
-    @media (max-width: 768px) {
-        padding: 20px;
-    }
-`;
-
-export const AccountText = styled.p`
-    font-size: 1rem;
-    color: white;
-    margin: 0;
-
-    strong {
-        margin-right: 16px;
-        color: #f59e0b;
-    }
-`;
