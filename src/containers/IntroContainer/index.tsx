@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { MdContentCopy } from 'react-icons/md';
 import * as S from './style';
 
 const IntroContainer = () => {
@@ -269,9 +270,9 @@ const IntroContainer = () => {
                                 </S.WorshipRow>
                             </S.WorshipTable>
 
-                            <S.AccountBanner>
-                                <S.AccountText onClick={handleAccountCopy}>
-                                    <strong>온라인 헌금</strong> 수협은행 701-01-189085 순복음범천교회
+                            <S.AccountBanner onClick={handleAccountCopy}>
+                                <S.AccountText>
+                                    <strong>온라인 헌금</strong> 수협은행 701-01-189085 순복음범천교회 <MdContentCopy />
                                 </S.AccountText>
                             </S.AccountBanner>
                         </S.WorshipSection>

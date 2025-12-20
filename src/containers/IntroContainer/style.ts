@@ -713,11 +713,26 @@ export const AccountBanner = styled.div`
     margin: 32px auto 0 auto;
     padding: 24px 40px;
     background: #2c2c2c;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+
+    &:hover {
+        background: #3a3a3a;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-color: #f59e0b;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
 
     @media (max-width: 768px) {
-        padding: 20px;
+        padding: 20px 16px;
+        margin: 24px 16px 0 16px;
     }
 `;
 
@@ -725,10 +740,36 @@ export const AccountText = styled.p`
     font-size: 1rem;
     color: white;
     margin: 0;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    word-break: keep-all;
+    line-height: 1.5;
 
     strong {
-        margin-right: 16px;
         color: #f59e0b;
+        white-space: nowrap;
+    }
+
+    svg {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        flex-shrink: 0;
+    }
+
+    &:hover svg {
+        opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.95rem;
+
+        strong {
+            margin-bottom: 4px;
+        }
     }
 `;
