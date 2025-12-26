@@ -17,9 +17,7 @@ export const HeroSection = styled.div`
     width: 100%;
     height: 100vh;
     min-height: 600px;
-    background-image: url('/bg.jpeg');
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,6 +39,24 @@ export const HeroSection = styled.div`
     }
 `;
 
+
+export const HeroBackground = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+`;
+
+export const NewcomerBackground = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+`;
 export const HeroContent = styled(motion.div)`
     position: relative;
     z-index: 2;
@@ -164,9 +180,7 @@ export const IntroButton = styled.div`
 export const NewcomerBanner = styled.section`
     position: relative;
     height: 400px;
-    background-image: url('/bible_background.jpg');
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -23,8 +23,18 @@ const staggerContainer = {
 export default function HomeContainer() {
     return (
         <S.Wrapper>
-            {/* 1. 배너 섹션 */}
+                        {/* 1. 배너 섹션 */}
             <S.HeroSection>
+                <S.HeroBackground>
+                    <Image 
+                        src="/bg.jpeg"
+                        alt="순복음범천교회 배경"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        priority
+                        quality={75}
+                    />
+                </S.HeroBackground>
                 <S.HeroContent initial="initial" animate="animate" variants={staggerContainer}>
                     <motion.div variants={fadeInUp}>
                         <S.HeroTitle>순복음범천교회에<br />오신 것을 환영합니다!</S.HeroTitle>
@@ -54,8 +64,17 @@ export default function HomeContainer() {
                 </S.IntroContent>
             </S.IntroSection>
 
-            {/* 3. 처음 오셨나요? 배너 */}
+                        {/* 3. 처음 오셨나요? 배너 */}
             <S.NewcomerBanner>
+                <S.NewcomerBackground>
+                    <Image 
+                        src="/bible_background.jpg"
+                        alt="성경 배경 이미지"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        quality={75}
+                    />
+                </S.NewcomerBackground>
                 <S.NewcomerOverlay />
                 <S.NewcomerContent>
                     <S.NewcomerTitle>순복음범천교회에 처음 오셨나요?</S.NewcomerTitle>
