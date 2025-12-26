@@ -17,6 +17,17 @@ const IntroContainer = () => {
         }
     }, [tabParam]);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.location.hash === '#offering') {
+            setTimeout(() => {
+                const element = document.getElementById('offering');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 300);
+        }
+    }, [activeTab]);
+
     const handleAccountCopy = () => {
         navigator.clipboard.writeText('수협은행 701-01-189085');
         toast.success('계좌번호가 복사되었습니다');
@@ -270,7 +281,7 @@ const IntroContainer = () => {
                                 </S.WorshipRow>
                             </S.WorshipTable>
 
-                            <S.AccountBanner onClick={handleAccountCopy}>
+                            <S.AccountBanner id="offering" onClick={handleAccountCopy}>
                                 <S.AccountText>
                                     <strong>온라인 헌금</strong> 수협은행 701-01-189085 순복음범천교회 <MdContentCopy />
                                 </S.AccountText>

@@ -191,7 +191,7 @@ export default function HomeContainer() {
                             <Link href="/intro?tab=worship" style={{ textDecoration: 'none' }}>
                                 <S.MainActionLink>예배 시간 안내 바로 가기</S.MainActionLink>
                             </Link>
-                            <Link href="/intro?tab=worship" style={{ textDecoration: 'none' }}>
+                            <Link href="/intro?tab=worship#offering" style={{ textDecoration: 'none' }}>
                                 <S.SubActionLink>헌금 안내</S.SubActionLink>
                             </Link>
                         </S.CardLinks>
