@@ -37,9 +37,9 @@ export default function HomeContainer() {
                 </S.HeroBackground>
                 <S.HeroContent initial="initial" animate="animate" variants={staggerContainer}>
                     <motion.div variants={fadeInUp}>
-                        <S.HeroTitle>순복음범천교회에<br />오신 것을 환영합니다!</S.HeroTitle>
+                        <S.HeroTitle>순복음범천교회에 오신<br /> 여러분을 환영합니다!</S.HeroTitle>
                         <S.HeroSubtitle>
-                            순복음범천교회 화이팅!<br />하나님의 사랑과 은혜가 넘치는 행복한 신앙 공동체입니다.
+                            우리는 모든 세대가 하나 되어 성령의 인도하심을 따라<br /> 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.
                         </S.HeroSubtitle>
                     </motion.div>
                     <motion.div variants={fadeInUp}>
@@ -51,7 +51,7 @@ export default function HomeContainer() {
             </S.HeroSection>
 
             {/* 2. 교회 소개 핵심 문구 */}
-            <S.IntroSection>
+            {/* <S.IntroSection>
                 <S.IntroContent>
                     <S.IntroTitle>순복음범천교회에 오신 것을 환영합니다!</S.IntroTitle>
                     <S.IntroDescription>
@@ -62,18 +62,18 @@ export default function HomeContainer() {
                         <Link href="/intro">자세히 보기 →</Link>
                     </S.IntroButton>
                 </S.IntroContent>
-            </S.IntroSection>
+            </S.IntroSection> */}
 
             {/* 3. 처음 오셨나요? 배너 */}
             <S.NewcomerBanner>
                 <S.NewcomerBackground>
-                    <Image
+                    {/* <Image
                         src="/bible_background.jpg"
                         alt="성경 배경 이미지"
                         fill
                         style={{ objectFit: 'cover' }}
                         quality={75}
-                    />
+                    /> */}
                 </S.NewcomerBackground>
                 <S.NewcomerOverlay />
                 <S.NewcomerContent>
@@ -89,7 +89,7 @@ export default function HomeContainer() {
             </S.NewcomerBanner>
 
             {/* 4. 교회 소식 / 주보 섹션 */}
-            <S.NewsSection>
+            {/* <S.NewsSection>
                 <S.NewsGrid>
                     <S.NewsCard>
                         <S.NewsLabel>우리가 이루어가는</S.NewsLabel>
@@ -114,7 +114,7 @@ export default function HomeContainer() {
                         />
                     </S.NewsImageCard>
                 </S.NewsGrid>
-            </S.NewsSection>
+            </S.NewsSection> */}
 
             {/* 5. 유튜브 채널 섹션 */}
             <S.YouTubeSection>
@@ -133,66 +133,64 @@ export default function HomeContainer() {
 
             {/* 6. 예배 안내 섹션 */}
             <S.WorshipSection>
-                <S.SectionTitle>예배 안내</S.SectionTitle>
-                <S.WorshipGrid>
-                    <S.WorshipCard>
-                        <S.WorshipCardHeader>주일 예배</S.WorshipCardHeader>
-                        <S.WorshipList>
-                            <S.WorshipItem>
-                                <S.WorshipName>1부 예배</S.WorshipName>
-                                <S.WorshipDetail>오전 09:00 · 2층 본당</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>2부 예배</S.WorshipName>
-                                <S.WorshipDetail>오전 11:00 · 2층 본당</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>오후예배</S.WorshipName>
-                                <S.WorshipDetail>오후 02:00 (격주) · 2층 본당</S.WorshipDetail>
-                            </S.WorshipItem>
-                        </S.WorshipList>
-                    </S.WorshipCard>
+                <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
+                <S.WorshipTableWrapper>
+                    
 
-                    <S.WorshipCard>
-                        <S.WorshipCardHeader>주중 예배</S.WorshipCardHeader>
-                        <S.WorshipList>
-                            <S.WorshipItem>
-                                <S.WorshipName>수요예배</S.WorshipName>
-                                <S.WorshipDetail>수요일 저녁 07:30 · 2층 본당</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>금요철야기도회</S.WorshipName>
-                                <S.WorshipDetail>금요일 저녁 08:30 (시즌제) · 2층 본당</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>새벽기도회</S.WorshipName>
-                                <S.WorshipDetail>월-금 오전 05:00 · 1층 소예배실</S.WorshipDetail>
-                            </S.WorshipItem>
-                        </S.WorshipList>
-                    </S.WorshipCard>
+                    <S.WorshipTableColumn>
+                        <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
+                        <S.WorshipTableRow>1부 &nbsp;&nbsp;오전 9:00</S.WorshipTableRow>
+                        <S.WorshipTableRow>2부 &nbsp;&nbsp;오전 11:00</S.WorshipTableRow>
+                        <S.WorshipTableRow>3부 &nbsp;&nbsp;오후 2:00</S.WorshipTableRow>
+                        <S.WorshipTableRow>2층 &nbsp;&nbsp;본당</S.WorshipTableRow>
+                    </S.WorshipTableColumn>
 
-                    <S.WorshipCard>
-                        <S.WorshipCardHeader>교육부서 예배</S.WorshipCardHeader>
-                        <S.WorshipList>
-                            <S.WorshipItem>
-                                <S.WorshipName>영유치부</S.WorshipName>
-                                <S.WorshipDetail>주일 오전 11:00 · 3층 모자실</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>유초등부</S.WorshipName>
-                                <S.WorshipDetail>주일 오전 10:30 · 교육관 3층</S.WorshipDetail>
-                            </S.WorshipItem>
-                            <S.WorshipItem>
-                                <S.WorshipName>중고등부</S.WorshipName>
-                                <S.WorshipDetail>주일 오전 10:00 · 1층 소예배실</S.WorshipDetail>
-                            </S.WorshipItem>
-                        </S.WorshipList>
-                    </S.WorshipCard>
-                </S.WorshipGrid>
+                    <S.WorshipTableColumn>
+                        <S.WorshipTableTitle>미래세대 주일예배</S.WorshipTableTitle>
+                        <S.WorshipTableRow>
+                            <span>영유치부</span>
+                            <span>오전 11:00</span>
+                            <span>3층 모자실</span>
+                        </S.WorshipTableRow>
+                        <S.WorshipTableRow>
+                            <span>유초등부</span>
+                            <span>오전 10:30</span>
+                            <span>교육관 3층</span>
+                        </S.WorshipTableRow>
+                        <S.WorshipTableRow>
+                            <span>중고등부</span>
+                            <span>오전 10:00</span>
+                            <span>1층 소예배실</span>
+                        </S.WorshipTableRow>
+                        <S.WorshipTableRow>
+                            <span>청년예배</span>
+                            <span>오후 2:00</span>
+                            <span>1층 소예배실</span>
+                        </S.WorshipTableRow>
+                    </S.WorshipTableColumn>
+
+                    <S.WorshipTableColumn>
+                        <S.WorshipTableTitle>수요예배</S.WorshipTableTitle>
+                        <S.WorshipTableRow>수요일 저녁 7:30</S.WorshipTableRow>
+                        <S.WorshipTableRow>2층 본당</S.WorshipTableRow>
+                    </S.WorshipTableColumn>
+
+                    <S.WorshipTableColumn>
+                        <S.WorshipTableTitle>금요철야기도회</S.WorshipTableTitle>
+                        <S.WorshipTableRow>금요일 저녁 8:30</S.WorshipTableRow>
+                        <S.WorshipTableRow>2층 본당</S.WorshipTableRow>
+                    </S.WorshipTableColumn>
+
+                    <S.WorshipTableColumn>
+                        <S.WorshipTableTitle>새벽기도회</S.WorshipTableTitle>
+                        <S.WorshipTableRow>월~금 새벽 5:00</S.WorshipTableRow>
+                        <S.WorshipTableRow>1층 소예배실</S.WorshipTableRow>
+                    </S.WorshipTableColumn>
+                </S.WorshipTableWrapper>
             </S.WorshipSection>
 
             {/* 7. 퀵 링크 섹션 */}
-            <S.QuickLinksSection>
+            {/* <S.QuickLinksSection>
                 <S.QuickLinksGrid>
                     <S.QuickLinkCard>
                         <S.CardHeader>
@@ -239,10 +237,10 @@ export default function HomeContainer() {
                         </S.CardLinks>
                     </S.QuickLinkCard>
                 </S.QuickLinksGrid>
-            </S.QuickLinksSection>
+            </S.QuickLinksSection> */}
 
             {/* 8. 교회 기본 정보 */}
-            <S.InfoSection>
+            {/* <S.InfoSection>
                 <S.InfoContainer>
                     <S.InfoLeft>
                         <S.InfoTitle>순복음범천교회</S.InfoTitle>
@@ -272,7 +270,7 @@ export default function HomeContainer() {
                         </S.InfoRow>
                     </S.InfoRight>
                 </S.InfoContainer>
-            </S.InfoSection >
+            </S.InfoSection > */}
         </S.Wrapper >
     );
 }

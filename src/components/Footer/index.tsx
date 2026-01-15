@@ -13,7 +13,7 @@ export default function Footer() {
     return (
         <S.FooterWrapper>
             <S.Container>
-                <S.TopSection>
+                {/* <S.TopSection>
                     <S.Column>
                         <S.ColumnTitle>예배 안내</S.ColumnTitle>
                     </S.Column>
@@ -87,7 +87,7 @@ export default function Footer() {
                     </S.Column>
                 </S.TopSection>
 
-                <S.Divider />
+                <S.Divider /> */}
 
                 <S.BottomSection>
                     <S.ChurchInfo>
@@ -103,8 +103,7 @@ export default function Footer() {
 
                     <S.Affiliation>
                         <p>
-                            본 교회는 <strong>기독교대한하나님의성회(순복음)</strong>에<br />
-                            소속된 복음주의를 실천하는 건강한 교회입니다.
+                            본 교회는 <strong>기독교대한하나님의성회(순복음)</strong>에 소속된 건강한 교회입니다.
                         </p>
                     </S.Affiliation>
                 </S.BottomSection>

@@ -74,6 +74,7 @@ export const HeroSubtitle = styled.p`
     color: rgba(255,255,255,0.9);
     margin: 0 0 8px 0;
     letter-spacing: 0.02em;
+    line-height: 1.3;
 
     @media (max-width: 768px) {
         font-size: 1rem;
@@ -88,6 +89,7 @@ export const HeroTitle = styled.h1`
     text-shadow: 0 4px 20px rgba(0,0,0,0.4);
     letter-spacing: -0.02em;
     line-height: 1.3;
+    margin-bottom: 16px;
 
     @media (max-width: 768px) {
         font-size: 2rem;
@@ -104,9 +106,9 @@ export const HeroButton = styled.div`
         backdrop-filter: blur(8px);
         color: white;
         text-decoration: none;
-        border-radius: 4px;
+        border-radius: 48px;
         font-weight: 500;
-        font-size: 1rem;
+        font-size: 1.1rem;
         border: 1px solid rgba(255,255,255,0.3);
         transition: all 0.3s ease;
 
@@ -196,7 +198,8 @@ export const NewcomerOverlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.55);
+    // background: rgba(0,0,0,0.55);
+    color: black;
 `;
 
 export const NewcomerContent = styled.div`
@@ -204,12 +207,13 @@ export const NewcomerContent = styled.div`
     z-index: 2;
     text-align: center;
     padding: 0 20px;
+    color: black;
 `;
 
 export const NewcomerTitle = styled.h2`
     font-size: 2rem;
     font-weight: 600;
-    color: white;
+    color: black;
     margin-bottom: 16px;
     letter-spacing: -0.01em;
 
@@ -221,7 +225,7 @@ export const NewcomerTitle = styled.h2`
 export const NewcomerDescription = styled.p`
     font-size: 1rem;
     line-height: 1.7;
-    color: rgba(255,255,255,0.85);
+    color: black;
     margin-bottom: 32px;
 `;
 
@@ -229,12 +233,13 @@ export const NewcomerButton = styled.div`
     a {
         display: inline-block;
         padding: 14px 32px;
-        background: white;
+        // background: black;
+        border: 1px solid black;
         color: #2c2c2c;
         text-decoration: none;
-        border-radius: 4px;
+        border-radius: 48px;
         font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 1.1rem;
         transition: all 0.2s ease;
 
         &:hover {
@@ -337,10 +342,11 @@ export const NewsImage = styled.img`
 // 5. 유튜브 섹션
 export const YouTubeSection = styled.section`
     padding: 80px 20px;
-    background: #f59e0b;
+    background: linear-gradient(90deg, #e0e0e0 0%, #e0e0e0 5%, #5eccff 35%, #5eccff 65%, #e0e0e0 95%, #e0e0e0 100%);
 
     @media (max-width: 768px) {
         padding: 60px 20px;
+        background: linear-gradient(90deg, #f0f0f0 0%, #5eccff 15%, #5eccff 85%, #f0f0f0 100%);
     }
 `;
 
@@ -351,7 +357,7 @@ export const YouTubeContent = styled.div`
 `;
 
 export const YouTubeLabel = styled.p`
-    font-size: 0.95rem;
+    font-size: 1.3rem;
     color: rgba(255,255,255,0.8);
     margin-bottom: 8px;
 `;
@@ -376,9 +382,9 @@ export const YouTubeButton = styled.a`
     background: white;
     color: #2c2c2c;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 48px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: all 0.2s ease;
 
     svg {
@@ -401,6 +407,68 @@ export const WorshipSection = styled.section`
     @media (max-width: 768px) {
         padding: 60px 20px;
     }
+`;
+
+export const WorshipTableWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+    padding: 40px 0 0 0;
+    // border-top: 2px solid #2c2c2c;
+    // border-bottom: 1px solid #ddd;
+
+    @media (max-width: 1024px) {
+        gap: 40px;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 32px;
+    }
+`;
+
+export const WorshipTableHeader = styled.h2`
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    white-space: nowrap;
+    text-align: center;
+    // min-width: 80px;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        font-size: 1.2rem;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+    }
+`;
+
+export const WorshipTableColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    // min-width: 180px;
+
+    @media (max-width: 768px) {
+        min-width: 100%;
+    }
+`;
+
+export const WorshipTableTitle = styled.h3`
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 8px;
+`;
+
+export const WorshipTableRow = styled.div`
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    display: flex;
+    gap: 16px;
 `;
 
 export const WorshipHeader = styled.div`

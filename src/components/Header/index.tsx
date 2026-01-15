@@ -84,6 +84,7 @@ const Header = () => {
                         )}
                     </S.NavItem>
                 </S.Nav>
+                주보
 
                 <S.MobileMenuButton
                     onClick={toggleMobileMenu}

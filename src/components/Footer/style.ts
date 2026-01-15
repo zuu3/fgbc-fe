@@ -100,14 +100,14 @@ export const ChurchInfo = styled.div`
     gap: 12px;
 
     h2 {
-        font-size: 1rem;
+        font-size: 1.25rem;
         font-weight: 700;
         color: #111;
         margin: 0;
     }
 
     p {
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: #4b5563;
         line-height: 1.6;
         margin: 0;
@@ -118,11 +118,12 @@ export const Affiliation = styled.div`
     max-width: 300px;
     
     p {
-        font-size: 0.85rem;
+        font-size: 1rem;
         color: #6b7280;
         line-height: 1.5;
         margin: 0;
         word-break: keep-all;
+        // white-space: nowrap;
     }
 
     strong {
