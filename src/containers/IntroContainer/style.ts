@@ -2,38 +2,42 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
     min-height: 100vh;
-    background-color: #fafafa;
+    background-color: #f6f5f1;
+    background-image: radial-gradient(1200px 600px at 10% -10%, rgba(255, 213, 153, 0.22), transparent 60%),
+        radial-gradient(1000px 500px at 90% 0%, rgba(196, 226, 255, 0.22), transparent 55%);
     color: #333;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     padding-top: 80px;
 `;
 
 export const Header = styled.div`
-    background: white;
-    padding: 60px 20px 40px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
+    background: linear-gradient(120deg, #1b1b1b 0%, #2b2b2b 45%, #3b2e27 100%);
+    padding: 120px 20px 70px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 `;
 
 export const Title = styled.h1`
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 600;
     margin: 0;
     letter-spacing: -0.02em;
-    color: #2c2c2c;
+    color: #f5f5f5;
+    text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 `;
 
 export const TabMenu = styled.div`
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     gap: 0;
     padding: 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     flex-wrap: wrap;
     position: sticky;
     top: 80px;
@@ -46,9 +50,10 @@ export const TabMenu = styled.div`
         display: none;
     }
 
+    padding: 0 20px;
+
     @media (max-width: 768px) {
         justify-content: flex-start;
-        padding: 0 20px;
     }
 `;
 
@@ -75,32 +80,46 @@ export const Tab = styled.button<{ $active: boolean }>`
 `;
 
 export const Content = styled.div`
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 60px 24px 120px;
 `;
 
 export const Section = styled.div`
-    background: white;
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 80px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 
-    @media (max-width: 768px) {
-        padding: 36px 24px;
+    &:first-of-type {
+        border-top: none;
     }
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
     letter-spacing: -0.02em;
     color: #2c2c2c;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 44px;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #111, rgba(17, 17, 17, 0.2));
+    }
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
-        margin-bottom: 32px;
+        font-size: 1.7rem;
+        margin-bottom: 24px;
     }
 `;
 
@@ -216,19 +235,18 @@ export const GreetingSubtitle = styled.p`
 `;
 
 export const GreetingContent = styled.div`
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-    padding: 50px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    gap: 80px;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 
     @media (max-width: 1024px) {
-        flex-direction: column-reverse;
-        align-items: center;
+        grid-template-columns: 1fr;
         gap: 40px;
-        padding: 36px 24px;
     }
 `;
 
@@ -275,6 +293,11 @@ export const PastorImageWrapper = styled.div`
     align-items: center;
     flex-shrink: 0;
     width: 420px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 
     @media (max-width: 1024px) {
         width: 100%;
@@ -558,7 +581,7 @@ export const VisionSection = styled.div`
 export const StaffContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 40px;
     
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -566,15 +589,14 @@ export const StaffContainer = styled.div`
 `;
 
 export const StaffGroup = styled.div`
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    transition: box-shadow 0.2s ease;
+    background: transparent;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 28px 0;
+    box-shadow: none;
 
-    &:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    &:first-of-type {
+        border-top: none;
+        padding-top: 0;
     }
 `;
 
@@ -660,10 +682,10 @@ export const WorshipRow = styled.div`
     display: grid;
     grid-template-columns: 160px 200px 1fr;
     gap: 16px;
-    padding: 18px;
-    background: #fafafa;
-    border-radius: 6px;
-    border: 1px solid #eee;
+    padding: 18px 0;
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     transition: border-color 0.2s ease;
 
     @media (max-width: 768px) {
@@ -671,8 +693,8 @@ export const WorshipRow = styled.div`
         gap: 6px;
     }
 
-    &:hover {
-        border-color: #ddd;
+    &:last-child {
+        border-bottom: none;
     }
 `;
 
@@ -694,11 +716,11 @@ export const WorshipPlace = styled.div`
 
 export const OnlineSection = styled.div`
     margin-top: 60px;
-    padding: 32px;
-    background: #fafafa;
-    border-radius: 8px;
+    padding: 24px 0;
+    background: transparent;
+    border-radius: 0;
     text-align: center;
-    border: 1px solid #eee;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
 export const OnlineTitle = styled.h4`

@@ -40,7 +40,10 @@ export const Logo = styled.div`
 
 export const Nav = styled.nav`
     display: flex;
-    gap: 40px;
+    gap: 32px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
 
     @media (max-width: 768px) {
         display: none;
@@ -92,11 +95,11 @@ export const SubMenu = styled.div`
     @keyframes fadeIn {
         from {
             opacity: 0;
-            transform: translateX(-50%) translateY(-5px);
+            transform: translateX(-50%);
         }
         to {
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%);
         }
     }
 `;
@@ -180,3 +183,34 @@ export const MobileSubMenuItem = styled.div`
     }
 `;
 
+
+export const RightSection = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 16px;
+`;
+
+export const BulletinButton = styled.a`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    background: #2c2c2c;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #444;
+    }
+
+    @media (max-width: 768px) {
+        padding: 7px 12px;
+        font-size: 0.8rem;
+    }
+`;

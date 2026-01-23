@@ -77,34 +77,38 @@ const Header = () => {
                                 <S.SubMenuItem>
                                     <Link href="https://www.instagram.com/fgbc_" target="_blank" rel="noopener noreferrer">인스타그램</Link>
                                 </S.SubMenuItem>
-                                <S.SubMenuItem>
-                                    <Link href="/online?tab=bulletin">온라인 주보</Link>
-                                </S.SubMenuItem>
                             </S.SubMenu>
                         )}
                     </S.NavItem>
-                </S.Nav>
-                주보
 
-                <S.MobileMenuButton
-                    onClick={toggleMobileMenu}
-                    aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-                    aria-expanded={isMobileMenuOpen}
-                    aria-controls="mobile-menu"
-                >
-                    {isMobileMenuOpen ? (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M6 6L18 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    ) : (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M3 12H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M3 6H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M3 18H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    )}
-                </S.MobileMenuButton>
+                </S.Nav>
+
+
+                <S.RightSection>
+                    <S.MobileMenuButton
+                        onClick={toggleMobileMenu}
+                        aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+                        aria-expanded={isMobileMenuOpen}
+                        aria-controls="mobile-menu"
+                    >
+                        {isMobileMenuOpen ? (
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M6 6L18 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        ) : (
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M3 12H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 6H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 18H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        )}
+                    </S.MobileMenuButton>
+                    <S.BulletinButton href="/bulletin">
+                        주보
+                    </S.BulletinButton>
+                </S.RightSection>
+
 
                 <S.MobileMenuOverlay
                     $isOpen={isMobileMenuOpen}
@@ -128,7 +132,6 @@ const Header = () => {
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
-
                         <S.MobileNavItem>
                             <S.MobileNavLink>처음 오셨나요?</S.MobileNavLink>
                             <S.MobileSubMenu>
@@ -143,7 +146,6 @@ const Header = () => {
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
-
                         <S.MobileNavItem>
                             <S.MobileNavLink>온라인으로 만나기</S.MobileNavLink>
                             <S.MobileSubMenu>
@@ -152,9 +154,6 @@ const Header = () => {
                                 </S.MobileSubMenuItem>
                                 <S.MobileSubMenuItem>
                                     <Link href="https://www.instagram.com/fgbc_" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>인스타그램</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/online?tab=bulletin" onClick={closeMobileMenu}>온라인 주보</Link>
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
