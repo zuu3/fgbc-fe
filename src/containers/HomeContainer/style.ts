@@ -525,6 +525,80 @@ export const VideoCaption = styled.div`
     }
 `;
 
+// 4-1. 오시는 길
+export const LocationSection = styled.section`
+    padding: 72px 20px;
+    background: #ffffff;
+
+    @media (max-width: 768px) {
+        padding: 60px 20px;
+    }
+`;
+
+export const LocationInner = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+`;
+
+export const LocationHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`;
+
+export const LocationTitle = styled.h2`
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    text-align: left;
+
+    @media (max-width: 768px) {
+        font-size: 1.6rem;
+    }
+`;
+
+export const LocationDesc = styled.p`
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 0;
+    text-align: left;
+`;
+
+export const LocationMapCard = styled.div`
+    width: 100%;
+    height: 360px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    background: #f6f6f6;
+
+    .root_daum_roughmap {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .root_daum_roughmap .wrap_map {
+        height: 100% !important;
+    }
+
+    @media (max-width: 768px) {
+        height: 280px;
+    }
+`;
+
 // 5. 유튜브 섹션
 export const YouTubeSection = styled.section`
     padding: 80px 20px;

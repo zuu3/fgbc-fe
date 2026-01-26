@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaYoutube } from 'react-icons/fa';
+import KakaoMap from '@/components/KakaoMap';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -39,7 +40,7 @@ export default function HomeContainer() {
                 if (!mounted || data?.error) return;
                 setLatestVideo(data);
             })
-            .catch(() => {})
+            .catch(() => { })
             .finally(() => {
                 if (mounted) setIsLoadingLatest(false);
             });
@@ -155,6 +156,22 @@ export default function HomeContainer() {
                 </S.NewsMediaCard>
             </S.NewsSection>
 
+            {/* 4-1. 오시는 길 */}
+            <S.LocationSection>
+                <S.LocationInner>
+                    <S.LocationHeader>
+                        <S.LocationTitle>오시는 길</S.LocationTitle>
+                        <S.LocationDesc>
+                            주소 : 부산광역시 부산진구 엄광로 359<br />
+                            (버스 - 신암입구 하차 도보 5분｜지하철 - 부암역 7번 출구 하차 도보 10분)
+                        </S.LocationDesc>
+                    </S.LocationHeader>
+                    <S.LocationMapCard>
+                        <KakaoMap />
+                    </S.LocationMapCard>
+                </S.LocationInner>
+            </S.LocationSection>
+
             {latestVideo?.videoId && latestVideoPlayerOpen && (
                 <S.VideoOverlay
                     role="dialog"
@@ -224,7 +241,7 @@ export default function HomeContainer() {
             <S.WorshipSection>
                 <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
                 <S.WorshipTableWrapper>
-                    
+
 
                     <S.WorshipTableColumn>
                         <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
