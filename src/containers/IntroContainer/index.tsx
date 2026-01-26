@@ -5,15 +5,16 @@ import { useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { MdContentCopy } from 'react-icons/md';
 import Image from 'next/image';
+import KakaoMap from '@/components/KakaoMap';
 import * as S from './style';
 
 const IntroContainer = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const [activeTab, setActiveTab] = useState<'greeting' | 'staff' | 'worship'>('greeting');
+    const [activeTab, setActiveTab] = useState<'greeting' | 'staff' | 'worship' | 'location'>('greeting');
 
     useEffect(() => {
-        if (tabParam === 'greeting' || tabParam === 'staff' || tabParam === 'worship') {
+        if (tabParam === 'greeting' || tabParam === 'staff' || tabParam === 'worship' || tabParam === 'location') {
             setActiveTab(tabParam);
         }
     }, [tabParam]);
@@ -49,6 +50,9 @@ const IntroContainer = () => {
                 </S.Tab>
                 <S.Tab $active={activeTab === 'worship'} onClick={() => setActiveTab('worship')}>
                     예배 안내
+                </S.Tab>
+                <S.Tab $active={activeTab === 'location'} onClick={() => setActiveTab('location')}>
+                    교회 위치
                 </S.Tab>
             </S.TabMenu>
 
@@ -296,6 +300,38 @@ const IntroContainer = () => {
                                 </S.AccountText>
                             </S.AccountBanner>
                         </S.WorshipSection>
+                    </S.Section>
+                )}
+
+                {activeTab === 'location' && (
+                    <S.Section>
+                        <S.SectionTitle>교회 위치</S.SectionTitle>
+
+                        <S.LocationInfo>
+                            <S.InfoBlock>
+                                <S.InfoLabel>주소</S.InfoLabel>
+                                <S.InfoValue>부산광역시 부산진구 엄광로 359</S.InfoValue>
+                            </S.InfoBlock>
+
+                            <S.InfoBlock>
+                                <S.InfoLabel>교통편</S.InfoLabel>
+                                <S.InfoValue>
+                                    버스 - 신암입구 하차 도보 5분<br />
+                                    지하철 - 부암역 7번 출구 하차 도보 10분
+                                </S.InfoValue>
+                            </S.InfoBlock>
+
+                            <S.InfoBlock>
+                                <S.InfoLabel>전화 및 FAX</S.InfoLabel>
+                                <S.InfoValue>
+                                    TEL : 051) 634-9362<br />FAX : 051) 635-2801
+                                </S.InfoValue>
+                            </S.InfoBlock>
+                        </S.LocationInfo>
+
+                        <S.MapContainer>
+                            <KakaoMap />
+                        </S.MapContainer>
                     </S.Section>
                 )}
             </S.Content>

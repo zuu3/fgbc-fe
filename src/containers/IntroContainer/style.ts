@@ -199,6 +199,71 @@ export const StrategyBox = styled.div`
 
 export const StrategyHeader = styled(VisionHeader)``;
 
+// 교회 위치
+export const LocationInfo = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 40px;
+    margin-bottom: 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+`;
+
+export const InfoBlock = styled.div`
+    padding: 24px 0;
+    background: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    @media (max-width: 768px) {
+        padding: 20px 0;
+    }
+`;
+
+export const InfoLabel = styled.h4`
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 10px;
+`;
+
+export const InfoValue = styled.p`
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #2c2c2c;
+    margin: 0;
+`;
+
+export const MapContainer = styled.div`
+    width: 100%;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .root_daum_roughmap {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .root_daum_roughmap .wrap_map {
+        height: 100% !important;
+    }
+
+    @media (max-width: 768px) {
+        height: 300px;
+    }
+`;
+
 export const StrategyText = styled.p`
     font-size: 1rem;
     line-height: 1.8;

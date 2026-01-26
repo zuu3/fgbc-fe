@@ -3,15 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import * as S from './style';
-import KakaoMap from '@/components/KakaoMap';
 
 const NewcomerContainer = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const [activeTab, setActiveTab] = useState<'registration' | 'training' | 'location'>('registration');
+    const [activeTab, setActiveTab] = useState<'welcome' | 'community' | 'notice'>('welcome');
 
     useEffect(() => {
-        if (tabParam === 'registration' || tabParam === 'training' || tabParam === 'location') {
+        if (tabParam === 'welcome' || tabParam === 'community' || tabParam === 'notice') {
             setActiveTab(tabParam);
         }
     }, [tabParam]);
@@ -21,25 +20,25 @@ const NewcomerContainer = () => {
     return (
         <S.Container>
             <S.Header>
-                <S.Title>처음 오셨나요?</S.Title>
+                <S.Title>교회 생활</S.Title>
             </S.Header>
 
             <S.TabMenu>
-                <S.Tab $active={activeTab === 'registration'} onClick={() => setActiveTab('registration')}>
-                    등록 과정
+                <S.Tab $active={activeTab === 'welcome'} onClick={() => setActiveTab('welcome')}>
+                    처음 오셨나요?
                 </S.Tab>
-                <S.Tab $active={activeTab === 'training'} onClick={() => setActiveTab('training')}>
-                    양육과 훈련
+                <S.Tab $active={activeTab === 'community'} onClick={() => setActiveTab('community')}>
+                    공동체 소개
                 </S.Tab>
-                <S.Tab $active={activeTab === 'location'} onClick={() => setActiveTab('location')}>
-                    찾아오는 길
+                <S.Tab $active={activeTab === 'notice'} onClick={() => setActiveTab('notice')}>
+                    교회 공지
                 </S.Tab>
             </S.TabMenu>
 
             <S.Content>
-                {activeTab === 'registration' && (
+                {activeTab === 'welcome' && (
                     <S.Section>
-                        <S.SectionTitle>등록 과정</S.SectionTitle>
+                        <S.SectionTitle>처음 오셨나요?</S.SectionTitle>
                         <S.IntroText>
                             순복음범천교회는 처음 오신 분들을 축복하고 환영합니다.<br />
                             4주간의 새가족 교육을 수료하여 등록 교인이 되시면 신앙생활의 도움을 받으실 수 있습니다.<br />
@@ -88,68 +87,26 @@ const NewcomerContainer = () => {
                     </S.Section>
                 )}
 
-                {activeTab === 'training' && (
+                {activeTab === 'community' && (
                     <S.Section>
-                        <S.SectionTitle>양육과 훈련</S.SectionTitle>
-                        <S.IntroText style={{ marginBottom: '50px' }}>
-                            {/* 순복음범천교회는 성도님들의 신앙 성장을 돕기 위해<br />
-                            다양한 양육과 훈련 프로그램을 운영하고 있습니다. */}
-                            순복음범천교회의 기본 양육 과정을 소개합니다.
+                        <S.SectionTitle>공동체 소개</S.SectionTitle>
+                        <S.IntroText>
+                            교회 공동체 소개 내용은 준비 중입니다.<br />
+                            확정되는 대로 업데이트하겠습니다.
                         </S.IntroText>
-
-                        <S.TrainingList>
-                            <S.TrainingItem>
-                                <S.TrainingTitle>하나님 나라 성경 관통</S.TrainingTitle>
-                                <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
-                            </S.TrainingItem>
-
-                            <S.TrainingItem>
-                                <S.TrainingTitle>하나님 나라 제자훈련</S.TrainingTitle>
-                                <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
-                            </S.TrainingItem>
-
-                            <S.TrainingItem>
-                                <S.TrainingTitle>하나님을 경험하는 삶</S.TrainingTitle>
-                                <S.TrainingPeriod>매년 상·하반기 개설</S.TrainingPeriod>
-                            </S.TrainingItem>
-                        </S.TrainingList>
-
-                        <S.TrainingNote>
-                            * 각 훈련 과정은 교회 사정에 따라 일정이 변경될 수 있습니다.<br />
-                            * 훈련 신청 및 문의는 교회 사무실로 연락해 주세요.
-                        </S.TrainingNote>
                     </S.Section>
                 )}
 
-                {activeTab === 'location' && (
+                {activeTab === 'notice' && (
                     <S.Section>
-                        <S.SectionTitle>찾아오는 길</S.SectionTitle>
-
-                        <S.LocationInfo>
-                            <S.InfoBlock>
-                                <S.InfoLabel>주소</S.InfoLabel>
-                                <S.InfoValue>부산광역시 부산진구 엄광로 359</S.InfoValue>
-                            </S.InfoBlock>
-
-                            <S.InfoBlock>
-                                <S.InfoLabel>교통편</S.InfoLabel>
-                                <S.InfoValue>
-                                    버스 - 신암입구 하차 도보 5분<br />
-                                    지하철 - 부암역 7번 출구 하차 도보 10분
-                                </S.InfoValue>
-                            </S.InfoBlock>
-
-                            <S.InfoBlock>
-                                <S.InfoLabel>전화 및 FAX</S.InfoLabel>
-                                <S.InfoValue>TEL : 051) 634-9362<br />FAX : 051) 635-2801</S.InfoValue>
-                            </S.InfoBlock>
-                        </S.LocationInfo>
-
-                        <S.MapContainer>
-                            <KakaoMap />
-                        </S.MapContainer>
+                        <S.SectionTitle>교회 공지</S.SectionTitle>
+                        <S.IntroText>
+                            교회 공지 내용은 준비 중입니다.<br />
+                            확정되는 대로 업데이트하겠습니다.
+                        </S.IntroText>
                     </S.Section>
                 )}
+
             </S.Content>
         </S.Container>
     );

@@ -28,7 +28,7 @@ const Header = () => {
                         onMouseEnter={() => setActiveMenu('intro')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
-                        <S.NavLink>교회를 소개합니다</S.NavLink>
+                        <S.NavLink>교회 소개</S.NavLink>
                         {activeMenu === 'intro' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
@@ -40,42 +40,42 @@ const Header = () => {
                                 <S.SubMenuItem>
                                     <Link href="/intro?tab=worship">예배 안내</Link>
                                 </S.SubMenuItem>
-                            </S.SubMenu>
-                        )}
-                    </S.NavItem>
-
-                    <S.NavItem
-                        onMouseEnter={() => setActiveMenu('newcomer')}
-                        onMouseLeave={() => setActiveMenu(null)}
-                    >
-                        <S.NavLink>처음 오셨나요?</S.NavLink>
-                        {activeMenu === 'newcomer' && (
-                            <S.SubMenu>
                                 <S.SubMenuItem>
-                                    <Link href="/newcomer?tab=registration">등록 과정</Link>
-                                </S.SubMenuItem>
-                                <S.SubMenuItem>
-                                    <Link href="/newcomer?tab=training">양육과 훈련</Link>
-                                </S.SubMenuItem>
-                                <S.SubMenuItem>
-                                    <Link href="/newcomer?tab=location">찾아오는 길</Link>
+                                    <Link href="/intro?tab=location">교회 위치</Link>
                                 </S.SubMenuItem>
                             </S.SubMenu>
                         )}
                     </S.NavItem>
 
                     <S.NavItem
-                        onMouseEnter={() => setActiveMenu('online')}
+                        onMouseEnter={() => setActiveMenu('life')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
-                        <S.NavLink>온라인으로 만나기</S.NavLink>
-                        {activeMenu === 'online' && (
+                        <S.NavLink>교회 생활</S.NavLink>
+                        {activeMenu === 'life' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
-                                    <Link href="https://www.youtube.com/@순복음범천교회" target="_blank" rel="noopener noreferrer">유튜브 채널 링크</Link>
+                                    <Link href="/newcomer?tab=welcome">처음 오셨나요?</Link>
                                 </S.SubMenuItem>
                                 <S.SubMenuItem>
-                                    <Link href="https://www.instagram.com/fgbc_" target="_blank" rel="noopener noreferrer">인스타그램</Link>
+                                    <Link href="/newcomer?tab=community">공동체 소개</Link>
+                                </S.SubMenuItem>
+                                <S.SubMenuItem>
+                                    <Link href="/newcomer?tab=notice">교회 공지</Link>
+                                </S.SubMenuItem>
+                            </S.SubMenu>
+                        )}
+                    </S.NavItem>
+
+                    <S.NavItem
+                        onMouseEnter={() => setActiveMenu('sermon')}
+                        onMouseLeave={() => setActiveMenu(null)}
+                    >
+                        <S.NavLink>설교 및 주보</S.NavLink>
+                        {activeMenu === 'sermon' && (
+                            <S.SubMenu>
+                                <S.SubMenuItem>
+                                    <Link href="/sermon">예배 관련 정보</Link>
                                 </S.SubMenuItem>
                             </S.SubMenu>
                         )}
@@ -104,9 +104,6 @@ const Header = () => {
                             </svg>
                         )}
                     </S.MobileMenuButton>
-                    <S.BulletinButton href="/bulletin">
-                        주보
-                    </S.BulletinButton>
                 </S.RightSection>
 
 
@@ -119,7 +116,10 @@ const Header = () => {
                 >
                     <S.MobileNav>
                         <S.MobileNavItem>
-                            <S.MobileNavLink>교회를 소개합니다</S.MobileNavLink>
+                            <Link href="/" onClick={closeMobileMenu}>홈</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <S.MobileNavLink>교회 소개</S.MobileNavLink>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
                                     <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>담임목사 인사말</Link>
@@ -130,30 +130,30 @@ const Header = () => {
                                 <S.MobileSubMenuItem>
                                     <Link href="/intro?tab=worship" onClick={closeMobileMenu}>예배 안내</Link>
                                 </S.MobileSubMenuItem>
-                            </S.MobileSubMenu>
-                        </S.MobileNavItem>
-                        <S.MobileNavItem>
-                            <S.MobileNavLink>처음 오셨나요?</S.MobileNavLink>
-                            <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
-                                    <Link href="/newcomer?tab=registration" onClick={closeMobileMenu}>등록 과정</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/newcomer?tab=training" onClick={closeMobileMenu}>양육과 훈련</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/newcomer?tab=location" onClick={closeMobileMenu}>찾아오는 길</Link>
+                                    <Link href="/intro?tab=location" onClick={closeMobileMenu}>교회 위치</Link>
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <S.MobileNavLink>온라인으로 만나기</S.MobileNavLink>
+                            <S.MobileNavLink>교회 생활</S.MobileNavLink>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
-                                    <Link href="https://www.youtube.com/@순복음범천교회" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>유튜브 채널 링크</Link>
+                                    <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>처음 오셨나요?</Link>
                                 </S.MobileSubMenuItem>
                                 <S.MobileSubMenuItem>
-                                    <Link href="https://www.instagram.com/fgbc_" target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu}>인스타그램</Link>
+                                    <Link href="/newcomer?tab=community" onClick={closeMobileMenu}>공동체 소개</Link>
+                                </S.MobileSubMenuItem>
+                                <S.MobileSubMenuItem>
+                                    <Link href="/newcomer?tab=notice" onClick={closeMobileMenu}>교회 공지</Link>
+                                </S.MobileSubMenuItem>
+                            </S.MobileSubMenu>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <S.MobileNavLink>설교 및 주보</S.MobileNavLink>
+                            <S.MobileSubMenu>
+                                <S.MobileSubMenuItem>
+                                    <Link href="/sermon" onClick={closeMobileMenu}>예배 관련 정보</Link>
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>

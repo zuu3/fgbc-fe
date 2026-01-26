@@ -228,10 +228,10 @@ export default function HomeContainer() {
                             <S.CardDesc>순복음범천교회에 오신 여러분을 환영합니다.</S.CardDesc>
                         </S.CardHeader>
                         <S.CardLinks>
-                            <Link href="/newcomer?tab=registration" style={{ textDecoration: 'none' }}>
-                                <S.MainActionLink>등록 및 교육 안내 바로 가기</S.MainActionLink>
+                            <Link href="/newcomer?tab=welcome" style={{ textDecoration: 'none' }}>
+                                <S.MainActionLink>처음 오셨나요? 바로 가기</S.MainActionLink>
                             </Link>
-                            <Link href="/newcomer?tab=location" style={{ textDecoration: 'none' }}>
+                            <Link href="/intro?tab=location" style={{ textDecoration: 'none' }}>
                                 <S.SubActionLink>오시는 길</S.SubActionLink>
                             </Link>
                         </S.CardLinks>
