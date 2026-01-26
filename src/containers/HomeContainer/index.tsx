@@ -2,9 +2,10 @@
 
 import * as S from './style';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaYoutube, FaMapMarkerAlt, FaPhone, FaFax } from 'react-icons/fa';
+import { FaYoutube } from 'react-icons/fa';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -21,6 +22,43 @@ const staggerContainer = {
 };
 
 export default function HomeContainer() {
+    const [latestVideo, setLatestVideo] = useState<{
+        title: string;
+        thumbnailUrl: string;
+        videoUrl: string;
+        videoId?: string;
+        publishedAt: string;
+    } | null>(null);
+    const [latestVideoPlayerOpen, setLatestVideoPlayerOpen] = useState(false);
+    const [isLoadingLatest, setIsLoadingLatest] = useState(true);
+    useEffect(() => {
+        let mounted = true;
+        fetch('/api/youtube/latest')
+            .then(res => res.json())
+            .then(data => {
+                if (!mounted || data?.error) return;
+                setLatestVideo(data);
+            })
+            .catch(() => {})
+            .finally(() => {
+                if (mounted) setIsLoadingLatest(false);
+            });
+        return () => {
+            mounted = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!latestVideoPlayerOpen) return;
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setLatestVideoPlayerOpen(false);
+            }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [latestVideoPlayerOpen]);
+
     return (
         <S.Wrapper>
             {/* 1. 배너 섹션 */}
@@ -87,6 +125,57 @@ export default function HomeContainer() {
                     </S.NewcomerButton>
                 </S.NewcomerContent>
             </S.NewcomerBanner>
+
+            {/* 4. 최신 영상 */}
+            <S.NewsSection>
+                <S.NewsHeader>이번 주 설교</S.NewsHeader>
+                <S.NewsMediaCard>
+                    {isLoadingLatest ? (
+                        <S.SkeletonBox aria-hidden="true" />
+                    ) : (
+                        <S.ThumbnailButton
+                            type="button"
+                            onClick={() => latestVideo?.videoId && setLatestVideoPlayerOpen(true)}
+                            aria-label="이번 주 설교 재생"
+                        >
+                            <Image
+                                src={latestVideo?.thumbnailUrl || '/bg.jpeg'}
+                                alt={latestVideo?.title || '이번 주 설교 썸네일'}
+                                fill
+                                sizes="(max-width: 768px) 95vw, 1200px"
+                                style={{ objectFit: 'cover' }}
+                                priority
+                            />
+                            <S.ThumbnailOverlay data-overlay="true" />
+                            <S.ThumbnailTitle data-title="true">
+                                {latestVideo?.title || '이번 주 설교'}
+                            </S.ThumbnailTitle>
+                        </S.ThumbnailButton>
+                    )}
+                </S.NewsMediaCard>
+            </S.NewsSection>
+
+            {latestVideo?.videoId && latestVideoPlayerOpen && (
+                <S.VideoOverlay
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={latestVideo?.title || '최신 영상'}
+                    onClick={() => setLatestVideoPlayerOpen(false)}
+                >
+                    <S.VideoModal onClick={e => e.stopPropagation()}>
+                        <S.VideoFrame
+                            src={`https://www.youtube.com/embed/${latestVideo.videoId}?autoplay=1&rel=0`}
+                            title={latestVideo?.title || '최신 영상'}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                        <S.CloseButton type="button" onClick={() => setLatestVideoPlayerOpen(false)} aria-label="닫기">
+                            ✕
+                        </S.CloseButton>
+                    </S.VideoModal>
+                    <S.VideoCaption>{latestVideo.title}</S.VideoCaption>
+                </S.VideoOverlay>
+            )}
 
             {/* 4. 교회 소식 / 주보 섹션 */}
             {/* <S.NewsSection>
@@ -239,38 +328,6 @@ export default function HomeContainer() {
                 </S.QuickLinksGrid>
             </S.QuickLinksSection> */}
 
-            {/* 8. 교회 기본 정보 */}
-            {/* <S.InfoSection>
-                <S.InfoContainer>
-                    <S.InfoLeft>
-                        <S.InfoTitle>순복음범천교회</S.InfoTitle>
-                        <S.InfoSubtitle>기독교대한하나님의성회(순복음)</S.InfoSubtitle>
-                    </S.InfoLeft>
-                    <S.InfoRight>
-                        <S.InfoRow>
-                            <S.InfoIcon><FaMapMarkerAlt /></S.InfoIcon>
-                            <S.InfoContent>
-                                <S.InfoLabel>주소</S.InfoLabel>
-                                <S.InfoText>부산광역시 부산진구 엄광로 359</S.InfoText>
-                            </S.InfoContent>
-                        </S.InfoRow>
-                        <S.InfoRow>
-                            <S.InfoIcon><FaPhone /></S.InfoIcon>
-                            <S.InfoContent>
-                                <S.InfoLabel>전화</S.InfoLabel>
-                                <S.InfoText>051) 634-9362</S.InfoText>
-                            </S.InfoContent>
-                        </S.InfoRow>
-                        <S.InfoRow>
-                            <S.InfoIcon><FaFax /></S.InfoIcon>
-                            <S.InfoContent>
-                                <S.InfoLabel>팩스</S.InfoLabel>
-                                <S.InfoText>051) 635-2801</S.InfoText>
-                            </S.InfoContent>
-                        </S.InfoRow>
-                    </S.InfoRight>
-                </S.InfoContainer>
-            </S.InfoSection > */}
         </S.Wrapper >
     );
 }

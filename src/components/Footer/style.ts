@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 
 export const FooterWrapper = styled.footer`
     width: 100%;
-    background-color: #f8f9fa;
-    padding: 80px 24px 40px;
-    border-top: 1px solid #e5e7eb;
+    background-color: #1f1f1f;
+    padding: 36px 24px 44px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 `;
 
@@ -13,128 +13,94 @@ export const Container = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 18px;
 `;
 
-export const TopSection = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr;
-    gap: 40px;
-
-    @media (max-width: 968px) {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px 20px;
-    }
-
-    @media (max-width: 640px) {
-        grid-template-columns: 1fr;
-    }
-`;
-
-export const Column = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-`;
-
-export const ColumnTitle = styled.h3`
-    font-size: 1rem;
-    font-weight: 700;
-    color: #111;
-    margin: 0;
-`;
-
-export const ServiceList = styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-`;
-
-export const ServiceItem = styled.li`
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    
-    .name {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #374151;
-    }
-
-    .time {
-        font-size: 0.9rem;
-        color: #6b7280;
-    }
-    
-    .location {
-        font-size: 0.85rem;
-        color: #9ca3af;
-    }
-`;
-
-export const Divider = styled.hr`
-    border: none;
-    border-top: 1px solid #e5e7eb;
-    margin: 0;
-`;
-
-export const BottomSection = styled.div`
+export const FooterRow = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
 
     @media (max-width: 768px) {
         flex-direction: column;
-        gap: 32px;
+        align-items: flex-start;
+        gap: 16px;
     }
 `;
 
-export const ChurchInfo = styled.div`
+export const FooterBrand = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 12px;
-
-    h2 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #111;
-        margin: 0;
-    }
-
-    p {
-        font-size: 1rem;
-        color: #4b5563;
-        line-height: 1.6;
-        margin: 0;
-    }
+    gap: 6px;
+    min-width: 220px;
 `;
 
-export const Affiliation = styled.div`
-    max-width: 300px;
-    
-    p {
-        font-size: 1rem;
-        color: #6b7280;
-        line-height: 1.5;
-        margin: 0;
-        word-break: keep-all;
-        // white-space: nowrap;
-    }
-
-    strong {
-        font-weight: 600;
-        color: #374151;
-    }
+export const FooterTitle = styled.h3`
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
 `;
 
-export const Copyright = styled.div`
-    margin-top: 20px;
+export const FooterSubTitle = styled.span`
     font-size: 0.85rem;
-    color: #9ca3af;
-    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+`;
+
+export const FooterInfo = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: center;
+`;
+
+export const FooterLine = styled.div`
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:not(:last-of-type)::after {
+        content: '|';
+        color: rgba(255, 255, 255, 0.25);
+        margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+        &:not(:last-of-type)::after {
+            content: '';
+            margin: 0;
+        }
+    }
+`;
+
+export const FooterLabel = styled.span`
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+`;
+
+export const FooterValue = styled.span`
+    font-size: 0.95rem;
+    color: #ffffff;
+`;
+
+export const FooterSns = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+`;
+
+export const FooterSnsLink = styled.a`
+    font-size: 0.9rem;
+    color: #d9d9d9;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+    }
 `;

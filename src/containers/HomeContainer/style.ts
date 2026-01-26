@@ -251,18 +251,44 @@ export const NewcomerButton = styled.div`
 // 4. 교회 소식 섹션
 export const NewsSection = styled.section`
     padding: 100px 20px;
-    background: white;
+    background: #f6f4ef;
 
     @media (max-width: 768px) {
         padding: 60px 20px;
     }
 `;
 
+export const NewsHeader = styled.h2`
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1c1c1c;
+    letter-spacing: -0.02em;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+`;
+
+export const NewsMediaCard = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    background: #111;
+    aspect-ratio: 16 / 9;
+    position: relative;
+`;
+
 export const NewsGrid = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 40px;
     align-items: center;
 
@@ -283,14 +309,14 @@ export const NewsLabel = styled.p`
 `;
 
 export const NewsTitle = styled.h3`
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
     }
 `;
 
@@ -309,7 +335,8 @@ export const NewsDescription = styled.p`
 `;
 
 export const NewsButton = styled.div`
-    a {
+    a,
+    button {
         color: #2c2c2c;
         text-decoration: none;
         font-weight: 500;
@@ -317,6 +344,11 @@ export const NewsButton = styled.div`
         border-bottom: 1px solid #2c2c2c;
         padding-bottom: 4px;
         transition: opacity 0.2s ease;
+        background: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        cursor: pointer;
 
         &:hover {
             opacity: 0.7;
@@ -331,11 +363,165 @@ export const NewsImageCard = styled.div`
 
 export const NewsImage = styled.img`
     width: 100%;
-    height: 350px;
+    height: 480px;
     object-fit: cover;
 
     @media (max-width: 768px) {
-        height: 250px;
+        height: 280px;
+    }
+`;
+
+export const NewsLink = styled.a`
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+`;
+
+export const ThumbnailOverlay = styled.span`
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+`;
+
+export const ThumbnailTitle = styled.span`
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: auto;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 80%;
+    transform: translate(-50%, -50%) scale(0.98);
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+`;
+
+export const ThumbnailButton = styled.button`
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: 3px solid rgba(0, 0, 0, 0.35);
+        outline-offset: 4px;
+    }
+
+    &:hover span[data-overlay='true'] {
+        opacity: 1;
+    }
+
+    &:hover span[data-title='true'] {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+`;
+
+export const SkeletonBox = styled.div`
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, #ece9e2 8%, #f5f2ec 18%, #ece9e2 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+
+    @keyframes shimmer {
+        to {
+            background-position: -200% 0;
+        }
+    }
+`;
+
+export const VideoOverlay = styled.div`
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+`;
+
+export const VideoModal = styled.div`
+    position: relative;
+    width: min(1280px, 96vw);
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+`;
+
+export const VideoFrame = styled.iframe`
+    width: 100%;
+    height: min(70vh, 80vw);
+    border: none;
+
+    @media (max-width: 768px) {
+        height: 56vw;
+    }
+`;
+
+export const CloseButton = styled.button`
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+`;
+
+export const VideoCaption = styled.div`
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+
+    @media (max-width: 768px) {
+        left: 16px;
+        bottom: 16px;
+        font-size: 0.95rem;
+        max-width: 85vw;
     }
 `;
 
