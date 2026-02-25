@@ -7,6 +7,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaYoutube } from 'react-icons/fa';
 import KakaoMap from '@/components/KakaoMap';
+import { getLatestBulletin, getPublishedNotices } from '@/lib/content/client';
+import type { Bulletin, Notice } from '@/types/content';
+import { formatKstDate, formatKstMonthDay } from '@/lib/dateTimeKst';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -22,6 +25,27 @@ const staggerContainer = {
     }
 };
 
+function toKstDate(value: string | Date): Date {
+    const date = new Date(value);
+    return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+}
+
+function getKstWeekRange(baseDate: Date): { weekStart: Date; weekEnd: Date } {
+    const kstNow = toKstDate(baseDate);
+    const day = kstNow.getDay();
+    const mondayOffset = day === 0 ? -6 : 1 - day;
+
+    const weekStart = new Date(kstNow);
+    weekStart.setDate(kstNow.getDate() + mondayOffset);
+    weekStart.setHours(0, 0, 0, 0);
+
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6);
+    weekEnd.setHours(23, 59, 59, 999);
+
+    return { weekStart, weekEnd };
+}
+
 export default function HomeContainer() {
     const [latestVideo, setLatestVideo] = useState<{
         title: string;
@@ -32,6 +56,9 @@ export default function HomeContainer() {
     } | null>(null);
     const [latestVideoPlayerOpen, setLatestVideoPlayerOpen] = useState(false);
     const [isLoadingLatest, setIsLoadingLatest] = useState(true);
+    const [featuredBulletin, setFeaturedBulletin] = useState<Bulletin | null>(null);
+    const [noticeSummary, setNoticeSummary] = useState<Notice[]>([]);
+    const [isLoadingSummary, setIsLoadingSummary] = useState(true);
     useEffect(() => {
         let mounted = true;
         fetch('/api/youtube/latest')
@@ -44,6 +71,33 @@ export default function HomeContainer() {
             .finally(() => {
                 if (mounted) setIsLoadingLatest(false);
             });
+        return () => {
+            mounted = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        let mounted = true;
+
+        Promise.all([getLatestBulletin(), getPublishedNotices(100)]).then(([latest, notices]) => {
+            if (!mounted) return;
+
+            const { weekStart, weekEnd } = getKstWeekRange(new Date());
+            const weeklyNotices = notices.filter((notice) => {
+                const noticeStart = toKstDate(notice.start_at);
+                return noticeStart >= weekStart && noticeStart <= weekEnd;
+            });
+
+            setFeaturedBulletin(latest ?? null);
+            setNoticeSummary(weeklyNotices.slice(0, 3));
+            setIsLoadingSummary(false);
+        }).catch(() => {
+            if (!mounted) return;
+            setFeaturedBulletin(null);
+            setNoticeSummary([]);
+            setIsLoadingSummary(false);
+        });
+
         return () => {
             mounted = false;
         };
@@ -126,6 +180,49 @@ export default function HomeContainer() {
                     </S.NewcomerButton>
                 </S.NewcomerContent>
             </S.NewcomerBanner>
+
+            <S.QuickSummarySection>
+                <S.QuickSummaryInner>
+                    <S.SummaryCard>
+                        <S.SummaryHeader>
+                            <S.SummaryLabel>공지 요약</S.SummaryLabel>
+                            <S.SummaryTitle>이번 주 교회 일정</S.SummaryTitle>
+                        </S.SummaryHeader>
+                        {isLoadingSummary ? (
+                            <S.SummaryLoading>공지 불러오는 중...</S.SummaryLoading>
+                        ) : noticeSummary.length === 0 ? (
+                            <S.SummaryLoading>노출할 공지가 없습니다.</S.SummaryLoading>
+                        ) : (
+                            <S.SummaryList>
+                                {noticeSummary.map((notice) => (
+                                    <S.SummaryItem key={notice.id}>
+                                        <S.SummaryItemDate>
+                                            {formatKstMonthDay(notice.start_at)}
+                                        </S.SummaryItemDate>
+                                        <S.SummaryItemText>{notice.title}</S.SummaryItemText>
+                                    </S.SummaryItem>
+                                ))}
+                            </S.SummaryList>
+                        )}
+                        <S.SummaryLink href="/newcomer?tab=notice">공지 전체 보기</S.SummaryLink>
+                    </S.SummaryCard>
+
+                    <S.SummaryCard>
+                        <S.SummaryHeader>
+                            <S.SummaryLabel>주보 요약</S.SummaryLabel>
+                            <S.SummaryTitle>{featuredBulletin?.title ?? '최신 주보'}</S.SummaryTitle>
+                        </S.SummaryHeader>
+                        <S.BulletinMeta>
+                            {isLoadingSummary
+                                ? '주보 불러오는 중...'
+                                : featuredBulletin
+                                    ? `${formatKstDate(featuredBulletin.week_start_date)} · ${featuredBulletin.service_type ?? '주일 예배'}`
+                                    : '등록된 주보가 없습니다.'}
+                        </S.BulletinMeta>
+                        <S.SummaryLink href="/bulletins">주보 전체 보기</S.SummaryLink>
+                    </S.SummaryCard>
+                </S.QuickSummaryInner>
+            </S.QuickSummarySection>
 
             {/* 4. 최신 영상 */}
             <S.NewsSection>

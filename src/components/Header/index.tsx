@@ -75,7 +75,7 @@ const Header = () => {
                         {activeMenu === 'sermon' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
-                                    <Link href="/sermon">예배 관련 정보</Link>
+                                    <Link href="/bulletins">주보</Link>
                                 </S.SubMenuItem>
                             </S.SubMenu>
                         )}
@@ -153,7 +153,7 @@ const Header = () => {
                             <S.MobileNavLink>설교 및 주보</S.MobileNavLink>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
-                                    <Link href="/sermon" onClick={closeMobileMenu}>예배 관련 정보</Link>
+                                    <Link href="/bulletins" onClick={closeMobileMenu}>주보</Link>
                                 </S.MobileSubMenuItem>
                             </S.MobileSubMenu>
                         </S.MobileNavItem>

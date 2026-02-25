@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -245,6 +246,111 @@ export const NewcomerButton = styled.div`
         &:hover {
             background: #f0f0f0;
         }
+    }
+`;
+
+export const QuickSummarySection = styled.section`
+    padding: 70px 20px;
+    background: radial-gradient(900px 420px at 10% -30%, rgba(255, 225, 172, 0.4), transparent 60%),
+        radial-gradient(900px 420px at 90% 130%, rgba(161, 207, 255, 0.35), transparent 60%),
+        #f5f3ee;
+`;
+
+export const QuickSummaryInner = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+export const SummaryCard = styled.article`
+    border-radius: 18px;
+    border: 1px solid rgba(38, 59, 87, 0.12);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 24px;
+    box-shadow: 0 18px 36px rgba(12, 21, 38, 0.07);
+`;
+
+export const SummaryHeader = styled.div`
+    margin-bottom: 16px;
+`;
+
+export const SummaryLabel = styled.p`
+    font-size: 0.85rem;
+    color: #63718a;
+    margin-bottom: 6px;
+`;
+
+export const SummaryTitle = styled.h3`
+    font-size: 1.35rem;
+    color: #1f2938;
+`;
+
+export const SummaryList = styled.ul`
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+`;
+
+export const SummaryItem = styled.li`
+    display: grid;
+    grid-template-columns: 66px 1fr;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.95rem;
+`;
+
+export const SummaryItemDate = styled.span`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: #173f74;
+    background: #dceaff;
+    padding: 5px 8px;
+`;
+
+export const SummaryItemText = styled.strong`
+    color: #2d394a;
+    font-weight: 500;
+`;
+
+export const SummaryLoading = styled.p`
+    color: #6a768b;
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+`;
+
+export const BulletinMeta = styled.p`
+    color: #55627a;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    line-height: 1.6;
+`;
+
+export const SummaryLink = styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid #214d84;
+    color: #214d84;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #214d84;
+        color: #fff;
     }
 `;
 

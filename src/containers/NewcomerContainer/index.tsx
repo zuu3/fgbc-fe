@@ -1,19 +1,51 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import * as S from './style';
+import { getPublishedNotices } from '@/lib/content/client';
+import type { Notice } from '@/types/content';
+import { formatKstDate, formatKstTime } from '@/lib/dateTimeKst';
 
 const NewcomerContainer = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const [activeTab, setActiveTab] = useState<'welcome' | 'community' | 'notice'>('welcome');
+    const [selectedTab, setSelectedTab] = useState<'welcome' | 'community' | 'notice' | null>(null);
+    const [notices, setNotices] = useState<Notice[]>([]);
+    const [isLoadingNotices, setIsLoadingNotices] = useState(true);
+    const activeTab = useMemo<'welcome' | 'community' | 'notice'>(() => {
+        if (selectedTab) return selectedTab;
+        if (tabParam === 'welcome' || tabParam === 'community' || tabParam === 'notice') {
+            return tabParam;
+        }
+        return 'welcome';
+    }, [selectedTab, tabParam]);
 
     useEffect(() => {
-        if (tabParam === 'welcome' || tabParam === 'community' || tabParam === 'notice') {
-            setActiveTab(tabParam);
-        }
-    }, [tabParam]);
+        let mounted = true;
+
+        getPublishedNotices(5).then((items) => {
+            if (!mounted) return;
+            setNotices(items.slice(0, 5));
+            setIsLoadingNotices(false);
+        }).catch(() => {
+            if (!mounted) return;
+            setNotices([]);
+            setIsLoadingNotices(false);
+        });
+
+        return () => {
+            mounted = false;
+        };
+    }, []);
+
+    const noticeCategoryLabel = {
+        worship: '예배',
+        event: '행사',
+        group: '모임',
+        volunteer: '봉사',
+        urgent: '긴급',
+    } as const;
 
 
 
@@ -24,13 +56,13 @@ const NewcomerContainer = () => {
             </S.Header>
 
             <S.TabMenu>
-                <S.Tab $active={activeTab === 'welcome'} onClick={() => setActiveTab('welcome')}>
+                <S.Tab $active={activeTab === 'welcome'} onClick={() => setSelectedTab('welcome')}>
                     처음 오셨나요?
                 </S.Tab>
-                <S.Tab $active={activeTab === 'community'} onClick={() => setActiveTab('community')}>
+                <S.Tab $active={activeTab === 'community'} onClick={() => setSelectedTab('community')}>
                     공동체 소개
                 </S.Tab>
-                <S.Tab $active={activeTab === 'notice'} onClick={() => setActiveTab('notice')}>
+                <S.Tab $active={activeTab === 'notice'} onClick={() => setSelectedTab('notice')}>
                     교회 공지
                 </S.Tab>
             </S.TabMenu>
@@ -101,9 +133,29 @@ const NewcomerContainer = () => {
                     <S.Section>
                         <S.SectionTitle>교회 공지</S.SectionTitle>
                         <S.IntroText>
-                            교회 공지 내용은 준비 중입니다.<br />
-                            확정되는 대로 업데이트하겠습니다.
+                            주간 공지와 주요 일정을 확인하세요.
                         </S.IntroText>
+
+                        {isLoadingNotices ? (
+                            <S.NoticeLoading>공지 불러오는 중...</S.NoticeLoading>
+                        ) : notices.length === 0 ? (
+                            <S.NoticeLoading>등록된 공지가 없습니다.</S.NoticeLoading>
+                        ) : (
+                            <S.NoticeList>
+                                {notices.map((notice) => (
+                                    <S.NoticeItem key={notice.id}>
+                                        <S.NoticeTag>{noticeCategoryLabel[notice.category]}</S.NoticeTag>
+                                        <S.NoticeTitle>{notice.title}</S.NoticeTitle>
+                                        <S.NoticeBody>{notice.content}</S.NoticeBody>
+                                        <S.NoticeMeta>
+                                            {formatKstDate(notice.start_at)} · {formatKstTime(notice.start_at)}
+                                            {notice.location ? ` · ${notice.location}` : ''}
+                                        </S.NoticeMeta>
+                                    </S.NoticeItem>
+                                ))}
+                            </S.NoticeList>
+                        )}
+
                     </S.Section>
                 )}
 
