@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import * as S from './style';
 
 export default function Footer() {
@@ -27,7 +26,7 @@ export default function Footer() {
                         </S.FooterLine>
                         <S.FooterLine>
                             <S.FooterLabel>담임목사 이메일</S.FooterLabel>
-                            <S.FooterValue>pastor@example.com</S.FooterValue>
+                            <S.FooterValue>pastor@fgbc.co.kr</S.FooterValue>
                         </S.FooterLine>
                     </S.FooterInfo>
                 </S.FooterRow>
