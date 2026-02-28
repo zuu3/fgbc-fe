@@ -32,6 +32,7 @@ export const FooterRow = styled.div`
 export const FooterBrand = styled.div`
     display: inline-flex;
     align-items: center;
+    gap: 12px;
     min-width: 220px;
 
     a {
@@ -48,6 +49,18 @@ export const FooterBrand = styled.div`
         @media (max-width: 768px) {
             height: 42px;
         }
+    }
+`;
+
+export const FooterBrandText = styled.span`
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+        font-size: 0.95rem;
     }
 `;
 

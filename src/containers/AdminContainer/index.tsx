@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as S from './style';
-import type { Bulletin, Notice } from '@/types/content';
+import type { Bulletin, MonthlySummary, Notice } from '@/types/content';
 import { formatKstDate, toKstIsoFromDateTimeLocal } from '@/lib/dateTimeKst';
 
 const categoryLabel = {
@@ -16,9 +16,10 @@ const categoryLabel = {
 
 export default function AdminContainer() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'notices' | 'bulletins'>('notices');
+  const [activeTab, setActiveTab] = useState<'notices' | 'bulletins' | 'monthly'>('notices');
   const [notices, setNotices] = useState<Notice[]>([]);
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
+  const [monthlySummaries, setMonthlySummaries] = useState<MonthlySummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [isUploadingBulletinFile, setIsUploadingBulletinFile] = useState(false);
@@ -26,6 +27,7 @@ export default function AdminContainer() {
   const [sameAsStart, setSameAsStart] = useState(false);
   const [editingNoticeId, setEditingNoticeId] = useState<string | null>(null);
   const [editingBulletinId, setEditingBulletinId] = useState<string | null>(null);
+  const [editingMonthlySummaryId, setEditingMonthlySummaryId] = useState<string | null>(null);
 
   const [noticeForm, setNoticeForm] = useState({
     title: '',
@@ -44,34 +46,44 @@ export default function AdminContainer() {
     is_latest: true,
   });
 
+  const [monthlySummaryForm, setMonthlySummaryForm] = useState({
+    month_key: '',
+    title: '',
+    content: '',
+  });
+
   useEffect(() => {
     let mounted = true;
 
     const fetchAdminData = async () => {
       try {
-        const [noticeRes, bulletinRes] = await Promise.all([
+        const [noticeRes, bulletinRes, monthlyRes] = await Promise.all([
           fetch('/api/admin/notices', { cache: 'no-store' }),
           fetch('/api/admin/bulletins', { cache: 'no-store' }),
+          fetch('/api/admin/monthly-summaries', { cache: 'no-store' }),
         ]);
 
         if (!mounted) return;
 
-        if (noticeRes.status === 401 || bulletinRes.status === 401) {
+        if (noticeRes.status === 401 || bulletinRes.status === 401 || monthlyRes.status === 401) {
           router.replace('/admin/login');
           return;
         }
 
-        if (!noticeRes.ok || !bulletinRes.ok) {
+        if (!noticeRes.ok || !bulletinRes.ok || !monthlyRes.ok) {
           const noticeError = noticeRes.ok ? null : await noticeRes.json().catch(() => ({ error: 'failed notices' }));
           const bulletinError = bulletinRes.ok ? null : await bulletinRes.json().catch(() => ({ error: 'failed bulletins' }));
-          setMessage(`목록 조회 실패: ${noticeError?.error || ''} ${bulletinError?.error || ''}`.trim());
+          const monthlyError = monthlyRes.ok ? null : await monthlyRes.json().catch(() => ({ error: 'failed monthly summaries' }));
+          setMessage(`목록 조회 실패: ${noticeError?.error || ''} ${bulletinError?.error || ''} ${monthlyError?.error || ''}`.trim());
           return;
         }
 
         const noticeJson = await noticeRes.json() as { notices?: Notice[] };
         const bulletinJson = await bulletinRes.json() as { bulletins?: Bulletin[] };
+        const monthlyJson = await monthlyRes.json() as { monthlySummaries?: MonthlySummary[] };
         setNotices(noticeJson.notices || []);
         setBulletins(bulletinJson.bulletins || []);
+        setMonthlySummaries(monthlyJson.monthlySummaries || []);
       } finally {
         if (mounted) {
           setIsLoading(false);
@@ -209,6 +221,51 @@ export default function AdminContainer() {
     }
   };
 
+  const onMonthlySummarySubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setMessage('');
+
+    if (!monthlySummaryForm.month_key || !monthlySummaryForm.content.trim()) {
+      setMessage('월간의 대상 월과 내용을 입력해 주세요.');
+      return;
+    }
+
+    const payload = {
+      ...monthlySummaryForm,
+      title: monthlySummaryForm.title.trim() || null,
+      content: monthlySummaryForm.content.trim(),
+      ...(editingMonthlySummaryId ? { id: editingMonthlySummaryId } : {}),
+    };
+
+    const response = await fetch('/api/admin/monthly-summaries', {
+      method: editingMonthlySummaryId ? 'PATCH' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const json = await response.json() as { monthlySummary?: MonthlySummary; error?: string };
+    if (!response.ok) {
+      setMessage(`월간 저장 실패: ${json.error || 'unknown error'}`);
+      return;
+    }
+
+    if (json.monthlySummary) {
+      if (editingMonthlySummaryId) {
+        setMonthlySummaries((prev) => prev.map((item) => (item.id === editingMonthlySummaryId ? json.monthlySummary! : item)));
+      } else {
+        setMonthlySummaries((prev) => [json.monthlySummary!, ...prev]);
+      }
+    }
+
+    setEditingMonthlySummaryId(null);
+    setMonthlySummaryForm({
+      month_key: '',
+      title: '',
+      content: '',
+    });
+    setMessage(editingMonthlySummaryId ? '월간 정보가 수정되었습니다.' : '월간 정보가 등록되었습니다.');
+  };
+
   const onLogout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
     router.replace('/admin/login');
@@ -282,6 +339,29 @@ export default function AdminContainer() {
     setMessage('주보가 삭제되었습니다.');
   };
 
+  const onEditMonthlySummary = (summary: MonthlySummary) => {
+    setActiveTab('monthly');
+    setEditingMonthlySummaryId(summary.id);
+    setMonthlySummaryForm({
+      month_key: summary.month_key,
+      title: summary.title || '',
+      content: summary.content,
+    });
+    setMessage('월간 정보 수정 모드입니다. 내용 수정 후 저장하세요.');
+  };
+
+  const onDeleteMonthlySummary = async (id: string) => {
+    if (!window.confirm('이 월간 정보를 삭제할까요?')) return;
+    const response = await fetch(`/api/admin/monthly-summaries?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+    const json = await response.json().catch(() => ({} as { error?: string }));
+    if (!response.ok) {
+      setMessage(`월간 정보 삭제 실패: ${json.error || 'unknown error'}`);
+      return;
+    }
+    setMonthlySummaries((prev) => prev.filter((item) => item.id !== id));
+    setMessage('월간 정보가 삭제되었습니다.');
+  };
+
   return (
     <S.Container>
       <S.Header>
@@ -304,6 +384,13 @@ export default function AdminContainer() {
           onClick={() => setActiveTab('bulletins')}
         >
           주보 관리
+        </S.TabButton>
+        <S.TabButton
+          type="button"
+          $active={activeTab === 'monthly'}
+          onClick={() => setActiveTab('monthly')}
+        >
+          월간 관리
         </S.TabButton>
       </S.TabRow>
 
@@ -513,6 +600,76 @@ export default function AdminContainer() {
                   <button type="button" onClick={() => onDeleteBulletin(bulletin.id)}>삭제</button>
                 </S.ItemActions>
               </S.ListItem>
+              ))}
+            </S.List>
+          )}
+        </S.Panel>
+      )}
+
+      {activeTab === 'monthly' && (
+        <S.Panel>
+          <S.SectionTitle>월간 정보 등록</S.SectionTitle>
+          <S.Form id="monthly-form" onSubmit={onMonthlySummarySubmit}>
+            <S.FormGrid>
+              <S.Field>
+                <label htmlFor="monthly-key">대상 월</label>
+                <input
+                  id="monthly-key"
+                  type="month"
+                  value={monthlySummaryForm.month_key}
+                  onChange={(event) => setMonthlySummaryForm((prev) => ({ ...prev, month_key: event.target.value }))}
+                  required
+                />
+              </S.Field>
+              <S.Field>
+                <label htmlFor="monthly-title">제목 (선택)</label>
+                <input
+                  id="monthly-title"
+                  placeholder="예: 3월 교회 소식"
+                  value={monthlySummaryForm.title}
+                  onChange={(event) => setMonthlySummaryForm((prev) => ({ ...prev, title: event.target.value }))}
+                />
+              </S.Field>
+              <S.Field className="full">
+                <label htmlFor="monthly-content">내용</label>
+                <textarea
+                  id="monthly-content"
+                  rows={8}
+                  placeholder={'예: 6일 | 12주 큐티바이블 시작\n15일 | 유치부 수여식\n22일 | 전 교인 성경공부'}
+                  value={monthlySummaryForm.content}
+                  onChange={(event) => setMonthlySummaryForm((prev) => ({ ...prev, content: event.target.value }))}
+                  required
+                />
+              </S.Field>
+            </S.FormGrid>
+          </S.Form>
+
+          <S.ActionRow>
+            <button type="submit" className="primary" form="monthly-form">
+              {editingMonthlySummaryId ? '월간 수정 저장' : '월간 등록'}
+            </button>
+          </S.ActionRow>
+
+          <S.SectionTitle>등록된 월간 정보</S.SectionTitle>
+          {message && <S.Message>{message}</S.Message>}
+          {isLoading ? (
+            <S.Message>월간 정보 불러오는 중...</S.Message>
+          ) : monthlySummaries.length === 0 ? (
+            <S.Message>등록된 월간 정보가 없습니다.</S.Message>
+          ) : (
+            <S.List>
+              {monthlySummaries.map((summary) => (
+                <S.ListItem key={summary.id}>
+                  <S.ListTag>{summary.month_key}</S.ListTag>
+                  <S.ListTitle>{summary.title || `${summary.month_key} 월간 정보`}</S.ListTitle>
+                  <S.ListMeta style={{ whiteSpace: 'pre-line' }}>
+                    {summary.content}
+                  </S.ListMeta>
+                  <S.ItemActions>
+                    <button type="button" onClick={() => onEditMonthlySummary(summary)}>수정</button>
+                    <button type="button" onClick={() => onDeleteMonthlySummary(summary.id)}>삭제</button>
+                  </S.ItemActions>
+                </S.ListItem>
               ))}
             </S.List>
           )}

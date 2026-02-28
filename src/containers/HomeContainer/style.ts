@@ -724,6 +724,123 @@ export const LocationMapCard = styled.div`
     }
 `;
 
+export const InfoSection = styled.section`
+    padding: 56px 0 92px;
+    background: #ececec;
+
+    @media (max-width: 768px) {
+        padding: 36px 0 64px;
+    }
+`;
+
+export const InfoInner = styled.div`
+    width: min(1720px, 100%);
+    margin: 0 auto;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 72px;
+    row-gap: 48px;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 20px;
+    }
+`;
+
+export const InfoColumn = styled.article`
+    min-width: 0;
+    padding-top: 4px;
+`;
+
+export const InfoTitle = styled.h3`
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1d2229;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 1.7rem;
+        margin-bottom: 14px;
+    }
+`;
+
+export const InfoText = styled.p`
+    color: #2b3138;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid #a4a8ad;
+`;
+
+export const InfoPre = styled.p`
+    color: #2d394a;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    white-space: pre-line;
+`;
+
+export const InfoList = styled.ul`
+    list-style: none;
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #a4a8ad;
+`;
+
+export const InfoListItem = styled.li`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: #2a313c;
+    border-bottom: 1px solid #a4a8ad;
+    padding: 16px 0;
+`;
+
+export const InfoRowTitle = styled.span`
+    color: #282f39;
+    font-weight: 600;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+
+    @media (max-width: 768px) {
+        font-size: 1.02rem;
+    }
+`;
+
+export const InfoRowMeta = styled.span`
+    color: #666c74;
+    font-weight: 500;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+        font-size: 0.82rem;
+    }
+`;
+
+export const InfoLink = styled(Link)`
+    display: inline-block;
+    margin-top: 14px;
+    color: #1d2a3b;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
 // 5. 유튜브 섹션
 export const YouTubeSection = styled.section`
     padding: 80px 20px;
@@ -921,7 +1038,7 @@ export const WorshipInfo = styled.div`
 `;
 
 // 7. 교회 정보 섹션
-export const InfoSection = styled.section`
+export const InfoSectionLegacy = styled.section`
     padding: 80px 20px;
     background: #fafafa;
 
@@ -960,7 +1077,7 @@ export const InfoLabel = styled.h4`
     color: #2c2c2c;
 `;
 
-export const InfoText = styled.p`
+export const InfoTextLegacy = styled.p`
     font-size: 0.9rem;
     color: #666;
     line-height: 1.5;
@@ -1083,7 +1200,7 @@ export const InfoLeft = styled.div`
     flex-shrink: 0;
 `;
 
-export const InfoTitle = styled.h3`
+export const InfoTitleLegacy = styled.h3`
     font-size: 1.8rem;
     font-weight: 700;
     color: #2c2c2c;

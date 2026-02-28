@@ -13,7 +13,9 @@ function normalizeText(value: string): string {
     return value.replace(/\s+/g, '').toLowerCase();
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const forceRefresh = searchParams.get('refresh') === '1';
     const apiKey = process.env.YOUTUBE_API_KEY;
     const channelId = process.env.YOUTUBE_CHANNEL_ID;
     const channelHandle = process.env.YOUTUBE_CHANNEL_HANDLE;
@@ -34,7 +36,9 @@ export async function GET() {
             : `forHandle=${encodeURIComponent(channelHandle ?? '')}`;
         const channelUrl = `https://www.googleapis.com/youtube/v3/channels?part=id&${channelQuery}&key=${apiKey}`;
         const channelRes = await fetch(channelUrl, {
-            next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] }
+            ...(forceRefresh
+                ? { cache: 'no-store' as const }
+                : { next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] } })
         });
 
         if (!channelRes.ok) {
@@ -56,7 +60,9 @@ export async function GET() {
 
         const playlistsUrl = `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${resolvedChannelId}&maxResults=50&key=${apiKey}`;
         const playlistsRes = await fetch(playlistsUrl, {
-            next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] }
+            ...(forceRefresh
+                ? { cache: 'no-store' as const }
+                : { next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] } })
         });
 
         if (!playlistsRes.ok) {
@@ -84,7 +90,9 @@ export async function GET() {
 
     const playlistUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${targetPlaylistId}&maxResults=1&key=${apiKey}`;
     const playlistRes = await fetch(playlistUrl, {
-        next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] }
+        ...(forceRefresh
+            ? { cache: 'no-store' as const }
+            : { next: { revalidate: ONE_WEEK, tags: ['youtube-latest'] } })
     });
 
     if (!playlistRes.ok) {
@@ -127,7 +135,7 @@ export async function GET() {
 
     response.headers.set(
         'Cache-Control',
-        `s-maxage=${ONE_WEEK}, stale-while-revalidate=86400`
+        forceRefresh ? 'no-store' : `s-maxage=${ONE_WEEK}, stale-while-revalidate=86400`
     );
 
     return response;

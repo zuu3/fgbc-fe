@@ -24,3 +24,11 @@ export type Notice = {
   status: 'draft' | 'scheduled' | 'published';
   published_at: string | null;
 };
+
+export type MonthlySummary = {
+  id: string;
+  month_key: string;
+  title: string | null;
+  content: string;
+  published_at: string | null;
+};

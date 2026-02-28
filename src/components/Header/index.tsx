@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import * as S from './style';
 
@@ -35,9 +34,7 @@ const Header = () => {
         <S.HeaderWrapper $isScrolled={isScrolled}>
             <S.Container>
                 <S.Logo>
-                    <Link href="/" aria-label="순복음범천교회 홈">
-                        <Image src="/logo.svg" alt="순복음범천교회 로고" width={170} height={44} priority />
-                    </Link>
+                    <Link href="/" aria-label="순복음범천교회 홈">순복음범천교회</Link>
                 </S.Logo>
 
                 <S.Nav>

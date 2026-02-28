@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import KakaoMap from '@/components/KakaoMap';
-import { getLatestBulletin, getPublishedNotices } from '@/lib/content/client';
-import type { Bulletin, Notice } from '@/types/content';
-import { formatKstDate, formatKstMonthDay } from '@/lib/dateTimeKst';
+import { getLatestBulletin, getMonthlySummary, getPublishedNotices } from '@/lib/content/client';
+import type { Bulletin, MonthlySummary, Notice } from '@/types/content';
+import { formatKstDate } from '@/lib/dateTimeKst';
 
 function toKstDate(value: string | Date): Date {
     const date = new Date(value);
@@ -30,6 +30,19 @@ function getKstWeekRange(baseDate: Date): { weekStart: Date; weekEnd: Date } {
     return { weekStart, weekEnd };
 }
 
+function getCurrentKstMonthKey(baseDate: Date): string {
+    const kstDate = toKstDate(baseDate);
+    const year = kstDate.getFullYear();
+    const month = String(kstDate.getMonth() + 1).padStart(2, '0');
+    return `${year}-${month}`;
+}
+
+function formatMonthLabel(monthKey: string): string {
+    if (!monthKey || monthKey.length < 7) return '이번 달';
+    const [year, month] = monthKey.split('-');
+    return `${year}년 ${Number(month)}월`;
+}
+
 export default function HomeContainer() {
     const [latestVideo, setLatestVideo] = useState<{
         title: string;
@@ -42,6 +55,7 @@ export default function HomeContainer() {
     const [isLoadingLatest, setIsLoadingLatest] = useState(true);
     const [featuredBulletin, setFeaturedBulletin] = useState<Bulletin | null>(null);
     const [noticeSummary, setNoticeSummary] = useState<Notice[]>([]);
+    const [monthlySummary, setMonthlySummary] = useState<MonthlySummary | null>(null);
     const [isLoadingSummary, setIsLoadingSummary] = useState(true);
     useEffect(() => {
         let mounted = true;
@@ -63,7 +77,9 @@ export default function HomeContainer() {
     useEffect(() => {
         let mounted = true;
 
-        Promise.all([getLatestBulletin(), getPublishedNotices(100)]).then(([latest, notices]) => {
+        const monthKey = getCurrentKstMonthKey(new Date());
+
+        Promise.all([getLatestBulletin(), getPublishedNotices(100), getMonthlySummary(monthKey)]).then(([latest, notices, monthly]) => {
             if (!mounted) return;
 
             const { weekStart, weekEnd } = getKstWeekRange(new Date());
@@ -73,12 +89,14 @@ export default function HomeContainer() {
             });
 
             setFeaturedBulletin(latest ?? null);
-            setNoticeSummary(weeklyNotices.slice(0, 3));
+            setNoticeSummary(weeklyNotices.slice(0, 5));
+            setMonthlySummary(monthly ?? null);
             setIsLoadingSummary(false);
         }).catch(() => {
             if (!mounted) return;
             setFeaturedBulletin(null);
             setNoticeSummary([]);
+            setMonthlySummary(null);
             setIsLoadingSummary(false);
         });
 
@@ -97,6 +115,11 @@ export default function HomeContainer() {
         window.addEventListener('keydown', onKeyDown);
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [latestVideoPlayerOpen]);
+
+    const monthlyLines = monthlySummary?.content
+        ?.split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean) ?? [];
 
     return (
         <S.Wrapper>
@@ -134,49 +157,6 @@ export default function HomeContainer() {
                     </S.NewcomerButton>
                 </S.NewcomerContent>
             </S.NewcomerBanner>
-
-            <S.QuickSummarySection>
-                <S.QuickSummaryInner>
-                    <S.SummaryCard>
-                        <S.SummaryHeader>
-                            <S.SummaryLabel>공지 요약</S.SummaryLabel>
-                            <S.SummaryTitle>이번 주 교회 일정</S.SummaryTitle>
-                        </S.SummaryHeader>
-                        {isLoadingSummary ? (
-                            <S.SummaryLoading>공지 불러오는 중...</S.SummaryLoading>
-                        ) : noticeSummary.length === 0 ? (
-                            <S.SummaryLoading>노출할 공지가 없습니다.</S.SummaryLoading>
-                        ) : (
-                            <S.SummaryList>
-                                {noticeSummary.map((notice) => (
-                                    <S.SummaryItem key={notice.id}>
-                                        <S.SummaryItemDate>
-                                            {formatKstMonthDay(notice.start_at)}
-                                        </S.SummaryItemDate>
-                                        <S.SummaryItemText>{notice.title}</S.SummaryItemText>
-                                    </S.SummaryItem>
-                                ))}
-                            </S.SummaryList>
-                        )}
-                        <S.SummaryLink href="/newcomer?tab=notice">공지 전체 보기</S.SummaryLink>
-                    </S.SummaryCard>
-
-                    <S.SummaryCard>
-                        <S.SummaryHeader>
-                            <S.SummaryLabel>주보 요약</S.SummaryLabel>
-                            <S.SummaryTitle>{featuredBulletin?.title ?? '최신 주보'}</S.SummaryTitle>
-                        </S.SummaryHeader>
-                        <S.BulletinMeta>
-                            {isLoadingSummary
-                                ? '주보 불러오는 중...'
-                                : featuredBulletin
-                                    ? `${formatKstDate(featuredBulletin.week_start_date)} · ${featuredBulletin.service_type ?? '주일 예배'}`
-                                    : '등록된 주보가 없습니다.'}
-                        </S.BulletinMeta>
-                        <S.SummaryLink href="/bulletins">주보 전체 보기</S.SummaryLink>
-                    </S.SummaryCard>
-                </S.QuickSummaryInner>
-            </S.QuickSummarySection>
 
             {/* 4. 최신 영상 */}
             <S.NewsSection>
@@ -221,6 +201,81 @@ export default function HomeContainer() {
                     </S.LocationMapCard>
                 </S.LocationInner>
             </S.LocationSection>
+
+            <S.InfoSection>
+                <S.InfoInner>
+                    <S.InfoColumn>
+                        <S.InfoTitle>공지</S.InfoTitle>
+                        {isLoadingSummary ? (
+                            <S.InfoText>공지 불러오는 중...</S.InfoText>
+                        ) : noticeSummary.length === 0 ? (
+                            <S.InfoText>이번 주 공지가 없습니다.</S.InfoText>
+                        ) : (
+                            <S.InfoList>
+                                {noticeSummary.map((notice) => (
+                                    <S.InfoListItem key={notice.id}>
+                                        <S.InfoRowTitle>{notice.title}</S.InfoRowTitle>
+                                        <S.InfoRowMeta>{formatKstDate(notice.start_at)}</S.InfoRowMeta>
+                                    </S.InfoListItem>
+                                ))}
+                            </S.InfoList>
+                        )}
+                        <S.InfoLink href="/newcomer?tab=notice">공지 전체 보기</S.InfoLink>
+                    </S.InfoColumn>
+
+                    <S.InfoColumn>
+                        <S.InfoTitle>주보</S.InfoTitle>
+                        {isLoadingSummary ? (
+                            <S.InfoText>주보 불러오는 중...</S.InfoText>
+                        ) : featuredBulletin ? (
+                            <S.InfoList>
+                                <S.InfoListItem>
+                                    <S.InfoRowTitle>{featuredBulletin.title}</S.InfoRowTitle>
+                                    <S.InfoRowMeta>{formatKstDate(featuredBulletin.week_start_date)}</S.InfoRowMeta>
+                                </S.InfoListItem>
+                                <S.InfoListItem>
+                                    <S.InfoRowTitle>{featuredBulletin.service_type ?? '주일 예배'}</S.InfoRowTitle>
+                                </S.InfoListItem>
+                            </S.InfoList>
+                        ) : (
+                            <S.InfoText>등록된 주보가 없습니다.</S.InfoText>
+                        )}
+                        <S.InfoLink href="/bulletins">주보 전체 보기</S.InfoLink>
+                    </S.InfoColumn>
+
+                    <S.InfoColumn>
+                        <S.InfoTitle>월간</S.InfoTitle>
+                        {isLoadingSummary ? (
+                            <S.InfoText>월간 정보 불러오는 중...</S.InfoText>
+                        ) : monthlySummary ? (
+                            <S.InfoList>
+                                <S.InfoListItem>
+                                    <S.InfoRowTitle>{monthlySummary.title || `${formatMonthLabel(monthlySummary.month_key)} 월간 정보`}</S.InfoRowTitle>
+                                </S.InfoListItem>
+                                {monthlyLines.map((line, index) => (
+                                    <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
+                                        <S.InfoRowTitle>{line}</S.InfoRowTitle>
+                                    </S.InfoListItem>
+                                ))}
+                            </S.InfoList>
+                        ) : (
+                            <S.InfoText>이번 달 월간 정보가 없습니다.</S.InfoText>
+                        )}
+                    </S.InfoColumn>
+
+                    <S.InfoColumn>
+                        <S.InfoTitle>설교 정보</S.InfoTitle>
+                        <S.InfoList>
+                            <S.InfoListItem>
+                                <S.InfoRowTitle>가스펠 프로젝트 설명 영역 (준비 중)</S.InfoRowTitle>
+                            </S.InfoListItem>
+                            <S.InfoListItem>
+                                <S.InfoRowTitle>추후 관리자 입력 연동 예정</S.InfoRowTitle>
+                            </S.InfoListItem>
+                        </S.InfoList>
+                    </S.InfoColumn>
+                </S.InfoInner>
+            </S.InfoSection>
 
             {latestVideo?.videoId && latestVideoPlayerOpen && (
                 <S.VideoOverlay

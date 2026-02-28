@@ -38,14 +38,14 @@ export const Logo = styled.div`
         display: inline-flex;
         align-items: center;
         text-decoration: none;
-    }
-
-    img {
-        width: auto;
-        height: 44px;
+        color: #1f1f1f;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
 
         @media (max-width: 768px) {
-            height: 38px;
+            font-size: 1.1rem;
         }
     }
 `;

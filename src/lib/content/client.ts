@@ -1,6 +1,6 @@
 import { buildPublicStorageUrl, supabaseRestPublic } from '@/lib/supabase/rest';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
-import type { Bulletin, Notice } from '@/types/content';
+import type { Bulletin, MonthlySummary, Notice } from '@/types/content';
 
 function encode(value: string): string {
   return encodeURIComponent(value);
@@ -41,6 +41,22 @@ export async function getPublishedBulletins(limit = 20): Promise<Bulletin[]> {
 export async function getLatestBulletin(): Promise<Bulletin | null> {
   const list = await getPublishedBulletins(1);
   return list[0] ?? null;
+}
+
+export async function getMonthlySummary(monthKey: string): Promise<MonthlySummary | null> {
+  if (!isSupabaseConfigured()) {
+    return null;
+  }
+
+  try {
+    const list = await supabaseRestPublic<MonthlySummary[]>(
+      `/rest/v1/monthly_summaries?select=id,month_key,title,content,published_at&month_key=eq.${encode(monthKey)}&order=published_at.desc.nullslast&limit=1`,
+      { revalidate: 30 },
+    );
+    return list[0] ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export function resolveBulletinFileUrl(path: string): string {

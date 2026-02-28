@@ -13,6 +13,7 @@ export default function Footer() {
                         <Link href="/" aria-label="순복음범천교회 홈">
                             <Image src="/logo.svg" alt="순복음범천교회 로고" width={180} height={50} />
                         </Link>
+                        <S.FooterBrandText>순복음범천교회</S.FooterBrandText>
                     </S.FooterBrand>
                     <S.FooterInfo>
                         <S.FooterLine>
