@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import BulletinsContainer from '@/containers/BulletinsContainer';
 
@@ -10,5 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function BulletinsPage() {
-  return <BulletinsContainer />;
+  return (
+    <Suspense fallback={null}>
+      <BulletinsContainer />
+    </Suspense>
+  );
 }
