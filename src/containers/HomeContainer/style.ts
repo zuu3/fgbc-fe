@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
     color: #333;
     overflow-x: hidden;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    padding-top: 80px;
 `;
 
 // 1. 히어로 섹션
@@ -23,20 +22,11 @@ export const HeroSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    &::after {
-        width: 100%;
-        height: 100%;
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgba(0,0,0,0.7);
-    }
-
+    
     @media (max-width: 768px) {
-        height: 80vh;
-        min-height: 500px;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 16 / 9;
     }
 `;
 
@@ -48,6 +38,16 @@ export const HeroBackground = styled.div`
     width: 100%;
     height: 100%;
     z-index: 0;
+    img {
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+
+    @media (max-width: 768px) {
+        img {
+            object-fit: contain !important;
+        }
+    }
 `;
 
 export const NewcomerBackground = styled.div`
@@ -181,15 +181,11 @@ export const IntroButton = styled.div`
 
 // 3. 처음 오셨나요? 배너
 export const NewcomerBanner = styled.section`
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #f4f4f4;
+    padding: 72px 20px;
 
     @media (max-width: 768px) {
-        height: 350px;
+        padding: 52px 20px;
     }
 `;
 
@@ -205,42 +201,65 @@ export const NewcomerOverlay = styled.div`
 
 export const NewcomerContent = styled.div`
     position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
     color: black;
 `;
 
 export const NewcomerTitle = styled.h2`
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.25rem;
+    font-weight: 700;
     color: black;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     letter-spacing: -0.01em;
+    line-height: 1.35;
 
     @media (max-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+        margin-bottom: 14px;
+    }
+`;
+
+export const NewcomerQuote = styled.p`
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #111;
+    font-weight: 600;
+    margin: 0 0 20px;
+
+    @media (max-width: 768px) {
+        font-size: 1.02rem;
+        margin-bottom: 14px;
     }
 `;
 
 export const NewcomerDescription = styled.p`
-    font-size: 1rem;
-    line-height: 1.7;
-    color: black;
-    margin-bottom: 32px;
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: #1f1f1f;
+    margin: 0 0 20px;
+
+    @media (max-width: 768px) {
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
 `;
 
 export const NewcomerButton = styled.div`
+    margin-top: 30px;
+
     a {
-        display: inline-block;
-        padding: 14px 32px;
-        // background: black;
-        border: 1px solid black;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 30px;
+        border: 1.5px solid black;
         color: #2c2c2c;
         text-decoration: none;
         border-radius: 48px;
-        font-weight: 500;
-        font-size: 1.1rem;
+        font-weight: 600;
+        font-size: 1.05rem;
         transition: all 0.2s ease;
 
         &:hover {

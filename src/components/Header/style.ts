@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header<{ $isScrolled: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: ${props => (props.$isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent')};
+    backdrop-filter: ${props => (props.$isScrolled ? 'blur(10px)' : 'none')};
     z-index: 1000;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-bottom: ${props => (props.$isScrolled ? '1px solid #eee' : '1px solid transparent')};
+    box-shadow: ${props => (props.$isScrolled ? '0 1px 3px rgba(0,0,0,0.05)' : 'none')};
+    transition: background 0.2s ease, border-bottom-color 0.2s ease, box-shadow 0.2s ease, backdrop-filter 0.2s ease;
 `;
 
 export const Container = styled.div`
@@ -23,17 +24,18 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.div`
-    font-size: 20px;
-    font-weight: 600;
-    color: #2c2c2c;
-
     a {
-        color: #2c2c2c;
+        display: inline-flex;
+        align-items: center;
         text-decoration: none;
-        transition: color 0.2s ease;
+    }
 
-        &:hover {
-            color: #555;
+    img {
+        width: auto;
+        height: 44px;
+
+        @media (max-width: 768px) {
+            height: 38px;
         }
     }
 `;

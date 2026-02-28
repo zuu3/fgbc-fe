@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/bg.jpeg",
+        url: "/main.png",
         alt: "순복음범천교회",
       },
     ],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "순복음범천교회",
     description:
       "부산 부산진구에 위치한 순복음범천교회입니다. 모든 세대가 하나 되어 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.",
-    images: ["/bg.jpeg"],
+    images: ["/main.png"],
   },
 };
 

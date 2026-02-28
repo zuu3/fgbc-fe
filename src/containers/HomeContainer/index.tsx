@@ -1,29 +1,13 @@
 'use client';
 
 import * as S from './style';
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaYoutube } from 'react-icons/fa';
 import KakaoMap from '@/components/KakaoMap';
 import { getLatestBulletin, getPublishedNotices } from '@/lib/content/client';
 import type { Bulletin, Notice } from '@/types/content';
 import { formatKstDate, formatKstMonthDay } from '@/lib/dateTimeKst';
-
-const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-};
-
-const staggerContainer = {
-    animate: {
-        transition: {
-            staggerChildren: 0.2
-        }
-    }
-};
 
 function toKstDate(value: string | Date): Date {
     const date = new Date(value);
@@ -116,11 +100,10 @@ export default function HomeContainer() {
 
     return (
         <S.Wrapper>
-            {/* 1. 배너 섹션 */}
             <S.HeroSection>
                 <S.HeroBackground>
                     <Image
-                        src="/bg.jpeg"
+                        src="/main.png"
                         alt="순복음범천교회 배경"
                         fill
                         style={{ objectFit: 'cover' }}
@@ -128,55 +111,26 @@ export default function HomeContainer() {
                         quality={75}
                     />
                 </S.HeroBackground>
-                <S.HeroContent initial="initial" animate="animate" variants={staggerContainer}>
-                    <motion.div variants={fadeInUp}>
-                        <S.HeroTitle>순복음범천교회에 오신<br /> 여러분을 환영합니다!</S.HeroTitle>
-                        <S.HeroSubtitle>
-                            우리는 모든 세대가 하나 되어 성령의 인도하심을 따라<br /> 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.
-                        </S.HeroSubtitle>
-                    </motion.div>
-                    <motion.div variants={fadeInUp}>
-                        <S.HeroButton>
-                            <Link href="/intro">자세히 보기 →</Link>
-                        </S.HeroButton>
-                    </motion.div>
-                </S.HeroContent>
             </S.HeroSection>
 
-            {/* 2. 교회 소개 핵심 문구 */}
-            {/* <S.IntroSection>
-                <S.IntroContent>
-                    <S.IntroTitle>순복음범천교회에 오신 것을 환영합니다!</S.IntroTitle>
-                    <S.IntroDescription>
-                        우리는 모든 세대가 하나 되어 성령의 인도하심을 따라 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.<br />
-                        우리 교회는 예수 그리스도의 사랑을 세상으로 흘려보내며 모든 세대가 함께 예배하고 섬기는 교회입니다.
-                    </S.IntroDescription>
-                    <S.IntroButton>
-                        <Link href="/intro">자세히 보기 →</Link>
-                    </S.IntroButton>
-                </S.IntroContent>
-            </S.IntroSection> */}
-
-            {/* 3. 처음 오셨나요? 배너 */}
             <S.NewcomerBanner>
-                <S.NewcomerBackground>
-                    {/* <Image
-                        src="/bible_background.jpg"
-                        alt="성경 배경 이미지"
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        quality={75}
-                    /> */}
-                </S.NewcomerBackground>
-                <S.NewcomerOverlay />
                 <S.NewcomerContent>
-                    <S.NewcomerTitle>순복음범천교회에 처음 오셨나요?</S.NewcomerTitle>
+                    <S.NewcomerTitle>우리의 정체성 (Identity)</S.NewcomerTitle>
+                    <S.NewcomerQuote>
+                        “너희는 세상의 빛이라<br />
+                        산 위에 있는 동네가 숨겨지지 못할 것이요”(마 5:14)
+                    </S.NewcomerQuote>
                     <S.NewcomerDescription>
-                        처음 방문하신 분들을 위한 안내입니다.<br />
-                        따뜻한 환영과 함께 믿음의 여정을 시작하세요.
+                        우리는 서로의 삶을 밝히는 공동체입니다.<br />
+                        가정과 일터, 이웃과 지역 안에서<br />
+                        예수님의 사랑을 나누며 살아가고자 합니다.
+                    </S.NewcomerDescription>
+                    <S.NewcomerDescription>
+                        교회는 완벽한 사람들이 모인 곳이 아닙니다.<br />
+                        부족하고 연약한 이들이 함께 배우고 성장하는 공간입니다.
                     </S.NewcomerDescription>
                     <S.NewcomerButton>
-                        <Link href="/newcomer">새가족 안내 →</Link>
+                        <Link href="/intro?tab=greeting">자세히 보기 →</Link>
                     </S.NewcomerButton>
                 </S.NewcomerContent>
             </S.NewcomerBanner>
@@ -237,7 +191,7 @@ export default function HomeContainer() {
                             aria-label="이번 주 설교 재생"
                         >
                             <Image
-                                src={latestVideo?.thumbnailUrl || '/bg.jpeg'}
+                                src={latestVideo?.thumbnailUrl || '/main.png'}
                                 alt={latestVideo?.title || '이번 주 설교 썸네일'}
                                 fill
                                 sizes="(max-width: 768px) 95vw, 1200px"
@@ -253,7 +207,6 @@ export default function HomeContainer() {
                 </S.NewsMediaCard>
             </S.NewsSection>
 
-            {/* 4-1. 오시는 길 */}
             <S.LocationSection>
                 <S.LocationInner>
                     <S.LocationHeader>
@@ -291,50 +244,6 @@ export default function HomeContainer() {
                 </S.VideoOverlay>
             )}
 
-            {/* 4. 교회 소식 / 주보 섹션 */}
-            {/* <S.NewsSection>
-                <S.NewsGrid>
-                    <S.NewsCard>
-                        <S.NewsLabel>우리가 이루어가는</S.NewsLabel>
-                        <S.NewsTitle>하나님 나라</S.NewsTitle>
-                        <S.NewsDivider />
-                        <S.NewsDescription>
-                            순복음범천교회는 성령의 인도하심을 따라 하나님 나라의 비전을 품고
-                            예수 그리스도의 사랑을 세상으로 흘려보내는 따뜻한 가족 공동체입니다.
-                        </S.NewsDescription>
-                        <S.NewsButton>
-                            <Link href="/intro">자세히 보기 →</Link>
-                        </S.NewsButton>
-                    </S.NewsCard>
-                    <S.NewsImageCard>
-                        <Image
-                            src="/bg.jpeg"
-                            alt="순복음범천교회 교회 내부 모습"
-                            width={600}
-                            height={350}
-                            style={{ objectFit: 'cover', width: '100%', height: 'auto', borderRadius: '8px' }}
-                            priority
-                        />
-                    </S.NewsImageCard>
-                </S.NewsGrid>
-            </S.NewsSection> */}
-
-            {/* 5. 유튜브 채널 섹션 */}
-            <S.YouTubeSection>
-                <S.YouTubeContent>
-                    <S.YouTubeLabel>언제 어디서나</S.YouTubeLabel>
-                    <S.YouTubeTitle>예배 스트리밍을 만나보세요!</S.YouTubeTitle>
-                    <S.YouTubeButton
-                        href="https://www.youtube.com/@%EC%88%9C%EB%B3%B5%EC%9D%8C%EB%B2%94%EC%B2%9C%EA%B5%90%ED%9A%8C"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <FaYoutube /> 유튜브 바로가기
-                    </S.YouTubeButton>
-                </S.YouTubeContent>
-            </S.YouTubeSection>
-
-            {/* 6. 예배 안내 섹션 */}
             <S.WorshipSection>
                 <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
                 <S.WorshipTableWrapper>

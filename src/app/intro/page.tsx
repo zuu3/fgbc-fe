@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "/bg.jpeg",
+        url: "/main.png",
         alt: "순복음범천교회",
       },
     ],
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     title: "교회 소개 | 순복음범천교회",
     description:
       "순복음범천교회의 비전, 핵심 가치, 목회 방향과 공동체의 이야기를 소개합니다.",
-    images: ["/bg.jpeg"],
+    images: ["/main.png"],
   },
 };
 
 export default function IntroPage() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <IntroContainer />
-        </Suspense>
-    );
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <IntroContainer />
+    </Suspense>
+  );
 }

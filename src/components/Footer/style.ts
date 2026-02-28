@@ -30,22 +30,25 @@ export const FooterRow = styled.div`
 `;
 
 export const FooterBrand = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: inline-flex;
+    align-items: center;
     min-width: 220px;
-`;
 
-export const FooterTitle = styled.h3`
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0;
-    color: #ffffff;
-`;
+    a {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+    }
 
-export const FooterSubTitle = styled.span`
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    img {
+        width: auto;
+        height: 50px;
+        filter: invert(1);
+
+        @media (max-width: 768px) {
+            height: 42px;
+        }
+    }
 `;
 
 export const FooterInfo = styled.div`

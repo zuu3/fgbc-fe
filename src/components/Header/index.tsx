@@ -1,12 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import * as S from './style';
 
 const Header = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 8);
+        };
+
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -17,10 +32,12 @@ const Header = () => {
     };
 
     return (
-        <S.HeaderWrapper>
+        <S.HeaderWrapper $isScrolled={isScrolled}>
             <S.Container>
                 <S.Logo>
-                    <Link href="/">순복음범천교회</Link>
+                    <Link href="/" aria-label="순복음범천교회 홈">
+                        <Image src="/logo.svg" alt="순복음범천교회 로고" width={170} height={44} priority />
+                    </Link>
                 </S.Logo>
 
                 <S.Nav>
@@ -80,9 +97,7 @@ const Header = () => {
                             </S.SubMenu>
                         )}
                     </S.NavItem>
-
                 </S.Nav>
-
 
                 <S.RightSection>
                     <S.MobileMenuButton
@@ -105,7 +120,6 @@ const Header = () => {
                         )}
                     </S.MobileMenuButton>
                 </S.RightSection>
-
 
                 <S.MobileMenuOverlay
                     $isOpen={isMobileMenuOpen}
