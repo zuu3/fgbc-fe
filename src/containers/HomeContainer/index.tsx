@@ -213,10 +213,10 @@ export default function HomeContainer() {
                         ) : (
                             <S.InfoList>
                                 {noticeSummary.map((notice) => (
-                                    <S.InfoListItem key={notice.id}>
+                                    <S.InfoListLinkItem key={notice.id} href="/newcomer?tab=notice">
                                         <S.InfoRowTitle>{notice.title}</S.InfoRowTitle>
                                         <S.InfoRowMeta>{formatKstDate(notice.start_at)}</S.InfoRowMeta>
-                                    </S.InfoListItem>
+                                    </S.InfoListLinkItem>
                                 ))}
                             </S.InfoList>
                         )}
@@ -229,13 +229,13 @@ export default function HomeContainer() {
                             <S.InfoText>주보 불러오는 중...</S.InfoText>
                         ) : featuredBulletin ? (
                             <S.InfoList>
-                                <S.InfoListItem>
+                                <S.InfoListLinkItem href={`/bulletins?bulletinId=${encodeURIComponent(featuredBulletin.id)}`}>
                                     <S.InfoRowTitle>{featuredBulletin.title}</S.InfoRowTitle>
                                     <S.InfoRowMeta>{formatKstDate(featuredBulletin.week_start_date)}</S.InfoRowMeta>
-                                </S.InfoListItem>
-                                <S.InfoListItem>
+                                </S.InfoListLinkItem>
+                                <S.InfoListLinkItem href={`/bulletins?bulletinId=${encodeURIComponent(featuredBulletin.id)}`}>
                                     <S.InfoRowTitle>{featuredBulletin.service_type ?? '주일 예배'}</S.InfoRowTitle>
-                                </S.InfoListItem>
+                                </S.InfoListLinkItem>
                             </S.InfoList>
                         ) : (
                             <S.InfoText>등록된 주보가 없습니다.</S.InfoText>

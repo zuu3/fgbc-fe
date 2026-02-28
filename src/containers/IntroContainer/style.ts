@@ -726,6 +726,156 @@ export const StaffRole = styled.span`
     text-align: right;
 `;
 
+export const StaffLayout = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+`;
+
+export const StaffIntroTitle = styled.h3`
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #222;
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 1.55rem;
+    }
+`;
+
+export const StaffIntroDesc = styled.p`
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin: 6px 0 0;
+`;
+
+export const StaffDivider = styled.hr`
+    width: 100%;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.18);
+    margin: 12px 0 2px;
+`;
+
+export const StaffSubHeading = styled.h3`
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin: 8px 0 10px;
+    letter-spacing: -0.01em;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+`;
+
+export const MinistryGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+export const MinistryCard = styled.article`
+    border: none;
+    background: transparent;
+    padding: 0;
+`;
+
+export const MinistryPhotoFrame = styled.div`
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f0f0f0;
+    overflow: hidden;
+`;
+
+export const PhotoPlaceholder = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 0.9rem;
+`;
+
+export const MinistryName = styled.h4`
+    margin: 12px 0 8px;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #1f1f1f;
+`;
+
+export const MinistryBodyPlaceholder = styled.div`
+    min-height: 92px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+`;
+
+export const ElderBlock = styled.div`
+    margin-top: 2px;
+`;
+
+export const ElderGroupTitle = styled.h4`
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin: 0 0 12px;
+`;
+
+export const ElderSimpleGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+`;
+
+export const ElderSimpleCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+`;
+
+export const ElderPhotoPlaceholder = styled.div`
+    width: 100%;
+    max-width: 140px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.85rem;
+`;
+
+export const ElderNameOnly = styled.p`
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+    word-break: keep-all;
+`;
+
 // 예배 안내
 export const WorshipSection = styled.div``;
 

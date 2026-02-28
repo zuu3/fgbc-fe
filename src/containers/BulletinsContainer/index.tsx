@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import * as S from './style';
 import { getPublishedBulletins, resolveBulletinFileUrl } from '@/lib/content/client';
@@ -12,6 +13,8 @@ function formatDate(dateText: string): string {
 }
 
 export default function BulletinsContainer() {
+  const searchParams = useSearchParams();
+  const bulletinIdParam = searchParams.get('bulletinId');
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,8 +36,15 @@ export default function BulletinsContainer() {
     };
   }, []);
 
+  const selectedBulletin = useMemo(() => {
+    if (!bulletinIdParam) return bulletins[0] ?? null;
+    return bulletins.find((item) => item.id === bulletinIdParam) ?? bulletins[0] ?? null;
+  }, [bulletinIdParam, bulletins]);
+
   const latestBulletin = useMemo(() => bulletins[0] ?? null, [bulletins]);
   const previousBulletins = useMemo(() => bulletins.slice(1), [bulletins]);
+  const selectedFileUrl = selectedBulletin ? resolveBulletinFileUrl(selectedBulletin.file_path) : '';
+  const isPdfFile = selectedFileUrl.toLowerCase().includes('.pdf');
 
   return (
     <S.Container>
@@ -58,6 +68,23 @@ export default function BulletinsContainer() {
         </S.LatestCard>
       )}
 
+      {selectedBulletin && (
+        <S.Section>
+          <S.SectionTitle>주보 바로 보기</S.SectionTitle>
+          <S.ViewerHeader>
+            <S.ItemTitle>{selectedBulletin.title}</S.ItemTitle>
+            <S.ItemMeta>{formatDate(selectedBulletin.week_start_date)}</S.ItemMeta>
+          </S.ViewerHeader>
+          <S.ViewerBox>
+            {isPdfFile ? (
+              <S.ViewerFrame src={selectedFileUrl} title={selectedBulletin.title} />
+            ) : (
+              <S.ViewerImage src={selectedFileUrl} alt={selectedBulletin.title} />
+            )}
+          </S.ViewerBox>
+        </S.Section>
+      )}
+
       <S.Section>
         <S.SectionTitle>지난 주보</S.SectionTitle>
         {isLoading ? null : previousBulletins.length === 0 ? (
@@ -70,7 +97,7 @@ export default function BulletinsContainer() {
                     <S.ItemTitle>{bulletin.title}</S.ItemTitle>
                     <S.ItemMeta>{formatDate(bulletin.week_start_date)}</S.ItemMeta>
                   </div>
-                  <Link href={resolveBulletinFileUrl(bulletin.file_path)} target="_blank" rel="noopener noreferrer">보기</Link>
+                  <Link href={`/bulletins?bulletinId=${encodeURIComponent(bulletin.id)}`}>보기</Link>
                 </S.Item>
               ))}
           </S.List>

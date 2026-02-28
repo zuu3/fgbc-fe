@@ -804,6 +804,22 @@ export const InfoListItem = styled.li`
     padding: 16px 0;
 `;
 
+export const InfoListLinkItem = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: #2a313c;
+    border-bottom: 1px solid #a4a8ad;
+    padding: 16px 0;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+`;
+
 export const InfoRowTitle = styled.span`
     color: #282f39;
     font-weight: 600;

@@ -88,6 +88,41 @@ export const Section = styled.section`
   margin: 30px auto 0;
 `;
 
+export const ViewerHeader = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const ViewerBox = styled.div`
+  width: 100%;
+  min-height: 620px;
+  border: 1px solid #d8e0ed;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    min-height: 460px;
+  }
+`;
+
+export const ViewerFrame = styled.iframe`
+  width: 100%;
+  height: 70vh;
+  min-height: 620px;
+  border: none;
+
+  @media (max-width: 768px) {
+    min-height: 460px;
+    height: 65vh;
+  }
+`;
+
+export const ViewerImage = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
 export const SectionTitle = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 12px;
