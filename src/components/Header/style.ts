@@ -11,10 +11,20 @@ export const HeaderWrapper = styled.header<{ $isScrolled: boolean }>`
     border-bottom: ${props => (props.$isScrolled ? '1px solid #eee' : '1px solid transparent')};
     box-shadow: ${props => (props.$isScrolled ? '0 1px 3px rgba(0,0,0,0.05)' : 'none')};
     transition: background 0.2s ease, border-bottom-color 0.2s ease, box-shadow 0.2s ease, backdrop-filter 0.2s ease;
+
+    @media (max-width: 768px) {
+        position: sticky;
+        left: auto;
+        right: auto;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #eee;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
 `;
 
 export const Container = styled.div`
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
