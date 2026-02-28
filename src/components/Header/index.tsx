@@ -42,7 +42,9 @@ const Header = () => {
                         onMouseEnter={() => setActiveMenu('intro')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
-                        <S.NavLink>교회 소개</S.NavLink>
+                        <Link href="/intro?tab=greeting">
+                            <S.NavLink>교회 소개</S.NavLink>
+                        </Link>
                         {activeMenu === 'intro' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
@@ -65,7 +67,9 @@ const Header = () => {
                         onMouseEnter={() => setActiveMenu('life')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
-                        <S.NavLink>교회 생활</S.NavLink>
+                        <Link href="/newcomer?tab=welcome">
+                            <S.NavLink>교회 생활</S.NavLink>
+                        </Link>
                         {activeMenu === 'life' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
@@ -82,7 +86,9 @@ const Header = () => {
                         onMouseEnter={() => setActiveMenu('sermon')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
-                        <S.NavLink>설교 및 주보</S.NavLink>
+                        <Link href="/bulletins">
+                            <S.NavLink>설교 및 주보</S.NavLink>
+                        </Link>
                         {activeMenu === 'sermon' && (
                             <S.SubMenu>
                                 <S.SubMenuItem>
@@ -127,7 +133,9 @@ const Header = () => {
                             <Link href="/" onClick={closeMobileMenu}>홈</Link>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <S.MobileNavLink>교회 소개</S.MobileNavLink>
+                            <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>
+                                <S.MobileNavLink>교회 소개</S.MobileNavLink>
+                            </Link>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
                                     <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>담임목사 인사말</Link>
@@ -144,7 +152,9 @@ const Header = () => {
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <S.MobileNavLink>교회 생활</S.MobileNavLink>
+                            <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>
+                                <S.MobileNavLink>교회 생활</S.MobileNavLink>
+                            </Link>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
                                     <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>처음 오셨나요?</Link>
@@ -155,7 +165,9 @@ const Header = () => {
                             </S.MobileSubMenu>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <S.MobileNavLink>설교 및 주보</S.MobileNavLink>
+                            <Link href="/bulletins" onClick={closeMobileMenu}>
+                                <S.MobileNavLink>설교 및 주보</S.MobileNavLink>
+                            </Link>
                             <S.MobileSubMenu>
                                 <S.MobileSubMenuItem>
                                     <Link href="/bulletins" onClick={closeMobileMenu}>주보</Link>

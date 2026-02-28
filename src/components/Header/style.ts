@@ -169,6 +169,12 @@ export const MobileNav = styled.nav`
 export const MobileNavItem = styled.div`
     border-bottom: 1px solid #eee;
     padding-bottom: 20px;
+
+    > a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
 `;
 
 export const MobileNavLink = styled.div`
