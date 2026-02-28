@@ -28,7 +28,6 @@ export type Notice = {
 export type MonthlySummary = {
   id: string;
   month_key: string;
-  title: string | null;
   content: string;
   published_at: string | null;
 };

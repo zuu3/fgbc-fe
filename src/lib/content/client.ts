@@ -50,7 +50,7 @@ export async function getMonthlySummary(monthKey: string): Promise<MonthlySummar
 
   try {
     const list = await supabaseRestPublic<MonthlySummary[]>(
-      `/rest/v1/monthly_summaries?select=id,month_key,title,content,published_at&month_key=eq.${encode(monthKey)}&order=published_at.desc.nullslast&limit=1`,
+      `/rest/v1/monthly_summaries?select=id,month_key,content,published_at&month_key=eq.${encode(monthKey)}&order=published_at.desc.nullslast&limit=1`,
       { revalidate: 30 },
     );
     return list[0] ?? null;

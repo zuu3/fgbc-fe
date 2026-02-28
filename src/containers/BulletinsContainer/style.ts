@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  max-width: 1080px;
+  max-width: 1320px;
   margin: 0 auto 24px;
 `;
 
@@ -23,44 +23,56 @@ export const Description = styled.p`
 `;
 
 export const StatusText = styled.p`
-  max-width: 1080px;
+  max-width: 1320px;
   margin: 0 auto 18px;
   color: #637086;
   font-size: 0.95rem;
 `;
 
-export const LatestCard = styled.article`
-  max-width: 1080px;
+export const ContentGrid = styled.div`
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 28px;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #10233d 0%, #1b3d68 60%, #365d89 100%);
-  color: #fff;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 20px;
+  align-items: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
-export const Badge = styled.p`
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
-  font-size: 0.8rem;
-  margin-bottom: 12px;
+export const Sidebar = styled.section`
+  border: 1px solid #dbe2ee;
+  border-radius: 16px;
+  background: #fff;
+  padding: 14px;
+  position: sticky;
+  top: 104px;
+
+  @media (max-width: 1024px) {
+    position: static;
+  }
 `;
 
-export const LatestTitle = styled.h2`
-  font-size: 1.7rem;
-  margin-bottom: 8px;
+export const SidebarTitle = styled.h2`
+  font-size: 1rem;
+  color: #27364f;
+  margin-bottom: 10px;
 `;
 
-export const Meta = styled.p`
-  opacity: 0.9;
-  margin-bottom: 4px;
+export const ViewerSection = styled.section`
+  border: 1px solid #dbe2ee;
+  border-radius: 16px;
+  background: #fff;
+  padding: 18px;
 `;
 
 export const ActionRow = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 14px;
+  flex-wrap: wrap;
 `;
 
 const ActionBase = styled.a`
@@ -74,22 +86,53 @@ const ActionBase = styled.a`
 `;
 
 export const PrimaryAction = styled(ActionBase)`
-  color: #173054;
-  background: #fff;
+  color: #fff;
+  background: #1a3d69;
 `;
 
 export const SecondaryAction = styled(ActionBase)`
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-`;
-
-export const Section = styled.section`
-  max-width: 1080px;
-  margin: 30px auto 0;
+  color: #1a3d69;
+  border: 1px solid #b8c8de;
 `;
 
 export const ViewerHeader = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+`;
+
+export const ViewerTitle = styled.h3`
+  font-size: 1.35rem;
+  color: #1c2533;
+  margin-bottom: 6px;
+`;
+
+export const ViewerMeta = styled.p`
+  color: #5f6b7e;
+  font-size: 0.9rem;
+`;
+
+export const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+`;
+
+export const List = styled.div`
+  display: grid;
+  gap: 8px;
+`;
+
+export const ListButtonItem = styled.button<{ $active: boolean }>`
+  border: 1px solid ${(props) => (props.$active ? '#1a3d69' : '#dde4ef')};
+  background: ${(props) => (props.$active ? '#eef4ff' : '#fff')};
+  border-radius: 10px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    border-color: #1a3d69;
+    background: #f5f8fe;
+  }
 `;
 
 export const ViewerBox = styled.div`
@@ -121,32 +164,6 @@ export const ViewerImage = styled.img`
   width: 100%;
   height: auto;
   display: block;
-`;
-
-export const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-`;
-
-export const List = styled.ul`
-  list-style: none;
-  display: grid;
-  gap: 10px;
-`;
-
-export const Item = styled.li`
-  border: 1px solid #dee5f0;
-  border-radius: 12px;
-  background: #fff;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  a {
-    color: #0f4f95;
-    font-weight: 600;
-  }
 `;
 
 export const ItemTitle = styled.h3`

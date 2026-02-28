@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as S from './style';
 import { getPublishedBulletins, resolveBulletinFileUrl } from '@/lib/content/client';
 import type { Bulletin } from '@/types/content';
@@ -13,6 +12,8 @@ function formatDate(dateText: string): string {
 }
 
 export default function BulletinsContainer() {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const bulletinIdParam = searchParams.get('bulletinId');
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
@@ -36,13 +37,17 @@ export default function BulletinsContainer() {
     };
   }, []);
 
+  const onSelectBulletin = (id: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('bulletinId', id);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   const selectedBulletin = useMemo(() => {
     if (!bulletinIdParam) return bulletins[0] ?? null;
     return bulletins.find((item) => item.id === bulletinIdParam) ?? bulletins[0] ?? null;
   }, [bulletinIdParam, bulletins]);
 
-  const latestBulletin = useMemo(() => bulletins[0] ?? null, [bulletins]);
-  const previousBulletins = useMemo(() => bulletins.slice(1), [bulletins]);
   const selectedFileUrl = selectedBulletin ? resolveBulletinFileUrl(selectedBulletin.file_path) : '';
   const isPdfFile = selectedFileUrl.toLowerCase().includes('.pdf');
 
@@ -54,55 +59,49 @@ export default function BulletinsContainer() {
       </S.Header>
 
       {isLoading && <S.StatusText>주보 불러오는 중...</S.StatusText>}
+      {!isLoading && bulletins.length === 0 && <S.StatusText>등록된 주보가 없습니다.</S.StatusText>}
 
-      {latestBulletin && (
-        <S.LatestCard>
-          <S.Badge>최신 주보</S.Badge>
-          <S.LatestTitle>{latestBulletin.title}</S.LatestTitle>
-          <S.Meta>{formatDate(latestBulletin.week_start_date)}</S.Meta>
-          <S.Meta>{latestBulletin.service_type}</S.Meta>
-          <S.ActionRow>
-            <S.PrimaryAction href={resolveBulletinFileUrl(latestBulletin.file_path)} target="_blank" rel="noopener noreferrer">주보 보기</S.PrimaryAction>
-            <S.SecondaryAction href={resolveBulletinFileUrl(latestBulletin.file_path)} target="_blank" rel="noopener noreferrer">다운로드</S.SecondaryAction>
-          </S.ActionRow>
-        </S.LatestCard>
-      )}
-
-      {selectedBulletin && (
-        <S.Section>
-          <S.SectionTitle>주보 바로 보기</S.SectionTitle>
-          <S.ViewerHeader>
-            <S.ItemTitle>{selectedBulletin.title}</S.ItemTitle>
-            <S.ItemMeta>{formatDate(selectedBulletin.week_start_date)}</S.ItemMeta>
-          </S.ViewerHeader>
-          <S.ViewerBox>
-            {isPdfFile ? (
-              <S.ViewerFrame src={selectedFileUrl} title={selectedBulletin.title} />
-            ) : (
-              <S.ViewerImage src={selectedFileUrl} alt={selectedBulletin.title} />
-            )}
-          </S.ViewerBox>
-        </S.Section>
-      )}
-
-      <S.Section>
-        <S.SectionTitle>지난 주보</S.SectionTitle>
-        {isLoading ? null : previousBulletins.length === 0 ? (
-          <S.StatusText>지난 주보가 없습니다.</S.StatusText>
-        ) : (
-          <S.List>
-            {previousBulletins.map((bulletin) => (
-              <S.Item key={bulletin.id}>
-                  <div>
-                    <S.ItemTitle>{bulletin.title}</S.ItemTitle>
-                    <S.ItemMeta>{formatDate(bulletin.week_start_date)}</S.ItemMeta>
-                  </div>
-                  <Link href={`/bulletins?bulletinId=${encodeURIComponent(bulletin.id)}`}>보기</Link>
-                </S.Item>
+      {!isLoading && bulletins.length > 0 && selectedBulletin && (
+        <S.ContentGrid>
+          <S.Sidebar>
+            <S.SidebarTitle>주보 목록</S.SidebarTitle>
+            <S.List>
+              {bulletins.map((bulletin) => (
+                <S.ListButtonItem
+                  key={bulletin.id}
+                  type="button"
+                  $active={selectedBulletin.id === bulletin.id}
+                  onClick={() => onSelectBulletin(bulletin.id)}
+                >
+                  <S.ItemTitle>{bulletin.title}</S.ItemTitle>
+                  <S.ItemMeta>{formatDate(bulletin.week_start_date)}</S.ItemMeta>
+                </S.ListButtonItem>
               ))}
-          </S.List>
-        )}
-      </S.Section>
+            </S.List>
+          </S.Sidebar>
+
+          <S.ViewerSection>
+            <S.ViewerHeader>
+              <S.ViewerTitle>{selectedBulletin.title}</S.ViewerTitle>
+              <S.ViewerMeta>
+                {formatDate(selectedBulletin.week_start_date)}
+                {selectedBulletin.service_type ? ` · ${selectedBulletin.service_type}` : ''}
+              </S.ViewerMeta>
+              <S.ActionRow>
+                <S.PrimaryAction href={selectedFileUrl} target="_blank" rel="noopener noreferrer">새 창에서 보기</S.PrimaryAction>
+                <S.SecondaryAction href={selectedFileUrl} target="_blank" rel="noopener noreferrer" download>다운로드</S.SecondaryAction>
+              </S.ActionRow>
+            </S.ViewerHeader>
+            <S.ViewerBox>
+              {isPdfFile ? (
+                <S.ViewerFrame src={selectedFileUrl} title={selectedBulletin.title} />
+              ) : (
+                <S.ViewerImage src={selectedFileUrl} alt={selectedBulletin.title} />
+              )}
+            </S.ViewerBox>
+          </S.ViewerSection>
+        </S.ContentGrid>
+      )}
     </S.Container>
   );
 }

@@ -37,12 +37,6 @@ function getCurrentKstMonthKey(baseDate: Date): string {
     return `${year}-${month}`;
 }
 
-function formatMonthLabel(monthKey: string): string {
-    if (!monthKey || monthKey.length < 7) return '이번 달';
-    const [year, month] = monthKey.split('-');
-    return `${year}년 ${Number(month)}월`;
-}
-
 export default function HomeContainer() {
     const [latestVideo, setLatestVideo] = useState<{
         title: string;
@@ -244,14 +238,11 @@ export default function HomeContainer() {
                     </S.InfoColumn>
 
                     <S.InfoColumn>
-                        <S.InfoTitle>월간</S.InfoTitle>
+                        <S.InfoTitle>{new Date().toLocaleString('ko-KR', { month: 'long' })} 월간 일정</S.InfoTitle>
                         {isLoadingSummary ? (
                             <S.InfoText>월간 정보 불러오는 중...</S.InfoText>
                         ) : monthlySummary ? (
                             <S.InfoList>
-                                <S.InfoListItem>
-                                    <S.InfoRowTitle>{monthlySummary.title || `${formatMonthLabel(monthlySummary.month_key)} 월간 정보`}</S.InfoRowTitle>
-                                </S.InfoListItem>
                                 {monthlyLines.map((line, index) => (
                                     <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
                                         <S.InfoRowTitle>{line}</S.InfoRowTitle>

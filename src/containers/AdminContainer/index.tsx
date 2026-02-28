@@ -48,7 +48,6 @@ export default function AdminContainer() {
 
   const [monthlySummaryForm, setMonthlySummaryForm] = useState({
     month_key: '',
-    title: '',
     content: '',
   });
 
@@ -232,7 +231,6 @@ export default function AdminContainer() {
 
     const payload = {
       ...monthlySummaryForm,
-      title: monthlySummaryForm.title.trim() || null,
       content: monthlySummaryForm.content.trim(),
       ...(editingMonthlySummaryId ? { id: editingMonthlySummaryId } : {}),
     };
@@ -260,7 +258,6 @@ export default function AdminContainer() {
     setEditingMonthlySummaryId(null);
     setMonthlySummaryForm({
       month_key: '',
-      title: '',
       content: '',
     });
     setMessage(editingMonthlySummaryId ? '월간 정보가 수정되었습니다.' : '월간 정보가 등록되었습니다.');
@@ -344,7 +341,6 @@ export default function AdminContainer() {
     setEditingMonthlySummaryId(summary.id);
     setMonthlySummaryForm({
       month_key: summary.month_key,
-      title: summary.title || '',
       content: summary.content,
     });
     setMessage('월간 정보 수정 모드입니다. 내용 수정 후 저장하세요.');
@@ -621,15 +617,6 @@ export default function AdminContainer() {
                   required
                 />
               </S.Field>
-              <S.Field>
-                <label htmlFor="monthly-title">제목 (선택)</label>
-                <input
-                  id="monthly-title"
-                  placeholder="예: 3월 교회 소식"
-                  value={monthlySummaryForm.title}
-                  onChange={(event) => setMonthlySummaryForm((prev) => ({ ...prev, title: event.target.value }))}
-                />
-              </S.Field>
               <S.Field className="full">
                 <label htmlFor="monthly-content">내용</label>
                 <textarea
@@ -661,7 +648,7 @@ export default function AdminContainer() {
               {monthlySummaries.map((summary) => (
                 <S.ListItem key={summary.id}>
                   <S.ListTag>{summary.month_key}</S.ListTag>
-                  <S.ListTitle>{summary.title || `${summary.month_key} 월간 정보`}</S.ListTitle>
+                  <S.ListTitle>{`${summary.month_key} 월간 정보`}</S.ListTitle>
                   <S.ListMeta style={{ whiteSpace: 'pre-line' }}>
                     {summary.content}
                   </S.ListMeta>

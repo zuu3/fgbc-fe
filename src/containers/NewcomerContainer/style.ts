@@ -152,6 +152,26 @@ export const StepsContainer = styled.div`
     border-top: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
+export const StepFlow = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 8px;
+    row-gap: 16px;
+    align-items: start;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
 export const StepCard = styled.div`
     display: grid;
     grid-template-columns: 140px 1fr;
@@ -168,19 +188,65 @@ export const StepCard = styled.div`
     }
 `;
 
+export const StepVisualCard = styled.article`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 8px;
+`;
+
+export const StepIconCircle = styled.div`
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: #e8ebef;
+    color: #1f232a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    svg {
+        width: 56px;
+        height: 56px;
+        stroke-width: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 12px;
+
+        svg {
+            width: 44px;
+            height: 44px;
+        }
+    }
+`;
+
 export const StepNumber = styled.div`
-    font-size: 1rem;
-    font-weight: 600;
-    color: #666;
-    margin-bottom: 10px;
-    letter-spacing: 0.02em;
+    font-size: 1.95rem;
+    font-weight: 700;
+    color: #1f232a;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+
+    @media (max-width: 768px) {
+        font-size: 1.45rem;
+    }
 `;
 
 export const StepDescription = styled.p`
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #555;
+    font-size: 0.97rem;
+    line-height: 1.65;
+    color: #5c626c;
     margin: 0;
+    word-break: keep-all;
+`;
+
+export const StepArrow = styled.div`
+    display: none;
 `;
 
 // 양육과 훈련

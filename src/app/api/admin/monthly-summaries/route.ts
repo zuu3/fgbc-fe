@@ -12,7 +12,7 @@ export async function GET() {
   try {
     const monthlySummaries = await supabaseRestWithToken<MonthlySummary[]>(
       token,
-      '/rest/v1/monthly_summaries?select=id,month_key,title,content,published_at&order=month_key.desc&limit=100',
+      '/rest/v1/monthly_summaries?select=id,month_key,content,published_at&order=month_key.desc&limit=100',
     );
 
     return NextResponse.json({ monthlySummaries });
@@ -34,7 +34,6 @@ export async function POST(request: Request) {
     const body = await request.json();
     const payload = {
       month_key: String(body?.month_key || ''),
-      title: body?.title ? String(body.title) : null,
       content: String(body?.content || ''),
       published_at: body?.published_at ? String(body.published_at) : new Date().toISOString(),
     };
@@ -45,7 +44,7 @@ export async function POST(request: Request) {
 
     const created = await supabaseRestWithToken<MonthlySummary[]>(
       token,
-      '/rest/v1/monthly_summaries?select=id,month_key,title,content,published_at',
+      '/rest/v1/monthly_summaries?select=id,month_key,content,published_at',
       {
         method: 'POST',
         body: payload,
@@ -77,7 +76,6 @@ export async function PATCH(request: Request) {
 
     const payload = {
       month_key: String(body?.month_key || ''),
-      title: body?.title ? String(body.title) : null,
       content: String(body?.content || ''),
       published_at: body?.published_at ? String(body.published_at) : new Date().toISOString(),
     };
@@ -88,7 +86,7 @@ export async function PATCH(request: Request) {
 
     const updated = await supabaseRestWithToken<MonthlySummary[]>(
       token,
-      `/rest/v1/monthly_summaries?id=eq.${encodeURIComponent(id)}&select=id,month_key,title,content,published_at`,
+      `/rest/v1/monthly_summaries?id=eq.${encodeURIComponent(id)}&select=id,month_key,content,published_at`,
       {
         method: 'PATCH',
         body: payload,
