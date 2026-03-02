@@ -5,29 +5,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import KakaoMap from '@/components/KakaoMap';
-import { getLatestBulletin, getMonthlySummary, getPublishedNotices } from '@/lib/content/client';
-import type { Bulletin, MonthlySummary, Notice } from '@/types/content';
+import { getLatestBulletin, getMonthlySummary } from '@/lib/content/client';
+import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
 
 function toKstDate(value: string | Date): Date {
     const date = new Date(value);
     return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-}
-
-function getKstWeekRange(baseDate: Date): { weekStart: Date; weekEnd: Date } {
-    const kstNow = toKstDate(baseDate);
-    const day = kstNow.getDay();
-    const mondayOffset = day === 0 ? -6 : 1 - day;
-
-    const weekStart = new Date(kstNow);
-    weekStart.setDate(kstNow.getDate() + mondayOffset);
-    weekStart.setHours(0, 0, 0, 0);
-
-    const weekEnd = new Date(weekStart);
-    weekEnd.setDate(weekStart.getDate() + 6);
-    weekEnd.setHours(23, 59, 59, 999);
-
-    return { weekStart, weekEnd };
 }
 
 function getCurrentKstMonthKey(baseDate: Date): string {
@@ -48,7 +32,6 @@ export default function HomeContainer() {
     const [latestVideoPlayerOpen, setLatestVideoPlayerOpen] = useState(false);
     const [isLoadingLatest, setIsLoadingLatest] = useState(true);
     const [featuredBulletin, setFeaturedBulletin] = useState<Bulletin | null>(null);
-    const [noticeSummary, setNoticeSummary] = useState<Notice[]>([]);
     const [monthlySummary, setMonthlySummary] = useState<MonthlySummary | null>(null);
     const [isLoadingSummary, setIsLoadingSummary] = useState(true);
     useEffect(() => {
@@ -73,23 +56,15 @@ export default function HomeContainer() {
 
         const monthKey = getCurrentKstMonthKey(new Date());
 
-        Promise.all([getLatestBulletin(), getPublishedNotices(100), getMonthlySummary(monthKey)]).then(([latest, notices, monthly]) => {
+        Promise.all([getLatestBulletin(), getMonthlySummary(monthKey)]).then(([latest, monthly]) => {
             if (!mounted) return;
 
-            const { weekStart, weekEnd } = getKstWeekRange(new Date());
-            const weeklyNotices = notices.filter((notice) => {
-                const noticeStart = toKstDate(notice.start_at);
-                return noticeStart >= weekStart && noticeStart <= weekEnd;
-            });
-
             setFeaturedBulletin(latest ?? null);
-            setNoticeSummary(weeklyNotices.slice(0, 5));
             setMonthlySummary(monthly ?? null);
             setIsLoadingSummary(false);
         }).catch(() => {
             if (!mounted) return;
             setFeaturedBulletin(null);
-            setNoticeSummary([]);
             setMonthlySummary(null);
             setIsLoadingSummary(false);
         });
@@ -199,25 +174,6 @@ export default function HomeContainer() {
             <S.InfoSection>
                 <S.InfoInner>
                     <S.InfoColumn>
-                        <S.InfoTitle>공지</S.InfoTitle>
-                        {isLoadingSummary ? (
-                            <S.InfoText>공지 불러오는 중...</S.InfoText>
-                        ) : noticeSummary.length === 0 ? (
-                            <S.InfoText>이번 주 공지가 없습니다.</S.InfoText>
-                        ) : (
-                            <S.InfoList>
-                                {noticeSummary.map((notice) => (
-                                    <S.InfoListLinkItem key={notice.id} href="/newcomer?tab=notice">
-                                        <S.InfoRowTitle>{notice.title}</S.InfoRowTitle>
-                                        <S.InfoRowMeta>{formatKstDate(notice.start_at)}</S.InfoRowMeta>
-                                    </S.InfoListLinkItem>
-                                ))}
-                            </S.InfoList>
-                        )}
-                        <S.InfoLink href="/newcomer?tab=notice">공지 전체 보기</S.InfoLink>
-                    </S.InfoColumn>
-
-                    <S.InfoColumn>
                         <S.InfoTitle>주보</S.InfoTitle>
                         {isLoadingSummary ? (
                             <S.InfoText>주보 불러오는 중...</S.InfoText>
@@ -252,18 +208,6 @@ export default function HomeContainer() {
                         ) : (
                             <S.InfoText>이번 달 월간 정보가 없습니다.</S.InfoText>
                         )}
-                    </S.InfoColumn>
-
-                    <S.InfoColumn>
-                        <S.InfoTitle>설교 정보</S.InfoTitle>
-                        <S.InfoList>
-                            <S.InfoListItem>
-                                <S.InfoRowTitle>가스펠 프로젝트 설명 영역 (준비 중)</S.InfoRowTitle>
-                            </S.InfoListItem>
-                            <S.InfoListItem>
-                                <S.InfoRowTitle>추후 관리자 입력 연동 예정</S.InfoRowTitle>
-                            </S.InfoListItem>
-                        </S.InfoList>
                     </S.InfoColumn>
                 </S.InfoInner>
             </S.InfoSection>

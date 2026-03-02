@@ -1,24 +1,9 @@
 import { buildPublicStorageUrl, supabaseRestPublic } from '@/lib/supabase/rest';
 import { isSupabaseConfigured } from '@/lib/supabase/config';
-import type { Bulletin, MonthlySummary, Notice } from '@/types/content';
+import type { Bulletin, MonthlySummary } from '@/types/content';
 
 function encode(value: string): string {
   return encodeURIComponent(value);
-}
-
-export async function getPublishedNotices(limit = 50): Promise<Notice[]> {
-  if (!isSupabaseConfigured()) {
-    return [];
-  }
-
-  try {
-    return await supabaseRestPublic<Notice[]>(
-      `/rest/v1/notices?select=id,title,content,category,start_at,end_at,is_all_day,is_pinned,location,attachment_path,status,published_at&status=eq.published&order=start_at.asc&limit=${limit}`,
-      { revalidate: 30 },
-    );
-  } catch {
-    return [];
-  }
 }
 
 export async function getPublishedBulletins(limit = 20): Promise<Bulletin[]> {

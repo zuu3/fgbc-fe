@@ -76,27 +76,13 @@ const Header = () => {
                                     <Link href="/newcomer?tab=welcome">처음 오셨나요?</Link>
                                 </S.SubMenuItem>
                                 <S.SubMenuItem>
-                                    <Link href="/newcomer?tab=notice">교회 공지</Link>
+                                    <Link href="/newcomer?tab=education">교육 안내</Link>
                                 </S.SubMenuItem>
                             </S.SubMenu>
                         )}
                     </S.NavItem>
 
-                    <S.NavItem
-                        onMouseEnter={() => setActiveMenu('sermon')}
-                        onMouseLeave={() => setActiveMenu(null)}
-                    >
-                        <Link href="/bulletins">
-                            <S.NavLink>설교 및 주보</S.NavLink>
-                        </Link>
-                        {activeMenu === 'sermon' && (
-                            <S.SubMenu>
-                                <S.SubMenuItem>
-                                    <Link href="/bulletins">주보</Link>
-                                </S.SubMenuItem>
-                            </S.SubMenu>
-                        )}
-                    </S.NavItem>
+                    <S.BulletinNavButton href="/bulletins">주보</S.BulletinNavButton>
                 </S.Nav>
 
                 <S.RightSection>
@@ -133,46 +119,25 @@ const Header = () => {
                             <Link href="/" onClick={closeMobileMenu}>홈</Link>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>
-                                <S.MobileNavLink>교회 소개</S.MobileNavLink>
-                            </Link>
-                            <S.MobileSubMenu>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>담임목사 인사말</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/intro?tab=staff" onClick={closeMobileMenu}>섬기는 사람들</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/intro?tab=worship" onClick={closeMobileMenu}>예배 안내</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/intro?tab=location" onClick={closeMobileMenu}>교회 위치</Link>
-                                </S.MobileSubMenuItem>
-                            </S.MobileSubMenu>
+                            <Link href="/intro?tab=greeting" onClick={closeMobileMenu}>담임목사 인사말</Link>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>
-                                <S.MobileNavLink>교회 생활</S.MobileNavLink>
-                            </Link>
-                            <S.MobileSubMenu>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>처음 오셨나요?</Link>
-                                </S.MobileSubMenuItem>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/newcomer?tab=notice" onClick={closeMobileMenu}>교회 공지</Link>
-                                </S.MobileSubMenuItem>
-                            </S.MobileSubMenu>
+                            <Link href="/intro?tab=staff" onClick={closeMobileMenu}>섬기는 사람들</Link>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
-                            <Link href="/bulletins" onClick={closeMobileMenu}>
-                                <S.MobileNavLink>설교 및 주보</S.MobileNavLink>
-                            </Link>
-                            <S.MobileSubMenu>
-                                <S.MobileSubMenuItem>
-                                    <Link href="/bulletins" onClick={closeMobileMenu}>주보</Link>
-                                </S.MobileSubMenuItem>
-                            </S.MobileSubMenu>
+                            <Link href="/intro?tab=worship" onClick={closeMobileMenu}>예배 안내</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/intro?tab=location" onClick={closeMobileMenu}>교회 위치</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/newcomer?tab=welcome" onClick={closeMobileMenu}>처음 오셨나요?</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/newcomer?tab=education" onClick={closeMobileMenu}>교육 안내</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/bulletins" onClick={closeMobileMenu}>주보</Link>
                         </S.MobileNavItem>
                     </S.MobileNav>
                 </S.MobileMenuOverlay>

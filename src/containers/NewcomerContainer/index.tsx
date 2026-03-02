@@ -1,52 +1,21 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiArrowRight, FiClipboard, FiCoffee, FiSmile, FiUsers } from 'react-icons/fi';
 import * as S from './style';
-import { getPublishedNotices } from '@/lib/content/client';
-import type { Notice } from '@/types/content';
-import { formatKstDate, formatKstTime } from '@/lib/dateTimeKst';
 
 const NewcomerContainer = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const [selectedTab, setSelectedTab] = useState<'welcome' | 'notice' | null>(null);
-    const [notices, setNotices] = useState<Notice[]>([]);
-    const [isLoadingNotices, setIsLoadingNotices] = useState(true);
-    const activeTab = useMemo<'welcome' | 'notice'>(() => {
+    const [selectedTab, setSelectedTab] = useState<'welcome' | 'education' | null>(null);
+    const activeTab = useMemo<'welcome' | 'education'>(() => {
         if (selectedTab) return selectedTab;
-        if (tabParam === 'welcome' || tabParam === 'notice') {
+        if (tabParam === 'welcome' || tabParam === 'education') {
             return tabParam;
         }
         return 'welcome';
     }, [selectedTab, tabParam]);
-
-    useEffect(() => {
-        let mounted = true;
-
-        getPublishedNotices(5).then((items) => {
-            if (!mounted) return;
-            setNotices(items.slice(0, 5));
-            setIsLoadingNotices(false);
-        }).catch(() => {
-            if (!mounted) return;
-            setNotices([]);
-            setIsLoadingNotices(false);
-        });
-
-        return () => {
-            mounted = false;
-        };
-    }, []);
-
-    const noticeCategoryLabel = {
-        worship: '예배',
-        event: '행사',
-        group: '모임',
-        volunteer: '봉사',
-        urgent: '긴급',
-    } as const;
 
     const welcomeSteps = [
         {
@@ -88,8 +57,8 @@ const NewcomerContainer = () => {
                 <S.Tab $active={activeTab === 'welcome'} onClick={() => setSelectedTab('welcome')}>
                     처음 오셨나요?
                 </S.Tab>
-                <S.Tab $active={activeTab === 'notice'} onClick={() => setSelectedTab('notice')}>
-                    교회 공지
+                <S.Tab $active={activeTab === 'education'} onClick={() => setSelectedTab('education')}>
+                    교육 안내
                 </S.Tab>
             </S.TabMenu>
 
@@ -125,36 +94,12 @@ const NewcomerContainer = () => {
                     </S.Section>
                 )}
 
-                {activeTab === 'notice' && (
+                {activeTab === 'education' && (
                     <S.Section>
-                        <S.SectionTitle>교회 공지</S.SectionTitle>
-                        <S.IntroText>
-                            주간 공지와 주요 일정을 확인하세요.
-                        </S.IntroText>
-
-                        {isLoadingNotices ? (
-                            <S.NoticeLoading>공지 불러오는 중...</S.NoticeLoading>
-                        ) : notices.length === 0 ? (
-                            <S.NoticeLoading>등록된 공지가 없습니다.</S.NoticeLoading>
-                        ) : (
-                            <S.NoticeList>
-                                {notices.map((notice) => (
-                                    <S.NoticeItem key={notice.id}>
-                                        <S.NoticeTag>{noticeCategoryLabel[notice.category]}</S.NoticeTag>
-                                        <S.NoticeTitle>{notice.title}</S.NoticeTitle>
-                                        <S.NoticeBody>{notice.content}</S.NoticeBody>
-                                        <S.NoticeMeta>
-                                            {formatKstDate(notice.start_at)} · {formatKstTime(notice.start_at)}
-                                            {notice.location ? ` · ${notice.location}` : ''}
-                                        </S.NoticeMeta>
-                                    </S.NoticeItem>
-                                ))}
-                            </S.NoticeList>
-                        )}
-
+                        <S.SectionTitle>교육 안내</S.SectionTitle>
+                        <S.IntroText>준비중입니다.</S.IntroText>
                     </S.Section>
                 )}
-
             </S.Content>
         </S.Container>
     );

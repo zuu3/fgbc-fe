@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 export const HeaderWrapper = styled.header<{ $isScrolled: boolean }>`
     position: fixed;
@@ -59,6 +60,27 @@ export const Nav = styled.nav`
 
     @media (max-width: 768px) {
         display: none;
+    }
+`;
+
+export const BulletinNavButton = styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid #2c2c2c;
+    background: #2c2c2c;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #fff;
+        color: #2c2c2c;
     }
 `;
 
@@ -163,17 +185,22 @@ export const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
 export const MobileNav = styled.nav`
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 `;
 
 export const MobileNavItem = styled.div`
     border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
 
     > a {
         text-decoration: none;
-        color: inherit;
-        display: block;
+        color: #2c2c2c;
+        display: flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 4px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
     }
 `;
 
