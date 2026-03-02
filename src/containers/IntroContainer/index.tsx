@@ -155,7 +155,13 @@ const IntroContainer = () => {
                             <S.MinistryGrid>
                                 <S.MinistryCard>
                                     <S.MinistryPhotoFrame>
-                                        <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                        <Image
+                                            src="/pastor_jung.png"
+                                            alt="정성철 원로목사"
+                                            width={220}
+                                            height={280}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
                                     </S.MinistryPhotoFrame>
                                     <S.MinistryName>정성철 원로목사</S.MinistryName>
                                     <S.MinistryBodyPlaceholder />
@@ -190,7 +196,15 @@ const IntroContainer = () => {
                                 <S.ElderGroupTitle>시무장로</S.ElderGroupTitle>
                                 <S.ElderSimpleGrid>
                                     <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>사진</S.ElderPhotoPlaceholder>
+                                        <S.ElderPhotoPlaceholder>
+                                            <Image
+                                                src="/elder/40_kimj.JPG"
+                                                alt="김중배 장로"
+                                                width={160}
+                                                height={160}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </S.ElderPhotoPlaceholder>
                                         <S.ElderNameOnly>김중배 장로</S.ElderNameOnly>
                                     </S.ElderSimpleCard>
                                     <S.ElderSimpleCard>
@@ -198,7 +212,15 @@ const IntroContainer = () => {
                                         <S.ElderNameOnly>이재현 장로</S.ElderNameOnly>
                                     </S.ElderSimpleCard>
                                     <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>사진</S.ElderPhotoPlaceholder>
+                                        <S.ElderPhotoPlaceholder>
+                                            <Image
+                                                src="/elder/47_mo.JPG"
+                                                alt="모정종 장로"
+                                                width={160}
+                                                height={160}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </S.ElderPhotoPlaceholder>
                                         <S.ElderNameOnly>모정종 장로</S.ElderNameOnly>
                                     </S.ElderSimpleCard>
                                 </S.ElderSimpleGrid>
@@ -208,11 +230,27 @@ const IntroContainer = () => {
                                 <S.ElderGroupTitle>은퇴장로</S.ElderGroupTitle>
                                 <S.ElderSimpleGrid>
                                     <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>사진</S.ElderPhotoPlaceholder>
+                                        <S.ElderPhotoPlaceholder>
+                                            <Image
+                                                src="/elder/37_kim.JPG"
+                                                alt="김재덕 장로"
+                                                width={160}
+                                                height={160}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </S.ElderPhotoPlaceholder>
                                         <S.ElderNameOnly>김재덕 장로</S.ElderNameOnly>
                                     </S.ElderSimpleCard>
                                     <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>사진</S.ElderPhotoPlaceholder>
+                                        <S.ElderPhotoPlaceholder>
+                                            <Image
+                                                src="/elder/29_oh.JPG"
+                                                alt="오재문 장로"
+                                                width={160}
+                                                height={160}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </S.ElderPhotoPlaceholder>
                                         <S.ElderNameOnly>오재문 장로</S.ElderNameOnly>
                                     </S.ElderSimpleCard>
                                 </S.ElderSimpleGrid>

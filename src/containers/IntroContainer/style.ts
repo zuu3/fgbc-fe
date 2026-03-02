@@ -860,6 +860,7 @@ export const ElderPhotoPlaceholder = styled.div`
     aspect-ratio: 1 / 1;
     border: 1px solid rgba(0, 0, 0, 0.14);
     background: #f4f4f4;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
