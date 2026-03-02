@@ -44,7 +44,6 @@ export const FooterBrand = styled.div`
     img {
         width: auto;
         height: 50px;
-        filter: invert(1);
 
         @media (max-width: 768px) {
             height: 42px;

@@ -126,12 +126,12 @@ const IntroContainer = () => {
                         <S.PastorSection>
                             <S.PastorImageWrapper>
                                 <Image
-                                    src="/pastor_lee.png"
+                                    src="/pastor_lee.jpeg"
                                     alt="이효훈 담임목사님 사진"
                                     width={420}
                                     height={560}
                                     quality={75}
-                                    style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                                    style={{ objectFit: 'cover', width: '100%', height: 'auto', borderRadius: '20px' }}
                                     priority
                                 />
                             </S.PastorImageWrapper>
@@ -164,7 +164,7 @@ const IntroContainer = () => {
                                 <S.MinistryCard>
                                     <S.MinistryPhotoFrame>
                                         <Image
-                                            src="/pastor_lee.png"
+                                            src="/pastor_lee.jpeg"
                                             alt="이효훈 담임목사"
                                             width={220}
                                             height={280}
