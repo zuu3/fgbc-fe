@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/youtube/latest",
-      "schedule": "0 13 * * 0"
+      "schedule": "0 9 * * 1"
     }
   ]
 }
