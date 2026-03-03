@@ -878,56 +878,75 @@ export const ElderNameOnly = styled.p`
 `;
 
 // 예배 안내
-export const WorshipSection = styled.div``;
-
-export const WorshipCategory = styled.h3`
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    letter-spacing: -0.01em;
-    color: #2c2c2c;
+export const WorshipSection = styled.section`
+    margin-top: 8px;
 `;
 
-export const WorshipTable = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-`;
-
-export const WorshipRow = styled.div`
+export const WorshipTableWrapper = styled.div`
+    width: min(1640px, 100%);
+    margin: 0 auto;
+    padding: 28px 24px;
+    background: #f3f3f3;
     display: grid;
-    grid-template-columns: 160px 200px 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
-    padding: 18px 0;
-    background: transparent;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    transition: border-color 0.2s ease;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        padding: 20px 16px;
+        gap: 12px;
+    }
+`;
+
+export const WorshipTableHeader = styled.h2`
+    font-size: 2.4rem;
+    margin: 0 0 28px;
+    font-weight: 700;
+    color: #2c2c2c;
+    text-align: center;
+    letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
-
-    &:last-child {
-        border-bottom: none;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
     }
 `;
 
-export const WorshipLabel = styled.div`
-    font-size: 1rem;
-    font-weight: 600;
+export const WorshipTableColumn = styled.div`
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 0;
+    padding: 20px 16px;
+    min-height: 220px;
+
+    @media (max-width: 768px) {
+        min-height: auto;
+        padding: 16px 14px;
+    }
+`;
+
+export const WorshipTableTitle = styled.h3`
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 14px;
     color: #2c2c2c;
 `;
 
-export const WorshipTime = styled.div`
-    font-size: 0.95rem;
-    color: #666;
-`;
+export const WorshipTableRow = styled.div`
+    font-size: 0.96rem;
+    color: #444;
+    line-height: 1.75;
+    border-top: 1px solid #ececec;
+    padding: 10px 0;
+    display: block;
 
-export const WorshipPlace = styled.div`
-    font-size: 0.9rem;
-    color: #999;
+    &:first-of-type {
+        border-top: 1px solid #dcdcdc;
+    }
 `;
 
 export const OnlineSection = styled.div`

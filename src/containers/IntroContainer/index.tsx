@@ -261,66 +261,31 @@ const IntroContainer = () => {
 
                 {activeTab === 'worship' && (
                     <S.Section>
-                        <S.SectionTitle>예배 안내</S.SectionTitle>
-
                         <S.WorshipSection>
-                            <S.WorshipCategory>주일 예배</S.WorshipCategory>
-                            <S.WorshipTable>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>1부 예배</S.WorshipLabel>
-                                    <S.WorshipTime>오전 09:00</S.WorshipTime>
-                                    <S.WorshipPlace>2층 본당</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>2부 예배</S.WorshipLabel>
-                                    <S.WorshipTime>오전 11:00</S.WorshipTime>
-                                    <S.WorshipPlace>2층 본당</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>오후예배</S.WorshipLabel>
-                                    <S.WorshipTime>오후 2:00 (격주)</S.WorshipTime>
-                                    <S.WorshipPlace>2층 본당</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>영유치부 예배</S.WorshipLabel>
-                                    <S.WorshipTime>오전 11:00</S.WorshipTime>
-                                    <S.WorshipPlace>본당 3층 모자실</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>유초등부 예배</S.WorshipLabel>
-                                    <S.WorshipTime>오전 10:30</S.WorshipTime>
-                                    <S.WorshipPlace>교육관 3층 예배실</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>중고등부 예배</S.WorshipLabel>
-                                    <S.WorshipTime>오전 10:00</S.WorshipTime>
-                                    <S.WorshipPlace>1층 소예배실</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>청년예배</S.WorshipLabel>
-                                    <S.WorshipTime>오후 02:00</S.WorshipTime>
-                                    <S.WorshipPlace>1층 소예배실</S.WorshipPlace>
-                                </S.WorshipRow>
-                            </S.WorshipTable>
+                            <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
+                            <S.WorshipTableWrapper>
+                                <S.WorshipTableColumn>
+                                    <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
+                                    <S.WorshipTableRow>1부예배 · 오전 9:00 · 2F 본당</S.WorshipTableRow>
+                                    <S.WorshipTableRow>2부예배 · 오전 11:00 · 2F 본당</S.WorshipTableRow>
+                                    <S.WorshipTableRow>오후예배 · 오후 2:00 · 2F 본당</S.WorshipTableRow>
+                                </S.WorshipTableColumn>
 
-                            <S.WorshipCategory style={{ marginTop: '60px' }}>주중 예배</S.WorshipCategory>
-                            <S.WorshipTable>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>수요예배</S.WorshipLabel>
-                                    <S.WorshipTime>수요일 저녁 07:30</S.WorshipTime>
-                                    <S.WorshipPlace>2층 본당</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>금요철야기도회</S.WorshipLabel>
-                                    <S.WorshipTime>금요일 저녁 08:30 (시즌제)</S.WorshipTime>
-                                    <S.WorshipPlace>2층 본당</S.WorshipPlace>
-                                </S.WorshipRow>
-                                <S.WorshipRow>
-                                    <S.WorshipLabel>새벽기도회</S.WorshipLabel>
-                                    <S.WorshipTime>월-금 오전 05:00</S.WorshipTime>
-                                    <S.WorshipPlace>1층 소예배실</S.WorshipPlace>
-                                </S.WorshipRow>
-                            </S.WorshipTable>
+                                <S.WorshipTableColumn>
+                                    <S.WorshipTableTitle>부서예배</S.WorshipTableTitle>
+                                    <S.WorshipTableRow>영유치부 · 오전 11:00 · B1 키즈룸</S.WorshipTableRow>
+                                    <S.WorshipTableRow>유초등부 · 오전 10:40 · 비전센터 3F</S.WorshipTableRow>
+                                    <S.WorshipTableRow>청소년부 · 오전 9:50 · 1F 소예배실</S.WorshipTableRow>
+                                    <S.WorshipTableRow>청년부 · 오후 2:00 · 1F 소예배실</S.WorshipTableRow>
+                                </S.WorshipTableColumn>
+
+                                <S.WorshipTableColumn>
+                                    <S.WorshipTableTitle>주중예배</S.WorshipTableTitle>
+                                    <S.WorshipTableRow>새벽기도회 · 오전 5:00 · 1F 소예배실</S.WorshipTableRow>
+                                    <S.WorshipTableRow>수요예배 · 저녁 7:30 · 2F 본당</S.WorshipTableRow>
+                                    <S.WorshipTableRow>금요기도회 · 저녁 8:30 · 2F 본당</S.WorshipTableRow>
+                                </S.WorshipTableColumn>
+                            </S.WorshipTableWrapper>
 
                             <S.AccountBanner id="offering" onClick={handleAccountCopy}>
                                 <S.AccountText>

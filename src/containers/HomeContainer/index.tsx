@@ -289,52 +289,24 @@ export default function HomeContainer() {
 
                     <S.WorshipTableColumn>
                         <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>1부 &nbsp;&nbsp;오전 9:00</S.WorshipTableRow>
-                        <S.WorshipTableRow>2부 &nbsp;&nbsp;오전 11:00</S.WorshipTableRow>
-                        <S.WorshipTableRow>3부 &nbsp;&nbsp;오후 2:00</S.WorshipTableRow>
-                        <S.WorshipTableRow>2층 &nbsp;&nbsp;본당</S.WorshipTableRow>
+                        <S.WorshipTableRow>1부예배 · 오전 9:00 · 2F 본당</S.WorshipTableRow>
+                        <S.WorshipTableRow>2부예배 · 오전 11:00 · 2F 본당</S.WorshipTableRow>
+                        <S.WorshipTableRow>오후예배 · 오후 2:00 · 2F 본당</S.WorshipTableRow>
                     </S.WorshipTableColumn>
 
                     <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>미래세대 주일예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>
-                            <span>영유치부</span>
-                            <span>오전 11:00</span>
-                            <span>3층 모자실</span>
-                        </S.WorshipTableRow>
-                        <S.WorshipTableRow>
-                            <span>유초등부</span>
-                            <span>오전 10:30</span>
-                            <span>교육관 3층</span>
-                        </S.WorshipTableRow>
-                        <S.WorshipTableRow>
-                            <span>중고등부</span>
-                            <span>오전 10:00</span>
-                            <span>1층 소예배실</span>
-                        </S.WorshipTableRow>
-                        <S.WorshipTableRow>
-                            <span>청년예배</span>
-                            <span>오후 2:00</span>
-                            <span>1층 소예배실</span>
-                        </S.WorshipTableRow>
+                        <S.WorshipTableTitle>부서예배</S.WorshipTableTitle>
+                        <S.WorshipTableRow>영유치부 · 오전 11:00 · B1 키즈룸</S.WorshipTableRow>
+                        <S.WorshipTableRow>유초등부 · 오전 10:40 · 비전센터 3F</S.WorshipTableRow>
+                        <S.WorshipTableRow>청소년부 · 오전 9:50 · 1F 소예배실</S.WorshipTableRow>
+                        <S.WorshipTableRow>청년부 · 오후 2:00 · 1F 소예배실</S.WorshipTableRow>
                     </S.WorshipTableColumn>
 
                     <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>수요예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>수요일 저녁 7:30</S.WorshipTableRow>
-                        <S.WorshipTableRow>2층 본당</S.WorshipTableRow>
-                    </S.WorshipTableColumn>
-
-                    <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>금요철야기도회</S.WorshipTableTitle>
-                        <S.WorshipTableRow>금요일 저녁 8:30</S.WorshipTableRow>
-                        <S.WorshipTableRow>2층 본당</S.WorshipTableRow>
-                    </S.WorshipTableColumn>
-
-                    <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>새벽기도회</S.WorshipTableTitle>
-                        <S.WorshipTableRow>월~금 새벽 5:00</S.WorshipTableRow>
-                        <S.WorshipTableRow>1층 소예배실</S.WorshipTableRow>
+                        <S.WorshipTableTitle>주중예배</S.WorshipTableTitle>
+                        <S.WorshipTableRow>새벽기도회 · 오전 5:00 · 1F 소예배실</S.WorshipTableRow>
+                        <S.WorshipTableRow>수요예배 · 저녁 7:30 · 2F 본당</S.WorshipTableRow>
+                        <S.WorshipTableRow>금요기도회 · 저녁 8:30 · 2F 본당</S.WorshipTableRow>
                     </S.WorshipTableColumn>
                 </S.WorshipTableWrapper>
             </S.WorshipSection>
