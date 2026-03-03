@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 
 export const HeaderWrapper = styled.header<{ $isScrolled: boolean; $lightText: boolean }>`
+    --header-bulletin-border: ${(props) => (props.$lightText ? 'rgba(255, 255, 255, 0.9)' : '#2c2c2c')};
+    --header-bulletin-bg: ${(props) => (props.$lightText ? 'rgba(0, 0, 0, 0.28)' : '#2c2c2c')};
     position: fixed;
     top: 0;
     left: 0;
@@ -64,15 +66,15 @@ export const Nav = styled.nav`
     }
 `;
 
-export const BulletinNavButton = styled(Link)<{ $lightText: boolean }>`
+export const BulletinNavButton = styled(Link)`
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 40px;
     padding: 0 18px;
     border-radius: 999px;
-    border: 1px solid ${(props) => (props.$lightText ? 'rgba(255, 255, 255, 0.9)' : '#2c2c2c')};
-    background: ${(props) => (props.$lightText ? 'rgba(0, 0, 0, 0.28)' : '#2c2c2c')};
+    border: 1px solid var(--header-bulletin-border);
+    background: var(--header-bulletin-bg);
     color: #fff;
     text-decoration: none;
     font-size: 0.9rem;

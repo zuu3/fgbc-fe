@@ -82,13 +82,21 @@ export const HeroIndicators = styled.div`
     }
 `;
 
-export const HeroIndicator = styled.span<{ $active: boolean }>`
+export const HeroIndicator = styled.button<{ $active: boolean }>`
     display: block;
     width: 40px;
     height: 4px;
     border-radius: 999px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     background: ${(props) => (props.$active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.45)')};
     transition: background 0.25s ease;
+
+    &:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.95);
+        outline-offset: 2px;
+    }
 
     @media (max-width: 768px) {
         width: 28px;

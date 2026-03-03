@@ -141,7 +141,13 @@ export default function HomeContainer() {
                     </S.HeroSlides>
                     <S.HeroIndicators aria-hidden="true">
                         {HERO_BANNERS.map((banner, index) => (
-                            <S.HeroIndicator key={`indicator-${banner.src}`} $active={currentBannerIndex === index} />
+                            <S.HeroIndicator
+                                key={`indicator-${banner.src}`}
+                                type="button"
+                                onClick={() => setCurrentBannerIndex(index)}
+                                $active={currentBannerIndex === index}
+                                aria-label={`${index + 1}번 배너로 이동`}
+                            />
                         ))}
                     </S.HeroIndicators>
                 </S.HeroBackground>
