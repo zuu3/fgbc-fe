@@ -102,7 +102,7 @@ const Header = () => {
                         )}
                     </S.NavItem>
 
-                    <S.BulletinNavButton href="/bulletins" $lightText={useLightText}>주보</S.BulletinNavButton>
+                    <S.BulletinNavButton href="/bulletins">주보</S.BulletinNavButton>
                 </S.Nav>
 
                 <S.RightSection>
