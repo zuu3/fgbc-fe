@@ -49,6 +49,8 @@ export const Logo = styled.div<{ $lightText: boolean }>`
         white-space: nowrap;
 
         @media (max-width: 768px) {
+            color: #1f1f1f;
+            text-shadow: none;
             font-size: 1.1rem;
         }
     }
@@ -172,6 +174,8 @@ export const MobileMenuButton = styled.button<{ $lightText: boolean }>`
 
     @media (max-width: 768px) {
         display: block;
+        color: #2c2c2c;
+        text-shadow: none;
     }
 `;
 
