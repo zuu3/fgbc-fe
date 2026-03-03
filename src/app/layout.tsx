@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/main.png',
+        url: '/banner/main.png',
         alt: '순복음범천교회',
       },
     ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '순복음범천교회',
     description: '부산 부산진구에 위치한 순복음범천교회입니다. 모든 세대가 하나 되어 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.',
-    images: ['/main.png'],
+    images: ['/banner/main.png'],
   },
   robots: {
     index: true,
@@ -72,8 +72,8 @@ const jsonLd = {
   name: '순복음범천교회',
   alternateName: 'Full Gospel Beomcheon Church',
   url: 'https://fgbc.or.kr',
-  logo: 'https://fgbc.or.kr/main.png',
-  image: 'https://fgbc.or.kr/main.png',
+  logo: 'https://fgbc.or.kr/banner/main.png',
+  image: 'https://fgbc.or.kr/banner/main.png',
   description: '부산 부산진구에 위치한 순복음범천교회입니다. 기독교대한하나님의성회(순복음) 소속 교회입니다.',
   address: {
     '@type': 'PostalAddress',

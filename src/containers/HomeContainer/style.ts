@@ -50,6 +50,52 @@ export const HeroBackground = styled.div`
     }
 `;
 
+export const HeroSlides = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+`;
+
+export const HeroFadeSlide = styled.div<{ $active: boolean }>`
+    position: relative;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: ${(props) => (props.$active ? 1 : 0)};
+    transition: opacity 0.9s ease;
+`;
+
+export const HeroIndicators = styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    @media (max-width: 768px) {
+        bottom: 12px;
+        gap: 12px;
+    }
+`;
+
+export const HeroIndicator = styled.span<{ $active: boolean }>`
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background: ${(props) => (props.$active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.45)')};
+    transition: background 0.25s ease;
+
+    @media (max-width: 768px) {
+        width: 28px;
+        height: 3px;
+    }
+`;
+
 export const NewcomerBackground = styled.div`
     position: absolute;
     top: 0;

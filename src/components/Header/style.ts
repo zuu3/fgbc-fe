@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
-export const HeaderWrapper = styled.header<{ $isScrolled: boolean }>`
+export const HeaderWrapper = styled.header<{ $isScrolled: boolean; $lightText: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
@@ -34,12 +34,13 @@ export const Container = styled.div`
     height: 80px;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.div<{ $lightText: boolean }>`
     a {
         display: inline-flex;
         align-items: center;
         text-decoration: none;
-        color: #1f1f1f;
+        color: ${(props) => (props.$lightText ? '#ffffff' : '#1f1f1f')};
+        text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
         font-size: 1.35rem;
         font-weight: 700;
         letter-spacing: -0.02em;
@@ -63,15 +64,15 @@ export const Nav = styled.nav`
     }
 `;
 
-export const BulletinNavButton = styled(Link)`
+export const BulletinNavButton = styled(Link)<{ $lightText: boolean }>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 40px;
     padding: 0 18px;
     border-radius: 999px;
-    border: 1px solid #2c2c2c;
-    background: #2c2c2c;
+    border: 1px solid ${(props) => (props.$lightText ? 'rgba(255, 255, 255, 0.9)' : '#2c2c2c')};
+    background: ${(props) => (props.$lightText ? 'rgba(0, 0, 0, 0.28)' : '#2c2c2c')};
     color: #fff;
     text-decoration: none;
     font-size: 0.9rem;
@@ -84,32 +85,34 @@ export const BulletinNavButton = styled(Link)`
     }
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled.div<{ $lightText: boolean }>`
     position: relative;
     padding: 28px 0;
 
     a {
-        color: #2c2c2c;
+        color: ${(props) => (props.$lightText ? '#ffffff' : '#2c2c2c')};
+        text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
         transition: color 0.2s ease;
 
         &:hover {
-            color: #666;
+            color: ${(props) => (props.$lightText ? 'rgba(255, 255, 255, 0.82)' : '#666')};
         }
     }
 `;
 
-export const NavLink = styled.span`
-    color: #2c2c2c;
+export const NavLink = styled.span<{ $lightText: boolean }>`
+    color: ${(props) => (props.$lightText ? '#ffffff' : '#2c2c2c')};
+    text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.2s ease;
 
     &:hover {
-        color: #666;
+        color: ${(props) => (props.$lightText ? 'rgba(255, 255, 255, 0.82)' : '#666')};
     }
 `;
 
@@ -155,12 +158,14 @@ export const SubMenuItem = styled.div`
     }
 `;
 
-export const MobileMenuButton = styled.button`
+export const MobileMenuButton = styled.button<{ $lightText: boolean }>`
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
+    color: ${(props) => (props.$lightText ? '#ffffff' : '#2c2c2c')};
+    text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
     z-index: 1100;
 
     @media (max-width: 768px) {

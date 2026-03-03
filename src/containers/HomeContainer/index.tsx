@@ -9,6 +9,11 @@ import { getLatestBulletin, getMonthlySummary } from '@/lib/content/client';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
 
+const HERO_BANNERS = [
+    { src: '/banner/main.png', alt: '순복음범천교회 메인 배너', isDark: false },
+    { src: '/banner/sa.png', alt: '순복음범천교회 메인 배너', isDark: true },
+] as const;
+
 function toKstDate(value: string | Date): Date {
     const date = new Date(value);
     return new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
@@ -34,6 +39,7 @@ export default function HomeContainer() {
     const [featuredBulletin, setFeaturedBulletin] = useState<Bulletin | null>(null);
     const [monthlySummary, setMonthlySummary] = useState<MonthlySummary | null>(null);
     const [isLoadingSummary, setIsLoadingSummary] = useState(true);
+    const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
     useEffect(() => {
         let mounted = true;
         fetch('/api/youtube/latest')
@@ -85,6 +91,31 @@ export default function HomeContainer() {
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [latestVideoPlayerOpen]);
 
+    useEffect(() => {
+        if (HERO_BANNERS.length < 2) return;
+
+        const timer = window.setInterval(() => {
+            setCurrentBannerIndex((prev) => (prev + 1) % HERO_BANNERS.length);
+        }, 5000);
+
+        return () => {
+            window.clearInterval(timer);
+        };
+    }, []);
+
+    useEffect(() => {
+        const isDark = HERO_BANNERS[currentBannerIndex]?.isDark ?? false;
+        document.body.dataset.homeBannerDark = isDark ? '1' : '0';
+        window.dispatchEvent(new CustomEvent('home-banner-tone-change', { detail: { isDark } }));
+    }, [currentBannerIndex]);
+
+    useEffect(() => {
+        return () => {
+            delete document.body.dataset.homeBannerDark;
+            window.dispatchEvent(new CustomEvent('home-banner-tone-change', { detail: { isDark: false } }));
+        };
+    }, []);
+
     const monthlyLines = monthlySummary?.content
         ?.split('\n')
         .map((line) => line.trim())
@@ -94,14 +125,25 @@ export default function HomeContainer() {
         <S.Wrapper>
             <S.HeroSection>
                 <S.HeroBackground>
-                    <Image
-                        src="/main.png"
-                        alt="순복음범천교회 배경"
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        priority
-                        quality={75}
-                    />
+                    <S.HeroSlides>
+                        {HERO_BANNERS.map((banner, index) => (
+                            <S.HeroFadeSlide key={banner.src} $active={currentBannerIndex === index}>
+                                <Image
+                                    src={banner.src}
+                                    alt={banner.alt}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                    priority={index === 0}
+                                    quality={75}
+                                />
+                            </S.HeroFadeSlide>
+                        ))}
+                    </S.HeroSlides>
+                    <S.HeroIndicators aria-hidden="true">
+                        {HERO_BANNERS.map((banner, index) => (
+                            <S.HeroIndicator key={`indicator-${banner.src}`} $active={currentBannerIndex === index} />
+                        ))}
+                    </S.HeroIndicators>
                 </S.HeroBackground>
             </S.HeroSection>
 
@@ -140,7 +182,7 @@ export default function HomeContainer() {
                             aria-label="이번 주 설교 재생"
                         >
                             <Image
-                                src={latestVideo?.thumbnailUrl || '/main.png'}
+                                src={latestVideo?.thumbnailUrl || '/banner/main.png'}
                                 alt={latestVideo?.title || '이번 주 설교 썸네일'}
                                 fill
                                 sizes="(max-width: 768px) 95vw, 1200px"

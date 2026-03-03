@@ -8,6 +8,10 @@ const Header = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isHomeDarkBanner, setIsHomeDarkBanner] = useState(() => {
+        if (typeof document === 'undefined') return false;
+        return document.body.dataset.homeBannerDark === '1';
+    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +26,18 @@ const Header = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const onToneChange = (event: Event) => {
+            const customEvent = event as CustomEvent<{ isDark?: boolean }>;
+            setIsHomeDarkBanner(Boolean(customEvent.detail?.isDark));
+        };
+
+        window.addEventListener('home-banner-tone-change', onToneChange as EventListener);
+        return () => {
+            window.removeEventListener('home-banner-tone-change', onToneChange as EventListener);
+        };
+    }, []);
+
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
@@ -30,20 +46,23 @@ const Header = () => {
         setIsMobileMenuOpen(false);
     };
 
+    const useLightText = !isScrolled && isHomeDarkBanner;
+
     return (
-        <S.HeaderWrapper $isScrolled={isScrolled}>
+        <S.HeaderWrapper $isScrolled={isScrolled} $lightText={useLightText}>
             <S.Container>
-                <S.Logo>
+                <S.Logo $lightText={useLightText}>
                     <Link href="/" aria-label="순복음범천교회 홈">순복음범천교회</Link>
                 </S.Logo>
 
                 <S.Nav>
                     <S.NavItem
+                        $lightText={useLightText}
                         onMouseEnter={() => setActiveMenu('intro')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
                         <Link href="/intro?tab=greeting">
-                            <S.NavLink>교회 소개</S.NavLink>
+                            <S.NavLink $lightText={useLightText}>교회 소개</S.NavLink>
                         </Link>
                         {activeMenu === 'intro' && (
                             <S.SubMenu>
@@ -64,11 +83,12 @@ const Header = () => {
                     </S.NavItem>
 
                     <S.NavItem
+                        $lightText={useLightText}
                         onMouseEnter={() => setActiveMenu('life')}
                         onMouseLeave={() => setActiveMenu(null)}
                     >
                         <Link href="/newcomer?tab=welcome">
-                            <S.NavLink>교회 생활</S.NavLink>
+                            <S.NavLink $lightText={useLightText}>교회 생활</S.NavLink>
                         </Link>
                         {activeMenu === 'life' && (
                             <S.SubMenu>
@@ -82,11 +102,12 @@ const Header = () => {
                         )}
                     </S.NavItem>
 
-                    <S.BulletinNavButton href="/bulletins">주보</S.BulletinNavButton>
+                    <S.BulletinNavButton href="/bulletins" $lightText={useLightText}>주보</S.BulletinNavButton>
                 </S.Nav>
 
                 <S.RightSection>
                     <S.MobileMenuButton
+                        $lightText={useLightText}
                         onClick={toggleMobileMenu}
                         aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
                         aria-expanded={isMobileMenuOpen}
@@ -94,14 +115,14 @@ const Header = () => {
                     >
                         {isMobileMenuOpen ? (
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M18 6L6 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M6 6L18 18" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         ) : (
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M3 12H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 6H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M3 18H21" stroke="#2c2c2c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         )}
                     </S.MobileMenuButton>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "/main.png",
+        url: "/banner/main.png",
         alt: "순복음범천교회",
       },
     ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "새가족 안내 | 순복음범천교회",
     description:
       "처음 오신 분들을 위한 새가족 안내와 교회 등록, 예배 참여 방법을 제공합니다.",
-    images: ["/main.png"],
+    images: ["/banner/main.png"],
   },
 };
 
