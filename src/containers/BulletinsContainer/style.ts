@@ -7,71 +7,97 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  max-width: 1320px;
+  max-width: 1100px;
   margin: 0 auto 24px;
 `;
 
 export const Title = styled.h1`
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: #1c1c1c;
-  margin-bottom: 8px;
+  margin: 0 0 8px;
 `;
 
 export const Description = styled.p`
   color: #5e6573;
   font-size: 1rem;
+  margin: 0;
 `;
 
 export const StatusText = styled.p`
-  max-width: 1320px;
+  max-width: 1100px;
   margin: 0 auto 18px;
   color: #637086;
   font-size: 0.95rem;
 `;
 
-export const ContentGrid = styled.div`
-  max-width: 1320px;
+export const AccordionList = styled.section`
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 20px;
-  align-items: start;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 14px;
 `;
 
-export const Sidebar = styled.section`
-  border: 1px solid #dbe2ee;
-  border-radius: 16px;
+export const AccordionItem = styled.article<{ $open: boolean }>`
+  border: 1px solid ${(props) => (props.$open ? '#9ab1d2' : '#dbe2ee')};
+  border-radius: 14px;
   background: #fff;
-  padding: 14px;
-  position: sticky;
-  top: 104px;
-
-  @media (max-width: 1024px) {
-    position: static;
-  }
+  overflow: hidden;
 `;
 
-export const SidebarTitle = styled.h2`
-  font-size: 1rem;
-  color: #27364f;
-  margin-bottom: 10px;
+export const AccordionButton = styled.button`
+  width: 100%;
+  border: 0;
+  background: transparent;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  cursor: pointer;
 `;
 
-export const ViewerSection = styled.section`
-  border: 1px solid #dbe2ee;
-  border-radius: 16px;
-  background: #fff;
-  padding: 18px;
+export const ItemHeader = styled.div`
+  min-width: 0;
+`;
+
+export const ItemTitle = styled.h3`
+  margin: 0;
+  color: #1c2533;
+  font-size: 1.05rem;
+  line-height: 1.45;
+`;
+
+export const ItemMeta = styled.p`
+  margin: 6px 0 0;
+  color: #5f6b7e;
+  font-size: 0.9rem;
+`;
+
+export const Chevron = styled.span`
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #edf2fb;
+  color: #1a3d69;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+`;
+
+export const Panel = styled.div`
+  border-top: 1px solid #e4ebf4;
+  padding: 0 18px 18px;
 `;
 
 export const ActionRow = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 14px;
+  margin: 14px 0;
   flex-wrap: wrap;
 `;
 
@@ -80,9 +106,9 @@ const ActionBase = styled.a`
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  padding: 10px 16px;
+  padding: 9px 14px;
 `;
 
 export const PrimaryAction = styled(ActionBase)`
@@ -95,68 +121,23 @@ export const SecondaryAction = styled(ActionBase)`
   border: 1px solid #b8c8de;
 `;
 
-export const ViewerHeader = styled.div`
-  margin-bottom: 12px;
-`;
-
-export const ViewerTitle = styled.h3`
-  font-size: 1.35rem;
-  color: #1c2533;
-  margin-bottom: 6px;
-`;
-
-export const ViewerMeta = styled.p`
-  color: #5f6b7e;
-  font-size: 0.9rem;
-`;
-
-export const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-`;
-
-export const List = styled.div`
-  display: grid;
-  gap: 8px;
-`;
-
-export const ListButtonItem = styled.button<{ $active: boolean }>`
-  border: 1px solid ${(props) => (props.$active ? '#1a3d69' : '#dde4ef')};
-  background: ${(props) => (props.$active ? '#eef4ff' : '#fff')};
-  border-radius: 10px;
-  padding: 12px;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.15s ease;
-
-  &:hover {
-    border-color: #1a3d69;
-    background: #f5f8fe;
-  }
-`;
-
 export const ViewerBox = styled.div`
   width: 100%;
-  min-height: 620px;
   border: 1px solid #d8e0ed;
-  border-radius: 12px;
+  border-radius: 10px;
   background: #fff;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    min-height: 460px;
-  }
 `;
 
 export const ViewerFrame = styled.iframe`
   width: 100%;
-  height: 70vh;
-  min-height: 620px;
+  height: min(78vh, 1100px);
+  min-height: 650px;
   border: none;
 
   @media (max-width: 768px) {
-    min-height: 460px;
-    height: 65vh;
+    min-height: 500px;
+    height: 75vh;
   }
 `;
 
@@ -164,14 +145,4 @@ export const ViewerImage = styled.img`
   width: 100%;
   height: auto;
   display: block;
-`;
-
-export const ItemTitle = styled.h3`
-  font-size: 1rem;
-`;
-
-export const ItemMeta = styled.p`
-  margin-top: 5px;
-  color: #6f7786;
-  font-size: 0.9rem;
 `;
