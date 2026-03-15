@@ -26,6 +26,35 @@ function getCurrentKstMonthKey(baseDate: Date): string {
     return `${year}-${month}`;
 }
 
+type MonthlyScheduleRow = {
+    date: string | null;
+    details: string[];
+};
+
+function parseMonthlySchedule(content: string): MonthlyScheduleRow[] {
+    return content
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => {
+            const pipeMatch = line.match(/^(\d{1,2}일)\s*[|｜]\s*(.+)$/);
+            const plainMatch = line.match(/^(\d{1,2}일)\s+(.+)$/);
+
+            const date = pipeMatch?.[1] ?? plainMatch?.[1] ?? null;
+            const detailText = pipeMatch?.[2] ?? plainMatch?.[2] ?? line;
+
+            const details = detailText
+                .split('/')
+                .map((item) => item.trim())
+                .filter(Boolean);
+
+            return {
+                date,
+                details: details.length > 0 ? details : [detailText.trim()],
+            };
+        });
+}
+
 export default function HomeContainer() {
     const [latestVideo, setLatestVideo] = useState<{
         title: string;
@@ -116,10 +145,7 @@ export default function HomeContainer() {
         };
     }, []);
 
-    const monthlyLines = monthlySummary?.content
-        ?.split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean) ?? [];
+    const monthlyRows = monthlySummary ? parseMonthlySchedule(monthlySummary.content) : [];
 
     return (
         <S.Wrapper>
@@ -247,9 +273,16 @@ export default function HomeContainer() {
                             <S.InfoText>월간 정보 불러오는 중...</S.InfoText>
                         ) : monthlySummary ? (
                             <S.InfoList>
-                                {monthlyLines.map((line, index) => (
+                                {monthlyRows.map((row, index) => (
                                     <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
-                                        <S.InfoRowTitle>{line}</S.InfoRowTitle>
+                                        {row.date ? <S.InfoScheduleDate>{row.date}</S.InfoScheduleDate> : null}
+                                        <S.InfoScheduleDetails>
+                                            {row.details.map((detail, detailIndex) => (
+                                                <S.InfoScheduleDetail key={`${monthlySummary.id}-${index}-${detailIndex}`}>
+                                                    {detail}
+                                                </S.InfoScheduleDetail>
+                                            ))}
+                                        </S.InfoScheduleDetails>
                                     </S.InfoListItem>
                                 ))}
                             </S.InfoList>

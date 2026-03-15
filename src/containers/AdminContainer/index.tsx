@@ -374,7 +374,7 @@ export default function AdminContainer() {
                 <textarea
                   id="monthly-content"
                   rows={8}
-                  placeholder="예시)\n3월\n6일 | 12주 큐티마무리\n8일 | 제직헌신예배"
+                  placeholder="예시)\n6일 금요철야기도회(12주) 시작 / 제직헌신예배\n8일 1학기(봄) 장학금 수여식 / 전 교인 성경공부 11장 / 정기당회"
                   value={monthlySummaryForm.content}
                   onChange={(event) => setMonthlySummaryForm((prev) => ({ ...prev, content: event.target.value }))}
                   required

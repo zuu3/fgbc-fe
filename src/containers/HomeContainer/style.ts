@@ -850,12 +850,46 @@ export const InfoList = styled.ul`
 
 export const InfoListItem = styled.li`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
     gap: 16px;
     color: #2a313c;
     border-bottom: 1px solid #a4a8ad;
     padding: 16px 0;
+`;
+
+export const InfoScheduleDate = styled.span`
+    width: 3.2em;
+    flex-shrink: 0;
+    color: #282f39;
+    font-weight: 700;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+
+    @media (max-width: 768px) {
+        width: 2.8em;
+        font-size: 1.02rem;
+    }
+`;
+
+export const InfoScheduleDetails = styled.div`
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+`;
+
+export const InfoScheduleDetail = styled.span`
+    color: #282f39;
+    font-weight: 600;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+
+    @media (max-width: 768px) {
+        font-size: 1.02rem;
+    }
 `;
 
 export const InfoListLinkItem = styled(Link)`
