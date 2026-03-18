@@ -1,11 +1,15 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 import * as S from './style';
 
 export default function AdminLoginContainer() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/admin';
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,29 +21,19 @@ export default function AdminLoginContainer() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const res = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+        callbackUrl,
       });
 
-      if (!response.ok) {
-        const json = await response.json().catch(() => ({} as {
-          error?: string;
-          details?: { role?: string | null; fallbackRole?: string | null };
-        }));
-        if (response.status === 403) {
-          const roleText = json?.details?.role ? String(json.details.role) : '없음(null)';
-          const fallbackRoleText = json?.details?.fallbackRole ? String(json.details.fallbackRole) : '없음(null)';
-          setError(`관리자 권한이 없습니다. role: ${roleText}, fallbackRole: ${fallbackRoleText}`);
-          return;
-        }
-        setError('로그인에 실패했습니다. 계정을 확인해 주세요.');
-        return;
+      if (!res?.error) {
+        router.push(callbackUrl);
+        router.refresh();
+      } else {
+        setError('로그인에 실패했습니다. 계정 정보를 확인해 주세요.');
       }
-
-      router.replace('/admin');
-      router.refresh();
     } catch {
       setError('로그인 요청 중 오류가 발생했습니다.');
     } finally {
@@ -51,7 +45,7 @@ export default function AdminLoginContainer() {
     <S.Container>
       <S.Card>
         <S.Title>관리자 로그인</S.Title>
-        <S.Description>Supabase Auth 계정으로 로그인하세요.</S.Description>
+        <S.Description>이메일과 비밀번호를 입력하여 로그인하세요.</S.Description>
 
         <S.Form onSubmit={onSubmit}>
           <S.Field>
