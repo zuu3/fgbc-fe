@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import * as S from './style';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
@@ -193,9 +194,7 @@ export default function AdminContainer() {
   };
 
   const onLogout = async () => {
-    await fetch('/api/admin/logout', { method: 'POST' });
-    router.replace('/admin/login');
-    router.refresh();
+    await signOut({ callbackUrl: '/admin/login' });
   };
 
   const onEditBulletin = (bulletin: Bulletin) => {
@@ -249,7 +248,7 @@ export default function AdminContainer() {
     <S.Container>
       <S.Header>
         <S.Title>관리자 페이지</S.Title>
-        <S.Description>Supabase 데이터 기반으로 주보와 월간 정보를 등록/조회합니다.</S.Description>
+        <S.Description>백엔드 API 기반으로 주보와 월간 정보를 등록/조회합니다.</S.Description>
         <S.HeaderAction type="button" onClick={onLogout}>로그아웃</S.HeaderAction>
       </S.Header>
 

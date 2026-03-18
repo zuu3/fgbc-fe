@@ -1,15 +1,12 @@
-import { cookies } from 'next/headers';
-import { ADMIN_ACCESS_TOKEN_COOKIE } from '@/lib/auth/constants';
-import { validateAdminAccessToken } from '@/lib/auth/supabaseAdmin';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth/authOptions';
 
 export async function readValidAdminTokenFromCookie(): Promise<string | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ADMIN_ACCESS_TOKEN_COOKIE)?.value;
-
-  if (!token) {
-    return null;
+  const session = await getServerSession(authOptions);
+  
+  if (session?.user?.accessToken) {
+    return session.user.accessToken;
   }
-
-  const isValidAdmin = await validateAdminAccessToken(token);
-  return isValidAdmin ? token : null;
+  
+  return null;
 }

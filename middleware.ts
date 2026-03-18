@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ADMIN_ACCESS_TOKEN_COOKIE } from '@/lib/auth/constants';
-import { fetchSupabaseUser, hasAdminRole } from '@/lib/auth/supabaseAdmin';
+import { getToken } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -9,7 +8,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = request.cookies.get(ADMIN_ACCESS_TOKEN_COOKIE)?.value;
+  // NextAuth token extraction
+  const token = await getToken({ req: request });
 
   if (!token) {
     const url = request.nextUrl.clone();
@@ -17,15 +17,11 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const user = await fetchSupabaseUser(token);
-  const isAdmin = user ? await hasAdminRole(token, user.id) : false;
-
-  if (!isAdmin) {
+  // Check if token contains valid user info (NextAuth handles verification via secret)
+  if (!token.email) {
     const url = request.nextUrl.clone();
     url.pathname = '/admin/login';
-    const redirectResponse = NextResponse.redirect(url);
-    redirectResponse.cookies.set(ADMIN_ACCESS_TOKEN_COOKIE, '', { maxAge: 0, path: '/' });
-    return redirectResponse;
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();

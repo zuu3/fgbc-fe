@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   },
 };
 
+import { Suspense } from 'react';
+
 export default function AdminLoginPage() {
-  return <AdminLoginContainer />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AdminLoginContainer />
+    </Suspense>
+  );
 }
