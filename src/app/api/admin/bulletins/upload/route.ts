@@ -9,15 +9,15 @@ export async function POST(request: Request) {
 
   try {
     const formData = await request.formData();
-    
+
     const res = await fetch(`${API_URL}/bulletins/upload`, {
       method: 'POST',
-      headers: { 
-        Authorization: `Bearer ${token}` 
+      headers: {
+        Authorization: `Bearer ${token}`
       },
       body: formData // forward formData directly
     });
-    
+
     if (!res.ok) throw new Error(await res.text());
 
     const data = await res.json();
@@ -26,3 +26,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: String(error) }, { status: 500 });
   }
 }
+
