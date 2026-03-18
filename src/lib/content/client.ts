@@ -37,6 +37,7 @@ export function resolveBulletinFileUrl(path: string): string {
   }
   
   const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-  // FastAPI serves static files directly at /uploads/filename.ext
-  return `${backendUrl}/${path.replace(/^\/+/, '')}`;
+  // FastAPI serves uploaded files at /uploads/{year}/{filename}
+  const cleanPath = path.replace(/^\/+/, '').replace(/^uploads\//, '');
+  return `${backendUrl}/uploads/${cleanPath}`;
 }
