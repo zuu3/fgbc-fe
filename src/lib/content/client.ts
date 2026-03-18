@@ -20,9 +20,10 @@ export async function getLatestBulletin(): Promise<Bulletin | null> {
 
 export async function getMonthlySummary(monthKey: string): Promise<MonthlySummary | null> {
   try {
-    return await apiClient<MonthlySummary>(`/monthly-summaries/${encodeURIComponent(monthKey)}`, {
+    const list = await apiClient<MonthlySummary[]>('/monthly-summaries/', {
       next: { revalidate: 30 }
     });
+    return list.find(summary => summary.month_key === monthKey) || null;
   } catch (error) {
     console.error(`Failed to fetch summary for ${monthKey}`, error);
     return null;

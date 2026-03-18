@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import KakaoMap from '@/components/KakaoMap';
-import { getLatestBulletin, getMonthlySummary } from '@/lib/content/client';
+import { getPublishedBulletins, getMonthlySummary } from '@/lib/content/client';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
 
@@ -65,7 +65,7 @@ export default function HomeContainer() {
     } | null>(null);
     const [latestVideoPlayerOpen, setLatestVideoPlayerOpen] = useState(false);
     const [isLoadingLatest, setIsLoadingLatest] = useState(true);
-    const [featuredBulletin, setFeaturedBulletin] = useState<Bulletin | null>(null);
+    const [featuredBulletins, setFeaturedBulletins] = useState<Bulletin[]>([]);
     const [monthlySummary, setMonthlySummary] = useState<MonthlySummary | null>(null);
     const [isLoadingSummary, setIsLoadingSummary] = useState(true);
     const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
@@ -91,15 +91,15 @@ export default function HomeContainer() {
 
         const monthKey = getCurrentKstMonthKey(new Date());
 
-        Promise.all([getLatestBulletin(), getMonthlySummary(monthKey)]).then(([latest, monthly]) => {
+        Promise.all([getPublishedBulletins(5), getMonthlySummary(monthKey)]).then(([bulletins, monthly]) => {
             if (!mounted) return;
 
-            setFeaturedBulletin(latest ?? null);
+            setFeaturedBulletins(bulletins ?? []);
             setMonthlySummary(monthly ?? null);
             setIsLoadingSummary(false);
         }).catch(() => {
             if (!mounted) return;
-            setFeaturedBulletin(null);
+            setFeaturedBulletins([]);
             setMonthlySummary(null);
             setIsLoadingSummary(false);
         });
@@ -251,15 +251,14 @@ export default function HomeContainer() {
                         <S.InfoTitle>주보</S.InfoTitle>
                         {isLoadingSummary ? (
                             <S.InfoText>주보 불러오는 중...</S.InfoText>
-                        ) : featuredBulletin ? (
+                        ) : featuredBulletins.length > 0 ? (
                             <S.InfoList>
-                                <S.InfoListLinkItem href={`/bulletins?bulletinId=${encodeURIComponent(featuredBulletin.id)}`}>
-                                    <S.InfoRowTitle>{featuredBulletin.title}</S.InfoRowTitle>
-                                    <S.InfoRowMeta>{formatKstDate(featuredBulletin.week_start_date)}</S.InfoRowMeta>
-                                </S.InfoListLinkItem>
-                                <S.InfoListLinkItem href={`/bulletins?bulletinId=${encodeURIComponent(featuredBulletin.id)}`}>
-                                    <S.InfoRowTitle>{featuredBulletin.service_type ?? '주일 예배'}</S.InfoRowTitle>
-                                </S.InfoListLinkItem>
+                                {featuredBulletins.map((bulletin) => (
+                                    <S.InfoListLinkItem key={bulletin.id} href={`/bulletins?bulletinId=${encodeURIComponent(bulletin.id)}`}>
+                                        <S.InfoRowTitle>{bulletin.title}</S.InfoRowTitle>
+                                        <S.InfoRowMeta>{formatKstDate(bulletin.week_start_date)}</S.InfoRowMeta>
+                                    </S.InfoListLinkItem>
+                                ))}
                             </S.InfoList>
                         ) : (
                             <S.InfoText>등록된 주보가 없습니다.</S.InfoText>
