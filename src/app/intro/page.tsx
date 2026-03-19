@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "교회 소개 | 순복음범천교회",
     description:
       "순복음범천교회의 비전, 핵심 가치, 목회 방향과 공동체의 이야기를 소개합니다.",
-    url: "https://fgbc.or.kr/intro",
+    url: "https://fgbc.church/intro",
     siteName: "순복음범천교회",
     locale: "ko_KR",
     type: "article",

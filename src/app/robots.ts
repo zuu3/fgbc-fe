@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://fgbc.or.kr/sitemap.xml",
+    sitemap: "https://fgbc.church/sitemap.xml",
   };
 }

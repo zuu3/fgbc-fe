@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "순복음범천교회",
     description:
       "부산 부산진구에 위치한 순복음범천교회입니다. 모든 세대가 하나 되어 성령의 인도하심을 따라 하나님 나라의 꿈을 꾸는 따뜻한 가족 공동체입니다.",
-    url: "https://fgbc.or.kr",
+    url: "https://fgbc.church",
     siteName: "순복음범천교회",
     locale: "ko_KR",
     type: "website",
