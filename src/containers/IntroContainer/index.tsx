@@ -8,8 +8,16 @@ import Image from 'next/image';
 import KakaoMap from '@/components/KakaoMap';
 import * as S from './style';
 
+type MinistryMember = {
+    name: string;
+    role: string;
+    image: string | null;
+    alt: string;
+    summary?: string;
+};
+
 const IntroContainer = () => {
-    const ministryMembers = [
+    const ministryMembers: MinistryMember[] = [
         {
             name: '정성철 원로목사',
             role: '원로목사',
@@ -184,7 +192,7 @@ const IntroContainer = () => {
                                                     </S.MinistryPhotoFrame>
                                                     <S.MinistryName>{member.name}</S.MinistryName>
                                                     <S.MinistryRole>{member.role}</S.MinistryRole>
-                                                    <S.MinistrySummary>{member.summary}</S.MinistrySummary>
+                                                    {member.summary && <S.MinistrySummary>{member.summary}</S.MinistrySummary>}
                                                 </S.MinistryCard>
                                             ))}
                                         </S.MinistryGrid>
