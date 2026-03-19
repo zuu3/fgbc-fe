@@ -42,6 +42,8 @@ export const AccordionItem = styled.article<{ $open: boolean }>`
   border-radius: 14px;
   background: #fff;
   overflow: hidden;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  box-shadow: ${(props) => (props.$open ? '0 10px 26px rgba(76, 104, 145, 0.08)' : '0 4px 12px rgba(76, 104, 145, 0.03)')};
 `;
 
 export const AccordionButton = styled.button`
@@ -55,6 +57,11 @@ export const AccordionButton = styled.button`
   gap: 16px;
   text-align: left;
   cursor: pointer;
+  transition: background-color 180ms ease;
+
+  &:hover {
+    background: rgba(237, 242, 251, 0.45);
+  }
 `;
 
 export const ItemHeader = styled.div`
@@ -74,7 +81,7 @@ export const ItemMeta = styled.p`
   font-size: 0.9rem;
 `;
 
-export const Chevron = styled.span`
+export const Chevron = styled.span<{ $open: boolean }>`
   flex-shrink: 0;
   width: 26px;
   height: 26px;
@@ -87,9 +94,21 @@ export const Chevron = styled.span`
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;
+  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+  transform: ${(props) => (props.$open ? 'rotate(180deg)' : 'rotate(0deg)')};
+  background: ${(props) => (props.$open ? '#dfe9f8' : '#edf2fb')};
+`;
+
+export const PanelShell = styled.div<{ $open: boolean }>`
+  display: grid;
+  grid-template-rows: ${(props) => (props.$open ? '1fr' : '0fr')};
+  opacity: ${(props) => (props.$open ? 1 : 0)};
+  transition: grid-template-rows 280ms ease, opacity 220ms ease;
 `;
 
 export const Panel = styled.div`
+  min-height: 0;
+  overflow: hidden;
   border-top: 1px solid #e4ebf4;
   padding: 0 18px 18px;
 `;

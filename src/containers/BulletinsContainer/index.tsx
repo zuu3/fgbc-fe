@@ -104,10 +104,10 @@ export default function BulletinsContainer() {
                       {bulletin.service_type ? ` · ${bulletin.service_type}` : ''}
                     </S.ItemMeta>
                   </S.ItemHeader>
-                  <S.Chevron aria-hidden="true">{isOpen ? '−' : '+'}</S.Chevron>
+                  <S.Chevron $open={isOpen} aria-hidden="true">{isOpen ? '−' : '+'}</S.Chevron>
                 </S.AccordionButton>
 
-                {isOpen && (
+                <S.PanelShell $open={isOpen}>
                   <S.Panel>
                     <S.ActionRow>
                       <S.PrimaryAction href={fileUrl} target="_blank" rel="noopener noreferrer">새 창에서 보기</S.PrimaryAction>
@@ -121,7 +121,7 @@ export default function BulletinsContainer() {
                       )}
                     </S.ViewerBox>
                   </S.Panel>
-                )}
+                </S.PanelShell>
               </S.AccordionItem>
             );
           })}
