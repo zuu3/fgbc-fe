@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { FiArrowRight, FiClipboard, FiCoffee, FiSmile, FiUsers } from 'react-icons/fi';
+import { FiArrowRight, FiBookOpen, FiClipboard, FiCoffee, FiMessageCircle, FiSmile } from 'react-icons/fi';
 import * as S from './style';
 
 const NewcomerContainer = () => {
@@ -31,7 +31,7 @@ const NewcomerContainer = () => {
         {
             step: 'STEP 3',
             description: '예배를 마치고 난 후에 잠시 담임목사와 인사를 나누는 시간을 가집니다.',
-            icon: <FiUsers />,
+            icon: <FiMessageCircle />,
         },
         {
             step: 'STEP 4',
@@ -41,7 +41,7 @@ const NewcomerContainer = () => {
         {
             step: 'STEP 5',
             description: '새가족 교육을 마치면 정식으로 등록교인이 되며 소그룹에 배정됩니다.',
-            icon: <FiUsers />,
+            icon: <FiBookOpen />,
         },
     ];
 

@@ -43,7 +43,7 @@ export default function Footer() {
                             유튜브
                         </S.FooterSnsLink>
                         <S.FooterSnsLink
-                            href="https://www.instagram.com/fgbc_"
+                            href="https://www.instagram.com/sunbe0m_ch/"
                             target="_blank"
                             rel="noopener noreferrer"
                         >

@@ -97,6 +97,7 @@ const jsonLd = {
   ],
   sameAs: [
     'https://www.youtube.com/@순복음범천교회',
+    'https://www.instagram.com/sunbe0m_ch/',
   ],
 };
 
