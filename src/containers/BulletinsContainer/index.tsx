@@ -5,12 +5,6 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as S from './style';
 import { getPublishedBulletins, resolveBulletinFileUrl } from '@/lib/content/client';
 import type { Bulletin } from '@/types/content';
-import { formatKstDate } from '@/lib/dateTimeKst';
-
-function formatDate(dateText: string): string {
-  return formatKstDate(dateText);
-}
-
 function isPdfUrl(url: string): boolean {
   return /\.pdf(?:$|[?#])/i.test(url);
 }
@@ -99,10 +93,6 @@ export default function BulletinsContainer() {
                 <S.AccordionButton type="button" onClick={() => onToggleBulletin(bulletin.id)} aria-expanded={isOpen}>
                   <S.ItemHeader>
                     <S.ItemTitle>{bulletin.title}</S.ItemTitle>
-                    <S.ItemMeta>
-                      {formatDate(bulletin.week_start_date)}
-                      {bulletin.service_type ? ` · ${bulletin.service_type}` : ''}
-                    </S.ItemMeta>
                   </S.ItemHeader>
                   <S.Chevron $open={isOpen} aria-hidden="true">{isOpen ? '−' : '+'}</S.Chevron>
                 </S.AccordionButton>
