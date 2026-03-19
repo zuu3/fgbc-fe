@@ -315,18 +315,10 @@ export const GreetingContent = styled.div`
     }
 `;
 
-export const GreetingIntro = styled.p`
-    font-size: 1.15rem;
-    line-height: 1.9;
-    color: #555;
-    text-align: center;
-    margin-bottom: 50px;
-    letter-spacing: -0.01em;
-
-    @media (max-width: 768px) {
-        font-size: 1rem;
-        margin-bottom: 40px;
-    }
+export const GreetingSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
 `;
 
 export const PastorSection = styled.div`
@@ -334,21 +326,10 @@ export const PastorSection = styled.div`
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
-`;
 
-export const PastorImage = styled.img`
-    width: 420px;
-    height: 560px;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 4px;
-    // box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    
     @media (max-width: 1024px) {
-        width: 100%;
-        max-width: 380px;
-        height: auto;
-        aspect-ratio: 3/4;
+        order: -1;
+        margin-bottom: 0;
     }
 `;
 
@@ -370,6 +351,10 @@ export const PastorImageWrapper = styled.div`
     }
 `;
 
+export const GreetingTextWrapper = styled.div`
+    flex: 1;
+`;
+
 export const PastorInfo = styled.div`
     text-align: center;
     margin-top: 20px;
@@ -383,17 +368,13 @@ export const PastorTitle = styled.h3`
     letter-spacing: -0.01em;
 `;
 
-export const GreetingTextWrapper = styled.div`
-    flex: 1;
-`;
-
 export const GreetingIntroText = styled.p`
     font-size: 1.1rem;
     line-height: 1.8;
     color: #333;
     margin-bottom: 40px;
     word-break: keep-all;
-    
+
     strong {
         color: #000;
         font-weight: 700;
@@ -420,7 +401,7 @@ export const KeywordTitle = styled.h4`
     margin: 0;
     display: flex;
     align-items: center;
-    
+
     &::before {
         content: '';
         display: block;
@@ -433,37 +414,10 @@ export const KeywordTitle = styled.h4`
 
 export const KeywordDesc = styled.p`
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.8;
     color: #555;
     margin: 0;
     word-break: keep-all;
-    text-align: justify;
-`;
-
-export const ClosingMessage = styled.p`
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #333;
-    margin-top: 40px;
-    word-break: keep-all;
-`;
-
-
-export const PastorSignature = styled.div`
-    text-align: right;
-    margin-top: 40px;
-`;
-
-export const PastorName = styled.p`
-    font-size: 0.9rem;
-    color: #999;
-    margin-bottom: 8px;
-`;
-
-export const SignatureImage = styled.div`
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #2c2c2c;
 `;
 
 // Staff Section
@@ -729,53 +683,80 @@ export const StaffRole = styled.span`
 export const StaffLayout = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 28px;
 `;
 
-export const StaffIntroTitle = styled.h3`
-    font-size: 2.1rem;
-    font-weight: 700;
-    color: #222;
-    text-align: center;
-    letter-spacing: -0.02em;
+export const StaffSection = styled.div`
+    padding-top: 0;
+`;
+
+export const StaffSectionHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 8px;
+`;
+
+export const StaffIntroTitle = styled.h3``;
+
+export const StaffBoardTitle = styled.h2`
     margin: 0;
+    font-size: 2.35rem;
+    font-weight: 700;
+    color: #24547b;
+    letter-spacing: -0.03em;
+    text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 1.55rem;
+        font-size: 1.9rem;
     }
+`;
+
+export const StaffBoard = styled.div`
+    position: relative;
+    padding: 24px 24px 28px;
+    border: 1px solid rgba(35, 76, 112, 0.16);
+    background: #fff;
+    box-shadow: 0 12px 28px rgba(31, 56, 82, 0.06);
+
+    @media (max-width: 768px) {
+        padding: 20px 16px;
+    }
+`;
+
+export const StaffPanel = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    padding: 4px 4px 0;
 `;
 
 export const StaffIntroDesc = styled.p`
     font-size: 1rem;
-    color: #666;
+    color: #56718b;
     text-align: center;
-    margin: 6px 0 0;
-`;
-
-export const StaffDivider = styled.hr`
-    width: 100%;
-    border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.18);
-    margin: 12px 0 2px;
+    margin: 0;
 `;
 
 export const StaffSubHeading = styled.h3`
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
-    color: #333;
-    margin: 8px 0 10px;
+    color: #24547b;
+    margin: 0 0 4px;
     letter-spacing: -0.01em;
-    text-align: center;
+    text-align: left;
 
     @media (max-width: 768px) {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
     }
 `;
 
 export const MinistryGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 18px;
+    max-width: 620px;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -783,21 +764,26 @@ export const MinistryGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 `;
 
 export const MinistryCard = styled.article`
-    border: none;
-    background: transparent;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
 `;
 
 export const MinistryPhotoFrame = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 5;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #f0f0f0;
+    aspect-ratio: 4 / 5.5;
+    border: 1px solid rgba(48, 79, 106, 0.2);
+    background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);
     overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 `;
 
 export const PhotoPlaceholder = styled.div`
@@ -811,15 +797,25 @@ export const PhotoPlaceholder = styled.div`
 `;
 
 export const MinistryName = styled.h4`
-    margin: 12px 0 8px;
-    font-size: 1.18rem;
+    margin: 12px 0 4px;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #1f1f1f;
+    color: #20262d;
 `;
 
-export const MinistryBodyPlaceholder = styled.div`
-    min-height: 92px;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+export const MinistryRole = styled.p`
+    margin: 0 0 6px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #49627a;
+`;
+
+export const MinistrySummary = styled.p`
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #576b7e;
+    word-break: keep-all;
 `;
 
 export const ElderBlock = styled.div`
@@ -852,6 +848,51 @@ export const ElderSimpleCard = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
+`;
+
+export const ElderCardGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 16px;
+    max-width: 680px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`;
+
+export const ElderProfileCard = styled.article`
+    display: flex;
+    flex-direction: column;
+    max-width: 210px;
+`;
+
+export const ElderPhotoCard = styled.div`
+    width: 100%;
+    aspect-ratio: 1 / 1.28;
+    overflow: hidden;
+    border: 1px solid rgba(48, 79, 106, 0.2);
+    background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+`;
+
+export const ElderCardName = styled.h4`
+    margin: 10px 0 4px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #20262d;
+`;
+
+export const ElderCardRole = styled.p`
+    margin: 0;
+    font-size: 0.84rem;
+    color: #587188;
 `;
 
 export const ElderPhotoPlaceholder = styled.div`

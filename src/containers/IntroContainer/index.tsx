@@ -9,20 +9,56 @@ import KakaoMap from '@/components/KakaoMap';
 import * as S from './style';
 
 const IntroContainer = () => {
+    const ministryMembers = [
+        {
+            name: '정성철 원로목사',
+            role: '원로목사',
+            image: '/pastor_jung.png',
+            alt: '정성철 원로목사',
+            // summary: '순복음범천교회의 믿음의 뿌리를 세운 원로목사',
+        },
+        {
+            name: '한혜진 담임사모',
+            role: '담임사모',
+            image: null,
+            alt: '한혜진 담임사모',
+            // summary: '기도와 섬김으로 공동체를 함께 세워가는 동역자',
+        },
+    ];
+
+    const activeElders = [
+        { name: '김중배 장로', image: '/elder/40_kimj.JPG', alt: '김중배 장로' },
+        { name: '이재현 장로', image: null, alt: '이재현 장로' },
+        { name: '모정종 장로', image: '/elder/47_mo.JPG', alt: '모정종 장로' },
+    ];
+
+    const retiredElders = [
+        { name: '김재덕 장로', image: '/elder/37_kim.JPG', alt: '김재덕 장로' },
+        { name: '오재문 장로', image: '/elder/29_oh.JPG', alt: '오재문 장로' },
+    ];
+
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const activeTab: 'greeting' | 'staff' | 'worship' | 'location' =
+    const activeTab: 'greeting' | 'worship' | 'location' =
         tabParam === 'greeting' || tabParam === 'staff' || tabParam === 'worship' || tabParam === 'location'
-            ? tabParam
+            ? (tabParam === 'staff' ? 'greeting' : tabParam)
             : 'greeting';
 
-    const changeTab = (tab: 'greeting' | 'staff' | 'worship' | 'location') => {
+    const changeTab = (tab: 'greeting' | 'worship' | 'location') => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('tab', tab);
         router.push(`${pathname}?${params.toString()}`);
     };
+
+    useEffect(() => {
+        if (tabParam === 'staff') {
+            const params = new URLSearchParams(searchParams.toString());
+            params.set('tab', 'greeting');
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [pathname, router, searchParams, tabParam]);
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.location.hash === '#offering') {
@@ -50,9 +86,6 @@ const IntroContainer = () => {
                 <S.Tab $active={activeTab === 'greeting'} onClick={() => changeTab('greeting')}>
                     담임목사 인사말
                 </S.Tab>
-                <S.Tab $active={activeTab === 'staff'} onClick={() => changeTab('staff')}>
-                    섬기는 사람들
-                </S.Tab>
                 <S.Tab $active={activeTab === 'worship'} onClick={() => changeTab('worship')}>
                     예배 안내
                 </S.Tab>
@@ -63,200 +96,145 @@ const IntroContainer = () => {
 
             <S.Content>
                 {activeTab === 'greeting' && (
-                    <S.GreetingContent>
+                    <S.GreetingSection>
+                        <S.GreetingContent>
+                            <S.GreetingTextWrapper>
+                                <S.SectionTitle style={{ textAlign: 'left', marginBottom: '30px' }}>담임목사 인사말</S.SectionTitle>
 
+                                <S.GreetingIntroText>
+                                    순복음범천교회는<br />
+                                    <strong>성령의 능력으로 세상을 밝히는 하나님 나라 공동체입니다.</strong>
+                                </S.GreetingIntroText>
 
-                        <S.GreetingTextWrapper>
-                            <S.SectionTitle style={{ textAlign: 'left', marginBottom: '30px' }}>담임목사 인사말</S.SectionTitle>
+                                <S.KeywordList>
+                                    <S.KeywordItem>
+                                        <S.KeywordTitle>우리의 정체성(마 5:14)</S.KeywordTitle>
+                                        <S.KeywordDesc>
+                                            우리는 서로의 삶을 밝히는 공동체입니다. 가정과 일터, 이웃과 지역 안에서
+                                            예수님의 사랑을 나누며 살아가고자 합니다. 교회는 완벽한 사람들이 모인 곳이 아닙니다.
+                                            부족하고 연약한 이들이 함께 배우고 성장하는 공동체입니다.
+                                        </S.KeywordDesc>
+                                    </S.KeywordItem>
 
-                            <S.GreetingIntroText>
-                                순복음범천교회는<br />
-                                <strong>성령의 능력으로 세상을 밝히는 하나님 나라 공동체입니다.</strong>
-                            </S.GreetingIntroText>
+                                    <S.KeywordItem>
+                                        <S.KeywordTitle>우리의 사명 (행 1:8)</S.KeywordTitle>
+                                        <S.KeywordDesc>
+                                            우리는 하나님의 도우심을 의지하며 살아갑니다. 예배를 통해 힘을 얻고
+                                            인간의 지혜보다 성령님의 인도하심을 신뢰합니다. 신앙은 교회 안에만 머무는 것이 아니라
+                                            일상의 자리에서 이어지는 삶이라고 믿습니다. 그래서 우리는 삶의 자리에서
+                                            예수님의 증인으로 살아갑니다.
+                                        </S.KeywordDesc>
+                                    </S.KeywordItem>
 
-                            <S.KeywordList>
-                                <S.KeywordItem>
-                                    <S.KeywordTitle>우리의 정체성 (Identity)</S.KeywordTitle>
-                                    <S.KeywordDesc>
-                                        “너희는 세상의 빛이라<br />
-                                        산 위에 있는 동네가 숨겨지지 못할 것이요”(마 5:14)<br /><br />
-                                        우리는 서로의 삶을 밝히는 공동체입니다.<br />
-                                        가정과 일터, 이웃과 지역 안에서<br />
-                                        예수님의 사랑을 나누며 살아가고자 합니다.<br />
-                                        교회는 완벽한 사람들이 모인 곳이 아닙니다.<br />
-                                        부족하고 연약한 이들이 함께 배우고 성장하는 공동체입니다.
-                                    </S.KeywordDesc>
-                                </S.KeywordItem>
+                                    <S.KeywordItem>
+                                        <S.KeywordTitle>우리가 꿈꾸는 하나님 나라 (눅 4:18-19)</S.KeywordTitle>
+                                        <S.KeywordDesc>
+                                            우리가 바라는 하나님 나라는 상처가 회복되고 묶인 삶이 자유로워지고
+                                            절망이 소망으로 바뀌는 세상입니다. 하나님의 은혜가 실제가 되는 곳,
+                                            교회는 그런 변화를 함께 경험하는 공동체입니다. 우리는 이 땅에서
+                                            하나님 나라를 미리 살아내고자 합니다.
+                                        </S.KeywordDesc>
+                                    </S.KeywordItem>
+                                </S.KeywordList>
+                            </S.GreetingTextWrapper>
 
-                                <S.KeywordItem>
-                                    <S.KeywordTitle>우리의 사명 (Mission)</S.KeywordTitle>
-                                    <S.KeywordDesc>
-                                        “오직 성령이 너희에게 임하시면 너희가 권능을 받고<br />
-                                        예루살렘과 온 유대와 사마리아와 땅 끝까지 이르러<br />
-                                        내 증인이 되리라 하시니라”(행 1:8)<br /><br />
-                                        우리는 하나님의 도우심을 의지하며 살아갑니다.<br />
-                                        예배를 통해 힘을 얻고<br />
-                                        인간의 지혜보다 성령님의 인도하심을 신뢰합니다.<br />
-                                        신앙은 교회 안에만 머무는 것이 아니라<br />
-                                        일상의 자리에서 이어지는 삶이라고 믿습니다.<br />
-                                        그래서 우리는 삶의 자리에서 예수님의 증인으로 살아갑니다.
-                                    </S.KeywordDesc>
-                                </S.KeywordItem>
+                            <S.PastorSection>
+                                <S.PastorImageWrapper>
+                                    <Image
+                                        src="/pastor_lee.jpeg"
+                                        alt="이효훈 담임목사님 사진"
+                                        width={420}
+                                        height={560}
+                                        quality={75}
+                                        style={{ objectFit: 'cover', width: '100%', height: 'auto', borderRadius: '20px' }}
+                                        priority
+                                    />
+                                </S.PastorImageWrapper>
+                                <S.PastorInfo>
+                                    <S.PastorTitle>이효훈 담임목사</S.PastorTitle>
+                                </S.PastorInfo>
+                            </S.PastorSection>
+                        </S.GreetingContent>
 
-                                <S.KeywordItem>
-                                    <S.KeywordTitle>우리가 꿈꾸는 하나님 나라</S.KeywordTitle>
-                                    <S.KeywordDesc>
-                                        “주의 성령이 내게 임하셨으니 이는 가난한 자에게 복음을 전하게 하시려고<br />
-                                        내게 기름을 부으시고 나를 보내사 포로 된 자에게 자유를,<br />
-                                        눈 먼 자에게 다시 보게 함을 전파하며 눌린 자를 자유롭게 하고<br />
-                                        주의 은혜의 해를 전파하게 하려 하심이라 하였더라”(눅 4:18-19)<br /><br />
-                                        우리가 바라는 하나님 나라는<br />
-                                        상처가 회복되고<br />
-                                        묶인 삶이 자유로워지고<br />
-                                        절망이 소망으로 바뀌는 세상입니다.<br />
-                                        하나님의 은혜가 실제가 되는 곳<br />
-                                        교회는 그런 변화를 함께 경험하는 공동체입니다.<br />
-                                        우리는 이 땅에서 하나님 나라를 미리 살아내고자 합니다.
-                                    </S.KeywordDesc>
-                                </S.KeywordItem>
-                            </S.KeywordList>
+                        <S.StaffSection>
+                            <S.StaffLayout>
+                                <S.StaffSectionHeader>
+                                    <S.StaffBoardTitle>섬기는 분들</S.StaffBoardTitle>
+                                    <S.StaffIntroDesc>순복음범천교회를 함께 세워가는 사역자와 장로를 소개합니다.</S.StaffIntroDesc>
+                                </S.StaffSectionHeader>
 
-                        </S.GreetingTextWrapper>
+                                <S.StaffBoard>
+                                    <S.StaffPanel>
+                                        <S.StaffSubHeading>목회자</S.StaffSubHeading>
+                                        <S.MinistryGrid>
+                                            {ministryMembers.map((member) => (
+                                                <S.MinistryCard key={member.name}>
+                                                    <S.MinistryPhotoFrame>
+                                                        {member.image ? (
+                                                            <Image
+                                                                src={member.image}
+                                                                alt={member.alt}
+                                                                width={320}
+                                                                height={400}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                            />
+                                                        ) : (
+                                                            <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                                        )}
+                                                    </S.MinistryPhotoFrame>
+                                                    <S.MinistryName>{member.name}</S.MinistryName>
+                                                    <S.MinistryRole>{member.role}</S.MinistryRole>
+                                                    <S.MinistrySummary>{member.summary}</S.MinistrySummary>
+                                                </S.MinistryCard>
+                                            ))}
+                                        </S.MinistryGrid>
 
-                        <S.PastorSection>
-                            <S.PastorImageWrapper>
-                                <Image
-                                    src="/pastor_lee.jpeg"
-                                    alt="이효훈 담임목사님 사진"
-                                    width={420}
-                                    height={560}
-                                    quality={75}
-                                    style={{ objectFit: 'cover', width: '100%', height: 'auto', borderRadius: '20px' }}
-                                    priority
-                                />
-                            </S.PastorImageWrapper>
-                            <S.PastorInfo>
-                                <S.PastorTitle>이효훈 담임목사</S.PastorTitle>
-                            </S.PastorInfo>
-                        </S.PastorSection>
-                    </S.GreetingContent>
-                )}
+                                        <S.StaffSubHeading>시무장로</S.StaffSubHeading>
+                                        <S.ElderCardGrid>
+                                            {activeElders.map((elder) => (
+                                                <S.ElderProfileCard key={elder.name}>
+                                                    <S.ElderPhotoCard>
+                                                        {elder.image ? (
+                                                            <Image
+                                                                src={elder.image}
+                                                                alt={elder.alt}
+                                                                width={280}
+                                                                height={280}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                            />
+                                                        ) : (
+                                                            <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                                        )}
+                                                    </S.ElderPhotoCard>
+                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                    <S.ElderCardRole>시무장로</S.ElderCardRole>
+                                                </S.ElderProfileCard>
+                                            ))}
+                                        </S.ElderCardGrid>
 
-                {activeTab === 'staff' && (
-                    <S.Section>
-                        <S.SectionTitle>섬기는 사람들</S.SectionTitle>
-
-                        <S.StaffLayout>
-                            <S.StaffIntroTitle>교역자 및 장로 소개</S.StaffIntroTitle>
-                            <S.StaffIntroDesc>순복음범천교회를 섬기는 사역자와 장로를 소개합니다.</S.StaffIntroDesc>
-                            <S.StaffDivider />
-
-                            <S.StaffSubHeading>사역자</S.StaffSubHeading>
-                            <S.MinistryGrid>
-                                <S.MinistryCard>
-                                    <S.MinistryPhotoFrame>
-                                        <Image
-                                            src="/pastor_jung.png"
-                                            alt="정성철 원로목사"
-                                            width={220}
-                                            height={280}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                        />
-                                    </S.MinistryPhotoFrame>
-                                    <S.MinistryName>정성철 원로목사</S.MinistryName>
-                                    <S.MinistryBodyPlaceholder />
-                                </S.MinistryCard>
-
-                                <S.MinistryCard>
-                                    <S.MinistryPhotoFrame>
-                                        <Image
-                                            src="/pastor_lee.jpeg"
-                                            alt="이효훈 담임목사"
-                                            width={220}
-                                            height={280}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                        />
-                                    </S.MinistryPhotoFrame>
-                                    <S.MinistryName>이효훈 담임목사</S.MinistryName>
-                                    <S.MinistryBodyPlaceholder />
-                                </S.MinistryCard>
-
-                                <S.MinistryCard>
-                                    <S.MinistryPhotoFrame>
-                                        <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
-                                    </S.MinistryPhotoFrame>
-                                    <S.MinistryName>한혜진 담임사모</S.MinistryName>
-                                    <S.MinistryBodyPlaceholder />
-                                </S.MinistryCard>
-                            </S.MinistryGrid>
-
-                            <S.StaffDivider />
-                            <S.StaffSubHeading>장로</S.StaffSubHeading>
-                            <S.ElderBlock>
-                                <S.ElderGroupTitle>시무장로</S.ElderGroupTitle>
-                                <S.ElderSimpleGrid>
-                                    <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>
-                                            <Image
-                                                src="/elder/40_kimj.JPG"
-                                                alt="김중배 장로"
-                                                width={160}
-                                                height={160}
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        </S.ElderPhotoPlaceholder>
-                                        <S.ElderNameOnly>김중배 장로</S.ElderNameOnly>
-                                    </S.ElderSimpleCard>
-                                    <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>사진</S.ElderPhotoPlaceholder>
-                                        <S.ElderNameOnly>이재현 장로</S.ElderNameOnly>
-                                    </S.ElderSimpleCard>
-                                    <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>
-                                            <Image
-                                                src="/elder/47_mo.JPG"
-                                                alt="모정종 장로"
-                                                width={160}
-                                                height={160}
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        </S.ElderPhotoPlaceholder>
-                                        <S.ElderNameOnly>모정종 장로</S.ElderNameOnly>
-                                    </S.ElderSimpleCard>
-                                </S.ElderSimpleGrid>
-                            </S.ElderBlock>
-
-                            <S.ElderBlock>
-                                <S.ElderGroupTitle>은퇴장로</S.ElderGroupTitle>
-                                <S.ElderSimpleGrid>
-                                    <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>
-                                            <Image
-                                                src="/elder/37_kim.JPG"
-                                                alt="김재덕 장로"
-                                                width={160}
-                                                height={160}
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        </S.ElderPhotoPlaceholder>
-                                        <S.ElderNameOnly>김재덕 장로</S.ElderNameOnly>
-                                    </S.ElderSimpleCard>
-                                    <S.ElderSimpleCard>
-                                        <S.ElderPhotoPlaceholder>
-                                            <Image
-                                                src="/elder/29_oh.JPG"
-                                                alt="오재문 장로"
-                                                width={160}
-                                                height={160}
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        </S.ElderPhotoPlaceholder>
-                                        <S.ElderNameOnly>오재문 장로</S.ElderNameOnly>
-                                    </S.ElderSimpleCard>
-                                </S.ElderSimpleGrid>
-                            </S.ElderBlock>
-                        </S.StaffLayout>
-                    </S.Section>
+                                        <S.StaffSubHeading>은퇴장로</S.StaffSubHeading>
+                                        <S.ElderCardGrid>
+                                            {retiredElders.map((elder) => (
+                                                <S.ElderProfileCard key={elder.name}>
+                                                    <S.ElderPhotoCard>
+                                                        <Image
+                                                            src={elder.image}
+                                                            alt={elder.alt}
+                                                            width={280}
+                                                            height={280}
+                                                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                        />
+                                                    </S.ElderPhotoCard>
+                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                    <S.ElderCardRole>은퇴장로</S.ElderCardRole>
+                                                </S.ElderProfileCard>
+                                            ))}
+                                        </S.ElderCardGrid>
+                                    </S.StaffPanel>
+                                </S.StaffBoard>
+                            </S.StaffLayout>
+                        </S.StaffSection>
+                    </S.GreetingSection>
                 )}
 
                 {activeTab === 'worship' && (
