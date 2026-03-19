@@ -372,7 +372,7 @@ export const GreetingIntroText = styled.p`
     font-size: 1.1rem;
     line-height: 1.8;
     color: #333;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
     word-break: keep-all;
 
     strong {
@@ -608,15 +608,10 @@ export const StaffContainer = styled.div`
 `;
 
 export const StaffGroup = styled.div`
-    background: transparent;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    padding: 28px 0;
-    box-shadow: none;
-
-    &:first-of-type {
-        border-top: none;
-        padding-top: 0;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0;
 `;
 
 export const StaffCategoryTitle = styled.h4`
@@ -683,11 +678,20 @@ export const StaffRole = styled.span`
 export const StaffLayout = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 32px;
+    width: 100%;
+    max-width: 1480px;
+    margin: 0 auto;
 `;
 
 export const StaffSection = styled.div`
-    padding-top: 0;
+    padding: 88px 24px 96px;
+    background: transparent;
+    border-top: 1px solid rgba(36, 84, 123, 0.08);
+
+    @media (max-width: 768px) {
+        padding: 64px 20px 72px;
+    }
 `;
 
 export const StaffSectionHeader = styled.div`
@@ -715,21 +719,33 @@ export const StaffBoardTitle = styled.h2`
 
 export const StaffBoard = styled.div`
     position: relative;
-    padding: 24px 24px 28px;
-    border: 1px solid rgba(35, 76, 112, 0.16);
-    background: #fff;
-    box-shadow: 0 12px 28px rgba(31, 56, 82, 0.06);
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
 
     @media (max-width: 768px) {
-        padding: 20px 16px;
+        padding: 0;
     }
 `;
 
 export const StaffPanel = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 34px;
-    padding: 4px 4px 0;
+    gap: 36px;
+    padding: 0;
+`;
+
+export const StaffPrimaryGroup = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+`;
+
+export const StaffDivider = styled.div`
+    width: 100%;
+    height: 1px;
+    background: rgba(36, 84, 123, 0.12);
 `;
 
 export const StaffIntroDesc = styled.p`
@@ -754,9 +770,10 @@ export const StaffSubHeading = styled.h3`
 
 export const MinistryGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 18px;
-    max-width: 620px;
+    grid-template-columns: repeat(3, minmax(220px, 280px));
+    gap: 28px 22px;
+    justify-content: center;
+    width: 100%;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -771,12 +788,27 @@ export const MinistryGrid = styled.div`
 export const MinistryCard = styled.article`
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    width: 100%;
+    max-width: 280px;
+`;
+
+export const MinistrySlot = styled.span`
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border: 1px solid rgba(36, 84, 123, 0.16);
+    background: #fff;
+    color: #355c7d;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 `;
 
 export const MinistryPhotoFrame = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 5.5;
+    aspect-ratio: 4 / 5;
     border: 1px solid rgba(48, 79, 106, 0.2);
     background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);
     overflow: hidden;
@@ -852,9 +884,10 @@ export const ElderSimpleCard = styled.div`
 
 export const ElderCardGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px 16px;
-    max-width: 680px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    gap: 28px 22px;
+    justify-content: start;
+    width: 100%;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -868,12 +901,13 @@ export const ElderCardGrid = styled.div`
 export const ElderProfileCard = styled.article`
     display: flex;
     flex-direction: column;
-    max-width: 210px;
+    width: 100%;
+    max-width: 260px;
 `;
 
 export const ElderPhotoCard = styled.div`
     width: 100%;
-    aspect-ratio: 1 / 1.28;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     border: 1px solid rgba(48, 79, 106, 0.2);
     background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);

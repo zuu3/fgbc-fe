@@ -9,6 +9,7 @@ import KakaoMap from '@/components/KakaoMap';
 import * as S from './style';
 
 type MinistryMember = {
+    slotTitle: string;
     name: string;
     role: string;
     image: string | null;
@@ -19,6 +20,7 @@ type MinistryMember = {
 const IntroContainer = () => {
     const ministryMembers: MinistryMember[] = [
         {
+            slotTitle: '원로목사',
             name: '정성철 원로목사',
             role: '원로목사',
             image: '/pastor_jung.png',
@@ -26,6 +28,15 @@ const IntroContainer = () => {
             // summary: '순복음범천교회의 믿음의 뿌리를 세운 원로목사',
         },
         {
+            slotTitle: '담임목사',
+            name: '이효훈 담임목사',
+            role: '담임목사',
+            image: '/pastor_lee.jpeg',
+            alt: '이효훈 담임목사',
+            // summary: '순복음범천교회의 목회 방향을 이끄는 담임목사',
+        },
+        {
+            slotTitle: '담임사모',
             name: '한혜진 담임사모',
             role: '담임사모',
             image: null,
@@ -92,7 +103,7 @@ const IntroContainer = () => {
 
             <S.TabMenu>
                 <S.Tab $active={activeTab === 'greeting'} onClick={() => changeTab('greeting')}>
-                    담임목사 인사말
+                    섬기는 사람들
                 </S.Tab>
                 <S.Tab $active={activeTab === 'worship'} onClick={() => changeTab('worship')}>
                     예배 안내
@@ -107,8 +118,6 @@ const IntroContainer = () => {
                     <S.GreetingSection>
                         <S.GreetingContent>
                             <S.GreetingTextWrapper>
-                                <S.SectionTitle style={{ textAlign: 'left', marginBottom: '30px' }}>담임목사 인사말</S.SectionTitle>
-
                                 <S.GreetingIntroText>
                                     순복음범천교회는<br />
                                     <strong>성령의 능력으로 세상을 밝히는 하나님 나라 공동체입니다.</strong>
@@ -163,85 +172,6 @@ const IntroContainer = () => {
                                 </S.PastorInfo>
                             </S.PastorSection>
                         </S.GreetingContent>
-
-                        <S.StaffSection>
-                            <S.StaffLayout>
-                                <S.StaffSectionHeader>
-                                    <S.StaffBoardTitle>섬기는 분들</S.StaffBoardTitle>
-                                    <S.StaffIntroDesc>순복음범천교회를 함께 세워가는 사역자와 장로를 소개합니다.</S.StaffIntroDesc>
-                                </S.StaffSectionHeader>
-
-                                <S.StaffBoard>
-                                    <S.StaffPanel>
-                                        <S.StaffSubHeading>목회자</S.StaffSubHeading>
-                                        <S.MinistryGrid>
-                                            {ministryMembers.map((member) => (
-                                                <S.MinistryCard key={member.name}>
-                                                    <S.MinistryPhotoFrame>
-                                                        {member.image ? (
-                                                            <Image
-                                                                src={member.image}
-                                                                alt={member.alt}
-                                                                width={320}
-                                                                height={400}
-                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-                                                            />
-                                                        ) : (
-                                                            <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
-                                                        )}
-                                                    </S.MinistryPhotoFrame>
-                                                    <S.MinistryName>{member.name}</S.MinistryName>
-                                                    <S.MinistryRole>{member.role}</S.MinistryRole>
-                                                    {member.summary && <S.MinistrySummary>{member.summary}</S.MinistrySummary>}
-                                                </S.MinistryCard>
-                                            ))}
-                                        </S.MinistryGrid>
-
-                                        <S.StaffSubHeading>시무장로</S.StaffSubHeading>
-                                        <S.ElderCardGrid>
-                                            {activeElders.map((elder) => (
-                                                <S.ElderProfileCard key={elder.name}>
-                                                    <S.ElderPhotoCard>
-                                                        {elder.image ? (
-                                                            <Image
-                                                                src={elder.image}
-                                                                alt={elder.alt}
-                                                                width={280}
-                                                                height={280}
-                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-                                                            />
-                                                        ) : (
-                                                            <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
-                                                        )}
-                                                    </S.ElderPhotoCard>
-                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
-                                                    <S.ElderCardRole>시무장로</S.ElderCardRole>
-                                                </S.ElderProfileCard>
-                                            ))}
-                                        </S.ElderCardGrid>
-
-                                        <S.StaffSubHeading>은퇴장로</S.StaffSubHeading>
-                                        <S.ElderCardGrid>
-                                            {retiredElders.map((elder) => (
-                                                <S.ElderProfileCard key={elder.name}>
-                                                    <S.ElderPhotoCard>
-                                                        <Image
-                                                            src={elder.image}
-                                                            alt={elder.alt}
-                                                            width={280}
-                                                            height={280}
-                                                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-                                                        />
-                                                    </S.ElderPhotoCard>
-                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
-                                                    <S.ElderCardRole>은퇴장로</S.ElderCardRole>
-                                                </S.ElderProfileCard>
-                                            ))}
-                                        </S.ElderCardGrid>
-                                    </S.StaffPanel>
-                                </S.StaffBoard>
-                            </S.StaffLayout>
-                        </S.StaffSection>
                     </S.GreetingSection>
                 )}
 
@@ -314,6 +244,95 @@ const IntroContainer = () => {
                     </S.Section>
                 )}
             </S.Content>
+
+            {activeTab === 'greeting' && (
+                <S.StaffSection>
+                    <S.StaffLayout>
+                        <S.StaffSectionHeader>
+                            <S.StaffBoardTitle>섬기는 분들</S.StaffBoardTitle>
+                            <S.StaffIntroDesc>순복음범천교회를 함께 세워가는 사역자와 장로를 소개합니다.</S.StaffIntroDesc>
+                        </S.StaffSectionHeader>
+
+                        <S.StaffBoard>
+                            <S.StaffPanel>
+                                <S.StaffPrimaryGroup>
+                                    <S.StaffSubHeading>목회자 · 사모</S.StaffSubHeading>
+                                    <S.MinistryGrid>
+                                        {ministryMembers.map((member) => (
+                                            <S.MinistryCard key={member.name}>
+                                                <S.MinistrySlot>{member.slotTitle}</S.MinistrySlot>
+                                                <S.MinistryPhotoFrame>
+                                                    {member.image ? (
+                                                        <Image
+                                                            src={member.image}
+                                                            alt={member.alt}
+                                                            width={360}
+                                                            height={460}
+                                                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                        />
+                                                    ) : (
+                                                        <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                                    )}
+                                                </S.MinistryPhotoFrame>
+                                                <S.MinistryName>{member.name}</S.MinistryName>
+                                                {member.summary && <S.MinistrySummary>{member.summary}</S.MinistrySummary>}
+                                            </S.MinistryCard>
+                                        ))}
+                                    </S.MinistryGrid>
+                                </S.StaffPrimaryGroup>
+
+                                <S.StaffDivider />
+
+                                <S.StaffGroup>
+                                    <S.StaffSubHeading>시무장로</S.StaffSubHeading>
+                                    <S.ElderCardGrid>
+                                        {activeElders.map((elder) => (
+                                            <S.ElderProfileCard key={elder.name}>
+                                                <S.ElderPhotoCard>
+                                                    {elder.image ? (
+                                                        <Image
+                                                            src={elder.image}
+                                                            alt={elder.alt}
+                                                            width={360}
+                                                            height={460}
+                                                            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                        />
+                                                    ) : (
+                                                        <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                                    )}
+                                                </S.ElderPhotoCard>
+                                                <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                <S.ElderCardRole>시무장로</S.ElderCardRole>
+                                            </S.ElderProfileCard>
+                                        ))}
+                                    </S.ElderCardGrid>
+                                </S.StaffGroup>
+
+                                <S.StaffGroup>
+                                    <S.StaffSubHeading>은퇴장로</S.StaffSubHeading>
+                                    <S.ElderCardGrid>
+                                        {retiredElders.map((elder) => (
+                                            <S.ElderProfileCard key={elder.name}>
+                                                <S.ElderPhotoCard>
+                                                    <Image
+                                                        src={elder.image}
+                                                        alt={elder.alt}
+                                                        width={360}
+                                                        height={460}
+                                                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                    />
+                                                </S.ElderPhotoCard>
+                                                <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                <S.ElderCardRole>은퇴장로</S.ElderCardRole>
+                                            </S.ElderProfileCard>
+                                        ))}
+                                    </S.ElderCardGrid>
+                                </S.StaffGroup>
+                            </S.StaffPanel>
+                        </S.StaffBoard>
+                    </S.StaffLayout>
+                </S.StaffSection>
+            )}
         </S.Container>
     );
 };
