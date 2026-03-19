@@ -59,12 +59,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+  verification: {
+    google: 'zk2D-2jrFVne4ku6Hc8D_9-SNh2r7SHXNqEhzxiGiiw',
   },
-  manifest: '/site.webmanifest',
 };
 
 // 구조화된 데이터 (Schema.org - 교회 정보)
@@ -113,7 +110,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <meta name="google-site-verification" content="zk2D-2jrFVne4ku6Hc8D_9-SNh2r7SHXNqEhzxiGiiw" />
       </head>
       <body>
         <AuthContext>

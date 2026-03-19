@@ -1,6 +1,12 @@
 import { apiClient } from '@/lib/api';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 
+function logRecoverableContentError(message: string, error: unknown) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(message, error);
+  }
+}
+
 export async function getPublishedBulletins(limit = 20): Promise<Bulletin[]> {
   try {
     return await apiClient<Bulletin[]>('/bulletins/', {
@@ -8,7 +14,7 @@ export async function getPublishedBulletins(limit = 20): Promise<Bulletin[]> {
       next: { revalidate: 30 }
     });
   } catch (error) {
-    console.error('Failed to fetch bulletins from API', error);
+    logRecoverableContentError('Failed to fetch bulletins from API', error);
     return [];
   }
 }
@@ -25,7 +31,7 @@ export async function getMonthlySummary(monthKey: string): Promise<MonthlySummar
     });
     return list.find(summary => summary.month_key === monthKey) || null;
   } catch (error) {
-    console.error(`Failed to fetch summary for ${monthKey}`, error);
+    logRecoverableContentError(`Failed to fetch summary for ${monthKey}`, error);
     return null;
   }
 }
