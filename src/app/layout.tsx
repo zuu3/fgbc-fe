@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AuthContext from "../components/AuthContext";
+import { Analytics } from "@vercel/analytics/next";
 
 
 import { ToastContainer } from 'react-toastify';
@@ -120,6 +121,7 @@ export default function RootLayout({
           <Footer />
         </AuthContext>
         <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <Analytics />
       </body>
     </html>
   );
