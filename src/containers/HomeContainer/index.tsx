@@ -12,7 +12,7 @@ import { formatKstDate } from '@/lib/dateTimeKst';
 const HERO_BANNERS = [
     { src: '/banner/main.png', alt: '순복음범천교회 메인 배너', isDark: false },
     { src: '/banner/heal.png', alt: '순복음범천교회 말씀부흥회 배너', isDark: false},
-    { src: '/banner/sa.png', alt: '순복음범천교회 메인 배너', isDark: true },
+    // { src: '/banner/sa.png', alt: '순복음범천교회 메인 배너', isDark: true },
 ] as const;
 
 function toKstDate(value: string | Date): Date {
