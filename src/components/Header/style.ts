@@ -72,15 +72,15 @@ export const BulletinNavButton = styled(Link)`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    padding: 0 18px;
+    height: 42px;
+    padding: 0 20px;
     border-radius: 999px;
     border: 1px solid var(--header-bulletin-border);
     background: var(--header-bulletin-bg);
     color: #fff;
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1.08rem;
+    font-weight: 700;
     transition: all 0.2s ease;
 
     &:hover {
@@ -97,8 +97,8 @@ export const NavItem = styled.div<{ $lightText: boolean }>`
         color: ${(props) => (props.$lightText ? '#ffffff' : '#2c2c2c')};
         text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
         text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 500;
+        font-size: 1.08rem;
+        font-weight: 700;
         transition: color 0.2s ease;
 
         &:hover {
@@ -110,8 +110,8 @@ export const NavItem = styled.div<{ $lightText: boolean }>`
 export const NavLink = styled.span<{ $lightText: boolean }>`
     color: ${(props) => (props.$lightText ? '#ffffff' : '#2c2c2c')};
     text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(0, 0, 0, 0.35)' : 'none')};
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1.08rem;
+    font-weight: 700;
     cursor: pointer;
     transition: color 0.2s ease;
 
