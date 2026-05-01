@@ -856,7 +856,7 @@ export const InfoListItem = styled.li`
 `;
 
 export const InfoScheduleDate = styled.span`
-    width: 3.2em;
+    width: 8.6em;
     flex-shrink: 0;
     color: #282f39;
     font-weight: 700;
@@ -865,9 +865,30 @@ export const InfoScheduleDate = styled.span`
     letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
-        width: 2.8em;
+        width: 6.2em;
         font-size: 1.02rem;
     }
+`;
+
+export const InfoScheduleDatePart = styled.span`
+    display: inline-block;
+    white-space: nowrap;
+`;
+
+export const InfoScheduleRangeSeparator = styled.span`
+    display: inline-block;
+    margin: 0 3px;
+    color: #5b626b;
+    font-weight: 600;
+`;
+
+export const InfoScheduleWeekday = styled.span`
+    display: inline-block;
+    margin-left: 2px;
+    color: #5b626b;
+    font-size: 0.74em;
+    font-weight: 600;
+    vertical-align: 0.08em;
 `;
 
 export const InfoScheduleDetails = styled.div`

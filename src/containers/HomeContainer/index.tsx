@@ -27,21 +27,58 @@ function getCurrentKstMonthKey(baseDate: Date): string {
 }
 
 type MonthlyScheduleRow = {
-    date: string | null;
+    dateParts: Array<{
+        dayLabel: string;
+        weekdayLabel: string | null;
+    }> | null;
     details: string[];
 };
 
-function parseMonthlySchedule(content: string): MonthlyScheduleRow[] {
+const WEEKDAY_LABELS = ['일', '월', '화', '수', '목', '금', '토'] as const;
+
+function getKstWeekdayLabel(monthKey: string, day: number): string | null {
+    const [yearText, monthText] = monthKey.split('-');
+    const year = Number(yearText);
+    const month = Number(monthText);
+
+    if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) return null;
+    if (month < 1 || month > 12 || day < 1 || day > 31) return null;
+
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) {
+        return null;
+    }
+
+    return WEEKDAY_LABELS[date.getUTCDay()];
+}
+
+function parseMonthlySchedule(content: string, monthKey: string): MonthlyScheduleRow[] {
     return content
         .split('\n')
         .map((line) => line.trim())
         .filter(Boolean)
         .map((line) => {
-            const pipeMatch = line.match(/^(\d{1,2}일)\s*[|｜]\s*(.+)$/);
-            const plainMatch = line.match(/^(\d{1,2}일)\s+(.+)$/);
+            const scheduleMatch = line.match(
+                /^(\d{1,2})(?:일)?(?:\s*\([월화수목금토일]\))?(?:\s*[-~]\s*(\d{1,2})일(?:\s*\([월화수목금토일]\))?)?\s*(?:[|｜-]\s*)?(.+)?$/
+            );
 
-            const date = pipeMatch?.[1] ?? plainMatch?.[1] ?? null;
-            const detailText = pipeMatch?.[2] ?? plainMatch?.[2] ?? line;
+            const startDay = scheduleMatch ? Number(scheduleMatch[1]) : null;
+            const endDay = scheduleMatch?.[2] ? Number(scheduleMatch[2]) : null;
+            const dateParts = startDay
+                ? [
+                    {
+                        dayLabel: `${startDay}일`,
+                        weekdayLabel: getKstWeekdayLabel(monthKey, startDay),
+                    },
+                    ...(endDay
+                        ? [{
+                            dayLabel: `${endDay}일`,
+                            weekdayLabel: getKstWeekdayLabel(monthKey, endDay),
+                        }]
+                        : []),
+                ]
+                : null;
+            const detailText = scheduleMatch?.[3]?.trim() || line;
 
             const details = detailText
                 .split('/')
@@ -49,7 +86,7 @@ function parseMonthlySchedule(content: string): MonthlyScheduleRow[] {
                 .filter(Boolean);
 
             return {
-                date,
+                dateParts,
                 details: details.length > 0 ? details : [detailText.trim()],
             };
         });
@@ -145,7 +182,7 @@ export default function HomeContainer() {
         };
     }, []);
 
-    const monthlyRows = monthlySummary ? parseMonthlySchedule(monthlySummary.content) : [];
+    const monthlyRows = monthlySummary ? parseMonthlySchedule(monthlySummary.content, monthlySummary.month_key) : [];
 
     return (
         <S.Wrapper>
@@ -278,7 +315,17 @@ export default function HomeContainer() {
                             <S.InfoList>
                                 {monthlyRows.map((row, index) => (
                                     <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
-                                        {row.date ? <S.InfoScheduleDate>{row.date}</S.InfoScheduleDate> : null}
+                                        {row.dateParts ? (
+                                            <S.InfoScheduleDate>
+                                                {row.dateParts.map((datePart, datePartIndex) => (
+                                                    <S.InfoScheduleDatePart key={`${monthlySummary.id}-${index}-${datePart.dayLabel}`}>
+                                                        {datePartIndex > 0 ? <S.InfoScheduleRangeSeparator>-</S.InfoScheduleRangeSeparator> : null}
+                                                        {datePart.dayLabel}
+                                                        {datePart.weekdayLabel ? <S.InfoScheduleWeekday>({datePart.weekdayLabel})</S.InfoScheduleWeekday> : null}
+                                                    </S.InfoScheduleDatePart>
+                                                ))}
+                                            </S.InfoScheduleDate>
+                                        ) : null}
                                         <S.InfoScheduleDetails>
                                             {row.details.map((detail, detailIndex) => (
                                                 <S.InfoScheduleDetail key={`${monthlySummary.id}-${index}-${detailIndex}`}>
