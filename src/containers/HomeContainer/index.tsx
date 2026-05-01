@@ -235,8 +235,12 @@ export default function HomeContainer() {
                     <S.LocationHeader>
                         <S.LocationTitle>오시는 길</S.LocationTitle>
                         <S.LocationDesc>
-                            주소 : 부산광역시 부산진구 엄광로 359<br />
-                            (버스 - 신암입구 하차 도보 5분｜지하철 - 부암역 7번 출구 하차 도보 10분)
+                            도로명 주소 : 부산광역시 부산진구 엄광로 359<br />
+                            지번 주소 : 부산광역시 부산진구 범천동 1090-24<br />
+                            우편번호 : 47342<br />
+                            버스 : 신암입구 하차 도보 5분 (59번, 61번, 85번, 87번, 186번)<br />
+                            지하철 : 2호선 부암역 7번 출구 하차 도보 10분<br />
+                            주차장 : 안디옥 성전 (부산광역시 부산진구 엄광로 355 / 범천동 1080-236)
                         </S.LocationDesc>
                     </S.LocationHeader>
                     <S.LocationMapCard>

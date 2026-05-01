@@ -219,7 +219,11 @@ const IntroContainer = () => {
                         <S.LocationInfo>
                             <S.InfoBlock>
                                 <S.InfoLabel>주소</S.InfoLabel>
-                                <S.InfoValue>부산광역시 부산진구 엄광로 359</S.InfoValue>
+                                <S.InfoValue>
+                                    도로명 주소 : 부산광역시 부산진구 엄광로 359<br />
+                                    지번 주소 : 부산광역시 부산진구 범천동 1090-24<br />
+                                    우편번호 : 47342
+                                </S.InfoValue>
                             </S.InfoBlock>
 
                             <S.InfoBlock>
@@ -227,6 +231,16 @@ const IntroContainer = () => {
                                 <S.InfoValue>
                                     버스 - 신암입구 하차 도보 5분<br />
                                     지하철 - 부암역 7번 출구 하차 도보 10분
+                                </S.InfoValue>
+                            </S.InfoBlock>
+
+                            <S.InfoBlock>
+                                <S.InfoLabel>주차 안내</S.InfoLabel>
+                                <S.InfoValue>
+                                    주차장 위치 : 안디옥 성전<br />
+                                    도로명 주소 : 부산광역시 부산진구 엄광로 355<br />
+                                    지번 주소 : 부산광역시 부산진구 범천동 1080-236<br />
+                                    우편번호 : 47342
                                 </S.InfoValue>
                             </S.InfoBlock>
 

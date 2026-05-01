@@ -80,7 +80,7 @@ const jsonLd = {
     streetAddress: '엄광로 359',
     addressLocality: '부산진구',
     addressRegion: '부산광역시',
-    postalCode: '47293',
+    postalCode: '47342',
     addressCountry: 'KR',
   },
   telephone: '+82-51-634-9362',
