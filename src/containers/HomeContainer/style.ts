@@ -52,6 +52,24 @@ export const HeroSlides = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+`;
+
+export const HeroSlidesTrack = styled(motion.div)`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    &:active {
+        cursor: grabbing;
+    }
+`;
+
+export const HeroSlideItem = styled.div`
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
 `;
 
 export const HeroFadeSlide = styled.div<{ $active: boolean }>`
@@ -231,92 +249,142 @@ export const IntroButton = styled.div`
     }
 `;
 
-// 3. 처음 오셨나요? 배너
-export const NewcomerBanner = styled.section`
-    background: #f4f4f4;
-    padding: 72px 20px;
+// 3. 교회 정체성 (Identity)
+export const IdentitySection = styled.section`
+    background: #eaeaea;
+    padding: 100px 20px;
+    text-align: center;
+    color: #000;
 
     @media (max-width: 768px) {
-        padding: 52px 20px;
+        padding: 60px 20px;
     }
 `;
 
-export const NewcomerOverlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    // background: rgba(0,0,0,0.55);
-    color: black;
+export const IdentitySubtitle = styled.p`
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #111;
+
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
 `;
 
-export const NewcomerContent = styled.div`
-    position: relative;
+export const IdentityTitle = styled.h2`
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 80px;
+    color: #000;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+
+    .title-text-wrap {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .title-text-wrap.sub {
+        margin-bottom: 0;
+    }
+
+    .inline-quote {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translateY(-25px);
+        margin: 0 12px;
+    }
+
+    .inline-quote.right img {
+        transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.3rem;
+        margin-bottom: 40px;
+        
+        .inline-quote {
+            margin: 0 4px;
+            transform: translateY(-4px);
+        }
+
+        .inline-quote img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+`;
+
+export const IdentityGrid = styled.div`
     max-width: 1200px;
     margin: 0 auto;
-    text-align: left;
-    color: black;
-`;
-
-export const NewcomerTitle = styled.h2`
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: black;
-    margin-bottom: 20px;
-    letter-spacing: -0.01em;
-    line-height: 1.35;
-
-    @media (max-width: 768px) {
-        font-size: 1.6rem;
-        margin-bottom: 14px;
-    }
-`;
-
-export const NewcomerQuote = styled.p`
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: #111;
-    font-weight: 600;
-    margin: 0 0 20px;
-
-    @media (max-width: 768px) {
-        font-size: 1.02rem;
-        margin-bottom: 14px;
-    }
-`;
-
-export const NewcomerDescription = styled.p`
-    font-size: 1.25rem;
-    line-height: 1.75;
-    color: #1f1f1f;
-    margin: 0 0 20px;
-
-    @media (max-width: 768px) {
-        font-size: 1rem;
-        margin-bottom: 14px;
-    }
-`;
-
-export const NewcomerButton = styled.div`
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 120px;
+    padding: 0 60px;
 
     a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 30px;
-        border: 1.5px solid black;
-        color: #2c2c2c;
         text-decoration: none;
-        border-radius: 48px;
-        font-weight: 600;
-        font-size: 1.05rem;
-        transition: all 0.2s ease;
+        color: inherit;
+        display: block;
+    }
 
-        &:hover {
-            background: #f0f0f0;
-        }
+    @media (max-width: 768px) {
+        gap: 12px;
+        padding: 0 10px;
+        max-width: 100%;
+    }
+`;
+
+export const IdentityCard = styled.div`
+    background: transparent;
+    border: 4px solid #101c29;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 768px) {
+        padding: 16px 8px;
+        border-width: 2px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+`;
+
+export const IdentityCardTitle = styled.h3`
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+`;
+
+export const IdentityCardRef = styled.p`
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
     }
 `;
 
@@ -747,7 +815,8 @@ export const LocationTitle = styled.h2`
 
 export const LocationDesc = styled.p`
     font-size: 1rem;
-    color: #666;
+    font-weight: 400;
+    color: #333;
     line-height: 1.7;
     margin-bottom: 0;
     text-align: left;
@@ -786,7 +855,7 @@ export const InfoSection = styled.section`
 `;
 
 export const InfoInner = styled.div`
-    width: min(1720px, 100%);
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 28px;
     display: grid;

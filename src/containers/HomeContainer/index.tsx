@@ -8,10 +8,11 @@ import KakaoMap from '@/components/KakaoMap';
 import { getPublishedBulletins, getMonthlySummary } from '@/lib/content/client';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
+import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
     { src: '/banner/main.png', alt: '순복음범천교회 메인 배너', isDark: false },
-    { src: '/banner/heal.png', alt: '순복음범천교회 말씀부흥회 배너', isDark: false},
+    { src: '/banner/heal.png', alt: '순복음범천교회 말씀부흥회 배너', isDark: false },
 ] as const;
 
 function toKstDate(value: string | Date): Date {
@@ -34,7 +35,7 @@ type MonthlyScheduleRow = {
     details: string[];
 };
 
-const WEEKDAY_LABELS = ['일', '월', '화', '수', '목', '금', '토'] as const;
+const WEEKDAY_LABELS = ['주일', '월', '화', '수', '목', '금', '토'] as const;
 
 function getKstWeekdayLabel(monthKey: string, day: number): string | null {
     const [yearText, monthText] = monthKey.split('-');
@@ -59,7 +60,7 @@ function parseMonthlySchedule(content: string, monthKey: string): MonthlySchedul
         .filter(Boolean)
         .map((line) => {
             const scheduleMatch = line.match(
-                /^(\d{1,2})(?:일)?(?:\s*\([월화수목금토일]\))?(?:\s*[-~]\s*(\d{1,2})일(?:\s*\([월화수목금토일]\))?)?\s*(?:[|｜-]\s*)?(.+)?$/
+                /^(\d{1,2})(?:일)?(?:\s*\([월화수목금토일주]{1,2}\))?(?:\s*[-~]\s*(\d{1,2})일(?:\s*\([월화수목금토일주]{1,2}\))?)?\s*(?:[|｜-]\s*)?(.+)?$/
             );
 
             const startDay = scheduleMatch ? Number(scheduleMatch[1]) : null;
@@ -122,6 +123,15 @@ export default function HomeContainer() {
             mounted = false;
         };
     }, []);
+
+    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+        const threshold = 50;
+        if (info.offset.x < -threshold) {
+            setCurrentBannerIndex((prev) => (prev + 1) % HERO_BANNERS.length);
+        } else if (info.offset.x > threshold) {
+            setCurrentBannerIndex((prev) => (prev - 1 + HERO_BANNERS.length) % HERO_BANNERS.length);
+        }
+    };
 
     useEffect(() => {
         let mounted = true;
@@ -189,18 +199,27 @@ export default function HomeContainer() {
             <S.HeroSection>
                 <S.HeroBackground>
                     <S.HeroSlides>
-                        {HERO_BANNERS.map((banner, index) => (
-                            <S.HeroFadeSlide key={banner.src} $active={currentBannerIndex === index}>
-                                <Image
-                                    src={banner.src}
-                                    alt={banner.alt}
-                                    fill
-                                    style={{ objectFit: 'cover' }}
-                                    priority={index === 0}
-                                    quality={75}
-                                />
-                            </S.HeroFadeSlide>
-                        ))}
+                        <S.HeroSlidesTrack
+                            animate={{ x: `-${currentBannerIndex * 100}%` }}
+                            transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
+                            drag="x"
+                            dragElastic={0.5}
+                            onDragEnd={handleDragEnd}
+                        >
+                            {HERO_BANNERS.map((banner, index) => (
+                                <S.HeroSlideItem key={banner.src}>
+                                    <Image
+                                        src={banner.src}
+                                        alt={banner.alt}
+                                        fill
+                                        style={{ objectFit: 'cover', pointerEvents: 'none' }}
+                                        draggable={false}
+                                        priority={index === 0}
+                                        quality={75}
+                                    />
+                                </S.HeroSlideItem>
+                            ))}
+                        </S.HeroSlidesTrack>
                     </S.HeroSlides>
                     <S.HeroIndicators aria-hidden="true">
                         {HERO_BANNERS.map((banner, index) => (
@@ -216,27 +235,43 @@ export default function HomeContainer() {
                 </S.HeroBackground>
             </S.HeroSection>
 
-            <S.NewcomerBanner>
-                <S.NewcomerContent>
-                    <S.NewcomerTitle>우리의 정체성 (Identity)</S.NewcomerTitle>
-                    <S.NewcomerQuote>
-                        “너희는 세상의 빛이라<br />
-                        산 위에 있는 동네가 숨겨지지 못할 것이요”(마 5:14)
-                    </S.NewcomerQuote>
-                    <S.NewcomerDescription>
-                        우리는 서로의 삶을 밝히는 공동체입니다.<br />
-                        가정과 일터, 이웃과 지역 안에서<br />
-                        예수님의 사랑을 나누며 살아가고자 합니다.
-                    </S.NewcomerDescription>
-                    <S.NewcomerDescription>
-                        교회는 완벽한 사람들이 모인 곳이 아닙니다.<br />
-                        부족하고 연약한 이들이 함께 배우고 성장하는 공동체입니다.
-                    </S.NewcomerDescription>
-                    <S.NewcomerButton>
-                        <Link href="/intro?tab=greeting">자세히 보기 →</Link>
-                    </S.NewcomerButton>
-                </S.NewcomerContent>
-            </S.NewcomerBanner>
+            <S.IdentitySection>
+                <S.IdentitySubtitle>순복음범천교회는</S.IdentitySubtitle>
+                <S.IdentityTitle>
+                    <div className="title-text-wrap">
+                        <span className="inline-quote right">
+                            <Image src="/quota.png" alt="따옴표" width={40} height={40} />
+                        </span>
+                        성령의 능력으로 세상을 밝히는
+                        <span className="inline-quote left">
+                            <Image src="/quota.png" alt="따옴표" width={40} height={40} />
+                        </span>
+                    </div>
+                    <div className="title-text-wrap sub">
+                        하나님 나라 공동체
+                    </div>
+                </S.IdentityTitle>
+                <S.IdentityGrid>
+                    <Link href="/intro?tab=greeting" scroll={true}>
+                        <S.IdentityCard>
+                            <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
+                            <S.IdentityCardRef>행 1:8</S.IdentityCardRef>
+                        </S.IdentityCard>
+                    </Link>
+                    <Link href="/intro?tab=greeting" scroll={true}>
+                        <S.IdentityCard>
+                            <S.IdentityCardTitle>빛의<br />공동체</S.IdentityCardTitle>
+                            <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
+                        </S.IdentityCard>
+                    </Link>
+                    <Link href="/intro?tab=greeting" scroll={true}>
+                        <S.IdentityCard>
+                            <S.IdentityCardTitle>회복의<br />공동체</S.IdentityCardTitle>
+                            <S.IdentityCardRef>눅 4:18-19</S.IdentityCardRef>
+                        </S.IdentityCard>
+                    </Link>
+                </S.IdentityGrid>
+            </S.IdentitySection>
 
             {/* 4. 최신 영상 */}
             <S.NewsSection>
