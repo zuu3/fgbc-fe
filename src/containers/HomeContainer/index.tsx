@@ -254,14 +254,14 @@ export default function HomeContainer() {
                 <S.IdentityGrid>
                     <Link href="/intro?tab=greeting" scroll={true}>
                         <S.IdentityCard>
-                            <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
-                            <S.IdentityCardRef>행 1:8</S.IdentityCardRef>
+                            <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
+                            <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
                         </S.IdentityCard>
                     </Link>
                     <Link href="/intro?tab=greeting" scroll={true}>
                         <S.IdentityCard>
-                            <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
-                            <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
+                            <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
+                            <S.IdentityCardRef>행 1:8</S.IdentityCardRef>
                         </S.IdentityCard>
                     </Link>
                     <Link href="/intro?tab=greeting" scroll={true}>
