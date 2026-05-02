@@ -25,7 +25,7 @@ const IntroContainer = () => {
             slotTitle: '원로목사',
             name: '정성철 원로목사',
             role: '원로목사',
-            image: '/pastor_jung.png',
+            image: '/pastor/pastor_jung.png',
             alt: '정성철 원로목사',
             // summary: '순복음범천교회의 믿음의 뿌리를 세운 원로목사',
         },
@@ -33,17 +33,24 @@ const IntroContainer = () => {
             slotTitle: '담임목사',
             name: '이효훈 담임목사',
             role: '담임목사',
-            image: '/pastor_lee.jpeg',
+            image: '/pastor/pastor_lee_zoom.png',
             alt: '이효훈 담임목사',
             // summary: '순복음범천교회의 목회 방향을 이끄는 담임목사',
         },
         {
             slotTitle: '담임사모',
             name: '한혜진 담임사모',
-            role: '담임사모',
+            role: '주일학교',
             image: null,
             alt: '한혜진 담임사모',
             // summary: '기도와 섬김으로 공동체를 함께 세워가는 동역자',
+        },
+        {
+            slotTitle: '교육간사',
+            name: '장성윤 교육간사',
+            role: '학생회',
+            image: null,
+            alt: '장성윤 교육간사',
         },
     ];
 
@@ -162,7 +169,7 @@ const IntroContainer = () => {
                             <S.PastorSection>
                                 <S.PastorImageWrapper>
                                     <Image
-                                        src="/pastor_lee.jpeg"
+                                        src="/pastor/pastor_lee.jpeg"
                                         alt="이효훈 담임목사님 사진"
                                         width={420}
                                         height={560}
@@ -287,8 +294,8 @@ const IntroContainer = () => {
                                                         <Image
                                                             src={member.image}
                                                             alt={member.alt}
-                                                            width={360}
-                                                            height={460}
+                                                            width={270}
+                                                            height={345}
                                                             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                                                         />
                                                     ) : (
@@ -314,8 +321,8 @@ const IntroContainer = () => {
                                                             <Image
                                                                 src={elder.image}
                                                                 alt={elder.alt}
-                                                                width={360}
-                                                                height={460}
+                                                                width={270}
+                                                                height={345}
                                                                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                                                             />
                                                         ) : (
@@ -336,8 +343,8 @@ const IntroContainer = () => {
                                                         <Image
                                                             src={elder.image}
                                                             alt={elder.alt}
-                                                            width={360}
-                                                            height={460}
+                                                            width={270}
+                                                            height={345}
                                                             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                                                         />
                                                     </S.ElderPhotoCard>

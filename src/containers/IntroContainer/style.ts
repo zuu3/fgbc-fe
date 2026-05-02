@@ -803,7 +803,7 @@ export const EmptyStaffMessage = styled.div`
 
 export const MinistryGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 280px));
+    grid-template-columns: repeat(4, minmax(165px, 210px));
     gap: 28px 22px;
     justify-content: start;
     width: 100%;
@@ -821,7 +821,7 @@ export const MinistryCard = styled.article`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 280px;
+    max-width: 210px;
 `;
 
 export const MinistrySlot = styled.p`
@@ -906,7 +906,7 @@ export const ElderSimpleCard = styled.div`
 
 export const ElderCardGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, minmax(220px, 280px));
+    grid-template-columns: repeat(4, minmax(165px, 210px));
     gap: 28px 22px;
     justify-content: start;
     width: 100%;
@@ -924,7 +924,7 @@ export const ElderProfileCard = styled.article`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 280px;
+    max-width: 210px;
 `;
 
 export const ElderPhotoCard = styled.div`
@@ -1134,4 +1134,3 @@ export const AccountText = styled.p`
         }
     }
 `;
-
