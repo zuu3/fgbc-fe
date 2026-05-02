@@ -365,7 +365,14 @@ export const GreetingIntroText = styled.p`
     line-height: 1.8;
     color: #333;
     margin: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     word-break: keep-all;
+
+    span {
+        ${typography.title4};
+    }
 
     strong {
         color: #000;

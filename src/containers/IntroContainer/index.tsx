@@ -123,7 +123,7 @@ const IntroContainer = () => {
                         <S.GreetingContent>
                             <S.GreetingTextWrapper>
                                 <S.GreetingIntroText>
-                                    순복음범천교회는<br />
+                                    <span>순복음범천교회는</span>
                                     <strong>성령의 능력으로 세상을 밝히는 하나님 나라 공동체입니다.</strong>
                                 </S.GreetingIntroText>
 
