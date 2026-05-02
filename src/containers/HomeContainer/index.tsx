@@ -260,7 +260,7 @@ export default function HomeContainer() {
                     </Link>
                     <Link href="/intro?tab=greeting" scroll={true}>
                         <S.IdentityCard>
-                            <S.IdentityCardTitle>빛의<br />공동체</S.IdentityCardTitle>
+                            <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
                             <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
                         </S.IdentityCard>
                     </Link>
