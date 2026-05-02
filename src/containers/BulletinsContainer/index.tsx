@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as S from './style';
 import { getPublishedBulletins, resolveBulletinFileUrl } from '@/lib/content/client';
-import type { Bulletin } from '@/types/content';
+import type { Bulletin, ContentCategory } from '@/types/content';
 function isPdfUrl(url: string): boolean {
   return /\.pdf(?:$|[?#])/i.test(url);
 }
@@ -14,7 +14,19 @@ function toPdfEmbedUrl(url: string): string {
   return `${url}${url.includes('#') ? '&' : '#'}toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
 }
 
-export default function BulletinsContainer() {
+type BulletinsContainerProps = {
+  contentCategory?: ContentCategory;
+  title?: string;
+  description?: string;
+  emptyText?: string;
+};
+
+export default function BulletinsContainer({
+  contentCategory = 'bulletin',
+  title = '주보',
+  description = '매주 발행되는 교회 소식을 확인하세요.',
+  emptyText = '등록된 주보가 없습니다.',
+}: BulletinsContainerProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,7 +38,7 @@ export default function BulletinsContainer() {
   useEffect(() => {
     let mounted = true;
 
-    getPublishedBulletins(20).then((items) => {
+    getPublishedBulletins(20, contentCategory).then((items) => {
       if (!mounted) return;
       setBulletins(items);
       setIsLoading(false);
@@ -39,7 +51,7 @@ export default function BulletinsContainer() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [contentCategory]);
 
   const defaultExpandedBulletin = useMemo(() => {
     if (bulletins.length === 0) return null;
@@ -74,12 +86,12 @@ export default function BulletinsContainer() {
   return (
     <S.Container>
       <S.Header>
-        <S.Title>주보</S.Title>
-        <S.Description>매주 발행되는 교회 소식을 확인하세요.</S.Description>
+        <S.Title>{title}</S.Title>
+        <S.Description>{description}</S.Description>
       </S.Header>
 
-      {isLoading && <S.StatusText>주보 불러오는 중...</S.StatusText>}
-      {!isLoading && bulletins.length === 0 && <S.StatusText>등록된 주보가 없습니다.</S.StatusText>}
+      {isLoading && <S.StatusText>{title} 불러오는 중...</S.StatusText>}
+      {!isLoading && bulletins.length === 0 && <S.StatusText>{emptyText}</S.StatusText>}
 
       {!isLoading && bulletins.length > 0 && (
         <S.AccordionList>

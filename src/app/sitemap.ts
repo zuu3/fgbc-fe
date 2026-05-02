@@ -4,7 +4,7 @@ const baseUrl = "https://fgbc.church";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const publicRoutes = ["", "/intro", "/newcomer", "/bulletins"] as const;
+  const publicRoutes = ["", "/intro", "/newcomer", "/bulletins", "/sharing-worship", "/pastoral-letter"] as const;
 
   return publicRoutes.map((path) => ({
     url: path ? `${baseUrl}${path}` : baseUrl,

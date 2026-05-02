@@ -95,6 +95,12 @@ const Header = () => {
                                 <S.SubMenuItem>
                                     <Link href="/newcomer?tab=education">교육 안내</Link>
                                 </S.SubMenuItem>
+                                <S.SubMenuItem>
+                                    <Link href="/sharing-worship">나눔으로 드리는 예배</Link>
+                                </S.SubMenuItem>
+                                <S.SubMenuItem>
+                                    <Link href="/pastoral-letter">목양편지</Link>
+                                </S.SubMenuItem>
                             </S.SubMenu>
                         )}
                     </S.NavItem>
@@ -150,6 +156,12 @@ const Header = () => {
                         </S.MobileNavItem>
                         <S.MobileNavItem>
                             <Link href="/newcomer?tab=education" onClick={closeMobileMenu}>교육 안내</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/sharing-worship" onClick={closeMobileMenu}>나눔으로 드리는 예배</Link>
+                        </S.MobileNavItem>
+                        <S.MobileNavItem>
+                            <Link href="/pastoral-letter" onClick={closeMobileMenu}>목양편지</Link>
                         </S.MobileNavItem>
                         <S.MobileNavItem>
                             <Link href="/bulletins" onClick={closeMobileMenu}>주보</Link>

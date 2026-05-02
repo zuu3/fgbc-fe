@@ -1,5 +1,5 @@
 import { apiClient } from '@/lib/api';
-import type { Bulletin, MonthlySummary } from '@/types/content';
+import type { Bulletin, ContentCategory, MonthlySummary } from '@/types/content';
 
 function logRecoverableContentError(message: string, error: unknown) {
   if (process.env.NODE_ENV !== 'production') {
@@ -7,10 +7,10 @@ function logRecoverableContentError(message: string, error: unknown) {
   }
 }
 
-export async function getPublishedBulletins(limit = 20): Promise<Bulletin[]> {
+export async function getPublishedBulletins(limit = 20, contentCategory: ContentCategory = 'bulletin'): Promise<Bulletin[]> {
   try {
     return await apiClient<Bulletin[]>('/bulletins/', {
-      params: { limit },
+      params: { limit, content_category: contentCategory },
       next: { revalidate: 30 }
     });
   } catch (error) {

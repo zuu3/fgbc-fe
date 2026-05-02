@@ -4,12 +4,38 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 import * as S from './style';
-import type { Bulletin, MonthlySummary } from '@/types/content';
+import type { Bulletin, ContentCategory, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
+
+const documentTabs: Array<{ key: ContentCategory; label: string; formTitle: string; placeholder: string; emptyText: string }> = [
+  {
+    key: 'bulletin',
+    label: '주보',
+    formTitle: '주보 등록',
+    placeholder: '예: 2026년 3월 첫째 주 주보',
+    emptyText: '등록된 주보가 없습니다.',
+  },
+  {
+    key: 'sharing_worship',
+    label: '나눔으로 드리는 예배',
+    formTitle: '나눔으로 드리는 예배 등록',
+    placeholder: '예: 2026년 4월 26일 나눔으로 드리는 예배',
+    emptyText: '등록된 나눔으로 드리는 예배 자료가 없습니다.',
+  },
+  {
+    key: 'pastoral_letter',
+    label: '목양편지',
+    formTitle: '목양편지 등록',
+    placeholder: '예: 2026년 4월 26일 목양편지',
+    emptyText: '등록된 목양편지가 없습니다.',
+  },
+];
+
+type AdminTab = ContentCategory | 'monthly';
 
 export default function AdminContainer() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'bulletins' | 'monthly'>('bulletins');
+  const [activeTab, setActiveTab] = useState<AdminTab>('bulletin');
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
   const [monthlySummaries, setMonthlySummaries] = useState<MonthlySummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +47,7 @@ export default function AdminContainer() {
 
   const [bulletinForm, setBulletinForm] = useState({
     title: '',
+    content_category: 'bulletin' as ContentCategory,
     week_start_date: '',
     service_type: '',
     file_path: '',
@@ -31,6 +58,11 @@ export default function AdminContainer() {
     month_key: '',
     content: '',
   });
+
+  const activeDocumentTab = documentTabs.find((tab) => tab.key === activeTab);
+  const visibleDocuments = activeDocumentTab
+    ? bulletins.filter((item) => item.content_category === activeDocumentTab.key)
+    : [];
 
   useEffect(() => {
     let mounted = true;
@@ -79,12 +111,13 @@ export default function AdminContainer() {
     setMessage('');
 
     if (!bulletinForm.file_path) {
-      setMessage('주보 파일을 먼저 업로드해 주세요.');
+      setMessage('파일을 먼저 업로드해 주세요.');
       return;
     }
 
     const payload = {
       ...bulletinForm,
+      content_category: activeDocumentTab?.key ?? bulletinForm.content_category,
       ...(editingBulletinId ? { id: editingBulletinId } : {}),
     };
 
@@ -96,7 +129,7 @@ export default function AdminContainer() {
 
     const json = await response.json() as { bulletin?: Bulletin; error?: string };
     if (!response.ok) {
-      setMessage(`주보 저장 실패: ${json.error || 'unknown error'}`);
+      setMessage(`자료 저장 실패: ${json.error || 'unknown error'}`);
       return;
     }
 
@@ -111,17 +144,18 @@ export default function AdminContainer() {
     setSelectedBulletinFile(null);
     setBulletinForm({
       title: '',
+      content_category: activeDocumentTab?.key ?? 'bulletin',
       week_start_date: '',
       service_type: '',
       file_path: '',
       is_latest: true,
     });
-    setMessage(editingBulletinId ? '주보가 수정되었습니다.' : '주보가 등록되었습니다.');
+    setMessage(editingBulletinId ? '자료가 수정되었습니다.' : '자료가 등록되었습니다.');
   };
 
   const onUploadBulletinFile = async () => {
     if (!selectedBulletinFile) {
-      setMessage('업로드할 주보 파일을 먼저 선택해 주세요.');
+      setMessage('업로드할 파일을 먼저 선택해 주세요.');
       return;
     }
 
@@ -131,6 +165,7 @@ export default function AdminContainer() {
     try {
       const formData = new FormData();
       formData.append('file', selectedBulletinFile);
+      formData.append('content_category', activeDocumentTab?.key ?? bulletinForm.content_category);
 
       const response = await fetch('/api/admin/bulletins/upload', {
         method: 'POST',
@@ -144,7 +179,7 @@ export default function AdminContainer() {
       }
 
       setBulletinForm((prev) => ({ ...prev, file_path: json.filePath! }));
-      setMessage('파일 업로드 완료. 주보 등록 버튼을 눌러 저장해 주세요.');
+      setMessage('파일 업로드 완료. 등록 버튼을 눌러 저장해 주세요.');
     } finally {
       setIsUploadingBulletinFile(false);
     }
@@ -198,28 +233,29 @@ export default function AdminContainer() {
   };
 
   const onEditBulletin = (bulletin: Bulletin) => {
-    setActiveTab('bulletins');
+    setActiveTab(bulletin.content_category);
     setEditingBulletinId(bulletin.id);
     setBulletinForm({
       title: bulletin.title,
+      content_category: bulletin.content_category,
       week_start_date: bulletin.week_start_date,
       service_type: bulletin.service_type || '',
       file_path: bulletin.file_path,
       is_latest: bulletin.is_latest,
     });
-    setMessage('주보 수정 모드입니다. 내용 수정 후 저장하세요.');
+    setMessage('자료 수정 모드입니다. 내용 수정 후 저장하세요.');
   };
 
   const onDeleteBulletin = async (id: string) => {
-    if (!window.confirm('이 주보를 삭제할까요?')) return;
+    if (!window.confirm('이 자료를 삭제할까요?')) return;
     const response = await fetch(`/api/admin/bulletins?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
     const json = await response.json().catch(() => ({} as { error?: string }));
     if (!response.ok) {
-      setMessage(`주보 삭제 실패: ${json.error || 'unknown error'}`);
+      setMessage(`자료 삭제 실패: ${json.error || 'unknown error'}`);
       return;
     }
     setBulletins((prev) => prev.filter((item) => item.id !== id));
-    setMessage('주보가 삭제되었습니다.');
+    setMessage('자료가 삭제되었습니다.');
   };
 
   const onEditMonthlySummary = (summary: MonthlySummary) => {
@@ -248,18 +284,33 @@ export default function AdminContainer() {
     <S.Container>
       <S.Header>
         <S.Title>관리자 페이지</S.Title>
-        <S.Description>백엔드 API 기반으로 주보와 월간 정보를 등록/조회합니다.</S.Description>
+        <S.Description>백엔드 API 기반으로 주보, 교회 생활 자료, 월간 정보를 등록/조회합니다.</S.Description>
         <S.HeaderAction type="button" onClick={onLogout}>로그아웃</S.HeaderAction>
       </S.Header>
 
       <S.TabRow>
-        <S.TabButton
-          type="button"
-          $active={activeTab === 'bulletins'}
-          onClick={() => setActiveTab('bulletins')}
-        >
-          주보 관리
-        </S.TabButton>
+        {documentTabs.map((tab) => (
+          <S.TabButton
+            key={tab.key}
+            type="button"
+            $active={activeTab === tab.key}
+            onClick={() => {
+              setActiveTab(tab.key);
+              setEditingBulletinId(null);
+              setSelectedBulletinFile(null);
+              setBulletinForm({
+                title: '',
+                content_category: tab.key,
+                week_start_date: '',
+                service_type: '',
+                file_path: '',
+                is_latest: true,
+              });
+            }}
+          >
+            {tab.label} 관리
+          </S.TabButton>
+        ))}
         <S.TabButton
           type="button"
           $active={activeTab === 'monthly'}
@@ -269,16 +320,16 @@ export default function AdminContainer() {
         </S.TabButton>
       </S.TabRow>
 
-      {activeTab === 'bulletins' && (
+      {activeDocumentTab && (
         <S.Panel>
-          <S.SectionTitle>주보 등록</S.SectionTitle>
+          <S.SectionTitle>{activeDocumentTab.formTitle}</S.SectionTitle>
           <S.Form id="bulletin-form" onSubmit={onBulletinSubmit}>
             <S.FormGrid>
               <S.Field>
                 <label htmlFor="bulletin-title">제목</label>
                 <input
                   id="bulletin-title"
-                  placeholder="예: 2026년 3월 첫째 주 주보"
+                  placeholder={activeDocumentTab.placeholder}
                   value={bulletinForm.title}
                   onChange={(event) => setBulletinForm((prev) => ({ ...prev, title: event.target.value }))}
                   required
@@ -295,7 +346,7 @@ export default function AdminContainer() {
                 />
               </S.Field>
               <S.Field>
-                <label htmlFor="bulletin-service">예배 구분</label>
+                <label htmlFor="bulletin-service">구분 메모</label>
                 <input
                   id="bulletin-service"
                   placeholder="예: 주일 1-3부 예배"
@@ -304,7 +355,7 @@ export default function AdminContainer() {
                 />
               </S.Field>
               <S.Field>
-                <label htmlFor="bulletin-file">주보 파일 업로드</label>
+                <label htmlFor="bulletin-file">파일 업로드</label>
                 <input
                   id="bulletin-file"
                   type="file"
@@ -323,21 +374,21 @@ export default function AdminContainer() {
 
           <S.ActionRow>
             <button type="submit" className="primary" form="bulletin-form">
-              {editingBulletinId ? '주보 수정 저장' : '주보 등록'}
+              {editingBulletinId ? '자료 수정 저장' : `${activeDocumentTab.label} 등록`}
             </button>
           </S.ActionRow>
 
-          <S.SectionTitle>등록된 주보</S.SectionTitle>
+          <S.SectionTitle>등록된 {activeDocumentTab.label}</S.SectionTitle>
           {message && <S.Message>{message}</S.Message>}
           {isLoading ? (
-            <S.Message>주보 불러오는 중...</S.Message>
-          ) : bulletins.length === 0 ? (
-            <S.Message>등록된 주보가 없습니다.</S.Message>
+            <S.Message>자료 불러오는 중...</S.Message>
+          ) : visibleDocuments.length === 0 ? (
+            <S.Message>{activeDocumentTab.emptyText}</S.Message>
           ) : (
             <S.List>
-              {bulletins.map((bulletin) => (
+              {visibleDocuments.map((bulletin) => (
                 <S.ListItem key={bulletin.id}>
-                  <S.ListTag>{bulletin.is_latest ? '최신' : '주보'}</S.ListTag>
+                  <S.ListTag>{bulletin.is_latest ? '최신' : activeDocumentTab.label}</S.ListTag>
                   <S.ListTitle>{bulletin.title}</S.ListTitle>
                   <S.ListMeta>
                     {formatKstDate(bulletin.week_start_date)} · {bulletin.service_type ?? '예배 정보 없음'}
