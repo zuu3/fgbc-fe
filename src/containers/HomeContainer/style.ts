@@ -1,4 +1,4 @@
-﻿import styled from "@emotion/styled";
+import styled from "@emotion/styled";
 import { typography, colors } from '@/styles/theme';
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -1171,7 +1171,7 @@ export const WorshipTableTitle = styled.h3`
 `;
 
 export const WorshipTableRow = styled.div`
-    ${typography.title7}
+    ${typography.body0}
     color: #555;
     line-height: 1.6;
     display: flex;

@@ -63,6 +63,13 @@ export const typography = {
         line-height: 1.5;
         color: ${colors.grey900};
     `,
+    body0: css`
+        font-size: 1.25rem;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: 1.6;
+        color: ${colors.grey800};
+    `,
     body1: css`
         font-size: 1rem;
         font-weight: 400;
