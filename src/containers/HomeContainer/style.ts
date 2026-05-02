@@ -632,8 +632,8 @@ export const ThumbnailTitle = styled.span`
     left: 50%;
     top: 50%;
     right: auto;
-    color: #fff;
     ${typography.title7}
+    color: #fff;
     font-weight: 600;
     text-align: center;
     text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
@@ -648,6 +648,7 @@ export const ThumbnailTitle = styled.span`
 
     @media (max-width: 768px) {
         ${typography.body1}
+        color: #fff;
         max-width: 90%;
     }
 `;
@@ -1540,4 +1541,3 @@ export const SubActionLink = styled.div`
         color: #666;
     }
 `;
-

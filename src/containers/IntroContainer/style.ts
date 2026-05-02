@@ -25,6 +25,7 @@ export const Title = styled.h1`
 
     @media (max-width: 768px) {
         ${typography.title3}
+        color: #f5f5f5;
     }
 `;
 

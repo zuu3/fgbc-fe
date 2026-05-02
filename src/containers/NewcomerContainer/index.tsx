@@ -68,6 +68,12 @@ const NewcomerContainer = () => {
                 <S.Tab $active={activeTab === 'education'} onClick={() => setSelectedTab('education')}>
                     교육 안내
                 </S.Tab>
+                <S.TabLink href="/sharing-worship">
+                    나눔으로 드리는 예배
+                </S.TabLink>
+                <S.TabLink href="/pastoral-letter">
+                    목양편지
+                </S.TabLink>
             </S.TabMenu>
 
             <S.Content>

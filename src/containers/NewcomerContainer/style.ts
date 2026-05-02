@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
@@ -25,6 +26,7 @@ export const Title = styled.h1`
 
     @media (max-width: 768px) {
         ${typography.title3}
+        color: #f5f5f5;
     }
 `;
 
@@ -64,6 +66,32 @@ export const Tab = styled.button<{ $active: boolean }>`
     ${typography.body2}
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
+    flex: 0 0 auto;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: #2c2c2c;
+    }
+
+    @media (max-width: 768px) {
+        padding: 14px 18px;
+        ${typography.body2}
+        flex-shrink: 0;
+    }
+`;
+
+export const TabLink = styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 24px;
+    background: transparent;
+    color: #999;
+    border-bottom: 2px solid transparent;
+    ${typography.body2}
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    flex: 0 0 auto;
     transition: all 0.2s ease;
 
     &:hover {
@@ -296,4 +324,3 @@ export const TrainingNote = styled.p`
     padding: 18px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
 `;
-
