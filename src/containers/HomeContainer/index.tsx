@@ -8,6 +8,7 @@ import KakaoMap from '@/components/KakaoMap';
 import { getPublishedBulletins, getMonthlySummary } from '@/lib/content/client';
 import type { Bulletin, MonthlySummary } from '@/types/content';
 import { formatKstDate } from '@/lib/dateTimeKst';
+import { motion } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
@@ -236,46 +237,78 @@ export default function HomeContainer() {
             </S.HeroSection>
 
             <S.IdentitySection>
-                <S.IdentitySubtitle>순복음범천교회는</S.IdentitySubtitle>
-                <S.IdentityTitle>
-                    <div className="title-text-wrap">
-                        <span className="inline-quote right">
-                            <Image src="/quota.png" alt="따옴표" width={40} height={40} />
-                        </span>
-                        성령의 능력으로 세상을 밝히는
-                        <span className="inline-quote left">
-                            <Image src="/quota.png" alt="따옴표" width={40} height={40} />
-                        </span>
-                    </div>
-                    <div className="title-text-wrap sub">
-                        하나님 나라 공동체
-                    </div>
-                </S.IdentityTitle>
-                <S.IdentityGrid>
-                    <Link href="/intro?tab=greeting" scroll={true}>
-                        <S.IdentityCard>
-                            <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
-                            <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
-                        </S.IdentityCard>
-                    </Link>
-                    <Link href="/intro?tab=greeting" scroll={true}>
-                        <S.IdentityCard>
-                            <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
-                            <S.IdentityCardRef>행 1:8</S.IdentityCardRef>
-                        </S.IdentityCard>
-                    </Link>
-                    <Link href="/intro?tab=greeting" scroll={true}>
-                        <S.IdentityCard>
-                            <S.IdentityCardTitle>회복의<br />공동체</S.IdentityCardTitle>
-                            <S.IdentityCardRef>눅 4:18-19</S.IdentityCardRef>
-                        </S.IdentityCard>
-                    </Link>
-                </S.IdentityGrid>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                            opacity: 1,
+                            transition: { staggerChildren: 0.2 }
+                        }
+                    }}
+                >
+                    <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                        <S.IdentitySubtitle>순복음범천교회는</S.IdentitySubtitle>
+                    </motion.div>
+
+                    <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                        <S.IdentityTitle>
+                            <div className="title-text-wrap">
+                                <span className="inline-quote right">
+                                    <Image src="/quota.png" alt="따옴표" width={40} height={40} />
+                                </span>
+                                성령의 능력으로 세상을 밝히는
+                                <span className="inline-quote left">
+                                    <Image src="/quota.png" alt="따옴표" width={40} height={40} />
+                                </span>
+                            </div>
+                            <div className="title-text-wrap sub">
+                                하나님 나라 공동체
+                            </div>
+                        </S.IdentityTitle>
+                    </motion.div>
+
+                    <S.IdentityGrid>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                            <Link href="/intro?tab=greeting" scroll={true}>
+                                <S.IdentityCard>
+                                    <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
+                                    <S.IdentityCardRef>마 5:14</S.IdentityCardRef>
+                                </S.IdentityCard>
+                            </Link>
+                        </motion.div>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                            <Link href="/intro?tab=greeting" scroll={true}>
+                                <S.IdentityCard>
+                                    <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
+                                    <S.IdentityCardRef>행 1:8</S.IdentityCardRef>
+                                </S.IdentityCard>
+                            </Link>
+                        </motion.div>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                            <Link href="/intro?tab=greeting" scroll={true}>
+                                <S.IdentityCard>
+                                    <S.IdentityCardTitle>회복의<br />공동체</S.IdentityCardTitle>
+                                    <S.IdentityCardRef>눅 4:18-19</S.IdentityCardRef>
+                                </S.IdentityCard>
+                            </Link>
+                        </motion.div>
+                    </S.IdentityGrid>
+                </motion.div>
             </S.IdentitySection>
 
             {/* 4. 최신 영상 */}
             <S.NewsSection>
-                <S.NewsHeader>이번 주 설교</S.NewsHeader>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                >
+                    <S.NewsHeader>이번 주 설교</S.NewsHeader>
+                </motion.div>
                 <S.NewsMediaCard>
                     {isLoadingLatest ? (
                         <S.SkeletonBox aria-hidden="true" />
@@ -304,35 +337,43 @@ export default function HomeContainer() {
 
             <S.LocationSection>
                 <S.LocationInner>
-                    <S.LocationHeader>
-                        <S.LocationTitle>찾아오시는 길</S.LocationTitle>
-                        <S.LocationList>
-                            <S.LocationItem>
-                                <S.LocationLabel>도로명 주소</S.LocationLabel>
-                                <S.LocationValue>부산광역시 부산진구 엄광로 359</S.LocationValue>
-                            </S.LocationItem>
-                            <S.LocationItem>
-                                <S.LocationLabel>지번 주소</S.LocationLabel>
-                                <S.LocationValue>부산광역시 부산진구 범천동 1090-24</S.LocationValue>
-                            </S.LocationItem>
-                            <S.LocationItem>
-                                <S.LocationLabel>우편번호</S.LocationLabel>
-                                <S.LocationValue>47342</S.LocationValue>
-                            </S.LocationItem>
-                            <S.LocationItem>
-                                <S.LocationLabel>버스</S.LocationLabel>
-                                <S.LocationValue>신암입구 하차 도보 5분</S.LocationValue>
-                            </S.LocationItem>
-                            <S.LocationItem>
-                                <S.LocationLabel>지하철</S.LocationLabel>
-                                <S.LocationValue>부암역 7번 출구 하차 도보 10분</S.LocationValue>
-                            </S.LocationItem>
-                            <S.LocationItem>
-                                <S.LocationLabel>주차장 (비전센터)</S.LocationLabel>
-                                <S.LocationValue>부산광역시 부산진구 엄광로 355</S.LocationValue>
-                            </S.LocationItem>
-                        </S.LocationList>
-                    </S.LocationHeader>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        style={{ minWidth: 0 }}
+                    >
+                        <S.LocationHeader>
+                            <S.LocationTitle>찾아오시는 길</S.LocationTitle>
+                            <S.LocationList>
+                                <S.LocationItem>
+                                    <S.LocationLabel>도로명 주소</S.LocationLabel>
+                                    <S.LocationValue>부산광역시 부산진구 엄광로 359</S.LocationValue>
+                                </S.LocationItem>
+                                <S.LocationItem>
+                                    <S.LocationLabel>지번 주소</S.LocationLabel>
+                                    <S.LocationValue>부산광역시 부산진구 범천동 1090-24</S.LocationValue>
+                                </S.LocationItem>
+                                <S.LocationItem>
+                                    <S.LocationLabel>우편번호</S.LocationLabel>
+                                    <S.LocationValue>47342</S.LocationValue>
+                                </S.LocationItem>
+                                <S.LocationItem>
+                                    <S.LocationLabel>버스</S.LocationLabel>
+                                    <S.LocationValue>신암입구 하차 도보 5분</S.LocationValue>
+                                </S.LocationItem>
+                                <S.LocationItem>
+                                    <S.LocationLabel>지하철</S.LocationLabel>
+                                    <S.LocationValue>부암역 7번 출구 하차 도보 10분</S.LocationValue>
+                                </S.LocationItem>
+                                <S.LocationItem>
+                                    <S.LocationLabel>주차장 (비전센터)</S.LocationLabel>
+                                    <S.LocationValue>부산광역시 부산진구 엄광로 355</S.LocationValue>
+                                </S.LocationItem>
+                            </S.LocationList>
+                        </S.LocationHeader>
+                    </motion.div>
                     <S.LocationMapCard>
                         <KakaoMap />
                     </S.LocationMapCard>
@@ -341,58 +382,74 @@ export default function HomeContainer() {
 
             <S.InfoSection>
                 <S.InfoInner>
-                    <S.InfoColumn>
-                        <S.InfoTitle>주보</S.InfoTitle>
-                        {isLoadingSummary ? (
-                            <S.InfoText>주보 불러오는 중...</S.InfoText>
-                        ) : featuredBulletins.length > 0 ? (
-                            <S.InfoList>
-                                {featuredBulletins.map((bulletin) => (
-                                    <S.InfoListLinkItem key={bulletin.id} href={`/bulletins?bulletinId=${encodeURIComponent(bulletin.id)}`}>
-                                        <S.InfoRowTitle>{bulletin.title}</S.InfoRowTitle>
-                                        <S.InfoRowMeta>{formatKstDate(bulletin.week_start_date)}</S.InfoRowMeta>
-                                    </S.InfoListLinkItem>
-                                ))}
-                            </S.InfoList>
-                        ) : (
-                            <S.InfoText>등록된 주보가 없습니다.</S.InfoText>
-                        )}
-                        <S.InfoLink href="/bulletins">주보 전체 보기</S.InfoLink>
-                    </S.InfoColumn>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        style={{ minWidth: 0 }}
+                    >
+                        <S.InfoColumn>
+                            <S.InfoTitle>주보</S.InfoTitle>
+                            {isLoadingSummary ? (
+                                <S.InfoText>주보 불러오는 중...</S.InfoText>
+                            ) : featuredBulletins.length > 0 ? (
+                                <S.InfoList>
+                                    {featuredBulletins.map((bulletin) => (
+                                        <S.InfoListLinkItem key={bulletin.id} href={`/bulletins?bulletinId=${encodeURIComponent(bulletin.id)}`}>
+                                            <S.InfoRowTitle>{bulletin.title}</S.InfoRowTitle>
+                                            <S.InfoRowMeta>{formatKstDate(bulletin.week_start_date)}</S.InfoRowMeta>
+                                        </S.InfoListLinkItem>
+                                    ))}
+                                </S.InfoList>
+                            ) : (
+                                <S.InfoText>등록된 주보가 없습니다.</S.InfoText>
+                            )}
+                            <S.InfoLink href="/bulletins">주보 전체 보기</S.InfoLink>
+                        </S.InfoColumn>
+                    </motion.div>
 
-                    <S.InfoColumn>
-                        <S.InfoTitle>{new Date().toLocaleString('ko-KR', { month: 'long' })} 월간 일정</S.InfoTitle>
-                        {isLoadingSummary ? (
-                            <S.InfoText>월간 정보 불러오는 중...</S.InfoText>
-                        ) : monthlySummary ? (
-                            <S.InfoList>
-                                {monthlyRows.map((row, index) => (
-                                    <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
-                                        {row.dateParts ? (
-                                            <S.InfoScheduleDate>
-                                                {row.dateParts.map((datePart, datePartIndex) => (
-                                                    <S.InfoScheduleDatePart key={`${monthlySummary.id}-${index}-${datePart.dayLabel}`}>
-                                                        {datePartIndex > 0 ? <S.InfoScheduleRangeSeparator>-</S.InfoScheduleRangeSeparator> : null}
-                                                        {datePart.dayLabel}
-                                                        {datePart.weekdayLabel ? <S.InfoScheduleWeekday>({datePart.weekdayLabel})</S.InfoScheduleWeekday> : null}
-                                                    </S.InfoScheduleDatePart>
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
+                        style={{ minWidth: 0 }}
+                    >
+                        <S.InfoColumn>
+                            <S.InfoTitle>{new Date().toLocaleString('ko-KR', { month: 'long' })} 월간 일정</S.InfoTitle>
+                            {isLoadingSummary ? (
+                                <S.InfoText>월간 정보 불러오는 중...</S.InfoText>
+                            ) : monthlySummary ? (
+                                <S.InfoList>
+                                    {monthlyRows.map((row, index) => (
+                                        <S.InfoListItem key={`${monthlySummary.id}-${index}`}>
+                                            {row.dateParts ? (
+                                                <S.InfoScheduleDate>
+                                                    {row.dateParts.map((datePart, datePartIndex) => (
+                                                        <S.InfoScheduleDatePart key={`${monthlySummary.id}-${index}-${datePart.dayLabel}`}>
+                                                            {datePartIndex > 0 ? <S.InfoScheduleRangeSeparator>-</S.InfoScheduleRangeSeparator> : null}
+                                                            {datePart.dayLabel}
+                                                            {datePart.weekdayLabel ? <S.InfoScheduleWeekday>({datePart.weekdayLabel})</S.InfoScheduleWeekday> : null}
+                                                        </S.InfoScheduleDatePart>
+                                                    ))}
+                                                </S.InfoScheduleDate>
+                                            ) : null}
+                                            <S.InfoScheduleDetails>
+                                                {row.details.map((detail, detailIndex) => (
+                                                    <S.InfoScheduleDetail key={`${monthlySummary.id}-${index}-${detailIndex}`}>
+                                                        {detail}
+                                                    </S.InfoScheduleDetail>
                                                 ))}
-                                            </S.InfoScheduleDate>
-                                        ) : null}
-                                        <S.InfoScheduleDetails>
-                                            {row.details.map((detail, detailIndex) => (
-                                                <S.InfoScheduleDetail key={`${monthlySummary.id}-${index}-${detailIndex}`}>
-                                                    {detail}
-                                                </S.InfoScheduleDetail>
-                                            ))}
-                                        </S.InfoScheduleDetails>
-                                    </S.InfoListItem>
-                                ))}
-                            </S.InfoList>
-                        ) : (
-                            <S.InfoText>이번 달 월간 정보가 없습니다.</S.InfoText>
-                        )}
-                    </S.InfoColumn>
+                                            </S.InfoScheduleDetails>
+                                        </S.InfoListItem>
+                                    ))}
+                                </S.InfoList>
+                            ) : (
+                                <S.InfoText>이번 달 월간 정보가 없습니다.</S.InfoText>
+                            )}
+                        </S.InfoColumn>
+                    </motion.div>
                 </S.InfoInner>
             </S.InfoSection>
 
@@ -419,32 +476,45 @@ export default function HomeContainer() {
             )}
 
             <S.WorshipSection>
-                <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
-                <S.WorshipTableWrapper>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                >
+                    <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
+                </motion.div>
 
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
+                >
+                    <S.WorshipTableWrapper>
+                        <S.WorshipTableColumn>
+                            <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
+                            <S.WorshipTableRow>1부예배 · 오전 9:00 · 2F 본당</S.WorshipTableRow>
+                            <S.WorshipTableRow>2부예배 · 오전 11:00 · 2F 본당</S.WorshipTableRow>
+                            <S.WorshipTableRow>오후예배 · 오후 2:00 · 2F 본당</S.WorshipTableRow>
+                        </S.WorshipTableColumn>
 
-                    <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>주일예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>1부예배 · 오전 9:00 · 2F 본당</S.WorshipTableRow>
-                        <S.WorshipTableRow>2부예배 · 오전 11:00 · 2F 본당</S.WorshipTableRow>
-                        <S.WorshipTableRow>오후예배 · 오후 2:00 · 2F 본당</S.WorshipTableRow>
-                    </S.WorshipTableColumn>
+                        <S.WorshipTableColumn>
+                            <S.WorshipTableTitle>부서예배</S.WorshipTableTitle>
+                            <S.WorshipTableRow>영유치부 · 오전 11:00 · B1 키즈룸</S.WorshipTableRow>
+                            <S.WorshipTableRow>유초등부 · 오전 10:40 · 비전센터 3F</S.WorshipTableRow>
+                            <S.WorshipTableRow>청소년부 · 오전 9:50 · 1F 소예배실</S.WorshipTableRow>
+                            <S.WorshipTableRow>청년부 · 오후 2:00 · 1F 소예배실</S.WorshipTableRow>
+                        </S.WorshipTableColumn>
 
-                    <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>부서예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>영유치부 · 오전 11:00 · B1 키즈룸</S.WorshipTableRow>
-                        <S.WorshipTableRow>유초등부 · 오전 10:40 · 비전센터 3F</S.WorshipTableRow>
-                        <S.WorshipTableRow>청소년부 · 오전 9:50 · 1F 소예배실</S.WorshipTableRow>
-                        <S.WorshipTableRow>청년부 · 오후 2:00 · 1F 소예배실</S.WorshipTableRow>
-                    </S.WorshipTableColumn>
-
-                    <S.WorshipTableColumn>
-                        <S.WorshipTableTitle>주중예배</S.WorshipTableTitle>
-                        <S.WorshipTableRow>새벽기도회 · 오전 5:00 · 1F 소예배실</S.WorshipTableRow>
-                        <S.WorshipTableRow>수요예배 · 저녁 7:30 · 2F 본당</S.WorshipTableRow>
-                        <S.WorshipTableRow>금요기도회 · 저녁 8:30 · 2F 본당</S.WorshipTableRow>
-                    </S.WorshipTableColumn>
-                </S.WorshipTableWrapper>
+                        <S.WorshipTableColumn>
+                            <S.WorshipTableTitle>주중예배</S.WorshipTableTitle>
+                            <S.WorshipTableRow>새벽기도회 · 오전 5:00 · 1F 소예배실</S.WorshipTableRow>
+                            <S.WorshipTableRow>수요예배 · 저녁 7:30 · 2F 본당</S.WorshipTableRow>
+                            <S.WorshipTableRow>금요기도회 · 저녁 8:30 · 2F 본당</S.WorshipTableRow>
+                        </S.WorshipTableColumn>
+                    </S.WorshipTableWrapper>
+                </motion.div>
             </S.WorshipSection>
 
             {/* 7. 퀵 링크 섹션 */}

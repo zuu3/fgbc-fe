@@ -1,4 +1,4 @@
-﻿import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
@@ -122,16 +122,20 @@ export const SectionTitle = styled.h2`
 export const IntroText = styled.p`
     ${typography.body1}
     text-align: left;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 
     @media (max-width: 768px) {
         ${typography.body2}
+        margin-bottom: 60px;
+        padding-bottom: 60px;
     }
 `;
 
 // 등록 과정
 export const StepsTitle = styled.h3`
-    ${typography.title7}
+    ${typography.title4}
     text-align: center;
     margin-bottom: 40px;
 `;
@@ -217,12 +221,8 @@ export const StepIconCircle = styled.div`
 `;
 
 export const StepNumber = styled.div`
-    ${typography.title4}
+    ${typography.title5}
     margin-bottom: 8px;
-
-    @media (max-width: 768px) {
-        ${typography.title6}
-    }
 `;
 
 export const StepDescription = styled.p`
