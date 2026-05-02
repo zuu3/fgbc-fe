@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+﻿import styled from "@emotion/styled";
+import { typography, colors } from '@/styles/theme';
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -8,7 +9,6 @@ export const Wrapper = styled.div`
     background-color: #fff;
     color: #333;
     overflow-x: hidden;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 `;
 
 // 1. 히어로 섹션
@@ -140,7 +140,7 @@ export const HeroContent = styled(motion.div)`
 `;
 
 export const HeroSubtitle = styled.p`
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 400;
     color: rgba(255,255,255,0.9);
     margin: 0 0 8px 0;
@@ -148,12 +148,12 @@ export const HeroSubtitle = styled.p`
     line-height: 1.3;
 
     @media (max-width: 768px) {
-        font-size: 1rem;
+        ${typography.body1}
     }
 `;
 
 export const HeroTitle = styled.h1`
-    font-size: 3.5rem;
+    ${typography.title1}
     font-weight: 700;
     margin: 0;
     color: white;
@@ -163,7 +163,7 @@ export const HeroTitle = styled.h1`
     margin-bottom: 16px;
 
     @media (max-width: 768px) {
-        font-size: 2rem;
+        ${typography.title4}
         padding: 0 10px;
         word-break: keep-all;
     }
@@ -179,7 +179,7 @@ export const HeroButton = styled.div`
         text-decoration: none;
         border-radius: 48px;
         font-weight: 500;
-        font-size: 1.1rem;
+        ${typography.title7}
         border: 1px solid rgba(255,255,255,0.3);
         transition: all 0.3s ease;
 
@@ -207,25 +207,21 @@ export const IntroContent = styled.div`
 `;
 
 export const IntroTitle = styled.h2`
-    font-size: 2rem;
-    font-weight: 600;
+    ${typography.title4}
     margin-bottom: 28px;
-    color: #2c2c2c;
-    letter-spacing: -0.02em;
+    text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
+        ${typography.title5}
     }
 `;
 
 export const IntroDescription = styled.p`
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #666;
+    ${typography.body1}
     margin-bottom: 40px;
 
     @media (max-width: 768px) {
-        font-size: 0.95rem;
+        ${typography.body2}
     }
 `;
 
@@ -238,7 +234,7 @@ export const IntroButton = styled.div`
         text-decoration: none;
         border-radius: 4px;
         font-weight: 500;
-        font-size: 0.95rem;
+        ${typography.body2}
         border: 1px solid #2c2c2c;
         transition: all 0.2s ease;
 
@@ -262,24 +258,20 @@ export const IdentitySection = styled.section`
 `;
 
 export const IdentitySubtitle = styled.p`
-    font-size: 1.4rem;
+    ${typography.title6}
     font-weight: 600;
     margin-bottom: 24px;
-    color: #111;
+    color: #333D4B;
 
     @media (max-width: 768px) {
-        font-size: 1.1rem;
+        ${typography.title7}
         margin-bottom: 16px;
     }
 `;
 
 export const IdentityTitle = styled.h2`
-    font-size: 3.2rem;
-    font-weight: 800;
-    line-height: 1.4;
+    ${typography.title1}
     margin-bottom: 80px;
-    color: #000;
-    letter-spacing: -0.02em;
     word-break: keep-all;
 
     .title-text-wrap {
@@ -303,7 +295,7 @@ export const IdentityTitle = styled.h2`
     }
 
     @media (max-width: 768px) {
-        font-size: 1.3rem;
+        ${typography.title7}
         margin-bottom: 40px;
         
         .inline-quote {
@@ -365,26 +357,24 @@ export const IdentityCard = styled.div`
 `;
 
 export const IdentityCardTitle = styled.h3`
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 1.3;
+    ${typography.title3}
     margin-bottom: 20px;
-    letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.1rem;
+        ${typography.title7}
         margin-bottom: 8px;
     }
 `;
 
 export const IdentityCardRef = styled.p`
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 500;
-    color: #333;
+    color: #4E5968;
     margin: 0;
+    letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
-        font-size: 0.8rem;
+        ${typography.caption}
     }
 `;
 
@@ -421,14 +411,13 @@ export const SummaryHeader = styled.div`
 `;
 
 export const SummaryLabel = styled.p`
-    font-size: 0.85rem;
+    ${typography.caption}
     color: #63718a;
     margin-bottom: 6px;
 `;
 
 export const SummaryTitle = styled.h3`
-    font-size: 1.35rem;
-    color: #1f2938;
+    ${typography.title7}
 `;
 
 export const SummaryList = styled.ul`
@@ -443,7 +432,7 @@ export const SummaryItem = styled.li`
     grid-template-columns: 66px 1fr;
     gap: 10px;
     align-items: center;
-    font-size: 0.95rem;
+    ${typography.body2}
 `;
 
 export const SummaryItemDate = styled.span`
@@ -451,7 +440,7 @@ export const SummaryItemDate = styled.span`
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    font-size: 0.8rem;
+    ${typography.caption}
     color: #173f74;
     background: #dceaff;
     padding: 5px 8px;
@@ -464,13 +453,13 @@ export const SummaryItemText = styled.strong`
 
 export const SummaryLoading = styled.p`
     color: #6a768b;
-    font-size: 0.92rem;
+    ${typography.body2}
     margin-bottom: 16px;
 `;
 
 export const BulletinMeta = styled.p`
     color: #55627a;
-    font-size: 0.95rem;
+    ${typography.body2}
     margin-bottom: 16px;
     line-height: 1.6;
 `;
@@ -483,7 +472,7 @@ export const SummaryLink = styled(Link)`
     border: 1px solid #214d84;
     color: #214d84;
     padding: 8px 14px;
-    font-size: 0.88rem;
+    ${typography.caption}
     font-weight: 600;
     transition: all 0.2s ease;
 
@@ -506,14 +495,14 @@ export const NewsSection = styled.section`
 export const NewsHeader = styled.h2`
     max-width: 1200px;
     margin: 0 auto 30px;
-    font-size: 2.4rem;
+    ${typography.title2}
     font-weight: 700;
     color: #1c1c1c;
     letter-spacing: -0.02em;
     text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 1.8rem;
+        ${typography.title4}
         margin-bottom: 20px;
     }
 `;
@@ -548,20 +537,20 @@ export const NewsCard = styled.div`
 `;
 
 export const NewsLabel = styled.p`
-    font-size: 0.9rem;
+    ${typography.body2}
     color: #999;
     margin-bottom: 8px;
 `;
 
 export const NewsTitle = styled.h3`
-    font-size: 2.4rem;
+    ${typography.title2}
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.7rem;
+        ${typography.title5}
     }
 `;
 
@@ -573,7 +562,7 @@ export const NewsDivider = styled.div`
 `;
 
 export const NewsDescription = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.7;
     color: #666;
     margin-bottom: 32px;
@@ -585,7 +574,7 @@ export const NewsButton = styled.div`
         color: #2c2c2c;
         text-decoration: none;
         font-weight: 500;
-        font-size: 0.95rem;
+        ${typography.body2}
         border-bottom: 1px solid #2c2c2c;
         padding-bottom: 4px;
         transition: opacity 0.2s ease;
@@ -644,7 +633,7 @@ export const ThumbnailTitle = styled.span`
     top: 50%;
     right: auto;
     color: #fff;
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 600;
     text-align: center;
     text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
@@ -658,7 +647,7 @@ export const ThumbnailTitle = styled.span`
     transition: opacity 0.2s ease, transform 0.2s ease;
 
     @media (max-width: 768px) {
-        font-size: 1rem;
+        ${typography.body1}
         max-width: 90%;
     }
 `;
@@ -742,7 +731,7 @@ export const CloseButton = styled.button`
     background: rgba(0, 0, 0, 0.65);
     color: #fff;
     border: none;
-    font-size: 1.1rem;
+    ${typography.title7}
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -758,14 +747,14 @@ export const VideoCaption = styled.div`
     left: 24px;
     bottom: 24px;
     color: #fff;
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 600;
     text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 
     @media (max-width: 768px) {
         left: 16px;
         bottom: 16px;
-        font-size: 0.95rem;
+        ${typography.body2}
         max-width: 85vw;
     }
 `;
@@ -784,8 +773,8 @@ export const LocationInner = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
     align-items: center;
 
     @media (max-width: 900px) {
@@ -801,30 +790,54 @@ export const LocationHeader = styled.div`
 `;
 
 export const LocationTitle = styled.h2`
-    font-size: 2rem;
-    font-weight: 700;
-    color: #1c1c1c;
-    margin-bottom: 12px;
-    letter-spacing: -0.02em;
+    ${typography.title4}
+    margin-bottom: 16px;
     text-align: left;
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
+        ${typography.title6}
     }
 `;
 
-export const LocationDesc = styled.p`
-    font-size: 1rem;
-    font-weight: 400;
-    color: #333;
-    line-height: 1.7;
-    margin-bottom: 0;
+export const LocationList = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-auto-flow: column;
+    gap: 24px 32px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-auto-flow: row;
+        gap: 24px;
+    }
+`;
+
+export const LocationItem = styled.li`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+`;
+
+export const LocationLabel = styled.h3`
+    ${typography.title7}
+    margin: 0;
+    text-align: left;
+`;
+
+export const LocationValue = styled.p`
+    ${typography.body1}
+    margin: 0;
     text-align: left;
 `;
 
 export const LocationMapCard = styled.div`
     width: 100%;
-    height: 360px;
+    height: 300px;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -876,7 +889,7 @@ export const InfoColumn = styled.article`
 `;
 
 export const InfoTitle = styled.h3`
-    font-size: 2.5rem;
+    ${typography.title3}
     font-weight: 700;
     color: #1d2229;
     margin-bottom: 24px;
@@ -884,14 +897,14 @@ export const InfoTitle = styled.h3`
     text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 1.7rem;
+        ${typography.title5}
         margin-bottom: 14px;
     }
 `;
 
 export const InfoText = styled.p`
     color: #2b3138;
-    font-size: 0.95rem;
+    ${typography.body2}
     line-height: 1.65;
     margin: 0;
     padding: 14px 0;
@@ -900,7 +913,7 @@ export const InfoText = styled.p`
 
 export const InfoPre = styled.p`
     color: #2d394a;
-    font-size: 0.95rem;
+    ${typography.body2}
     line-height: 1.7;
     margin: 0;
     white-space: pre-line;
@@ -929,13 +942,13 @@ export const InfoScheduleDate = styled.span`
     flex-shrink: 0;
     color: #282f39;
     font-weight: 700;
-    font-size: 1.45rem;
+    ${typography.title6}
     line-height: 1.4;
     letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
         width: 6.2em;
-        font-size: 1.02rem;
+        ${typography.body1}
     }
 `;
 
@@ -955,7 +968,7 @@ export const InfoScheduleWeekday = styled.span`
     display: inline-block;
     margin-left: 2px;
     color: #5b626b;
-    font-size: 0.74em;
+    ${typography.caption}
     font-weight: 600;
     vertical-align: 0.08em;
 `;
@@ -970,13 +983,13 @@ export const InfoScheduleDetails = styled.div`
 export const InfoScheduleDetail = styled.span`
     color: #282f39;
     font-weight: 600;
-    font-size: 1.45rem;
+    ${typography.title6}
     line-height: 1.4;
     letter-spacing: -0.01em;
     word-break: keep-all;
 
     @media (max-width: 768px) {
-        font-size: 1.02rem;
+        ${typography.body1}
     }
 `;
 
@@ -999,24 +1012,24 @@ export const InfoListLinkItem = styled(Link)`
 export const InfoRowTitle = styled.span`
     color: #282f39;
     font-weight: 600;
-    font-size: 1.45rem;
+    ${typography.title6}
     line-height: 1.4;
     letter-spacing: -0.01em;
     word-break: keep-all;
 
     @media (max-width: 768px) {
-        font-size: 1.02rem;
+        ${typography.body1}
     }
 `;
 
 export const InfoRowMeta = styled.span`
     color: #666c74;
     font-weight: 500;
-    font-size: 1.05rem;
+    ${typography.body1}
     flex-shrink: 0;
 
     @media (max-width: 768px) {
-        font-size: 0.82rem;
+        ${typography.caption}
     }
 `;
 
@@ -1025,7 +1038,7 @@ export const InfoLink = styled(Link)`
     margin-top: 14px;
     color: #1d2a3b;
     font-weight: 600;
-    font-size: 0.9rem;
+    ${typography.body2}
     text-decoration: none;
 
     &:hover {
@@ -1051,20 +1064,20 @@ export const YouTubeContent = styled.div`
 `;
 
 export const YouTubeLabel = styled.p`
-    font-size: 1.3rem;
+    ${typography.title7}
     color: rgba(255,255,255,0.8);
     margin-bottom: 8px;
 `;
 
 export const YouTubeTitle = styled.h2`
-    font-size: 2rem;
+    ${typography.title4}
     font-weight: 600;
     color: white;
     margin-bottom: 32px;
     letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
-        font-size: 1.5rem;
+        ${typography.title6}
     }
 `;
 
@@ -1078,11 +1091,11 @@ export const YouTubeButton = styled.a`
     text-decoration: none;
     border-radius: 48px;
     font-weight: 600;
-    font-size: 1.1rem;
+    ${typography.title7}
     transition: all 0.2s ease;
 
     svg {
-        font-size: 1.4rem;
+        ${typography.title6}
         color: #FF0000;
     }
 
@@ -1123,7 +1136,7 @@ export const WorshipTableWrapper = styled.div`
 `;
 
 export const WorshipTableHeader = styled.h2`
-    font-size: 2rem;
+    ${typography.title4}
     font-weight: 700;
     color: #2c2c2c;
     white-space: nowrap;
@@ -1132,7 +1145,7 @@ export const WorshipTableHeader = styled.h2`
     margin-bottom: 20px;
 
     @media (max-width: 768px) {
-        font-size: 1.2rem;
+        ${typography.title7}
         padding-bottom: 16px;
         border-bottom: 1px solid #eee;
         width: 100%;
@@ -1151,14 +1164,14 @@ export const WorshipTableColumn = styled.div`
 `;
 
 export const WorshipTableTitle = styled.h3`
-    font-size: 1.4rem;
+    ${typography.title6}
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 8px;
 `;
 
 export const WorshipTableRow = styled.div`
-    font-size: 1.2rem;
+    ${typography.title7}
     color: #555;
     line-height: 1.6;
     display: flex;
@@ -1192,7 +1205,7 @@ export const WorshipHeaderItem = styled.div`
 `;
 
 export const WorshipHeaderLabel = styled.h3`
-    font-size: 1.1rem;
+    ${typography.title7}
     font-weight: 600;
     color: #2c2c2c;
     margin: 0;
@@ -1216,7 +1229,7 @@ export const WorshipColumn = styled.div`
 `;
 
 export const WorshipInfo = styled.div`
-    font-size: 0.95rem;
+    ${typography.body2}
     line-height: 1.7;
     color: #666;
     padding: 16px;
@@ -1257,20 +1270,20 @@ export const InfoItem = styled.div`
 `;
 
 export const InfoIcon = styled.div`
-    font-size: 1.8rem;
+    ${typography.title4}
     color: #555;
     margin-bottom: 12px;
 `;
 
 export const InfoLabel = styled.h4`
-    font-size: 0.95rem;
+    ${typography.body2}
     font-weight: 600;
     margin-bottom: 8px;
     color: #2c2c2c;
 `;
 
 export const InfoTextLegacy = styled.p`
-    font-size: 0.9rem;
+    ${typography.body2}
     color: #666;
     line-height: 1.5;
     margin: 0;
@@ -1287,14 +1300,14 @@ export const AccountInfo = styled.div`
 `;
 
 export const AccountLabel = styled.h4`
-    font-size: 1rem;
+    ${typography.body1}
     font-weight: 600;
     margin-bottom: 10px;
     color: #2c2c2c;
 `;
 
 export const AccountNumber = styled.p`
-    font-size: 0.95rem;
+    ${typography.body2}
     color: #666;
     font-weight: 400;
     margin: 0;
@@ -1302,15 +1315,12 @@ export const AccountNumber = styled.p`
 
 // 새로운 예배 안내 카드 스타일
 export const SectionTitle = styled.h2`
-    font-size: 2rem;
-    font-weight: 600;
+    ${typography.title4}
     text-align: center;
     margin-bottom: 50px;
-    color: #2c2c2c;
-    letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.6rem;
+        ${typography.title5}
         margin-bottom: 36px;
     }
 `;
@@ -1341,7 +1351,7 @@ export const WorshipCard = styled.div`
 `;
 
 export const WorshipCardHeader = styled.h3`
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 600;
     color: #2c2c2c;
     margin-bottom: 24px;
@@ -1362,13 +1372,13 @@ export const WorshipItem = styled.div`
 `;
 
 export const WorshipName = styled.span`
-    font-size: 1rem;
+    ${typography.body1}
     font-weight: 600;
     color: #2c2c2c;
 `;
 
 export const WorshipDetail = styled.span`
-    font-size: 0.9rem;
+    ${typography.body2}
     color: #888;
 `;
 
@@ -1393,19 +1403,19 @@ export const InfoLeft = styled.div`
 `;
 
 export const InfoTitleLegacy = styled.h3`
-    font-size: 1.8rem;
+    ${typography.title4}
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 8px;
     letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.5rem;
+        ${typography.title6}
     }
 `;
 
 export const InfoSubtitle = styled.p`
-    font-size: 0.95rem;
+    ${typography.body2}
     color: #888;
 `;
 
@@ -1477,14 +1487,14 @@ export const CardHeader = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-    font-size: 1.4rem;
+    ${typography.title6}
     font-weight: 600;
     color: #2c2c2c;
     letter-spacing: -0.01em;
 `;
 
 export const CardDesc = styled.p`
-    font-size: 0.9rem;
+    ${typography.body2}
     color: #888;
     line-height: 1.5;
     word-break: keep-all;
@@ -1501,7 +1511,7 @@ export const MainActionLink = styled.div`
     display: inline-flex;
     align-items: center;
     color: #2c2c2c;
-    font-size: 0.95rem;
+    ${typography.body2}
     font-weight: 600;
     text-decoration: none;
     transition: opacity 0.2s ease;
@@ -1524,7 +1534,7 @@ export const SubActionLink = styled.div`
     display: inline-flex;
     align-items: center;
     color: #999;
-    font-size: 0.9rem;
+    ${typography.body2}
     font-weight: 400;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -1532,10 +1542,11 @@ export const SubActionLink = styled.div`
     &::after {
         content: ' ↗';
         margin-left: 2px;
-        font-size: 0.8rem;
+        ${typography.caption}
     }
 
     &:hover {
         color: #666;
     }
 `;
+

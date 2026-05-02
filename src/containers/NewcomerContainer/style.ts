@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+﻿import styled from '@emotion/styled';
+import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
     min-height: 100vh;
@@ -6,7 +7,6 @@ export const Container = styled.div`
     background-image: radial-gradient(1200px 600px at 10% -10%, rgba(255, 213, 153, 0.22), transparent 60%),
         radial-gradient(1000px 500px at 90% 0%, rgba(196, 226, 255, 0.22), transparent 55%);
     color: #333;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     padding-top: 80px;
 `;
 
@@ -18,15 +18,13 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.02em;
+    ${typography.title1}
     color: #f5f5f5;
     text-align: center;
+    margin: 0;
 
     @media (max-width: 768px) {
-        font-size: 2.2rem;
+        ${typography.title3}
     }
 `;
 
@@ -63,7 +61,7 @@ export const Tab = styled.button<{ $active: boolean }>`
     color: ${props => props.$active ? '#2c2c2c' : '#999'};
     border: none;
     border-bottom: ${props => props.$active ? '2px solid #2c2c2c' : '2px solid transparent'};
-    font-size: 0.95rem;
+    ${typography.body2}
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
     transition: all 0.2s ease;
@@ -74,7 +72,7 @@ export const Tab = styled.button<{ $active: boolean }>`
 
     @media (max-width: 768px) {
         padding: 14px 18px;
-        font-size: 0.9rem;
+        ${typography.body2}
         flex-shrink: 0;
     }
 `;
@@ -98,13 +96,10 @@ export const Section = styled.div`
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 2.2rem;
-    font-weight: 600;
+    ${typography.title3}
     margin-bottom: 24px;
     padding-bottom: 14px;
-    letter-spacing: -0.02em;
     text-align: left;
-    color: #2c2c2c;
     position: relative;
 
     &::after {
@@ -119,30 +114,26 @@ export const SectionTitle = styled.h2`
     }
 
     @media (max-width: 768px) {
-        font-size: 1.7rem;
+        ${typography.title5}
         margin-bottom: 20px;
     }
 `;
 
 export const IntroText = styled.p`
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #666;
+    ${typography.body1}
     text-align: left;
     margin-bottom: 60px;
 
     @media (max-width: 768px) {
-        font-size: 0.95rem;
+        ${typography.body2}
     }
 `;
 
 // 등록 과정
 export const StepsTitle = styled.h3`
-    font-size: 1.3rem;
-    font-weight: 600;
+    ${typography.title7}
     text-align: center;
     margin-bottom: 40px;
-    color: #2c2c2c;
 `;
 
 export const StepsContainer = styled.div`
@@ -226,19 +217,16 @@ export const StepIconCircle = styled.div`
 `;
 
 export const StepNumber = styled.div`
-    font-size: 1.95rem;
-    font-weight: 700;
-    color: #1f232a;
+    ${typography.title4}
     margin-bottom: 8px;
-    letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
-        font-size: 1.45rem;
+        ${typography.title6}
     }
 `;
 
 export const StepDescription = styled.p`
-    font-size: 0.97rem;
+    ${typography.body2}
     line-height: 1.65;
     color: #5c626c;
     margin: 0;
@@ -283,29 +271,24 @@ export const TrainingItem = styled.div`
 `;
 
 export const TrainingTitle = styled.h3`
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #2c2c2c;
+    ${typography.title7}
     margin-bottom: 12px;
-    letter-spacing: -0.01em;
 `;
 
 export const TrainingPeriod = styled.p`
-    font-size: 0.9rem;
+    ${typography.body2}
     color: #888;
     margin: 0;
     margin-top: 14px;
 `;
 
 export const TrainingDescription = styled.p`
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #666;
+    ${typography.body1}
     margin: 0;
 `;
 
 export const TrainingNote = styled.p`
-    font-size: 0.9rem;
+    ${typography.body2}
     line-height: 1.7;
     color: #999;
     text-align: center;
@@ -313,3 +296,4 @@ export const TrainingNote = styled.p`
     padding: 18px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
 `;
+

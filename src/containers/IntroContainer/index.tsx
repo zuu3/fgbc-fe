@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { MdContentCopy } from 'react-icons/md';
@@ -18,6 +18,8 @@ type MinistryMember = {
 };
 
 const IntroContainer = () => {
+    const [staffTab, setStaffTab] = useState<'pastor' | 'elder' | 'staff'>('pastor');
+
     const ministryMembers: MinistryMember[] = [
         {
             slotTitle: '원로목사',
@@ -55,6 +57,8 @@ const IntroContainer = () => {
         { name: '김재덕 장로', image: '/elder/37_kim.JPG', alt: '김재덕 장로' },
         { name: '오재문 장로', image: '/elder/29_oh.JPG', alt: '오재문 장로' },
     ];
+
+    const churchStaff: { name: string; image: string | null; alt: string; role: string }[] = [];
 
     const router = useRouter();
     const pathname = usePathname();
@@ -103,7 +107,7 @@ const IntroContainer = () => {
 
             <S.TabMenu>
                 <S.Tab $active={activeTab === 'greeting'} onClick={() => changeTab('greeting')}>
-                    섬기는 사람들
+                    섬기는 분들
                 </S.Tab>
                 <S.Tab $active={activeTab === 'worship'} onClick={() => changeTab('worship')}>
                     예배 안내
@@ -268,13 +272,16 @@ const IntroContainer = () => {
                         </S.StaffSectionHeader>
 
                         <S.StaffBoard>
-                            <S.StaffPanel>
-                                <S.StaffPrimaryGroup>
-                                    <S.StaffSubHeading>목회자 · 사모</S.StaffSubHeading>
+                            <S.SubTabMenu>
+                                <S.SubTabItem $active={staffTab === 'pastor'} onClick={() => setStaffTab('pastor')}>사역자</S.SubTabItem>
+                                <S.SubTabItem $active={staffTab === 'elder'} onClick={() => setStaffTab('elder')}>장로</S.SubTabItem>
+                            </S.SubTabMenu>
+
+                            <S.StaffContentBox>
+                                {staffTab === 'pastor' && (
                                     <S.MinistryGrid>
                                         {ministryMembers.map((member) => (
                                             <S.MinistryCard key={member.name}>
-                                                <S.MinistrySlot>{member.slotTitle}</S.MinistrySlot>
                                                 <S.MinistryPhotoFrame>
                                                     {member.image ? (
                                                         <Image
@@ -289,21 +296,43 @@ const IntroContainer = () => {
                                                     )}
                                                 </S.MinistryPhotoFrame>
                                                 <S.MinistryName>{member.name}</S.MinistryName>
+                                                <S.MinistrySlot>{member.role}</S.MinistrySlot>
                                                 {member.summary && <S.MinistrySummary>{member.summary}</S.MinistrySummary>}
                                             </S.MinistryCard>
                                         ))}
                                     </S.MinistryGrid>
-                                </S.StaffPrimaryGroup>
+                                )}
 
-                                <S.StaffDivider />
+                                {staffTab === 'elder' && (
+                                    <>
+                                        <S.StaffSubHeading>시무장로</S.StaffSubHeading>
+                                        <S.ElderCardGrid>
+                                            {activeElders.map((elder) => (
+                                                <S.ElderProfileCard key={elder.name}>
+                                                    <S.ElderPhotoCard>
+                                                        {elder.image ? (
+                                                            <Image
+                                                                src={elder.image}
+                                                                alt={elder.alt}
+                                                                width={360}
+                                                                height={460}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                                                            />
+                                                        ) : (
+                                                            <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
+                                                        )}
+                                                    </S.ElderPhotoCard>
+                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                    <S.ElderCardRole>시무장로</S.ElderCardRole>
+                                                </S.ElderProfileCard>
+                                            ))}
+                                        </S.ElderCardGrid>
 
-                                <S.StaffGroup>
-                                    <S.StaffSubHeading>시무장로</S.StaffSubHeading>
-                                    <S.ElderCardGrid>
-                                        {activeElders.map((elder) => (
-                                            <S.ElderProfileCard key={elder.name}>
-                                                <S.ElderPhotoCard>
-                                                    {elder.image ? (
+                                        <S.StaffSubHeading>은퇴장로</S.StaffSubHeading>
+                                        <S.ElderCardGrid>
+                                            {retiredElders.map((elder) => (
+                                                <S.ElderProfileCard key={elder.name}>
+                                                    <S.ElderPhotoCard>
                                                         <Image
                                                             src={elder.image}
                                                             alt={elder.alt}
@@ -311,38 +340,15 @@ const IntroContainer = () => {
                                                             height={460}
                                                             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
                                                         />
-                                                    ) : (
-                                                        <S.PhotoPlaceholder>사진 준비중</S.PhotoPlaceholder>
-                                                    )}
-                                                </S.ElderPhotoCard>
-                                                <S.ElderCardName>{elder.name}</S.ElderCardName>
-                                                <S.ElderCardRole>시무장로</S.ElderCardRole>
-                                            </S.ElderProfileCard>
-                                        ))}
-                                    </S.ElderCardGrid>
-                                </S.StaffGroup>
-
-                                <S.StaffGroup>
-                                    <S.StaffSubHeading>은퇴장로</S.StaffSubHeading>
-                                    <S.ElderCardGrid>
-                                        {retiredElders.map((elder) => (
-                                            <S.ElderProfileCard key={elder.name}>
-                                                <S.ElderPhotoCard>
-                                                    <Image
-                                                        src={elder.image}
-                                                        alt={elder.alt}
-                                                        width={360}
-                                                        height={460}
-                                                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-                                                    />
-                                                </S.ElderPhotoCard>
-                                                <S.ElderCardName>{elder.name}</S.ElderCardName>
-                                                <S.ElderCardRole>은퇴장로</S.ElderCardRole>
-                                            </S.ElderProfileCard>
-                                        ))}
-                                    </S.ElderCardGrid>
-                                </S.StaffGroup>
-                            </S.StaffPanel>
+                                                    </S.ElderPhotoCard>
+                                                    <S.ElderCardName>{elder.name}</S.ElderCardName>
+                                                    <S.ElderCardRole>은퇴장로</S.ElderCardRole>
+                                                </S.ElderProfileCard>
+                                            ))}
+                                        </S.ElderCardGrid>
+                                    </>
+                                )}
+                            </S.StaffContentBox>
                         </S.StaffBoard>
                     </S.StaffLayout>
                 </S.StaffSection>

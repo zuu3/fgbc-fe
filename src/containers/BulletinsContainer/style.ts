@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+﻿import styled from '@emotion/styled';
+import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -12,22 +13,19 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-  font-size: 2.2rem;
-  color: #1c1c1c;
+  ${typography.title3}
   margin: 0 0 8px;
 `;
 
 export const Description = styled.p`
-  color: #5e6573;
-  font-size: 1rem;
+  ${typography.body1}
   margin: 0;
 `;
 
 export const StatusText = styled.p`
+  ${typography.body2}
   max-width: 1100px;
   margin: 0 auto 18px;
-  color: #637086;
-  font-size: 0.95rem;
 `;
 
 export const AccordionList = styled.section`
@@ -69,16 +67,13 @@ export const ItemHeader = styled.div`
 `;
 
 export const ItemTitle = styled.h3`
+  ${typography.title7}
   margin: 0;
-  color: #1c2533;
-  font-size: 1.05rem;
-  line-height: 1.45;
 `;
 
 export const ItemMeta = styled.p`
+  ${typography.body2}
   margin: 6px 0 0;
-  color: #5f6b7e;
-  font-size: 0.9rem;
 `;
 
 export const Chevron = styled.span<{ $open: boolean }>`
@@ -91,7 +86,7 @@ export const Chevron = styled.span<{ $open: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  ${typography.title7}
   font-weight: 700;
   line-height: 1;
   transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
@@ -125,7 +120,7 @@ const ActionBase = styled.a`
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  font-size: 0.88rem;
+  ${typography.caption}
   font-weight: 600;
   padding: 9px 14px;
 `;
@@ -165,3 +160,4 @@ export const ViewerImage = styled.img`
   height: auto;
   display: block;
 `;
+
