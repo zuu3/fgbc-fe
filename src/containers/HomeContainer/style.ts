@@ -248,7 +248,7 @@ export const IntroButton = styled.div`
 // 3. 교회 정체성 (Identity)
 export const IdentitySection = styled.section`
     background: #eaeaea;
-    padding: 100px 20px;
+    padding: 140px 20px 220px;
     text-align: center;
     color: #000;
 
@@ -860,7 +860,7 @@ export const LocationMapCard = styled.div`
 
 export const InfoSection = styled.section`
     padding: 56px 0 92px;
-    background: #ececec;
+    background: #eaeaea;
 
     @media (max-width: 768px) {
         padding: 36px 0 64px;
@@ -889,7 +889,7 @@ export const InfoColumn = styled.article`
 `;
 
 export const InfoTitle = styled.h3`
-    ${typography.title3}
+    ${typography.title4}
     font-weight: 700;
     color: #1d2229;
     margin-bottom: 24px;
@@ -942,13 +942,12 @@ export const InfoScheduleDate = styled.span`
     flex-shrink: 0;
     color: #282f39;
     font-weight: 700;
-    ${typography.title6}
+    ${typography.title7}
     line-height: 1.4;
     letter-spacing: -0.01em;
 
     @media (max-width: 768px) {
         width: 6.2em;
-        ${typography.body1}
     }
 `;
 
@@ -983,14 +982,10 @@ export const InfoScheduleDetails = styled.div`
 export const InfoScheduleDetail = styled.span`
     color: #282f39;
     font-weight: 600;
-    ${typography.title6}
+    ${typography.title7}
     line-height: 1.4;
     letter-spacing: -0.01em;
     word-break: keep-all;
-
-    @media (max-width: 768px) {
-        ${typography.body1}
-    }
 `;
 
 export const InfoListLinkItem = styled(Link)`
@@ -1012,20 +1007,16 @@ export const InfoListLinkItem = styled(Link)`
 export const InfoRowTitle = styled.span`
     color: #282f39;
     font-weight: 600;
-    ${typography.title6}
+    ${typography.title7}
     line-height: 1.4;
     letter-spacing: -0.01em;
     word-break: keep-all;
-
-    @media (max-width: 768px) {
-        ${typography.body1}
-    }
 `;
 
 export const InfoRowMeta = styled.span`
     color: #666c74;
     font-weight: 500;
-    ${typography.body1}
+    ${typography.caption}
     flex-shrink: 0;
 
     @media (max-width: 768px) {

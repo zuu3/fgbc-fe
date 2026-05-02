@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiArrowRight, FiBookOpen, FiClipboard, FiCoffee, FiMessageCircle, FiSmile } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import * as S from './style';
 
 const NewcomerContainer = () => {
@@ -50,7 +51,14 @@ const NewcomerContainer = () => {
     return (
         <S.Container>
             <S.Header>
-                <S.Title>교회 생활</S.Title>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                >
+                    <S.Title>교회 생활</S.Title>
+                </motion.div>
             </S.Header>
 
             <S.TabMenu>
@@ -65,39 +73,68 @@ const NewcomerContainer = () => {
             <S.Content>
                 {activeTab === 'welcome' && (
                     <S.Section>
-                        <S.SectionTitle>처음 오셨나요?</S.SectionTitle>
-                        <S.IntroText>
-                            순복음범천교회는 처음 오신 분들을 축복하고 환영합니다.<br />
-                            4주간의 새가족 교육을 수료하여 등록 교인이 되시면 신앙생활의 도움을 받으실 수 있습니다.<br />
-                            궁금한 점이 있으시면 주일예배 후 본당 입구에서 안내자 봉사자에게 문의해주세요.<br />
-                            따뜻한 미소와 마음으로 행복한 믿음의 여정을 함께 걸어가겠습니다.
-                        </S.IntroText>
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        >
+                            <S.SectionTitle>처음 오셨나요?</S.SectionTitle>
+                            <S.IntroText>
+                                순복음범천교회는 처음 오신 분들을 축복하고 환영합니다.<br />
+                                4주간의 새가족 교육을 수료하여 등록 교인이 되시면 신앙생활의 도움을 받으실 수 있습니다.<br />
+                                궁금한 점이 있으시면 주일예배 후 본당 입구에서 안내자 봉사자에게 문의해주세요.<br />
+                                따뜻한 미소와 마음으로 행복한 믿음의 여정을 함께 걸어가겠습니다.
+                            </S.IntroText>
+                        </motion.div>
 
-                        <S.StepsTitle>순복음범천교회의 가족이 되는 방법을 알려드립니다</S.StepsTitle>
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
+                        >
+                            <S.StepsTitle>순복음범천교회의 가족이 되는 방법을 알려드립니다</S.StepsTitle>
 
-                        <S.StepFlow>
-                            {welcomeSteps.map((item, index) => (
-                                <React.Fragment key={item.step}>
-                                    <S.StepVisualCard>
-                                        <S.StepIconCircle>{item.icon}</S.StepIconCircle>
-                                        <S.StepNumber>{item.step}</S.StepNumber>
-                                        <S.StepDescription>{item.description}</S.StepDescription>
-                                    </S.StepVisualCard>
-                                    {index < welcomeSteps.length - 1 && (
-                                        <S.StepArrow aria-hidden="true">
-                                            <FiArrowRight />
-                                        </S.StepArrow>
-                                    )}
-                                </React.Fragment>
-                            ))}
-                        </S.StepFlow>
+                            <S.StepFlow>
+                                {welcomeSteps.map((item, index) => (
+                                    <React.Fragment key={item.step}>
+                                        <motion.div
+                                            initial="itemHidden"
+                                            whileInView="itemVisible"
+                                            viewport={{ once: true, amount: 0.1 }}
+                                            variants={{ itemHidden: { opacity: 0, x: -30 }, itemVisible: { opacity: 1, x: 0, transition: { duration: 1.0, ease: 'easeOut', delay: index * 0.5 } } }}
+                                            style={{ height: '100%', width: '100%' }}
+                                        >
+                                            <S.StepVisualCard>
+                                                <S.StepIconCircle>{item.icon}</S.StepIconCircle>
+                                                <S.StepNumber>{item.step}</S.StepNumber>
+                                                <S.StepDescription>{item.description}</S.StepDescription>
+                                            </S.StepVisualCard>
+                                        </motion.div>
+                                        {index < welcomeSteps.length - 1 && (
+                                            <S.StepArrow aria-hidden="true">
+                                                <FiArrowRight />
+                                            </S.StepArrow>
+                                        )}
+                                    </React.Fragment>
+                                ))}
+                            </S.StepFlow>
+                        </motion.div>
                     </S.Section>
                 )}
 
                 {activeTab === 'education' && (
                     <S.Section>
-                        <S.SectionTitle>교육 안내</S.SectionTitle>
-                        <S.IntroText>준비중입니다.</S.IntroText>
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        >
+                            <S.SectionTitle>교육 안내</S.SectionTitle>
+                            <S.IntroText>준비중입니다.</S.IntroText>
+                        </motion.div>
                     </S.Section>
                 )}
             </S.Content>

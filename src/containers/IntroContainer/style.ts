@@ -1,4 +1,4 @@
-﻿import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
@@ -686,7 +686,7 @@ export const StaffLayout = styled.div`
 export const StaffSection = styled.div`
     padding: 88px 24px 96px;
     background: transparent;
-    border-top: 1px solid rgba(36, 84, 123, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
 
     @media (max-width: 768px) {
         padding: 64px 20px 72px;
@@ -722,11 +722,15 @@ export const StaffIntroDesc = styled.p`
 
 export const StaffSubHeading = styled.h3`
     ${typography.title5}
-    margin: 40px 0 24px;
+    margin: 60px 0 24px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     text-align: left;
 
     &:first-of-type {
         margin-top: 0;
+        padding-top: 0;
+        border-top: none;
     }
 `;
 
