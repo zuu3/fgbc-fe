@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+﻿import styled from '@emotion/styled';
+import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
     min-height: 100vh;
@@ -6,7 +7,6 @@ export const Container = styled.div`
     background-image: radial-gradient(1200px 600px at 10% -10%, rgba(255, 213, 153, 0.22), transparent 60%),
         radial-gradient(1000px 500px at 90% 0%, rgba(196, 226, 255, 0.22), transparent 55%);
     color: #333;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     padding-top: 80px;
 `;
 
@@ -18,15 +18,13 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-size: 3rem;
-    font-weight: 600;
+    ${typography.title1}
     margin: 0;
-    letter-spacing: -0.02em;
     color: #f5f5f5;
     text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 2.2rem;
+        ${typography.title3}
     }
 `;
 
@@ -63,7 +61,7 @@ export const Tab = styled.button<{ $active: boolean }>`
     color: ${props => props.$active ? '#2c2c2c' : '#999'};
     border: none;
     border-bottom: ${props => props.$active ? '2px solid #2c2c2c' : '2px solid transparent'};
-    font-size: 0.95rem;
+    ${typography.body2}
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
     transition: all 0.2s ease;
@@ -74,7 +72,7 @@ export const Tab = styled.button<{ $active: boolean }>`
 
     @media (max-width: 768px) {
         padding: 14px 16px;
-        font-size: 0.9rem;
+        ${typography.body2}
         flex-shrink: 0;
     }
 `;
@@ -98,12 +96,9 @@ export const Section = styled.div`
 `;
 
 export const SectionTitle = styled.h2`
-    font-size: 2.2rem;
-    font-weight: 600;
+    ${typography.title5}
     margin-bottom: 32px;
     padding-bottom: 14px;
-    letter-spacing: -0.02em;
-    color: #2c2c2c;
     position: relative;
 
     &::after {
@@ -118,7 +113,7 @@ export const SectionTitle = styled.h2`
     }
 
     @media (max-width: 768px) {
-        font-size: 1.7rem;
+        ${typography.title5}
         margin-bottom: 24px;
     }
 `;
@@ -137,21 +132,19 @@ export const VisionIcon = styled.span`
 `;
 
 export const VisionTitle = styled.h3`
-    font-size: 1.5rem;
-    font-weight: 600;
+    ${typography.title6}
     color: white;
     margin: 0 0 8px 0;
-    letter-spacing: -0.01em;
 `;
 
 export const VisionSubtitle = styled.span`
-    font-size: 1rem;
+    ${typography.body1}
     color: rgba(255,255,255,0.6);
     display: block;
 `;
 
 export const VisionText = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.8;
     color: rgba(255,255,255,0.8);
     margin-bottom: 32px;
@@ -178,14 +171,14 @@ export const VisionItem = styled.div`
 `;
 
 export const VisionNumber = styled.span`
-    font-size: 1.25rem;
+    ${typography.title7}
     font-weight: 700;
     color: white;
     min-width: 40px;
 `;
 
 export const VisionItemText = styled.span`
-    font-size: 1rem;
+    ${typography.body1}
     color: rgba(255,255,255,0.9);
     line-height: 1.6;
 `;
@@ -225,15 +218,14 @@ export const InfoBlock = styled.div`
 `;
 
 export const InfoLabel = styled.h4`
-    font-size: 1.05rem;
+    ${typography.body1}
     font-weight: 600;
     color: #666;
     margin-bottom: 10px;
 `;
 
 export const InfoValue = styled.p`
-    font-size: 1rem;
-    line-height: 1.7;
+    ${typography.body1}
     color: #2c2c2c;
     margin: 0;
 `;
@@ -265,14 +257,14 @@ export const MapContainer = styled.div`
 `;
 
 export const StrategyText = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.8;
     color: rgba(255,255,255,0.8);
     margin-bottom: 24px;
 `;
 
 export const StrategyHighlight = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.8;
     color: rgba(255,255,255,0.9);
     padding: 24px;
@@ -285,7 +277,7 @@ export const StrategyHighlight = styled.p`
 export const GreetingBox = styled.div``;
 
 export const GreetingTitle = styled.h3`
-    font-size: 2rem;
+    ${typography.title4}
     font-weight: 700;
     text-align: center;
     margin-bottom: 12px;
@@ -293,7 +285,7 @@ export const GreetingTitle = styled.h3`
 `;
 
 export const GreetingSubtitle = styled.p`
-    font-size: 1.125rem;
+    ${typography.title7}
     color: rgba(255,255,255,0.7);
     text-align: center;
     margin-bottom: 60px;
@@ -361,7 +353,7 @@ export const PastorInfo = styled.div`
 `;
 
 export const PastorTitle = styled.h3`
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 600;
     color: #2c2c2c;
     text-align: center;
@@ -369,11 +361,18 @@ export const PastorTitle = styled.h3`
 `;
 
 export const GreetingIntroText = styled.p`
-    font-size: 1.1rem;
+    ${typography.title7}
     line-height: 1.8;
     color: #333;
     margin: 0 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     word-break: keep-all;
+
+    span {
+        ${typography.title4};
+    }
 
     strong {
         color: #000;
@@ -395,7 +394,7 @@ export const KeywordItem = styled.div`
 `;
 
 export const KeywordTitle = styled.h4`
-    font-size: 1.15rem;
+    ${typography.title7}
     font-weight: 700;
     color: #1a1a1a;
     margin: 0;
@@ -413,7 +412,7 @@ export const KeywordTitle = styled.h4`
 `;
 
 export const KeywordDesc = styled.p`
-    font-size: 1.05rem;
+    ${typography.body1}
     line-height: 1.8;
     color: #555;
     margin: 0;
@@ -446,7 +445,7 @@ export const StaffTab = styled.button<{ $active: boolean }>`
     border: none;
     border-bottom: ${props => props.$active ? '2px solid white' : '2px solid transparent'};
     margin-bottom: -1px;
-    font-size: 1rem;
+    ${typography.body1}
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
     transition: all 0.3s ease;
@@ -457,7 +456,7 @@ export const StaffTab = styled.button<{ $active: boolean }>`
 
     @media (max-width: 768px) {
         padding: 12px 20px;
-        font-size: 0.95rem;
+        ${typography.body2}
         flex-shrink: 0;
     }
 `;
@@ -471,7 +470,7 @@ export const ElderSection = styled.div`
 `;
 
 export const ElderTitle = styled.h3`
-    font-size: 1.75rem;
+    ${typography.title5}
     font-weight: 700;
     margin-bottom: 40px;
     letter-spacing: -0.01em;
@@ -516,7 +515,7 @@ export const ElderPhoto = styled.img`
 `;
 
 export const ElderName = styled.p`
-    font-size: 1.05rem;
+    ${typography.body1}
     font-weight: 600;
     color: #2c2c2c;
 `;
@@ -525,7 +524,7 @@ export const ElderName = styled.p`
 export const RegistrationBox = styled.div``;
 
 export const RegistrationTitle = styled.h3`
-    font-size: 1.25rem;
+    ${typography.title7}
     font-weight: 600;
     margin-bottom: 50px;
     color: rgba(255,255,255,0.9);
@@ -536,7 +535,7 @@ export const RegistrationSection = styled.div`
 `;
 
 export const RegistrationSubtitle = styled.h4`
-    font-size: 1.125rem;
+    ${typography.title7}
     font-weight: 600;
     margin-bottom: 20px;
 `;
@@ -546,7 +545,7 @@ export const RegistrationList = styled.ul`
     padding: 0;
     
     li {
-        font-size: 1rem;
+        ${typography.body1}
         line-height: 1.8;
         color: rgba(255,255,255,0.8);
         margin-bottom: 16px;
@@ -566,7 +565,7 @@ export const RegistrationOrderedList = styled.ol`
     padding-left: 24px;
     
     li {
-        font-size: 1rem;
+        ${typography.body1}
         line-height: 1.8;
         color: rgba(255,255,255,0.8);
         margin-bottom: 14px;
@@ -575,13 +574,13 @@ export const RegistrationOrderedList = styled.ol`
 
 // Ministry & History
 export const MinistryContent = styled.div`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.8;
     color: rgba(255,255,255,0.8);
 `;
 
 export const HistoryContent = styled.div`
-    font-size: 1rem;
+    ${typography.body1}
     line-height: 1.8;
     color: rgba(255,255,255,0.8);
 `;
@@ -595,8 +594,8 @@ export const VisionSection = styled.div`
 `;
 
 
-// 섬기는 사람들
-// 섬기는 사람들
+// 섬기는 분들
+// 섬기는 분들
 export const StaffContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -615,7 +614,7 @@ export const StaffGroup = styled.div`
 `;
 
 export const StaffCategoryTitle = styled.h4`
-    font-size: 1.2rem;
+    ${typography.title7}
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 20px;
@@ -664,13 +663,13 @@ export const StaffItem = styled.div`
 `;
 
 export const StaffName = styled.span`
-    font-size: 1.05rem;
+    ${typography.body1}
     font-weight: 600;
     color: #333;
 `;
 
 export const StaffRole = styled.span`
-    font-size: 0.95rem;
+    ${typography.body2}
     color: #777;
     text-align: right;
 `;
@@ -705,15 +704,29 @@ export const StaffSectionHeader = styled.div`
 export const StaffIntroTitle = styled.h3``;
 
 export const StaffBoardTitle = styled.h2`
+    ${typography.title3}
     margin: 0;
-    font-size: 2.35rem;
-    font-weight: 700;
-    color: #24547b;
-    letter-spacing: -0.03em;
     text-align: center;
 
     @media (max-width: 768px) {
-        font-size: 1.9rem;
+        ${typography.title4}
+    }
+`;
+
+export const StaffIntroDesc = styled.p`
+    ${typography.body1}
+    text-align: center;
+    margin: 0;
+    margin-top: 8px;
+`;
+
+export const StaffSubHeading = styled.h3`
+    ${typography.title5}
+    margin: 40px 0 24px;
+    text-align: left;
+
+    &:first-of-type {
+        margin-top: 0;
     }
 `;
 
@@ -729,50 +742,70 @@ export const StaffBoard = styled.div`
     }
 `;
 
-export const StaffPanel = styled.div`
+export const SubTabMenu = styled.div`
     display: flex;
-    flex-direction: column;
-    gap: 36px;
-    padding: 0;
-`;
-
-export const StaffPrimaryGroup = styled.section`
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-`;
-
-export const StaffDivider = styled.div`
-    width: 100%;
-    height: 1px;
-    background: rgba(36, 84, 123, 0.12);
-`;
-
-export const StaffIntroDesc = styled.p`
-    font-size: 1rem;
-    color: #56718b;
-    text-align: center;
-    margin: 0;
-`;
-
-export const StaffSubHeading = styled.h3`
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #24547b;
-    margin: 0 0 4px;
-    letter-spacing: -0.01em;
-    text-align: left;
-
-    @media (max-width: 768px) {
-        font-size: 1.45rem;
+    gap: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    
+    &::-webkit-scrollbar {
+        display: none;
     }
 `;
 
+export const SubTabItem = styled.button<{ $active: boolean }>`
+    padding: 16px 32px;
+    background: ${props => props.$active ? '#fff' : 'transparent'};
+    color: ${props => props.$active ? '#3b8f6c' : '#555'};
+    border: 1px solid ${props => props.$active ? '#ddd' : 'transparent'};
+    border-bottom: none;
+    margin-bottom: -1px;
+    ${typography.title7}
+    font-weight: ${props => props.$active ? '700' : '500'};
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: ${props => props.$active ? '#3b8f6c' : '#333'};
+    }
+
+    @media (max-width: 768px) {
+        padding: 12px 20px;
+        ${typography.body1}
+    }
+`;
+
+export const StaffContentBox = styled.div`
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 60px 40px;
+    background: #fff;
+    min-height: 400px;
+
+    @media (max-width: 768px) {
+        padding: 40px 20px;
+    }
+`;
+
+export const EmptyStaffMessage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    ${typography.title7}
+    color: #888;
+    background: #f9f9f9;
+    border-radius: 8px;
+`;
+
+
+
 export const MinistryGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 280px));
+    grid-template-columns: repeat(4, minmax(220px, 280px));
     gap: 28px 22px;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
 
     @media (max-width: 1024px) {
@@ -781,7 +814,6 @@ export const MinistryGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
-        gap: 24px;
     }
 `;
 
@@ -792,29 +824,22 @@ export const MinistryCard = styled.article`
     max-width: 280px;
 `;
 
-export const MinistrySlot = styled.span`
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    margin-bottom: 12px;
-    padding: 6px 12px;
-    border: 1px solid rgba(36, 84, 123, 0.16);
-    background: #fff;
-    color: #355c7d;
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+export const MinistrySlot = styled.p`
+    margin: 0 0 6px;
+    ${typography.body2}
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
 `;
 
 export const MinistryPhotoFrame = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 5;
-    border: 1px solid rgba(48, 79, 106, 0.2);
-    background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);
+    aspect-ratio: 3 / 4;
+    border: 1px solid #ddd;
+    background: #fafafa;
     overflow: hidden;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
 `;
 
@@ -825,26 +850,25 @@ export const PhotoPlaceholder = styled.div`
     align-items: center;
     justify-content: center;
     color: #777;
-    font-size: 0.9rem;
+    ${typography.body2}
 `;
 
 export const MinistryName = styled.h4`
-    margin: 12px 0 4px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #20262d;
+    ${typography.title7}
+    margin: 16px 0 4px;
+    text-align: center;
 `;
 
 export const MinistryRole = styled.p`
     margin: 0 0 6px;
-    font-size: 0.9rem;
+    ${typography.body2}
     line-height: 1.5;
     color: #49627a;
 `;
 
 export const MinistrySummary = styled.p`
     margin: 0;
-    font-size: 0.88rem;
+    ${typography.caption}
     line-height: 1.55;
     color: #576b7e;
     word-break: keep-all;
@@ -855,9 +879,7 @@ export const ElderBlock = styled.div`
 `;
 
 export const ElderGroupTitle = styled.h4`
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #2a2a2a;
+    ${typography.title7}
     margin: 0 0 12px;
 `;
 
@@ -884,7 +906,7 @@ export const ElderSimpleCard = styled.div`
 
 export const ElderCardGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    grid-template-columns: repeat(4, minmax(220px, 280px));
     gap: 28px 22px;
     justify-content: start;
     width: 100%;
@@ -902,31 +924,32 @@ export const ElderProfileCard = styled.article`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 260px;
+    max-width: 280px;
 `;
 
 export const ElderPhotoCard = styled.div`
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
+    border: 1px solid #ddd;
+    background: #fafafa;
     overflow: hidden;
-    border: 1px solid rgba(48, 79, 106, 0.2);
-    background: linear-gradient(180deg, #ffffff 0%, #eef4f8 100%);
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
 `;
 
 export const ElderCardName = styled.h4`
-    margin: 10px 0 4px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #20262d;
+    ${typography.title7}
+    margin: 16px 0 4px;
+    text-align: center;
 `;
 
 export const ElderCardRole = styled.p`
-    margin: 0;
-    font-size: 0.84rem;
-    color: #587188;
+    margin: 0 0 6px;
+    ${typography.body2}
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
 `;
 
 export const ElderPhotoPlaceholder = styled.div`
@@ -940,12 +963,12 @@ export const ElderPhotoPlaceholder = styled.div`
     align-items: center;
     justify-content: center;
     color: #888;
-    font-size: 0.85rem;
+    ${typography.caption}
 `;
 
 export const ElderNameOnly = styled.p`
     margin: 0;
-    font-size: 1rem;
+    ${typography.body1}
     font-weight: 600;
     color: #222;
     text-align: center;
@@ -978,7 +1001,7 @@ export const WorshipTableWrapper = styled.div`
 `;
 
 export const WorshipTableHeader = styled.h2`
-    font-size: 2.4rem;
+    ${typography.title2}
     margin: 0 0 28px;
     font-weight: 700;
     color: #2c2c2c;
@@ -986,7 +1009,7 @@ export const WorshipTableHeader = styled.h2`
     letter-spacing: -0.02em;
 
     @media (max-width: 768px) {
-        font-size: 1.8rem;
+        ${typography.title4}
         margin-bottom: 20px;
     }
 `;
@@ -1005,14 +1028,14 @@ export const WorshipTableColumn = styled.div`
 `;
 
 export const WorshipTableTitle = styled.h3`
-    font-size: 1.3rem;
+    ${typography.title7}
     font-weight: 700;
     margin-bottom: 14px;
     color: #2c2c2c;
 `;
 
 export const WorshipTableRow = styled.div`
-    font-size: 0.96rem;
+    ${typography.body2}
     color: #444;
     line-height: 1.75;
     border-top: 1px solid #ececec;
@@ -1034,14 +1057,14 @@ export const OnlineSection = styled.div`
 `;
 
 export const OnlineTitle = styled.h4`
-    font-size: 1.15rem;
+    ${typography.title7}
     font-weight: 600;
     margin-bottom: 12px;
     color: #2c2c2c;
 `;
 
 export const AccountNumber = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     color: #666;
     font-weight: 400;
 `;
@@ -1075,7 +1098,7 @@ export const AccountBanner = styled.div`
 `;
 
 export const AccountText = styled.p`
-    font-size: 1rem;
+    ${typography.body1}
     color: white;
     margin: 0;
     display: flex;
@@ -1091,7 +1114,7 @@ export const AccountText = styled.p`
     }
 
     svg {
-        font-size: 1.2rem;
+        ${typography.title7}
         opacity: 0.7;
         transition: opacity 0.2s;
         flex-shrink: 0;
@@ -1104,10 +1127,11 @@ export const AccountText = styled.p`
     @media (max-width: 768px) {
         flex-direction: column;
         gap: 8px;
-        font-size: 0.95rem;
+        ${typography.body2}
 
         strong {
             margin-bottom: 4px;
         }
     }
 `;
+
