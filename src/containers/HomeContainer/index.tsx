@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
-    { src: '/banner/main.png', alt: '순복음범천교회 메인 배너', isDark: false },
+    { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
     { src: '/banner/heal.png', alt: '순복음범천교회 말씀부흥회 배너', isDark: false },
 ] as const;
 
@@ -173,7 +173,7 @@ export default function HomeContainer() {
 
         const timer = window.setInterval(() => {
             setCurrentBannerIndex((prev) => (prev + 1) % HERO_BANNERS.length);
-        }, 5000);
+        }, 10000);
 
         return () => {
             window.clearInterval(timer);
