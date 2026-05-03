@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 export const HeroSection = styled.div`
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1920 / 900;
     min-height: 0;
     overflow: hidden;
     display: flex;
@@ -24,7 +24,7 @@ export const HeroSection = styled.div`
     align-items: center;
     
     @media (max-width: 768px) {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 1920 / 900;
     }
 `;
 
