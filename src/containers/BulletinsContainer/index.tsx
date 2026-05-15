@@ -2,9 +2,12 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import * as S from './style';
 import { getPublishedBulletins, resolveBulletinFileUrl } from '@/lib/content/client';
+import { formatKstDate } from '@/lib/dateTimeKst';
 import type { Bulletin, ContentCategory } from '@/types/content';
+
 function isPdfUrl(url: string): boolean {
   return /\.pdf(?:$|[?#])/i.test(url);
 }
@@ -14,11 +17,18 @@ function toPdfEmbedUrl(url: string): string {
   return `${url}${url.includes('#') ? '&' : '#'}toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
 }
 
+function getDetailBasePath(category: ContentCategory): string {
+  if (category === 'pastoral_letter') return '/pastoral-letter';
+  if (category === 'sharing_worship') return '/sharing-worship';
+  return '/bulletins';
+}
+
 type BulletinsContainerProps = {
   contentCategory?: ContentCategory;
   title?: string;
   description?: string;
   emptyText?: string;
+  embedded?: boolean;
 };
 
 export default function BulletinsContainer({
@@ -26,6 +36,7 @@ export default function BulletinsContainer({
   title = '주보',
   description = '매주 발행되는 교회 소식을 확인하세요.',
   emptyText = '등록된 주보가 없습니다.',
+  embedded = false,
 }: BulletinsContainerProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -34,6 +45,8 @@ export default function BulletinsContainer({
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [manualExpandedBulletinId, setManualExpandedBulletinId] = useState<string | null | undefined>(undefined);
+
+  const isTextCategory = contentCategory === 'pastoral_letter' || contentCategory === 'sharing_worship';
 
   useEffect(() => {
     let mounted = true;
@@ -83,20 +96,33 @@ export default function BulletinsContainer({
     });
   };
 
-  return (
-    <S.Container>
-      <S.Header>
-        <S.Title>{title}</S.Title>
-        <S.Description>{description}</S.Description>
-      </S.Header>
-
-      {isLoading && <S.StatusText>{title} 불러오는 중...</S.StatusText>}
+  const listContent = (
+    <>
+      {isLoading && <S.SpinnerWrapper><S.Spinner /></S.SpinnerWrapper>}
       {!isLoading && bulletins.length === 0 && <S.StatusText>{emptyText}</S.StatusText>}
 
-      {!isLoading && bulletins.length > 0 && (
+      {!isLoading && bulletins.length > 0 && isTextCategory && (
+        <S.LinkList>
+          {bulletins.map((bulletin) => (
+            <S.LinkItem key={bulletin.id}>
+              <Link href={`${getDetailBasePath(contentCategory)}/${bulletin.id}`}>
+                <S.LinkItemInner>
+                  <S.LinkItemBody>
+                    <S.LinkItemTitle>{bulletin.title}</S.LinkItemTitle>
+                    <S.LinkItemDate>{formatKstDate(bulletin.week_start_date)}</S.LinkItemDate>
+                  </S.LinkItemBody>
+                  <S.LinkItemArrow aria-hidden="true">›</S.LinkItemArrow>
+                </S.LinkItemInner>
+              </Link>
+            </S.LinkItem>
+          ))}
+        </S.LinkList>
+      )}
+
+      {!isLoading && bulletins.length > 0 && !isTextCategory && (
         <S.AccordionList>
           {bulletins.map((bulletin) => {
-            const fileUrl = resolveBulletinFileUrl(bulletin.file_path);
+            const fileUrl = resolveBulletinFileUrl(bulletin.file_path ?? '');
             const isOpen = currentExpandedBulletinId === bulletin.id;
             const pdfFile = isPdfUrl(fileUrl);
 
@@ -129,6 +155,18 @@ export default function BulletinsContainer({
           })}
         </S.AccordionList>
       )}
+    </>
+  );
+
+  if (embedded) return listContent;
+
+  return (
+    <S.Container>
+      <S.Header>
+        <S.Title>{title}</S.Title>
+        <S.Description>{description}</S.Description>
+      </S.Header>
+      {listContent}
     </S.Container>
   );
 }

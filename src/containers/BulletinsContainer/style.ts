@@ -28,6 +28,27 @@ export const StatusText = styled.p`
   margin: 0 auto 18px;
 `;
 
+export const SpinnerWrapper = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+`;
+
+export const Spinner = styled.div`
+  width: 36px;
+  height: 36px;
+  border: 3px solid #dbe2ee;
+  border-top-color: #1a3d69;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+`;
+
 export const AccordionList = styled.section`
   max-width: 1100px;
   margin: 0 auto;
@@ -159,5 +180,76 @@ export const ViewerImage = styled.img`
   width: 100%;
   height: auto;
   display: block;
+`;
+
+export const LinkList = styled.section`
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 10px;
+`;
+
+export const LinkItem = styled.article`
+  border: 1px solid #dbe2ee;
+  border-radius: 14px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    border-color: #9ab1d2;
+    box-shadow: 0 6px 18px rgba(76, 104, 145, 0.07);
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+export const LinkItemInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+`;
+
+export const LinkItemBody = styled.div`
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const LinkItemTitle = styled.h3`
+  ${typography.title7}
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const LinkItemDate = styled.p`
+  ${typography.body2}
+  margin: 0;
+  color: #6b7a99;
+`;
+
+export const LinkItemArrow = styled.span`
+  flex-shrink: 0;
+  font-size: 22px;
+  color: #9ab1d2;
+  line-height: 1;
+`;
+
+export const TextContent = styled.div`
+  ${typography.body1}
+  white-space: pre-wrap;
+  word-break: keep-all;
+  line-height: 1.9;
+  padding: 8px 4px 4px;
+  color: #2c3e50;
 `;
 
