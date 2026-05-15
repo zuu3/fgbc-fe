@@ -51,6 +51,7 @@ export default function AdminContainer() {
     week_start_date: '',
     service_type: '',
     file_path: '',
+    content: '',
     is_latest: true,
   });
 
@@ -110,7 +111,12 @@ export default function AdminContainer() {
     event.preventDefault();
     setMessage('');
 
-    if (!bulletinForm.file_path) {
+    const isTextCategory = activeDocumentTab?.key === 'pastoral_letter' || activeDocumentTab?.key === 'sharing_worship';
+    if (isTextCategory && !bulletinForm.content.trim()) {
+      setMessage('내용을 입력해 주세요.');
+      return;
+    }
+    if (!isTextCategory && !bulletinForm.file_path) {
       setMessage('파일을 먼저 업로드해 주세요.');
       return;
     }
@@ -148,6 +154,7 @@ export default function AdminContainer() {
       week_start_date: '',
       service_type: '',
       file_path: '',
+      content: '',
       is_latest: true,
     });
     setMessage(editingBulletinId ? '자료가 수정되었습니다.' : '자료가 등록되었습니다.');
@@ -240,7 +247,8 @@ export default function AdminContainer() {
       content_category: bulletin.content_category,
       week_start_date: bulletin.week_start_date,
       service_type: bulletin.service_type || '',
-      file_path: bulletin.file_path,
+      file_path: bulletin.file_path || '',
+      content: bulletin.content || '',
       is_latest: bulletin.is_latest,
     });
     setMessage('자료 수정 모드입니다. 내용 수정 후 저장하세요.');
@@ -304,6 +312,7 @@ export default function AdminContainer() {
                 week_start_date: '',
                 service_type: '',
                 file_path: '',
+                content: '',
                 is_latest: true,
               });
             }}
@@ -354,21 +363,35 @@ export default function AdminContainer() {
                   onChange={(event) => setBulletinForm((prev) => ({ ...prev, service_type: event.target.value }))}
                 />
               </S.Field>
-              <S.Field>
-                <label htmlFor="bulletin-file">파일 업로드</label>
-                <input
-                  id="bulletin-file"
-                  type="file"
-                  accept="application/pdf,image/*"
-                  onChange={(event) => setSelectedBulletinFile(event.target.files?.[0] ?? null)}
-                />
-                <S.UploadRow>
-                  <button type="button" onClick={onUploadBulletinFile} disabled={isUploadingBulletinFile}>
-                    {isUploadingBulletinFile ? '업로드 중...' : '파일 업로드'}
-                  </button>
-                  <span>{bulletinForm.file_path || '아직 업로드된 파일이 없습니다.'}</span>
-                </S.UploadRow>
-              </S.Field>
+              {(activeDocumentTab?.key === 'pastoral_letter' || activeDocumentTab?.key === 'sharing_worship') ? (
+                <S.Field className="full">
+                  <label htmlFor="bulletin-content">내용</label>
+                  <textarea
+                    id="bulletin-content"
+                    rows={10}
+                    placeholder="본문 내용을 입력하세요."
+                    value={bulletinForm.content}
+                    onChange={(event) => setBulletinForm((prev) => ({ ...prev, content: event.target.value }))}
+                    required
+                  />
+                </S.Field>
+              ) : (
+                <S.Field>
+                  <label htmlFor="bulletin-file">파일 업로드</label>
+                  <input
+                    id="bulletin-file"
+                    type="file"
+                    accept="application/pdf,image/*"
+                    onChange={(event) => setSelectedBulletinFile(event.target.files?.[0] ?? null)}
+                  />
+                  <S.UploadRow>
+                    <button type="button" onClick={onUploadBulletinFile} disabled={isUploadingBulletinFile}>
+                      {isUploadingBulletinFile ? '업로드 중...' : '파일 업로드'}
+                    </button>
+                    <span>{bulletinForm.file_path || '아직 업로드된 파일이 없습니다.'}</span>
+                  </S.UploadRow>
+                </S.Field>
+              )}
             </S.FormGrid>
           </S.Form>
 
