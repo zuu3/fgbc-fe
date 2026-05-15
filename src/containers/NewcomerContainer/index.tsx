@@ -5,14 +5,16 @@ import { useSearchParams } from 'next/navigation';
 import { FiArrowRight, FiBookOpen, FiClipboard, FiCoffee, FiMessageCircle, FiSmile } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import * as S from './style';
+import BulletinsContainer from '@/containers/BulletinsContainer';
 
 const NewcomerContainer = () => {
     const searchParams = useSearchParams();
     const tabParam = searchParams.get('tab');
-    const [selectedTab, setSelectedTab] = useState<'welcome' | 'education' | null>(null);
-    const activeTab = useMemo<'welcome' | 'education'>(() => {
+    type TabKey = 'welcome' | 'education' | 'sharing-worship' | 'pastoral-letter';
+    const [selectedTab, setSelectedTab] = useState<TabKey | null>(null);
+    const activeTab = useMemo<TabKey>(() => {
         if (selectedTab) return selectedTab;
-        if (tabParam === 'welcome' || tabParam === 'education') {
+        if (tabParam === 'welcome' || tabParam === 'education' || tabParam === 'sharing-worship' || tabParam === 'pastoral-letter') {
             return tabParam;
         }
         return 'welcome';
@@ -68,12 +70,12 @@ const NewcomerContainer = () => {
                 <S.Tab $active={activeTab === 'education'} onClick={() => setSelectedTab('education')}>
                     교육 안내
                 </S.Tab>
-                <S.TabLink href="/sharing-worship">
+                <S.Tab $active={activeTab === 'sharing-worship'} onClick={() => setSelectedTab('sharing-worship')}>
                     나눔으로 드리는 예배
-                </S.TabLink>
-                <S.TabLink href="/pastoral-letter">
+                </S.Tab>
+                <S.Tab $active={activeTab === 'pastoral-letter'} onClick={() => setSelectedTab('pastoral-letter')}>
                     목양편지
-                </S.TabLink>
+                </S.Tab>
             </S.TabMenu>
 
             <S.Content>
@@ -141,6 +143,28 @@ const NewcomerContainer = () => {
                             <S.SectionTitle>교육 안내</S.SectionTitle>
                             <S.IntroText>준비중입니다.</S.IntroText>
                         </motion.div>
+                    </S.Section>
+                )}
+
+                {activeTab === 'sharing-worship' && (
+                    <S.Section>
+                        <S.SectionTitle>나눔으로 드리는 예배</S.SectionTitle>
+                        <BulletinsContainer
+                            contentCategory="sharing_worship"
+                            emptyText="등록된 나눔으로 드리는 예배 자료가 없습니다."
+                            embedded
+                        />
+                    </S.Section>
+                )}
+
+                {activeTab === 'pastoral-letter' && (
+                    <S.Section>
+                        <S.SectionTitle>목양편지</S.SectionTitle>
+                        <BulletinsContainer
+                            contentCategory="pastoral_letter"
+                            emptyText="등록된 목양편지가 없습니다."
+                            embedded
+                        />
                     </S.Section>
                 )}
             </S.Content>
