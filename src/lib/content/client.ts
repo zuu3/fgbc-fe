@@ -24,6 +24,16 @@ export async function getLatestBulletin(): Promise<Bulletin | null> {
   return list[0] ?? null;
 }
 
+export async function getBulletinById(id: string): Promise<Bulletin | null> {
+  try {
+    return await apiClient<Bulletin>(`/bulletins/${encodeURIComponent(id)}`, {
+      next: { revalidate: 30 }
+    });
+  } catch {
+    return null;
+  }
+}
+
 export async function getMonthlySummary(monthKey: string): Promise<MonthlySummary | null> {
   try {
     const list = await apiClient<MonthlySummary[]>('/monthly-summaries/', {

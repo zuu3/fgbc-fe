@@ -4,7 +4,8 @@ export type Bulletin = {
   content_category: ContentCategory;
   week_start_date: string;
   service_type: string | null;
-  file_path: string;
+  file_path: string | null;
+  content: string | null;
   published_at: string | null;
   is_latest: boolean;
 };
