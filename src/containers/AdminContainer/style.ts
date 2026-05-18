@@ -4,6 +4,10 @@ export const Container = styled.div`
   min-height: 100vh;
   padding: 140px 20px 90px;
   background: linear-gradient(180deg, #f4f6fb 0%, #f8f6ef 100%);
+
+  @media (max-width: 768px) {
+    padding: 100px 14px 60px;
+  }
 `;
 
 export const Header = styled.header`
@@ -14,6 +18,10 @@ export const Header = styled.header`
 export const Title = styled.h1`
   font-size: 2.2rem;
   margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Description = styled.p`
@@ -37,6 +45,7 @@ export const TabRow = styled.div`
   max-width: 1120px;
   margin: 0 auto 14px;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 `;
 
@@ -49,6 +58,12 @@ export const TabButton = styled.button<{ $active: boolean }>`
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 0.82rem;
+    padding: 8px 12px;
+  }
 `;
 
 export const Panel = styled.section`
@@ -58,6 +73,11 @@ export const Panel = styled.section`
   border: 1px solid #dce4f0;
   background: #fff;
   padding: 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    border-radius: 12px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -132,6 +152,7 @@ export const UploadRow = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 
   button {
     border: 1px solid #b6c3d9;
@@ -156,8 +177,63 @@ export const UploadRow = styled.div`
   }
 `;
 
+export const PdfImportRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  border: 1px dashed #aabbd6;
+  border-radius: 10px;
+  background: #f5f8ff;
+
+  input[type='file'] {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.86rem;
+    color: #364560;
+  }
+
+  input[type='password'] {
+    width: 180px;
+    border: 1px solid #aabbd6;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.86rem;
+    color: #253247;
+    background: #fff;
+  }
+
+  button {
+    border: 1px solid #1e4c88;
+    border-radius: 8px;
+    background: #1e4c88;
+    color: #fff;
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    button {
+      text-align: center;
+    }
+  }
+`;
+
 export const ActionRow = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
 
@@ -176,6 +252,13 @@ export const ActionRow = styled.div`
     border-color: #1e4c88;
     background: #1e4c88;
     color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    button {
+      flex: 1;
+      text-align: center;
+    }
   }
 `;
 
