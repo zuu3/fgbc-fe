@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AuthContext from "../components/AuthContext";
+import EmotionRegistry from "../lib/EmotionRegistry";
 import { Analytics } from "@vercel/analytics/next";
 
 
@@ -117,13 +118,15 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <AuthContext>
-          <Header />
-          <main className="page-transition">
-            {children}
-          </main>
-          <Footer />
-        </AuthContext>
+        <EmotionRegistry>
+          <AuthContext>
+            <Header />
+            <main className="page-transition">
+              {children}
+            </main>
+            <Footer />
+          </AuthContext>
+        </EmotionRegistry>
         <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <Analytics />
       </body>
