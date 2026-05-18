@@ -42,6 +42,9 @@ export default function AdminContainer() {
   const [message, setMessage] = useState('');
   const [isUploadingBulletinFile, setIsUploadingBulletinFile] = useState(false);
   const [selectedBulletinFile, setSelectedBulletinFile] = useState<File | null>(null);
+  const [isPdfParsing, setIsPdfParsing] = useState(false);
+  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null);
+  const [ocrPassword, setOcrPassword] = useState('');
   const [editingBulletinId, setEditingBulletinId] = useState<string | null>(null);
   const [editingMonthlySummaryId, setEditingMonthlySummaryId] = useState<string | null>(null);
 
@@ -189,6 +192,43 @@ export default function AdminContainer() {
       setMessage('파일 업로드 완료. 등록 버튼을 눌러 저장해 주세요.');
     } finally {
       setIsUploadingBulletinFile(false);
+    }
+  };
+
+  const onParsePdf = async () => {
+    if (!selectedPdfFile) {
+      setMessage('PDF 파일을 먼저 선택해 주세요.');
+      return;
+    }
+    if (!ocrPassword) {
+      setMessage('OCR 비밀번호를 입력해 주세요.');
+      return;
+    }
+    setIsPdfParsing(true);
+    setMessage('');
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedPdfFile);
+      formData.append('content_category', activeDocumentTab?.key ?? bulletinForm.content_category);
+      formData.append('ocr_password', ocrPassword);
+
+      const response = await fetch('/api/admin/parse-pdf', { method: 'POST', body: formData });
+      const json = await response.json() as { title?: string; week_start_date?: string; content?: string; error?: string };
+
+      if (!response.ok) {
+        setMessage(`PDF 파싱 실패: ${json.error || 'unknown error'}`);
+        return;
+      }
+
+      setBulletinForm((prev) => ({
+        ...prev,
+        ...(json.title ? { title: json.title } : {}),
+        ...(json.week_start_date ? { week_start_date: json.week_start_date } : {}),
+        ...(json.content ? { content: json.content } : {}),
+      }));
+      setMessage('PDF에서 내용을 불러왔습니다. 내용을 확인한 후 등록 버튼을 눌러 저장하세요.');
+    } finally {
+      setIsPdfParsing(false);
     }
   };
 
@@ -364,17 +404,39 @@ export default function AdminContainer() {
                 />
               </S.Field>
               {(activeDocumentTab?.key === 'pastoral_letter' || activeDocumentTab?.key === 'sharing_worship') ? (
-                <S.Field className="full">
-                  <label htmlFor="bulletin-content">내용</label>
-                  <textarea
-                    id="bulletin-content"
-                    rows={10}
-                    placeholder="본문 내용을 입력하세요."
-                    value={bulletinForm.content}
-                    onChange={(event) => setBulletinForm((prev) => ({ ...prev, content: event.target.value }))}
-                    required
-                  />
-                </S.Field>
+                <>
+                  <S.Field className="full">
+                    <label>PDF에서 자동 입력</label>
+                    <S.PdfImportRow>
+                      <input
+                        type="file"
+                        accept="application/pdf"
+                        onChange={(event) => setSelectedPdfFile(event.target.files?.[0] ?? null)}
+                      />
+                      <input
+                        type="password"
+                        placeholder="OCR 비밀번호"
+                        value={ocrPassword}
+                        onChange={(event) => setOcrPassword(event.target.value)}
+                        autoComplete="off"
+                      />
+                      <button type="button" onClick={onParsePdf} disabled={isPdfParsing || !selectedPdfFile || !ocrPassword}>
+                        {isPdfParsing ? '불러오는 중...' : 'PDF 불러오기'}
+                      </button>
+                    </S.PdfImportRow>
+                  </S.Field>
+                  <S.Field className="full">
+                    <label htmlFor="bulletin-content">내용</label>
+                    <textarea
+                      id="bulletin-content"
+                      rows={10}
+                      placeholder="본문 내용을 입력하세요."
+                      value={bulletinForm.content}
+                      onChange={(event) => setBulletinForm((prev) => ({ ...prev, content: event.target.value }))}
+                      required
+                    />
+                  </S.Field>
+                </>
               ) : (
                 <S.Field>
                   <label htmlFor="bulletin-file">파일 업로드</label>

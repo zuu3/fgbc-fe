@@ -36,7 +36,7 @@ const securityHeaders = [
 ] as const;
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: ['pdf-parse'],
   reactCompiler: true,
   compiler: {
     emotion: true,
