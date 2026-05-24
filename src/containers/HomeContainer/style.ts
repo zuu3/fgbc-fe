@@ -502,7 +502,7 @@ export const NewsHeader = styled.h2`
     text-align: center;
 
     @media (max-width: 768px) {
-        ${typography.title4}
+        ${typography.title6}
         margin-bottom: 20px;
     }
 `;
@@ -1136,7 +1136,7 @@ export const WorshipTableHeader = styled.h2`
     margin-bottom: 20px;
 
     @media (max-width: 768px) {
-        ${typography.title7}
+        ${typography.title5}
         padding-bottom: 16px;
         border-bottom: 1px solid #eee;
         width: 100%;
@@ -1159,6 +1159,10 @@ export const WorshipTableTitle = styled.h3`
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 8px;
+
+    @media (max-width: 768px) {
+        ${typography.title7}
+    }
 `;
 
 export const WorshipTableRow = styled.div`
