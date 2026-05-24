@@ -11,6 +11,15 @@ export const colors = {
     primary: '#3182F6',
     border: '#E5E8EB',
     background: '#F9FAFB',
+    ink: '#1c1c1c',
+    inkMid: '#2c2c2c',
+    inkSoft: '#555555',
+    inkFaint: '#888888',
+    surface: '#ffffff',
+    surfaceOff: '#fafafa',
+    surfaceWarm: '#f6f4ef',
+    surfaceAsh: '#eaeaea',
+    borderSubtle: '#eeeeee',
 };
 
 export const typography = {

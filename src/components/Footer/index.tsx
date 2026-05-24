@@ -39,6 +39,7 @@ export default function Footer() {
                             href="https://www.youtube.com/@%EC%88%9C%EB%B3%B5%EC%9D%8C%EB%B2%94%EC%B2%9C%EA%B5%90%ED%9A%8C"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="유튜브 (새 탭에서 열림)"
                         >
                             유튜브
                         </S.FooterSnsLink>
@@ -46,6 +47,7 @@ export default function Footer() {
                             href="https://www.instagram.com/sunbe0m_ch/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="인스타그램 (새 탭에서 열림)"
                         >
                             인스타그램
                         </S.FooterSnsLink>

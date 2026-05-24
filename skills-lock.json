@@ -6,6 +6,102 @@
       "sourceType": "github",
       "skillPath": "skill/SKILL.md",
       "computedHash": "e08cc9be673b6b5e66eb55cf77eb50a940fc603245b2f75d8370a2043aa926aa"
+    },
+    "omd": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/omd/SKILL.md",
+      "computedHash": "7e322483c26e4eaa31ed8bc292e000d884fa426d499089628948254a146cbd0c"
+    },
+    "omd-lab-01-designmd-impact": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/omd-lab-01-designmd-impact/SKILL.md",
+      "computedHash": "59de94bf6cb2f7be462a5671f3cf82ae551a17630f7d8a36f990bc3a2a7f33d9"
+    },
+    "omd-lab-02-design-harness": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-lab-02-design-harness/SKILL.md",
+      "computedHash": "181652fd67ca3144aaaf02c1dcd5221e0c78a307a5992dcee6eba56768c84e64"
+    },
+    "omd:add-reference": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/omd-add-reference/SKILL.md",
+      "computedHash": "c2dc4797680cebc3b4377c6a8dfe1652cdb8d7ff89b5cea529942754897a9f06"
+    },
+    "omd:apply": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-apply/SKILL.md",
+      "computedHash": "cc1a6c6fe445e7a6ba586272d5d1a776f92cc43714e703642d2f6af176af71cb"
+    },
+    "omd:asset-fetch": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-asset-fetch/SKILL.md",
+      "computedHash": "a306344f190f1e2b288b001a742dd55818b5c3aab96a4c4e755e07bb4ce2dd01"
+    },
+    "omd:batch-launch": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/omd-batch-launch/SKILL.md",
+      "computedHash": "6dcfe19ec3bb24e917e434f4b0a74a4bc5c11e2a5226ec90ba8c28b88f1b5767"
+    },
+    "omd:design": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/omd-design/SKILL.md",
+      "computedHash": "268bed0fd37c9b02b389c1dced4fee8ec8718fa565151be59c7521c669504c7e"
+    },
+    "omd:experiment-gallery": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-experiment-gallery/SKILL.md",
+      "computedHash": "7ad0620da16da3e4136ff053f731e8d22ff2046b56604c22e9767b14b7950b81"
+    },
+    "omd:harness": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-harness/SKILL.md",
+      "computedHash": "b44e31102cbfed78e7c5692ec5427d7e1e8fd49ff2551b10a4bdede44aace4de"
+    },
+    "omd:init": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-init/SKILL.md",
+      "computedHash": "9d3c2d0c1b9304fb3069fb6c05a284f041fb39fec030f7330f737fb9207715d7"
+    },
+    "omd:learn": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-learn/SKILL.md",
+      "computedHash": "132aaa66577418cdad593ae48bcfea10246d26f4274867433aff9ee547cc7c2c"
+    },
+    "omd:migrate": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/omd-migrate/SKILL.md",
+      "computedHash": "a5ae58399643d97ba2f711f99e91740b75c97d60cf38724b8ab30deba6feb36f"
+    },
+    "omd:reference-capture": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-reference-capture/SKILL.md",
+      "computedHash": "e1b7689a61b1527863cc9a2af9779f0d62069f35b53ab08316c27a7534fa11fe"
+    },
+    "omd:remember": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-remember/SKILL.md",
+      "computedHash": "594527ebc61471e313ae3204b55484d41acda4e5553f4c7e2f9324d9436d1867"
+    },
+    "omd:sync": {
+      "source": "kwakseongjae/oh-my-design",
+      "sourceType": "github",
+      "skillPath": "skills/omd-sync/SKILL.md",
+      "computedHash": "3bad818c52e82f3a5ee78b3ad7755b4653e7042910d0372ee9ecf6ac6f0cc069"
     }
   }
 }

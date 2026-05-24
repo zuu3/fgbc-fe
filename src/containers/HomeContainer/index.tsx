@@ -13,7 +13,6 @@ import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
     { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
-    { src: '/banner/heal.png', alt: '순복음범천교회 말씀부흥회 배너', isDark: false },
 ] as const;
 
 function toKstDate(value: string | Date): Date {
@@ -203,9 +202,9 @@ export default function HomeContainer() {
                         <S.HeroSlidesTrack
                             animate={{ x: `-${currentBannerIndex * 100}%` }}
                             transition={{ type: 'spring', bounce: 0, duration: 0.8 }}
-                            drag="x"
-                            dragElastic={0.5}
-                            onDragEnd={handleDragEnd}
+                            drag={HERO_BANNERS.length >= 2 ? 'x' : false}
+                            dragElastic={HERO_BANNERS.length >= 2 ? 0.5 : 0}
+                            onDragEnd={HERO_BANNERS.length >= 2 ? handleDragEnd : undefined}
                         >
                             {HERO_BANNERS.map((banner, index) => (
                                 <S.HeroSlideItem key={banner.src}>
@@ -222,17 +221,19 @@ export default function HomeContainer() {
                             ))}
                         </S.HeroSlidesTrack>
                     </S.HeroSlides>
-                    <S.HeroIndicators aria-hidden="true">
-                        {HERO_BANNERS.map((banner, index) => (
-                            <S.HeroIndicator
-                                key={`indicator-${banner.src}`}
-                                type="button"
-                                onClick={() => setCurrentBannerIndex(index)}
-                                $active={currentBannerIndex === index}
-                                aria-label={`${index + 1}번 배너로 이동`}
-                            />
-                        ))}
-                    </S.HeroIndicators>
+                    {HERO_BANNERS.length >= 2 && (
+                        <S.HeroIndicators aria-hidden="true">
+                            {HERO_BANNERS.map((banner, index) => (
+                                <S.HeroIndicator
+                                    key={`indicator-${banner.src}`}
+                                    type="button"
+                                    onClick={() => setCurrentBannerIndex(index)}
+                                    $active={currentBannerIndex === index}
+                                    aria-label={`${index + 1}번 배너로 이동`}
+                                />
+                            ))}
+                        </S.HeroIndicators>
+                    )}
                 </S.HeroBackground>
             </S.HeroSection>
 
@@ -245,15 +246,15 @@ export default function HomeContainer() {
                         hidden: { opacity: 0 },
                         visible: {
                             opacity: 1,
-                            transition: { staggerChildren: 0.2 }
+                            transition: { staggerChildren: 0.18 }
                         }
                     }}
                 >
-                    <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
                         <S.IdentitySubtitle>순복음범천교회는</S.IdentitySubtitle>
                     </motion.div>
 
-                    <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                    <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: 'easeOut' } } }}>
                         <S.IdentityTitle>
                             <div className="title-text-wrap">
                                 <span className="inline-quote right">
@@ -271,7 +272,7 @@ export default function HomeContainer() {
                     </motion.div>
 
                     <S.IdentityGrid>
-                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } }}>
                             <Link href="/intro?tab=greeting" scroll={true}>
                                 <S.IdentityCard>
                                     <S.IdentityCardTitle>빛의<br />정체성</S.IdentityCardTitle>
@@ -279,7 +280,7 @@ export default function HomeContainer() {
                                 </S.IdentityCard>
                             </Link>
                         </motion.div>
-                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } }}>
                             <Link href="/intro?tab=greeting" scroll={true}>
                                 <S.IdentityCard>
                                     <S.IdentityCardTitle>성령<br />충만</S.IdentityCardTitle>
@@ -287,7 +288,7 @@ export default function HomeContainer() {
                                 </S.IdentityCard>
                             </Link>
                         </motion.div>
-                        <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } } }}>
                             <Link href="/intro?tab=greeting" scroll={true}>
                                 <S.IdentityCard>
                                     <S.IdentityCardTitle>회복의<br />공동체</S.IdentityCardTitle>
@@ -305,7 +306,7 @@ export default function HomeContainer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                    variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
                 >
                     <S.NewsHeader>이번 주 설교</S.NewsHeader>
                 </motion.div>
@@ -341,7 +342,7 @@ export default function HomeContainer() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
-                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
                         style={{ minWidth: 0 }}
                     >
                         <S.LocationHeader>
@@ -386,7 +387,7 @@ export default function HomeContainer() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
-                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                        variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
                         style={{ minWidth: 0 }}
                     >
                         <S.InfoColumn>
@@ -413,7 +414,7 @@ export default function HomeContainer() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
-                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
+                        variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
                         style={{ minWidth: 0 }}
                     >
                         <S.InfoColumn>
@@ -480,7 +481,7 @@ export default function HomeContainer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
+                    variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } } }}
                 >
                     <S.WorshipTableHeader>예배 안내</S.WorshipTableHeader>
                 </motion.div>
@@ -489,7 +490,7 @@ export default function HomeContainer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
+                    variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.1 } } }}
                 >
                     <S.WorshipTableWrapper>
                         <S.WorshipTableColumn>
