@@ -22,9 +22,10 @@ export const HeroSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     @media (max-width: 768px) {
         aspect-ratio: 1920 / 900;
+        min-height: 160px;
     }
 `;
 
@@ -43,7 +44,7 @@ export const HeroBackground = styled.div`
 
     @media (max-width: 768px) {
         img {
-            object-fit: contain !important;
+            object-fit: cover !important;
         }
     }
 `;
@@ -193,7 +194,7 @@ export const HeroButton = styled.div`
 // 2. 교회 소개 섹션
 export const IntroSection = styled.section`
     padding: 100px 20px;
-    background: #fafafa;
+    background: ${colors.surfaceOff};
 
     @media (max-width: 768px) {
         padding: 60px 20px;
@@ -230,16 +231,16 @@ export const IntroButton = styled.div`
         display: inline-block;
         padding: 14px 32px;
         background: transparent;
-        color: #2c2c2c;
+        color: ${colors.inkMid};
         text-decoration: none;
         border-radius: 4px;
         font-weight: 500;
         ${typography.body2}
-        border: 1px solid #2c2c2c;
+        border: 1px solid ${colors.inkMid};
         transition: all 0.2s ease;
 
         &:hover {
-            background: #2c2c2c;
+            background: ${colors.inkMid};
             color: white;
         }
     }
@@ -247,7 +248,7 @@ export const IntroButton = styled.div`
 
 // 3. 교회 정체성 (Identity)
 export const IdentitySection = styled.section`
-    background: #eaeaea;
+    background: ${colors.surfaceAsh};
     padding: 140px 20px 220px;
     text-align: center;
     color: #000;
@@ -485,7 +486,7 @@ export const SummaryLink = styled(Link)`
 // 4. 교회 소식 섹션
 export const NewsSection = styled.section`
     padding: 100px 20px;
-    background: #f6f4ef;
+    background: ${colors.surfaceWarm};
 
     @media (max-width: 768px) {
         padding: 60px 20px;
@@ -497,7 +498,7 @@ export const NewsHeader = styled.h2`
     margin: 0 auto 30px;
     ${typography.title2}
     font-weight: 700;
-    color: #1c1c1c;
+    color: ${colors.ink};
     letter-spacing: -0.02em;
     text-align: center;
 
@@ -538,14 +539,14 @@ export const NewsCard = styled.div`
 
 export const NewsLabel = styled.p`
     ${typography.body2}
-    color: #999;
+    color: ${colors.inkFaint};
     margin-bottom: 8px;
 `;
 
 export const NewsTitle = styled.h3`
     ${typography.title2}
     font-weight: 700;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     margin-bottom: 20px;
     letter-spacing: -0.02em;
 
@@ -557,7 +558,7 @@ export const NewsTitle = styled.h3`
 export const NewsDivider = styled.div`
     width: 40px;
     height: 2px;
-    background: #2c2c2c;
+    background: ${colors.inkMid};
     margin-bottom: 24px;
 `;
 
@@ -571,11 +572,11 @@ export const NewsDescription = styled.p`
 export const NewsButton = styled.div`
     a,
     button {
-        color: #2c2c2c;
+        color: ${colors.inkMid};
         text-decoration: none;
         font-weight: 500;
         ${typography.body2}
-        border-bottom: 1px solid #2c2c2c;
+        border-bottom: 1px solid ${colors.inkMid};
         padding-bottom: 4px;
         transition: opacity 0.2s ease;
         background: transparent;
@@ -861,7 +862,7 @@ export const LocationMapCard = styled.div`
 
 export const InfoSection = styled.section`
     padding: 56px 0 92px;
-    background: #eaeaea;
+    background: ${colors.surfaceAsh};
 
     @media (max-width: 768px) {
         padding: 36px 0 64px;
@@ -1079,7 +1080,7 @@ export const YouTubeButton = styled.a`
     gap: 10px;
     padding: 16px 36px;
     background: white;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     text-decoration: none;
     border-radius: 48px;
     font-weight: 600;
@@ -1114,7 +1115,7 @@ export const WorshipTableWrapper = styled.div`
     align-items: flex-start;
     gap: 60px;
     padding: 40px 0 0 0;
-    // border-top: 2px solid #2c2c2c;
+    // border-top: 2px solid ${colors.inkMid};
     // border-bottom: 1px solid #ddd;
 
     @media (max-width: 1024px) {
@@ -1130,7 +1131,7 @@ export const WorshipTableWrapper = styled.div`
 export const WorshipTableHeader = styled.h2`
     ${typography.title4}
     font-weight: 700;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     white-space: nowrap;
     text-align: center;
     // min-width: 80px;
@@ -1139,7 +1140,7 @@ export const WorshipTableHeader = styled.h2`
     @media (max-width: 768px) {
         ${typography.title5}
         padding-bottom: 16px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid ${colors.borderSubtle};
         width: 100%;
     }
 `;
@@ -1158,7 +1159,7 @@ export const WorshipTableColumn = styled.div`
 export const WorshipTableTitle = styled.h3`
     ${typography.title6}
     font-weight: 700;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     margin-bottom: 8px;
 
     @media (max-width: 768px) {
@@ -1168,7 +1169,7 @@ export const WorshipTableTitle = styled.h3`
 
 export const WorshipTableRow = styled.div`
     ${typography.body0}
-    color: #555;
+    color: ${colors.inkSoft};
     line-height: 1.6;
     display: flex;
     gap: 16px;
@@ -1179,7 +1180,7 @@ export const WorshipHeader = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #2c2c2c;
+    border-bottom: 2px solid ${colors.inkMid};
     margin-bottom: 30px;
 
     @media (max-width: 768px) {
@@ -1203,7 +1204,7 @@ export const WorshipHeaderItem = styled.div`
 export const WorshipHeaderLabel = styled.h3`
     ${typography.title7}
     font-weight: 600;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     margin: 0;
 `;
 
@@ -1229,11 +1230,11 @@ export const WorshipInfo = styled.div`
     line-height: 1.7;
     color: #666;
     padding: 16px;
-    background: #fafafa;
+    background: ${colors.surfaceOff};
     border-radius: 6px;
 
     strong {
-        color: #2c2c2c;
+        color: ${colors.inkMid};
         font-weight: 600;
     }
 `;
@@ -1241,7 +1242,7 @@ export const WorshipInfo = styled.div`
 // 7. 교회 정보 섹션
 export const InfoSectionLegacy = styled.section`
     padding: 80px 20px;
-    background: #fafafa;
+    background: ${colors.surfaceOff};
 
     @media (max-width: 768px) {
         padding: 60px 20px;
@@ -1267,7 +1268,7 @@ export const InfoItem = styled.div`
 
 export const InfoIcon = styled.div`
     ${typography.title4}
-    color: #555;
+    color: ${colors.inkSoft};
     margin-bottom: 12px;
 `;
 
@@ -1275,7 +1276,7 @@ export const InfoLabel = styled.h4`
     ${typography.body2}
     font-weight: 600;
     margin-bottom: 8px;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
 `;
 
 export const InfoTextLegacy = styled.p`
@@ -1292,14 +1293,14 @@ export const AccountInfo = styled.div`
     padding: 28px;
     background: white;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid ${colors.borderSubtle};
 `;
 
 export const AccountLabel = styled.h4`
     ${typography.body1}
     font-weight: 600;
     margin-bottom: 10px;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
 `;
 
 export const AccountNumber = styled.p`
@@ -1336,7 +1337,7 @@ export const WorshipCard = styled.div`
     background: white;
     border-radius: 12px;
     padding: 32px 28px;
-    border: 1px solid #eee;
+    border: 1px solid ${colors.borderSubtle};
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     transition: all 0.2s ease;
 
@@ -1349,7 +1350,7 @@ export const WorshipCard = styled.div`
 export const WorshipCardHeader = styled.h3`
     ${typography.title7}
     font-weight: 600;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     margin-bottom: 24px;
     padding-bottom: 16px;
     border-bottom: 2px solid #f59e0b;
@@ -1370,12 +1371,12 @@ export const WorshipItem = styled.div`
 export const WorshipName = styled.span`
     ${typography.body1}
     font-weight: 600;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
 `;
 
 export const WorshipDetail = styled.span`
     ${typography.body2}
-    color: #888;
+    color: ${colors.inkFaint};
 `;
 
 // 새로운 교회 정보 스타일
@@ -1401,7 +1402,7 @@ export const InfoLeft = styled.div`
 export const InfoTitleLegacy = styled.h3`
     ${typography.title4}
     font-weight: 700;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     margin-bottom: 8px;
     letter-spacing: -0.02em;
 
@@ -1412,7 +1413,7 @@ export const InfoTitleLegacy = styled.h3`
 
 export const InfoSubtitle = styled.p`
     ${typography.body2}
-    color: #888;
+    color: ${colors.inkFaint};
 `;
 
 export const InfoRight = styled.div`
@@ -1472,7 +1473,7 @@ export const QuickLinkCard = styled.div`
 
     &:hover {
         border-color: #e0e0e0;
-        background: #fafafa;
+        background: ${colors.surfaceOff};
     }
 `;
 
@@ -1485,13 +1486,13 @@ export const CardHeader = styled.div`
 export const CardTitle = styled.h3`
     ${typography.title6}
     font-weight: 600;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     letter-spacing: -0.01em;
 `;
 
 export const CardDesc = styled.p`
     ${typography.body2}
-    color: #888;
+    color: ${colors.inkFaint};
     line-height: 1.5;
     word-break: keep-all;
 `;
@@ -1506,7 +1507,7 @@ export const CardLinks = styled.div`
 export const MainActionLink = styled.div`
     display: inline-flex;
     align-items: center;
-    color: #2c2c2c;
+    color: ${colors.inkMid};
     ${typography.body2}
     font-weight: 600;
     text-decoration: none;
@@ -1529,7 +1530,7 @@ export const MainActionLink = styled.div`
 export const SubActionLink = styled.div`
     display: inline-flex;
     align-items: center;
-    color: #999;
+    color: ${colors.inkFaint};
     ${typography.body2}
     font-weight: 400;
     text-decoration: none;

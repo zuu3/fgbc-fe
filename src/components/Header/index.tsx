@@ -60,6 +60,8 @@ const Header = () => {
                         $lightText={useLightText}
                         onMouseEnter={() => setActiveMenu('intro')}
                         onMouseLeave={() => setActiveMenu(null)}
+                        onFocus={() => setActiveMenu('intro')}
+                        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setActiveMenu(null); }}
                     >
                         <Link href="/intro?tab=greeting">
                             <S.NavLink $lightText={useLightText}>교회 소개</S.NavLink>
@@ -83,6 +85,8 @@ const Header = () => {
                         $lightText={useLightText}
                         onMouseEnter={() => setActiveMenu('life')}
                         onMouseLeave={() => setActiveMenu(null)}
+                        onFocus={() => setActiveMenu('life')}
+                        onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setActiveMenu(null); }}
                     >
                         <Link href="/newcomer?tab=welcome">
                             <S.NavLink $lightText={useLightText}>교회 생활</S.NavLink>
