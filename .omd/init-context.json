@@ -1,0 +1,15 @@
+{
+  "reference_id": "claude",
+  "description": "순복음범천교회 공식 웹사이트. 따뜻하고, 신뢰감 있고, 차분한 교회 커뮤니티 사이트. 1971년 창립. 기존 교인과 방문자 모두를 위한 정보 사이트.",
+  "mode": "inspired",
+  "delta_set": {
+    "axes": {
+      "color.saturation_pct": -5,
+      "density.shift": -1
+    },
+    "voiceHints": ["따뜻한 교회 tone", "기업적이지 않게", "존댓말", "중장년+청년 모두"],
+    "matchedKeywords": ["warm", "trustworthy", "earthy", "literary", "community"],
+    "warnings": []
+  },
+  "bootstrapped_at": "2026-05-24T00:00:00.000Z"
+}
