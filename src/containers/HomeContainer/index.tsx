@@ -12,9 +12,9 @@ import { motion } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
-    { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
     { src: '/banner/55thanniversary.png', alt: '순복음범천교회 55주년 기념 배너', isDark: false },
     { src: '/banner/gospel.png', alt: '순복음범천교회 복음 배너', isDark: false },
+    { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
 ] as const;
 
 function toKstDate(value: string | Date): Date {
