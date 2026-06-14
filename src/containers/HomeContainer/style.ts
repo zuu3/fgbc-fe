@@ -752,11 +752,7 @@ export const VideoCaption = styled.div`
     color: #fff;
     ${typography.title7}
     font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 6px 18px rgba(0, 0, 0, 0.7);
-    background: rgba(0, 0, 0, 0.35);
-    padding: 6px 12px;
-    border-radius: 6px;
-    backdrop-filter: blur(4px);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 6px 18px rgba(0, 0, 0, 0.6);
 
     @media (max-width: 768px) {
         left: 16px;
