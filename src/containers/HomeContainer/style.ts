@@ -108,6 +108,7 @@ export const HeroIndicator = styled.button<{ $active: boolean }>`
     padding: 0;
     cursor: pointer;
     background: ${(props) => (props.$active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.45)')};
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
     transition: background 0.25s ease;
 
     &:focus-visible {
