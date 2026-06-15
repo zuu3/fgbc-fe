@@ -338,6 +338,11 @@ export const PastorImageWrapper = styled.div`
         width: 100%;
         max-width: 380px;
     }
+
+    @media (max-width: 480px) {
+        max-width: 100%;
+        border-radius: 14px;
+    }
 `;
 
 export const GreetingTextWrapper = styled.div`
@@ -481,6 +486,10 @@ export const ElderGrid = styled.div`
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+    }
+
+    @media (max-width: 360px) {
+        grid-template-columns: 1fr;
     }
 `;
 
@@ -895,6 +904,11 @@ export const ElderSimpleGrid = styled.div`
 
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    @media (max-width: 380px) {
+        grid-template-columns: 1fr;
     }
 `;
 
@@ -914,10 +928,12 @@ export const ElderCardGrid = styled.div`
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
     }
 
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 12px;
     }
 `;
 
@@ -926,6 +942,10 @@ export const ElderProfileCard = styled.article`
     flex-direction: column;
     width: 100%;
     max-width: 210px;
+
+    @media (max-width: 1024px) {
+        max-width: 100%;
+    }
 `;
 
 export const ElderPhotoCard = styled.div`

@@ -109,7 +109,10 @@ export const FooterSnsLink = styled.a`
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    padding: 6px 10px;
+    padding: 10px 14px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
     transition: background 0.2s ease, color 0.2s ease;

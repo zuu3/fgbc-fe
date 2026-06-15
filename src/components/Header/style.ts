@@ -168,12 +168,17 @@ export const MobileMenuButton = styled.button<{ $lightText: boolean }>`
     border: none;
     cursor: pointer;
     padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    display: none;
+    align-items: center;
+    justify-content: center;
     color: ${(props) => (props.$lightText ? '#ffffff' : '#1C1712')};
     text-shadow: ${(props) => (props.$lightText ? '0 2px 10px rgba(28, 23, 18, 0.35)' : 'none')};
     z-index: 1100;
 
     @media (max-width: 768px) {
-        display: block;
+        display: flex;
         color: #1C1712;
         text-shadow: none;
     }
@@ -235,7 +240,10 @@ export const MobileSubMenuItem = styled.div`
         text-decoration: none;
         font-size: 1rem;
         display: block;
-        padding: 4px 0;
+        padding: 10px 0;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
     }
 `;
 

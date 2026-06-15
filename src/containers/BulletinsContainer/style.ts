@@ -5,6 +5,10 @@ export const Container = styled.div`
   min-height: 100vh;
   padding: 140px 20px 90px;
   background: #FAF8F5;
+
+  @media (max-width: 768px) {
+    padding: 48px 16px 72px;
+  }
 `;
 
 export const Header = styled.header`
@@ -143,7 +147,8 @@ const ActionBase = styled.a`
   border-radius: 999px;
   ${typography.caption}
   font-weight: 600;
-  padding: 9px 14px;
+  padding: 11px 16px;
+  min-height: 44px;
 `;
 
 export const PrimaryAction = styled(ActionBase)`
@@ -267,7 +272,8 @@ export const LoadMoreButton = styled.button`
   background: transparent;
   border: 1px solid #C4704A;
   border-radius: 999px;
-  padding: 10px 32px;
+  padding: 13px 32px;
+  min-height: 44px;
   cursor: pointer;
   transition: background-color 180ms ease, color 180ms ease;
 

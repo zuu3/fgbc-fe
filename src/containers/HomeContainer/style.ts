@@ -295,10 +295,15 @@ export const IdentityTitle = styled.h2`
         transform: rotate(180deg);
     }
 
+    @media (max-width: 1024px) {
+        ${typography.title3}
+        margin-bottom: 60px;
+    }
+
     @media (max-width: 768px) {
-        ${typography.title7}
+        ${typography.title5}
         margin-bottom: 40px;
-        
+
         .inline-quote {
             margin: 0 4px;
             transform: translateY(-4px);
@@ -308,6 +313,11 @@ export const IdentityTitle = styled.h2`
             width: 20px;
             height: 20px;
         }
+    }
+
+    @media (max-width: 480px) {
+        ${typography.title6}
+        margin-bottom: 32px;
     }
 `;
 
@@ -598,8 +608,16 @@ export const NewsImage = styled.img`
     height: 480px;
     object-fit: cover;
 
+    @media (max-width: 1024px) {
+        height: 360px;
+    }
+
     @media (max-width: 768px) {
-        height: 280px;
+        height: 240px;
+    }
+
+    @media (max-width: 480px) {
+        height: 200px;
     }
 `;
 
