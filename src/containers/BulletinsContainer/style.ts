@@ -4,7 +4,7 @@ import { typography, colors } from '@/styles/theme';
 export const Container = styled.div`
   min-height: 100vh;
   padding: 140px 20px 90px;
-  background: linear-gradient(180deg, #f6f4ef 0%, #f7f8fc 100%);
+  background: #FAF8F5;
 `;
 
 export const Header = styled.header`
@@ -39,8 +39,8 @@ export const SpinnerWrapper = styled.div`
 export const Spinner = styled.div`
   width: 36px;
   height: 36px;
-  border: 3px solid #dbe2ee;
-  border-top-color: #1a3d69;
+  border: 3px solid #E2D9CF;
+  border-top-color: #C4704A;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 
@@ -57,12 +57,12 @@ export const AccordionList = styled.section`
 `;
 
 export const AccordionItem = styled.article<{ $open: boolean }>`
-  border: 1px solid ${(props) => (props.$open ? '#9ab1d2' : '#dbe2ee')};
+  border: 1px solid ${(props) => (props.$open ? '#E2D9CF' : '#E2D9CF')};
   border-radius: 14px;
-  background: #fff;
+  background: #FFFFFF;
   overflow: hidden;
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-  box-shadow: ${(props) => (props.$open ? '0 10px 26px rgba(76, 104, 145, 0.08)' : '0 4px 12px rgba(76, 104, 145, 0.03)')};
+  box-shadow: ${(props) => (props.$open ? '0 10px 26px rgba(28, 23, 18, 0.08)' : '0 4px 12px rgba(28, 23, 18, 0.03)')};
 `;
 
 export const AccordionButton = styled.button`
@@ -79,7 +79,7 @@ export const AccordionButton = styled.button`
   transition: background-color 180ms ease;
 
   &:hover {
-    background: rgba(237, 242, 251, 0.45);
+    background: rgba(250, 248, 245, 0.45);
   }
 `;
 
@@ -102,8 +102,8 @@ export const Chevron = styled.span<{ $open: boolean }>`
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: #edf2fb;
-  color: #1a3d69;
+  background: #F5F3EF;
+  color: #C4704A;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +112,7 @@ export const Chevron = styled.span<{ $open: boolean }>`
   line-height: 1;
   transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
   transform: ${(props) => (props.$open ? 'rotate(180deg)' : 'rotate(0deg)')};
-  background: ${(props) => (props.$open ? '#dfe9f8' : '#edf2fb')};
+  background: ${(props) => (props.$open ? '#EDEBE6' : '#F5F3EF')};
 `;
 
 export const PanelShell = styled.div<{ $open: boolean }>`
@@ -125,7 +125,7 @@ export const PanelShell = styled.div<{ $open: boolean }>`
 export const Panel = styled.div`
   min-height: 0;
   overflow: hidden;
-  border-top: 1px solid #e4ebf4;
+  border-top: 1px solid #EEE8E1;
   padding: 0 18px 18px;
 `;
 
@@ -147,20 +147,20 @@ const ActionBase = styled.a`
 `;
 
 export const PrimaryAction = styled(ActionBase)`
-  color: #fff;
-  background: #1a3d69;
+  color: #FAF8F5;
+  background: #C4704A;
 `;
 
 export const SecondaryAction = styled(ActionBase)`
-  color: #1a3d69;
-  border: 1px solid #b8c8de;
+  color: #C4704A;
+  border: 1px solid #C4704A;
 `;
 
 export const ViewerBox = styled.div`
   width: 100%;
-  border: 1px solid #d8e0ed;
+  border: 1px solid #E2D9CF;
   border-radius: 10px;
-  background: #fff;
+  background: #FFFFFF;
   overflow: hidden;
 `;
 
@@ -190,15 +190,15 @@ export const LinkList = styled.section`
 `;
 
 export const LinkItem = styled.article`
-  border: 1px solid #dbe2ee;
+  border: 1px solid #E2D9CF;
   border-radius: 14px;
-  background: #fff;
+  background: #FFFFFF;
   overflow: hidden;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 
   &:hover {
-    border-color: #9ab1d2;
-    box-shadow: 0 6px 18px rgba(76, 104, 145, 0.07);
+    border-color: #E2D9CF;
+    box-shadow: 0 6px 18px rgba(28, 23, 18, 0.07);
   }
 
   a {
@@ -234,13 +234,13 @@ export const LinkItemTitle = styled.h3`
 export const LinkItemDate = styled.p`
   ${typography.body2}
   margin: 0;
-  color: #6b7a99;
+  color: #9A8F86;
 `;
 
 export const LinkItemArrow = styled.span`
   flex-shrink: 0;
   font-size: 22px;
-  color: #9ab1d2;
+  color: #E2D9CF;
   line-height: 1;
 `;
 
@@ -250,6 +250,6 @@ export const TextContent = styled.div`
   word-break: keep-all;
   line-height: 1.9;
   padding: 8px 4px 4px;
-  color: #2c3e50;
+  color: #1C1712;
 `;
 

@@ -5,7 +5,7 @@ import { typography } from '@/styles/theme';
 export const Container = styled.div`
   min-height: 100vh;
   padding: 140px 20px 90px;
-  background: linear-gradient(180deg, #f6f4ef 0%, #f7f8fc 100%);
+  background: #FAF8F5;
 `;
 
 export const Inner = styled.div`
@@ -18,13 +18,13 @@ export const BackLink = styled(Link)`
   align-items: center;
   gap: 4px;
   ${typography.body2}
-  color: #4c6891;
+  color: #5C5349;
   text-decoration: none;
   margin-bottom: 28px;
   transition: color 150ms ease;
 
   &:hover {
-    color: #1a3d69;
+    color: #C4704A;
   }
 `;
 
@@ -34,8 +34,8 @@ export const BackArrow = styled.span`
 `;
 
 export const Article = styled.article`
-  background: #fff;
-  border: 1px solid #dbe2ee;
+  background: #FFFFFF;
+  border: 1px solid #E2D9CF;
   border-radius: 16px;
   padding: 36px 40px 48px;
 
@@ -57,12 +57,12 @@ export const ArticleTitle = styled.h1`
 export const ArticleMeta = styled.p`
   ${typography.body2}
   margin: 0;
-  color: #6b7a99;
+  color: #9A8F86;
 `;
 
 export const Divider = styled.hr`
   border: none;
-  border-top: 1px solid #e4ebf4;
+  border-top: 1px solid #EEE8E1;
   margin: 0 0 28px;
 `;
 
@@ -71,5 +71,5 @@ export const ArticleBody = styled.div`
   white-space: pre-wrap;
   word-break: keep-all;
   line-height: 1.9;
-  color: #2c3e50;
+  color: #1C1712;
 `;

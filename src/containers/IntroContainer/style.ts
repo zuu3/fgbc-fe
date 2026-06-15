@@ -3,15 +3,13 @@ import { typography, colors } from '@/styles/theme';
 
 export const Container = styled.div`
     min-height: 100vh;
-    background-color: #f6f5f1;
-    background-image: radial-gradient(1200px 600px at 10% -10%, rgba(255, 213, 153, 0.22), transparent 60%),
-        radial-gradient(1000px 500px at 90% 0%, rgba(196, 226, 255, 0.22), transparent 55%);
-    color: #333;
+    background-color: #FAF8F5;
+    color: #1C1712;
     padding-top: 80px;
 `;
 
 export const Header = styled.div`
-    background: linear-gradient(120deg, #1b1b1b 0%, #2b2b2b 45%, #3b2e27 100%);
+    background: #1C1712;
     padding: 120px 20px 70px;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -31,12 +29,11 @@ export const Title = styled.h1`
 
 export const TabMenu = styled.div`
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     gap: 0;
     padding: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(28, 23, 18, 0.06);
     flex-wrap: wrap;
     position: sticky;
     top: 80px;
@@ -59,16 +56,16 @@ export const TabMenu = styled.div`
 export const Tab = styled.button<{ $active: boolean }>`
     padding: 16px 24px;
     background: transparent;
-    color: ${props => props.$active ? '#2c2c2c' : '#999'};
+    color: ${props => props.$active ? '#1C1712' : '#9A8F86'};
     border: none;
-    border-bottom: ${props => props.$active ? '2px solid #2c2c2c' : '2px solid transparent'};
+    border-bottom: ${props => props.$active ? '2px solid #C4704A' : '2px solid transparent'};
     ${typography.body2}
     font-weight: ${props => props.$active ? '600' : '400'};
     cursor: pointer;
     transition: all 0.2s ease;
 
     &:hover {
-        color: #2c2c2c;
+        color: #1C1712;
     }
 
     @media (max-width: 768px) {
@@ -86,7 +83,7 @@ export const Content = styled.div`
 
 export const Section = styled.div`
     padding: 80px 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(28, 23, 18, 0.08);
     background: transparent;
     border-radius: 0;
     box-shadow: none;
@@ -110,7 +107,7 @@ export const SectionTitle = styled.h2`
         width: 44px;
         height: 3px;
         border-radius: 999px;
-        background: linear-gradient(90deg, #111, rgba(17, 17, 17, 0.2));
+        background: linear-gradient(90deg, #1C1712, rgba(28, 23, 18, 0.2));
     }
 
     @media (max-width: 768px) {
@@ -199,7 +196,7 @@ export const LocationInfo = styled.div`
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 40px;
     margin-bottom: 50px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(28, 23, 18, 0.08);
 
     @media (max-width: 768px) {
         grid-template-columns: 1fr;
@@ -211,7 +208,7 @@ export const InfoBlock = styled.div`
     padding: 24px 0;
     background: transparent;
     border-radius: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(28, 23, 18, 0.08);
 
     @media (max-width: 768px) {
         padding: 20px 0;
@@ -221,24 +218,24 @@ export const InfoBlock = styled.div`
 export const InfoLabel = styled.h4`
     ${typography.body1}
     font-weight: 600;
-    color: #666;
+    color: #5C5349;
     margin-bottom: 10px;
 `;
 
 export const InfoValue = styled.p`
     ${typography.body1}
-    color: #2c2c2c;
+    color: #1C1712;
     margin: 0;
 `;
 
 export const MapContainer = styled.div`
     width: 100%;
     height: 400px;
-    background: rgba(255, 255, 255, 0.7);
+    background: #FAF8F5;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(28, 23, 18, 0.06);
+    box-shadow: 0 12px 30px rgba(28, 23, 18, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,7 +268,6 @@ export const StrategyHighlight = styled.p`
     padding: 24px;
     background: rgba(255,255,255,0.05);
     border-radius: 8px;
-    border-left: 3px solid white;
 `;
 
 // Greeting Section
@@ -333,10 +329,10 @@ export const PastorImageWrapper = styled.div`
     flex-shrink: 0;
     width: 420px;
     padding: 12px;
-    background: rgba(255, 255, 255, 0.9);
+    background: #FAF8F5;
     border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(28, 23, 18, 0.06);
+    box-shadow: 0 12px 30px rgba(28, 23, 18, 0.08);
 
     @media (max-width: 1024px) {
         width: 100%;
@@ -356,7 +352,7 @@ export const PastorInfo = styled.div`
 export const PastorTitle = styled.h3`
     ${typography.title7}
     font-weight: 600;
-    color: #2c2c2c;
+    color: #1C1712;
     text-align: center;
     letter-spacing: -0.01em;
 `;
@@ -364,7 +360,7 @@ export const PastorTitle = styled.h3`
 export const GreetingIntroText = styled.p`
     ${typography.title7}
     line-height: 1.8;
-    color: #333;
+    color: #1C1712;
     margin: 0 0 40px;
     display: flex;
     flex-direction: column;
@@ -376,7 +372,7 @@ export const GreetingIntroText = styled.p`
     }
 
     strong {
-        color: #000;
+        color: #1C1712;
         font-weight: 700;
     }
 `;
@@ -397,7 +393,7 @@ export const KeywordItem = styled.div`
 export const KeywordTitle = styled.h4`
     ${typography.title7}
     font-weight: 700;
-    color: #1a1a1a;
+    color: #1C1712;
     margin: 0;
     display: flex;
     align-items: center;
@@ -407,7 +403,7 @@ export const KeywordTitle = styled.h4`
         display: block;
         width: 3px;
         height: 15px;
-        background-color: #333;
+        background-color: #1C1712;
         margin-right: 10px;
     }
 `;
@@ -415,7 +411,7 @@ export const KeywordTitle = styled.h4`
 export const KeywordDesc = styled.p`
     ${typography.body1}
     line-height: 1.8;
-    color: #555;
+    color: #5C5349;
     margin: 0;
     word-break: keep-all;
 `;
@@ -491,13 +487,13 @@ export const ElderGrid = styled.div`
 export const ElderCard = styled.div`
     text-align: center;
     padding: 24px 16px;
-    background: #fafafa;
+    background: #FAF8F5;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid #E2D9CF;
     transition: all 0.2s ease;
 
     &:hover {
-        border-color: #ddd;
+        border-color: #E2D9CF;
         box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
@@ -512,13 +508,13 @@ export const ElderPhoto = styled.img`
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 16px;
-    border: 2px solid #eee;
+    border: 2px solid #E2D9CF;
 `;
 
 export const ElderName = styled.p`
     ${typography.body1}
     font-weight: 600;
-    color: #2c2c2c;
+    color: #1C1712;
 `;
 
 // Registration Section
@@ -617,10 +613,10 @@ export const StaffGroup = styled.div`
 export const StaffCategoryTitle = styled.h4`
     ${typography.title7}
     font-weight: 700;
-    color: #2c2c2c;
+    color: #1C1712;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid #E2D9CF;
     display: flex;
     align-items: center;
     
@@ -629,7 +625,7 @@ export const StaffCategoryTitle = styled.h4`
         display: block;
         width: 4px;
         height: 18px;
-        background-color: #333;
+        background-color: #1C1712;
         margin-right: 10px;
         border-radius: 2px;
     }
@@ -656,7 +652,7 @@ export const StaffItem = styled.div`
     align-items: baseline;
     justify-content: space-between;
     padding: 8px 0;
-    border-bottom: 1px dashed #f0f0f0;
+    border-bottom: 1px dashed #E2D9CF;
 
     &:last-child {
         border-bottom: none;
@@ -666,12 +662,12 @@ export const StaffItem = styled.div`
 export const StaffName = styled.span`
     ${typography.body1}
     font-weight: 600;
-    color: #333;
+    color: #1C1712;
 `;
 
 export const StaffRole = styled.span`
     ${typography.body2}
-    color: #777;
+    color: #9A8F86;
     text-align: right;
 `;
 
@@ -687,7 +683,7 @@ export const StaffLayout = styled.div`
 export const StaffSection = styled.div`
     padding: 88px 24px 96px;
     background: transparent;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(28, 23, 18, 0.15);
 
     @media (max-width: 768px) {
         padding: 64px 20px 72px;
@@ -725,7 +721,7 @@ export const StaffSubHeading = styled.h3`
     ${typography.title5}
     margin: 60px 0 24px;
     padding-top: 60px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(28, 23, 18, 0.08);
     text-align: left;
 
     &:first-of-type {
@@ -751,7 +747,7 @@ export const SubTabMenu = styled.div`
     display: flex;
     gap: 0;
     margin-bottom: 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #E2D9CF;
     overflow-x: auto;
     
     &::-webkit-scrollbar {
@@ -761,9 +757,9 @@ export const SubTabMenu = styled.div`
 
 export const SubTabItem = styled.button<{ $active: boolean }>`
     padding: 16px 32px;
-    background: ${props => props.$active ? '#fff' : 'transparent'};
-    color: ${props => props.$active ? '#3b8f6c' : '#555'};
-    border: 1px solid ${props => props.$active ? '#ddd' : 'transparent'};
+    background: ${props => props.$active ? '#FAF8F5' : 'transparent'};
+    color: ${props => props.$active ? '#C4704A' : '#5C5349'};
+    border: 1px solid ${props => props.$active ? '#E2D9CF' : 'transparent'};
     border-bottom: none;
     margin-bottom: -1px;
     ${typography.title7}
@@ -772,7 +768,7 @@ export const SubTabItem = styled.button<{ $active: boolean }>`
     transition: all 0.2s ease;
 
     &:hover {
-        color: ${props => props.$active ? '#3b8f6c' : '#333'};
+        color: ${props => props.$active ? '#C4704A' : '#1C1712'};
     }
 
     @media (max-width: 768px) {
@@ -782,10 +778,10 @@ export const SubTabItem = styled.button<{ $active: boolean }>`
 `;
 
 export const StaffContentBox = styled.div`
-    border: 1px solid #ddd;
+    border: 1px solid #E2D9CF;
     border-top: none;
     padding: 60px 40px;
-    background: #fff;
+    background: #FFFFFF;
     min-height: 400px;
 
     @media (max-width: 768px) {
@@ -799,8 +795,8 @@ export const EmptyStaffMessage = styled.div`
     align-items: center;
     height: 200px;
     ${typography.title7}
-    color: #888;
-    background: #f9f9f9;
+    color: #9A8F86;
+    background: #F5F3EF;
     border-radius: 8px;
 `;
 
@@ -833,15 +829,15 @@ export const MinistrySlot = styled.p`
     margin: 0 0 6px;
     ${typography.body2}
     line-height: 1.5;
-    color: #666;
+    color: #5C5349;
     text-align: center;
 `;
 
 export const MinistryPhotoFrame = styled.div`
     width: 100%;
     aspect-ratio: 3 / 4;
-    border: 1px solid #ddd;
-    background: #fafafa;
+    border: 1px solid #E2D9CF;
+    background: #FAF8F5;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -854,7 +850,7 @@ export const PhotoPlaceholder = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #777;
+    color: #9A8F86;
     ${typography.body2}
 `;
 
@@ -868,14 +864,14 @@ export const MinistryRole = styled.p`
     margin: 0 0 6px;
     ${typography.body2}
     line-height: 1.5;
-    color: #49627a;
+    color: #5C5349;
 `;
 
 export const MinistrySummary = styled.p`
     margin: 0;
     ${typography.caption}
     line-height: 1.55;
-    color: #576b7e;
+    color: #5C5349;
     word-break: keep-all;
 `;
 
@@ -935,8 +931,8 @@ export const ElderProfileCard = styled.article`
 export const ElderPhotoCard = styled.div`
     width: 100%;
     aspect-ratio: 3 / 4;
-    border: 1px solid #ddd;
-    background: #fafafa;
+    border: 1px solid #E2D9CF;
+    background: #FAF8F5;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -953,7 +949,7 @@ export const ElderCardRole = styled.p`
     margin: 0 0 6px;
     ${typography.body2}
     line-height: 1.5;
-    color: #666;
+    color: #5C5349;
     text-align: center;
 `;
 
@@ -961,13 +957,13 @@ export const ElderPhotoPlaceholder = styled.div`
     width: 100%;
     max-width: 140px;
     aspect-ratio: 1 / 1;
-    border: 1px solid rgba(0, 0, 0, 0.14);
-    background: #f4f4f4;
+    border: 1px solid rgba(28, 23, 18, 0.14);
+    background: #F5F3EF;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
+    color: #9A8F86;
     ${typography.caption}
 `;
 
@@ -975,7 +971,7 @@ export const ElderNameOnly = styled.p`
     margin: 0;
     ${typography.body1}
     font-weight: 600;
-    color: #222;
+    color: #1C1712;
     text-align: center;
     word-break: keep-all;
 `;
@@ -989,7 +985,7 @@ export const WorshipTableWrapper = styled.div`
     width: min(1640px, 100%);
     margin: 0 auto;
     padding: 28px 24px;
-    background: #f3f3f3;
+    background: #EDEBE6;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
@@ -1009,7 +1005,7 @@ export const WorshipTableHeader = styled.h2`
     ${typography.title2}
     margin: 0 0 28px;
     font-weight: 700;
-    color: #2c2c2c;
+    color: #1C1712;
     text-align: center;
     letter-spacing: -0.02em;
 
@@ -1020,8 +1016,8 @@ export const WorshipTableHeader = styled.h2`
 `;
 
 export const WorshipTableColumn = styled.div`
-    background: #fff;
-    border: 1px solid #e6e6e6;
+    background: #FFFFFF;
+    border: 1px solid #E2D9CF;
     border-radius: 0;
     padding: 20px 16px;
     min-height: 220px;
@@ -1036,19 +1032,19 @@ export const WorshipTableTitle = styled.h3`
     ${typography.title7}
     font-weight: 700;
     margin-bottom: 14px;
-    color: #2c2c2c;
+    color: #1C1712;
 `;
 
 export const WorshipTableRow = styled.div`
     ${typography.body2}
-    color: #444;
+    color: #5C5349;
     line-height: 1.75;
-    border-top: 1px solid #ececec;
+    border-top: 1px solid #EEE8E1;
     padding: 10px 0;
     display: block;
 
     &:first-of-type {
-        border-top: 1px solid #dcdcdc;
+        border-top: 1px solid #E2D9CF;
     }
 `;
 
@@ -1058,19 +1054,19 @@ export const OnlineSection = styled.div`
     background: transparent;
     border-radius: 0;
     text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(28, 23, 18, 0.08);
 `;
 
 export const OnlineTitle = styled.h4`
     ${typography.title7}
     font-weight: 600;
     margin-bottom: 12px;
-    color: #2c2c2c;
+    color: #1C1712;
 `;
 
 export const AccountNumber = styled.p`
     ${typography.body1}
-    color: #666;
+    color: #5C5349;
     font-weight: 400;
 `;
 
@@ -1078,7 +1074,7 @@ export const AccountBanner = styled.div`
     max-width: 800px;
     margin: 32px auto 0 auto;
     padding: 24px 40px;
-    background: #2c2c2c;
+    background: #1C1712;
     border-radius: 12px;
     text-align: center;
     cursor: pointer;
@@ -1086,10 +1082,10 @@ export const AccountBanner = styled.div`
     border: 1px solid transparent;
 
     &:hover {
-        background: #3a3a3a;
+        background: #5C5349;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        border-color: #f59e0b;
+        box-shadow: 0 8px 24px rgba(28, 23, 18, 0.12);
+        border-color: #C4704A;
     }
 
     &:active {
@@ -1114,7 +1110,7 @@ export const AccountText = styled.p`
     line-height: 1.5;
 
     strong {
-        color: #f59e0b;
+        color: #C4704A;
         white-space: nowrap;
     }
 
