@@ -722,33 +722,36 @@ export const VideoOverlay = styled.div`
 export const VideoModal = styled.div`
     position: relative;
     width: min(1280px, 96vw);
-    background: #1C1712;
+    aspect-ratio: 16 / 9;
+    background: #000;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 25px 70px rgba(28, 23, 18, 0.5);
+
+    @media (max-width: 768px) {
+        width: 100%;
+        border-radius: 10px;
+    }
 `;
 
 export const VideoFrame = styled.iframe`
     width: 100%;
-    height: min(70vh, 80vw);
+    height: 100%;
     border: none;
-
-    @media (max-width: 768px) {
-        height: 56vw;
-    }
+    display: block;
 `;
 
 export const CloseButton = styled.button`
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 999px;
     background: rgba(28, 23, 18, 0.65);
-    color: #fff;
     border: none;
     ${typography.title7}
+    color: #FAF8F5;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -772,6 +775,7 @@ export const VideoCaption = styled.div`
         left: 16px;
         bottom: 16px;
         ${typography.body2}
+        color: #FAF8F5;
         max-width: 85vw;
     }
 `;
