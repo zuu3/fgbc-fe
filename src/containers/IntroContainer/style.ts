@@ -1100,7 +1100,7 @@ export const AccountBanner = styled.div`
 
 export const AccountText = styled.p`
     ${typography.body1}
-    color: white;
+    color: #FAF8F5;
     margin: 0;
     display: flex;
     align-items: center;
@@ -1116,13 +1116,13 @@ export const AccountText = styled.p`
 
     svg {
         ${typography.title7}
-        opacity: 0.7;
-        transition: opacity 0.2s;
+        color: rgba(250, 248, 245, 0.7);
+        transition: opacity 0.2s, color 0.2s;
         flex-shrink: 0;
     }
 
     &:hover svg {
-        opacity: 1;
+        color: #FAF8F5;
     }
 
     @media (max-width: 768px) {
