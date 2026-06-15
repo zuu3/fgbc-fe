@@ -7,10 +7,10 @@ function logRecoverableContentError(message: string, error: unknown) {
   }
 }
 
-export async function getPublishedBulletins(limit = 20, contentCategory: ContentCategory = 'bulletin'): Promise<Bulletin[]> {
+export async function getPublishedBulletins(limit = 20, contentCategory: ContentCategory = 'bulletin', offset = 0): Promise<Bulletin[]> {
   try {
     return await apiClient<Bulletin[]>('/bulletins/', {
-      params: { limit, content_category: contentCategory },
+      params: { limit, offset, content_category: contentCategory },
       next: { revalidate: 30 }
     });
   } catch (error) {

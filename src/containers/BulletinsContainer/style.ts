@@ -253,3 +253,32 @@ export const TextContent = styled.div`
   color: #1C1712;
 `;
 
+export const LoadMoreWrapper = styled.div`
+  max-width: 1100px;
+  margin: 24px auto 0;
+  display: flex;
+  justify-content: center;
+`;
+
+export const LoadMoreButton = styled.button`
+  ${typography.body2}
+  font-weight: 600;
+  color: #C4704A;
+  background: transparent;
+  border: 1px solid #C4704A;
+  border-radius: 999px;
+  padding: 10px 32px;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+
+  &:hover:not(:disabled) {
+    background: #C4704A;
+    color: #FAF8F5;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+`;
+

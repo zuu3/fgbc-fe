@@ -44,20 +44,32 @@ export default function BulletinsContainer({
   const bulletinIdParam = searchParams.get('bulletinId');
   const [bulletins, setBulletins] = useState<Bulletin[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [offset, setOffset] = useState(0);
   const [manualExpandedBulletinId, setManualExpandedBulletinId] = useState<string | null | undefined>(undefined);
+
+  const PAGE_SIZE = 10;
 
   const isTextCategory = contentCategory === 'pastoral_letter' || contentCategory === 'sharing_worship';
 
   useEffect(() => {
     let mounted = true;
+    setIsLoading(true);
+    setBulletins([]);
+    setOffset(0);
+    setHasMore(true);
 
-    getPublishedBulletins(20, contentCategory).then((items) => {
+    getPublishedBulletins(PAGE_SIZE, contentCategory, 0).then((items) => {
       if (!mounted) return;
       setBulletins(items);
+      setHasMore(items.length === PAGE_SIZE);
+      setOffset(PAGE_SIZE);
       setIsLoading(false);
     }).catch(() => {
       if (!mounted) return;
       setBulletins([]);
+      setHasMore(false);
       setIsLoading(false);
     });
 
@@ -65,6 +77,20 @@ export default function BulletinsContainer({
       mounted = false;
     };
   }, [contentCategory]);
+
+  const loadMore = () => {
+    if (isLoadingMore || !hasMore) return;
+    setIsLoadingMore(true);
+
+    getPublishedBulletins(PAGE_SIZE, contentCategory, offset).then((items) => {
+      setBulletins((prev) => [...prev, ...items]);
+      setHasMore(items.length === PAGE_SIZE);
+      setOffset((prev) => prev + PAGE_SIZE);
+      setIsLoadingMore(false);
+    }).catch(() => {
+      setIsLoadingMore(false);
+    });
+  };
 
   const defaultExpandedBulletin = useMemo(() => {
     if (bulletins.length === 0) return null;
@@ -154,6 +180,14 @@ export default function BulletinsContainer({
             );
           })}
         </S.AccordionList>
+      )}
+
+      {!isLoading && hasMore && (
+        <S.LoadMoreWrapper>
+          <S.LoadMoreButton type="button" onClick={loadMore} disabled={isLoadingMore}>
+            {isLoadingMore ? '불러오는 중...' : '더 보기'}
+          </S.LoadMoreButton>
+        </S.LoadMoreWrapper>
       )}
     </>
   );
