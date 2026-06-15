@@ -6,8 +6,8 @@ import Link from "next/link";
 export const Wrapper = styled.div`
     width: 100%;
     min-height: 100vh;
-    background-color: #fff;
-    color: #333;
+    background-color: #FAF8F5;
+    color: #1C1712;
     overflow-x: hidden;
 `;
 
@@ -108,7 +108,7 @@ export const HeroIndicator = styled.button<{ $active: boolean }>`
     padding: 0;
     cursor: pointer;
     background: ${(props) => (props.$active ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.45)')};
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 1px 2px rgba(28, 23, 18, 0.5));
     transition: background 0.25s ease;
 
     &:focus-visible {
@@ -159,7 +159,7 @@ export const HeroTitle = styled.h1`
     font-weight: 700;
     margin: 0;
     color: white;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    text-shadow: 0 4px 20px rgba(28, 23, 18, 0.4);
     letter-spacing: -0.02em;
     line-height: 1.3;
     margin-bottom: 16px;
@@ -176,7 +176,6 @@ export const HeroButton = styled.div`
         display: inline-block;
         padding: 16px 40px;
         background: rgba(255,255,255,0.15);
-        backdrop-filter: blur(8px);
         color: white;
         text-decoration: none;
         border-radius: 48px;
@@ -252,7 +251,7 @@ export const IdentitySection = styled.section`
     background: ${colors.surfaceAsh};
     padding: 140px 20px 220px;
     text-align: center;
-    color: #000;
+    color: #1C1712;
 
     @media (max-width: 768px) {
         padding: 60px 20px;
@@ -263,7 +262,7 @@ export const IdentitySubtitle = styled.p`
     ${typography.title6}
     font-weight: 600;
     margin-bottom: 24px;
-    color: #333D4B;
+    color: #5C5349;
 
     @media (max-width: 768px) {
         ${typography.title7}
@@ -335,26 +334,26 @@ export const IdentityGrid = styled.div`
 
 export const IdentityCard = styled.div`
     background: transparent;
-    border: 4px solid #101c29;
+    border: 4px solid #1C1712;
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     aspect-ratio: 1 / 1;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(28, 23, 18, 0.15);
     transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
         transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.4);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        background: rgba(250, 248, 245, 0.4);
+        box-shadow: 0 15px 35px rgba(28, 23, 18, 0.25);
     }
 
     @media (max-width: 768px) {
         padding: 16px 8px;
         border-width: 2px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 6px 16px rgba(28, 23, 18, 0.12);
     }
 `;
 
@@ -382,9 +381,7 @@ export const IdentityCardRef = styled.p`
 
 export const QuickSummarySection = styled.section`
     padding: 70px 20px;
-    background: radial-gradient(900px 420px at 10% -30%, rgba(255, 225, 172, 0.4), transparent 60%),
-        radial-gradient(900px 420px at 90% 130%, rgba(161, 207, 255, 0.35), transparent 60%),
-        #f5f3ee;
+    background: #EDEBE6;
 `;
 
 export const QuickSummaryInner = styled.div`
@@ -401,11 +398,10 @@ export const QuickSummaryInner = styled.div`
 
 export const SummaryCard = styled.article`
     border-radius: 18px;
-    border: 1px solid rgba(38, 59, 87, 0.12);
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(8px);
+    border: 1px solid #E2D9CF;
+    background: #FFFFFF;
     padding: 24px;
-    box-shadow: 0 18px 36px rgba(12, 21, 38, 0.07);
+    box-shadow: 0 18px 36px rgba(28, 23, 18, 0.07);
 `;
 
 export const SummaryHeader = styled.div`
@@ -414,7 +410,7 @@ export const SummaryHeader = styled.div`
 
 export const SummaryLabel = styled.p`
     ${typography.caption}
-    color: #63718a;
+    color: #9A8F86;
     margin-bottom: 6px;
 `;
 
@@ -443,24 +439,24 @@ export const SummaryItemDate = styled.span`
     justify-content: center;
     border-radius: 999px;
     ${typography.caption}
-    color: #173f74;
-    background: #dceaff;
+    color: #5C5349;
+    background: #EDEBE6;
     padding: 5px 8px;
 `;
 
 export const SummaryItemText = styled.strong`
-    color: #2d394a;
+    color: #5C5349;
     font-weight: 500;
 `;
 
 export const SummaryLoading = styled.p`
-    color: #6a768b;
+    color: #9A8F86;
     ${typography.body2}
     margin-bottom: 16px;
 `;
 
 export const BulletinMeta = styled.p`
-    color: #55627a;
+    color: #5C5349;
     ${typography.body2}
     margin-bottom: 16px;
     line-height: 1.6;
@@ -471,16 +467,16 @@ export const SummaryLink = styled(Link)`
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    border: 1px solid #214d84;
-    color: #214d84;
+    border: 1px solid #C4704A;
+    color: #C4704A;
     padding: 8px 14px;
     ${typography.caption}
     font-weight: 600;
     transition: all 0.2s ease;
 
     &:hover {
-        background: #214d84;
-        color: #fff;
+        background: #C4704A;
+        color: #FAF8F5;
     }
 `;
 
@@ -514,8 +510,8 @@ export const NewsMediaCard = styled.div`
     margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
-    background: #111;
+    box-shadow: 0 20px 50px rgba(28, 23, 18, 0.18);
+    background: #1C1712;
     aspect-ratio: 16 / 9;
     position: relative;
 `;
@@ -566,7 +562,7 @@ export const NewsDivider = styled.div`
 export const NewsDescription = styled.p`
     ${typography.body1}
     line-height: 1.7;
-    color: #666;
+    color: #5C5349;
     margin-bottom: 32px;
 `;
 
@@ -612,19 +608,19 @@ export const NewsLink = styled.a`
     border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 30px rgba(28, 23, 18, 0.12);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 18px 40px rgba(28, 23, 18, 0.18);
     }
 `;
 
 export const ThumbnailOverlay = styled.span`
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(28, 23, 18, 0.45);
     opacity: 0;
     transition: opacity 0.2s ease;
 `;
@@ -638,7 +634,7 @@ export const ThumbnailTitle = styled.span`
     color: #fff;
     font-weight: 600;
     text-align: center;
-    text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 6px 18px rgba(28, 23, 18, 0.45);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -666,7 +662,7 @@ export const ThumbnailButton = styled.button`
     cursor: pointer;
 
     &:focus-visible {
-        outline: 3px solid rgba(0, 0, 0, 0.35);
+        outline: 3px solid rgba(28, 23, 18, 0.35);
         outline-offset: 4px;
     }
 
@@ -697,7 +693,7 @@ export const SkeletonBox = styled.div`
 export const VideoOverlay = styled.div`
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(28, 23, 18, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -708,10 +704,10 @@ export const VideoOverlay = styled.div`
 export const VideoModal = styled.div`
     position: relative;
     width: min(1280px, 96vw);
-    background: #000;
+    background: #1C1712;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 70px rgba(28, 23, 18, 0.5);
 `;
 
 export const VideoFrame = styled.iframe`
@@ -731,7 +727,7 @@ export const CloseButton = styled.button`
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(28, 23, 18, 0.65);
     color: #fff;
     border: none;
     ${typography.title7}
@@ -741,7 +737,7 @@ export const CloseButton = styled.button`
     justify-content: center;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(28, 23, 18, 0.8);
     }
 `;
 
@@ -752,7 +748,7 @@ export const VideoCaption = styled.div`
     ${typography.title7}
     color: #fff;
     font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 6px 18px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 2px 4px rgba(28, 23, 18, 0.8), 0 6px 18px rgba(28, 23, 18, 0.6);
 
     @media (max-width: 768px) {
         left: 16px;
@@ -765,7 +761,7 @@ export const VideoCaption = styled.div`
 // 4-1. 오시는 길
 export const LocationSection = styled.section`
     padding: 72px 20px;
-    background: #ffffff;
+    background: #FAF8F5;
 
     @media (max-width: 768px) {
         padding: 60px 20px;
@@ -843,9 +839,9 @@ export const LocationMapCard = styled.div`
     height: 300px;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-    background: #f6f6f6;
+    border: 1px solid rgba(28, 23, 18, 0.08);
+    box-shadow: 0 10px 24px rgba(28, 23, 18, 0.1);
+    background: #F5F3EF;
 
     .root_daum_roughmap {
         width: 100% !important;
@@ -894,7 +890,7 @@ export const InfoColumn = styled.article`
 export const InfoTitle = styled.h3`
     ${typography.title4}
     font-weight: 700;
-    color: #1d2229;
+    color: #1C1712;
     margin-bottom: 24px;
     letter-spacing: -0.02em;
     text-align: center;
@@ -906,12 +902,12 @@ export const InfoTitle = styled.h3`
 `;
 
 export const InfoText = styled.p`
-    color: #2b3138;
+    color: #1C1712;
     ${typography.body2}
     line-height: 1.65;
     margin: 0;
     padding: 14px 0;
-    border-bottom: 1px solid #a4a8ad;
+    border-bottom: 1px solid #E2D9CF;
 `;
 
 export const InfoPre = styled.p`
@@ -928,22 +924,22 @@ export const InfoList = styled.ul`
     gap: 0;
     margin: 0;
     padding: 0;
-    border-top: 1px solid #a4a8ad;
+    border-top: 1px solid #E2D9CF;
 `;
 
 export const InfoListItem = styled.li`
     display: flex;
     align-items: flex-start;
     gap: 16px;
-    color: #2a313c;
-    border-bottom: 1px solid #a4a8ad;
+    color: #1C1712;
+    border-bottom: 1px solid #E2D9CF;
     padding: 16px 0;
 `;
 
 export const InfoScheduleDate = styled.span`
     width: 8.6em;
     flex-shrink: 0;
-    color: #282f39;
+    color: #1C1712;
     font-weight: 700;
     ${typography.title7}
     line-height: 1.4;
@@ -962,14 +958,14 @@ export const InfoScheduleDatePart = styled.span`
 export const InfoScheduleRangeSeparator = styled.span`
     display: inline-block;
     margin: 0 3px;
-    color: #5b626b;
+    color: #5C5349;
     font-weight: 600;
 `;
 
 export const InfoScheduleWeekday = styled.span`
     display: inline-block;
     margin-left: 2px;
-    color: #5b626b;
+    color: #5C5349;
     ${typography.caption}
     font-weight: 600;
     vertical-align: 0.08em;
@@ -983,7 +979,7 @@ export const InfoScheduleDetails = styled.div`
 `;
 
 export const InfoScheduleDetail = styled.span`
-    color: #282f39;
+    color: #1C1712;
     font-weight: 600;
     ${typography.title7}
     line-height: 1.4;
@@ -996,8 +992,8 @@ export const InfoListLinkItem = styled(Link)`
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    color: #2a313c;
-    border-bottom: 1px solid #a4a8ad;
+    color: #1C1712;
+    border-bottom: 1px solid #E2D9CF;
     padding: 16px 0;
     text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease;
@@ -1008,7 +1004,7 @@ export const InfoListLinkItem = styled(Link)`
 `;
 
 export const InfoRowTitle = styled.span`
-    color: #282f39;
+    color: #1C1712;
     font-weight: 600;
     ${typography.title7}
     line-height: 1.4;
@@ -1017,7 +1013,7 @@ export const InfoRowTitle = styled.span`
 `;
 
 export const InfoRowMeta = styled.span`
-    color: #666c74;
+    color: #9A8F86;
     font-weight: 500;
     ${typography.caption}
     flex-shrink: 0;
@@ -1030,7 +1026,7 @@ export const InfoRowMeta = styled.span`
 export const InfoLink = styled(Link)`
     display: inline-block;
     margin-top: 14px;
-    color: #1d2a3b;
+    color: #1C1712;
     font-weight: 600;
     ${typography.body2}
     text-decoration: none;
@@ -1043,11 +1039,10 @@ export const InfoLink = styled(Link)`
 // 5. 유튜브 섹션
 export const YouTubeSection = styled.section`
     padding: 80px 20px;
-    background: linear-gradient(90deg, #e0e0e0 0%, #e0e0e0 5%, #5eccff 35%, #5eccff 65%, #e0e0e0 95%, #e0e0e0 100%);
+    background: #1C1712;
 
     @media (max-width: 768px) {
         padding: 60px 20px;
-        background: linear-gradient(90deg, #f0f0f0 0%, #5eccff 15%, #5eccff 85%, #f0f0f0 100%);
     }
 `;
 
@@ -1080,7 +1075,7 @@ export const YouTubeButton = styled.a`
     align-items: center;
     gap: 10px;
     padding: 16px 36px;
-    background: white;
+    background: #FAF8F5;
     color: ${colors.inkMid};
     text-decoration: none;
     border-radius: 48px;
@@ -1095,7 +1090,7 @@ export const YouTubeButton = styled.a`
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(28, 23, 18, 0.15);
     }
 `;
 
@@ -1229,7 +1224,7 @@ export const WorshipColumn = styled.div`
 export const WorshipInfo = styled.div`
     ${typography.body2}
     line-height: 1.7;
-    color: #666;
+    color: #5C5349;
     padding: 16px;
     background: ${colors.surfaceOff};
     border-radius: 6px;
@@ -1282,7 +1277,7 @@ export const InfoLabel = styled.h4`
 
 export const InfoTextLegacy = styled.p`
     ${typography.body2}
-    color: #666;
+    color: #5C5349;
     line-height: 1.5;
     margin: 0;
 `;
@@ -1292,7 +1287,7 @@ export const AccountInfo = styled.div`
     margin: 0 auto;
     text-align: center;
     padding: 28px;
-    background: white;
+    background: #FAF8F5;
     border-radius: 8px;
     border: 1px solid ${colors.borderSubtle};
 `;
@@ -1306,7 +1301,7 @@ export const AccountLabel = styled.h4`
 
 export const AccountNumber = styled.p`
     ${typography.body2}
-    color: #666;
+    color: #5C5349;
     font-weight: 400;
     margin: 0;
 `;
@@ -1335,16 +1330,16 @@ export const WorshipGrid = styled.div`
 `;
 
 export const WorshipCard = styled.div`
-    background: white;
+    background: #FFFFFF;
     border-radius: 12px;
     padding: 32px 28px;
     border: 1px solid ${colors.borderSubtle};
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 8px rgba(28, 23, 18, 0.04);
     transition: all 0.2s ease;
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 24px rgba(28, 23, 18, 0.08);
     }
 `;
 
@@ -1354,7 +1349,7 @@ export const WorshipCardHeader = styled.h3`
     color: ${colors.inkMid};
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 2px solid #f59e0b;
+    border-bottom: 2px solid #C4704A;
 `;
 
 export const WorshipList = styled.div`
@@ -1438,7 +1433,7 @@ export const InfoContent = styled.div`
 // 8. 퀵 링크 섹션 (미니멀리즘 디자인)
 export const QuickLinksSection = styled.section`
     padding: 80px 20px;
-    background: #fff;
+    background: #FAF8F5;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -1468,12 +1463,12 @@ export const QuickLinkCard = styled.div`
     gap: 24px;
     padding: 32px;
     border-radius: 12px;
-    background: #fff;
-    border: 1px solid #f0f0f0;
+    background: #FAF8F5;
+    border: 1px solid #EEE8E1;
     transition: all 0.2s ease;
 
     &:hover {
-        border-color: #e0e0e0;
+        border-color: #E2D9CF;
         background: ${colors.surfaceOff};
     }
 `;
@@ -1544,6 +1539,6 @@ export const SubActionLink = styled.div`
     }
 
     &:hover {
-        color: #666;
+        color: #5C5349;
     }
 `;

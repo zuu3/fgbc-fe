@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const FooterWrapper = styled.footer`
     width: 100%;
-    background-color: #1f1f1f;
+    background-color: #1C1712;
     padding: 36px 24px 44px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
@@ -107,7 +107,7 @@ export const FooterSns = styled.div`
 
 export const FooterSnsLink = styled.a`
     font-size: 0.9rem;
-    color: #d9d9d9;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     padding: 6px 10px;
     border-radius: 999px;
