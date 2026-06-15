@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { typography } from '@/styles/theme';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -6,30 +7,28 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 120px 20px 80px;
-  background: radial-gradient(900px 500px at 10% 0%, rgba(151, 193, 255, 0.35), transparent 60%),
-    radial-gradient(900px 500px at 90% 100%, rgba(255, 222, 173, 0.4), transparent 60%),
-    #f4f6fb;
+  background: #FAF8F5;
 `;
 
 export const Card = styled.section`
   width: 100%;
   max-width: 420px;
-  background: #fff;
-  border: 1px solid #d9e2f0;
+  background: #FFFFFF;
+  border: 1px solid #E2D9CF;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 16px 40px rgba(17, 30, 50, 0.12);
+  box-shadow: 0 16px 40px rgba(28, 23, 18, 0.10);
 `;
 
 export const Title = styled.h1`
-  font-size: 1.7rem;
+  ${typography.title6}
+  color: #1C1712;
   margin-bottom: 8px;
-  color: #1b2a40;
 `;
 
 export const Description = styled.p`
-  font-size: 0.92rem;
-  color: #64718a;
+  ${typography.body2}
+  color: #5C5349;
   line-height: 1.6;
   margin-bottom: 18px;
 `;
@@ -44,29 +43,45 @@ export const Field = styled.div`
   gap: 6px;
 
   label {
-    color: #52607a;
-    font-size: 0.84rem;
+    ${typography.caption}
+    color: #5C5349;
   }
 
   input {
-    border: 1px solid #cad5e7;
+    border: 1px solid #E2D9CF;
     border-radius: 10px;
     padding: 10px 12px;
-    font-size: 0.92rem;
-    color: #1f2e44;
+    ${typography.body2}
+    color: #1C1712;
+    background: #FFFFFF;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 150ms ease;
+
+    &:focus {
+      border-color: #C4704A;
+    }
   }
 `;
 
 export const SubmitButton = styled.button`
   margin-top: 6px;
-  border: 1px solid #1c4a84;
-  background: #1c4a84;
-  color: #fff;
+  border: 1px solid #C4704A;
+  background: #C4704A;
+  color: #FAF8F5;
   border-radius: 10px;
   padding: 10px 12px;
-  font-size: 0.92rem;
+  ${typography.body2}
+  color: #FAF8F5;
   font-weight: 600;
   cursor: pointer;
+  font-family: inherit;
+  transition: background-color 150ms ease, border-color 150ms ease;
+
+  &:hover:not(:disabled) {
+    background: #A85C38;
+    border-color: #A85C38;
+  }
 
   &:disabled {
     opacity: 0.7;
@@ -75,6 +90,6 @@ export const SubmitButton = styled.button`
 `;
 
 export const ErrorText = styled.p`
-  color: #b32e43;
-  font-size: 0.84rem;
+  ${typography.caption}
+  color: #B32E43;
 `;
