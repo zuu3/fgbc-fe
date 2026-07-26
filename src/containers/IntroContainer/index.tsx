@@ -321,7 +321,7 @@ const IntroContainer = () => {
                                 <S.InfoBlock>
                                     <S.InfoLabel>전화 및 FAX</S.InfoLabel>
                                     <S.InfoValue>
-                                        TEL : 051) 634-9362<br />FAX : 051) 635-2801
+                                        TEL: 051) 634-9362<br />FAX: 051) 635-2801
                                     </S.InfoValue>
                                 </S.InfoBlock>
                             </S.LocationInfo>
