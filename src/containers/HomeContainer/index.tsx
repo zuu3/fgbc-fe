@@ -12,8 +12,7 @@ import { motion } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
-    { src: '/banner/gospel.png', alt: '순복음범천교회 복음 배너', isDark: false },
-    { src: '/banner/summer.png', alt: '다음세대 여름 일정 배너', isDark: false },
+    { src: '/banner/gospel3.png', alt: '순복음범천교회 복음 배너', isDark: false },
     { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
 ] as const;
 
