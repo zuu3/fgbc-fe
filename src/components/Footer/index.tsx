@@ -29,7 +29,7 @@ export default function Footer() {
                         </S.FooterLine>
                         <S.FooterLine>
                             <S.FooterLabel>담임목사 이메일</S.FooterLabel>
-                            <S.FooterValue>pastor@fgbc.church</S.FooterValue>
+                            <S.FooterValue>ustake0927@gmail.com</S.FooterValue>
                         </S.FooterLine>
                     </S.FooterInfo>
                 </S.FooterRow>
