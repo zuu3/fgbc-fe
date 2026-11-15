@@ -12,6 +12,7 @@ import { motion } from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 
 const HERO_BANNERS = [
+    { src: '/banner/thanksgiving40.png', alt: '40일, 감사로 걷다 추수감사 배너', isDark: true },
     { src: '/banner/gospel3.png', alt: '순복음범천교회 복음 배너', isDark: false },
     { src: '/banner/main_1920900.png', alt: '순복음범천교회 메인 배너', isDark: false },
 ] as const;
